@@ -1,0 +1,10 @@
+*.a
+*.o
+.DS_Store
+
+*~
+#*#
+*.swp
+*.swo
+
+mysh
