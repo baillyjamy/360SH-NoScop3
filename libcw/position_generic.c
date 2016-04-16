@@ -1,0 +1,30 @@
+/*
+** position.c for  in /home/antoine
+**
+** Made by antoine
+** Login   <antoine@epitech.net>
+**
+** Started on  Wed Mar  9 12:53:13 2016 antoine
+** Last update Sat Apr 16 13:17:02 2016 Valentin Pichard
+*/
+
+#include "position.h"
+#include "print.h
+
+void            position_init(t_position *position,
+                              t_source_file *source_file)
+{
+  position->file = source_file;
+  position->index = 0;
+  position->line = 1;
+  position->column = 0;
+}
+
+void            position_print(const t_position *position, int file)
+{
+  print_string_file(position->file->name, file);
+  print_string_file(":", file);
+  print_int_file(position->line, file);
+  print_string_file(":", file);
+  print_int_file(position->column, file);
+}
