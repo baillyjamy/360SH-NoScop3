@@ -5,7 +5,7 @@
 ## Login   <antoine@epitech.net>
 ##
 ## Started on  Wed Mar  2 21:35:00 2016 antoine
-## Last update Sat Apr 16 13:34:55 2016 Valentin Pichard
+## Last update Sat Apr 16 13:50:03 2016 Valentin Pichard
 ##
 
 LIBCW_SOURCES_NAMES = 	char_type_generic.c \
@@ -28,7 +28,7 @@ LIBCW_SOURCES_NAMES = 	char_type_generic.c \
 			string_equals.c \
 			string_find_char.c \
 			string_find.c \
-			string_reader.c \
+			string_reader_generic.c \
 			string_starts_with.c \
 			string_type_generic.c \
 			string_type_converter.c

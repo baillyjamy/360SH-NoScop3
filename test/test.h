@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Wed Feb 24 20:01:52 2016 antoine
-** Last update Sat Apr 16 13:40:49 2016 Valentin Pichard
+** Last update Sat Apr 16 13:52:53 2016 Valentin Pichard
 */
 
 #ifndef TEST_H
@@ -28,14 +28,10 @@ typedef struct          s_test_stats
   int                   total_test_count;
 }                       t_test_stats;
 
-void    run_vm_suites(void);
-void    run_asm_suites(void);
 void    run_libcw_suites(void);
 
 void    test_suite_token_list(void);
-void    test_suite_lexer(void);
 
-void    test_suite_memory(void);
 void    test_suite_parse_int(void);
 void    test_suite_string_concat(void);
 void    test_suite_string_find_char(void);

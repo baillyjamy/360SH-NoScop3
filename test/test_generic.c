@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Tue Feb 23 00:12:28 2016 antoine
-** Last update Tue Feb 23 00:12:28 2016 antoine
+** Last update Sat Apr 16 13:52:07 2016 Valentin Pichard
 */
 
 #include <stdlib.h>
@@ -34,8 +34,6 @@ int             main()
   g_test_stats.failed_test_count = 0;
   g_test_stats.total_test_count = 0;
   run_libcw_suites();
-  run_asm_suites();
-  run_vm_suites();
   print_int(g_test_stats.total_test_count);
   print_string(" tests, ");
   print_int(g_test_stats.failed_test_count);
