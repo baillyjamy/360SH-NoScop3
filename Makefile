@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
-## Last update Sat Apr 16 11:56:01 2016 Valentin Pichard
+## Last update Sat Apr 16 12:02:45 2016 Valentin Pichard
 ##
 
 include libcw.mk
@@ -24,8 +24,6 @@ ifeq ($(DELIVERY),true)
 else
 	CFLAGS	+= -g
 endif
-
-LDFLAGS		=
 
 LIBCW_NAME	= libcw.a
 LIBCW		= libcw/$(LIBCW_NAME)
