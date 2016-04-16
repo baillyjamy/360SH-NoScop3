@@ -5,13 +5,13 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
-## Last update Sat Apr 16 12:02:45 2016 Valentin Pichard
+## Last update Sat Apr 16 14:31:20 2016 Valentin Pichard
 ##
 
 include libcw.mk
 include test.mk
 
-DELIVERY	= true
+DELIVERY	= false
 
 CC		= cc
 
