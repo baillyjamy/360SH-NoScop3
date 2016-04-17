@@ -40,7 +40,7 @@ END		= "\033[0m"
 
 echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
-all: test/test
+all: glist_headers test/test
 
 test/test: $(TEST_OBJECTS) $(LIBCW) $(LIBEGC)
 	$(CC) -o $@ $^ $(LDFLAGS)
@@ -51,6 +51,9 @@ $(LIBCW): $(LIBCW_OBJECTS)
 
 $(LIBEGC):
 	$(MAKE) -C egc/ DEBUG=true
+
+glist_headers:
+	$(MAKE) -C egc/ glist
 
 %.o: %.c
 	@$(CC) -c $< -o $@ $(CFLAGS) && \
@@ -69,4 +72,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re glist_headers
