@@ -50,7 +50,7 @@ $(LIBCW): $(LIBCW_OBJECTS)
 	ranlib $@
 
 $(LIBEGC):
-	$(MAKE) -C egc/
+	$(MAKE) -C egc/ DEBUG=true
 
 %.o: %.c
 	@$(CC) -c $< -o $@ $(CFLAGS) && \

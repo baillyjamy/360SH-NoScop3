@@ -11,6 +11,8 @@
 #ifndef TEST_H
 # define TEST_H
 
+# include "../sh.h"
+
 # define STRINGIFY_(s)          #s
 # define STRINGIFY(s)           STRINGIFY_(s)
 
@@ -28,7 +30,9 @@ typedef struct          s_test_stats
   int                   total_test_count;
 }                       t_test_stats;
 
-void    run_libcw_suites(void);
+# define STATS          ((t_test_stats *)egc_get_statics())
+
+void    run_test_suites(void);
 
 void    test_suite_token_list(void);
 

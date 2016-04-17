@@ -9,7 +9,7 @@
 */
 
 #include "position.h"
-#include "print.h"
+#include "../egc/include/egc.h"
 
 void            position_init(t_position *position,
                               t_source_file *source_file)
@@ -22,9 +22,11 @@ void            position_init(t_position *position,
 
 void            position_print(const t_position *position, int file)
 {
-  print_string_file(position->file->name, file);
-  print_string_file(":", file);
-  print_int_file(position->line, file);
-  print_string_file(":", file);
-  print_int_file(position->column, file);
+  egc_fprintf(file,
+              "%s:",
+              position->file->name);
+  egc_fprintf(file,
+              "%d:%d",
+              position->line,
+              position->column);
 }

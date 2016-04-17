@@ -9,34 +9,41 @@
 */
 
 #include <stdlib.h>
-#include "../libcw/print.h"
 #include "test.h"
-
-static t_test_stats     g_test_stats;
 
 void            fail_impl(const char *position)
 {
-  print_string_err(position);
-  print_string_err(": Test failed");
-  print_string_err("\n");
-  g_test_stats.failed_test_count++;
+  egc_printf("%s: Test failed\n", position);
+  STATS->failed_test_count++;
 }
 
 void            assert_impl(int a, const char *position)
 {
   if (!a)
     fail_impl(position);
-  g_test_stats.total_test_count++;
+  STATS->total_test_count++;
+}
+
+int             main2()
+{
+  float         failure;
+  t_test_stats  stats;
+
+  stats.failed_test_count = 0;
+  stats.total_test_count = 0;
+  egc_set_statics(&stats, sizeof(t_test_stats));
+  run_test_suites();
+  egc_printf("%d tests, %d failures\n",
+             stats.total_test_count,
+             stats.failed_test_count);
+  failure = stats.failed_test_count / (float)stats.total_test_count;
+  if (failure > 0.5)
+    return (1);
+  else
+    return (0);
 }
 
 int             main()
 {
-  g_test_stats.failed_test_count = 0;
-  g_test_stats.total_test_count = 0;
-  run_libcw_suites();
-  print_int(g_test_stats.total_test_count);
-  print_string(" tests, ");
-  print_int(g_test_stats.failed_test_count);
-  print_string(" failures\n");
-  return (g_test_stats.failed_test_count != 0);
+  return (egc_run(0, NULL, main2));
 }

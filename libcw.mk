@@ -17,10 +17,6 @@ LIBCW_SOURCES_NAMES = 	char_type_generic.c \
 			parse_and_read_int.c \
 			parse_and_read_int_base.c \
 			position_generic.c \
-			print_string.c \
-			print_int.c \
-			print_char.c \
-			position_generic.c \
 			source_file.c \
 			string_generic.c \
 			string_concat.c \

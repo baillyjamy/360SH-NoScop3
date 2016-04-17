@@ -10,7 +10,7 @@
 
 #include "test.h"
 
-void    run_libcw_suites(void)
+void    run_test_suites(void)
 {
   test_suite_parse_int();
   test_suite_string_concat();
