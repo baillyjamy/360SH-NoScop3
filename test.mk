@@ -8,7 +8,7 @@
 ## Last update Sat Apr 16 13:47:52 2016 Valentin Pichard
 ##
 
-TEST_SOURCES_NAMES	= test_generic.c \
+TEST_SOURCES_NAMES	= test.c \
 			test_int_to_string.c \
 			test_parse_int.c \
 			test_string_concat.c \
@@ -16,7 +16,7 @@ TEST_SOURCES_NAMES	= test_generic.c \
 			test_string_find_char.c \
 			test_string_type.c \
 			test_string_type_convert.c \
-			test_suites.c 
+			test_suites.c
 
 TEST_SOURCES		= $(foreach file,$(TEST_SOURCES_NAMES), \
 			test/$(file))
