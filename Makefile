@@ -19,6 +19,8 @@ RM		= rm -rf
 
 CFLAGS		= -W -Wall -Wextra -std=c89
 
+LDFLAGS		=
+
 ifeq ($(DELIVERY),true)
 	CFLAGS	+= -D NDEBUG
 else
@@ -27,6 +29,8 @@ endif
 
 LIBCW_NAME	= libcw.a
 LIBCW		= libcw/$(LIBCW_NAME)
+
+LIBEGC		= egc/libegc.a
 
 ECHO		= /bin/echo -e
 
@@ -38,12 +42,15 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
 all: test/test
 
-test/test: $(TEST_OBJECTS) $(LIBASM) $(LIBCW)
+test/test: $(TEST_OBJECTS) $(LIBCW) $(LIBEGC)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 $(LIBCW): $(LIBCW_OBJECTS)
 	ar rc $@ $^
 	ranlib $@
+
+$(LIBEGC):
+	$(MAKE) -C egc/
 
 %.o: %.c
 	@$(CC) -c $< -o $@ $(CFLAGS) && \
@@ -54,9 +61,11 @@ clean:
 	$(RM) $(LIBCW_OBJECTS)
 	$(RM) $(TEST_OBJECTS)
 	$(RM) $(LIBCW)
+	$(MAKE) -C egc/ clean
 
 fclean: clean
 	$(RM) test/test
+	$(MAKE) -C egc/ fclean
 
 re: fclean all
 
