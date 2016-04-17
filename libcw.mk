@@ -10,9 +10,6 @@
 
 LIBCW_SOURCES_NAMES = 	char_type_generic.c \
 			char_type_converter.c \
-			int_to_malloced_string.c \
-			int_to_string_generic.c \
-			int_to_string_get_length.c \
 			parse_int_generic.c \
 			parse_and_read_int.c \
 			parse_and_read_int_base.c \

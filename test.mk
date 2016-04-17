@@ -9,7 +9,6 @@
 ##
 
 TEST_SOURCES_NAMES	= test.c \
-			test_int_to_string.c \
 			test_parse_int.c \
 			test_string_concat.c \
 			test_string_find.c \

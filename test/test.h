@@ -42,7 +42,6 @@ void    test_suite_string_find_char(void);
 void    test_suite_string_find(void);
 void    test_suite_string_type(void);
 void    test_suite_string_type_convert(void);
-void    test_suite_int_to_string(void);
 void    test_suite_string_type_extend(void);
 
 #endif /* TEST_H */
