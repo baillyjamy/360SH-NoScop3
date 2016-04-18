@@ -31,6 +31,8 @@ typedef t_hs            (*t_editor_colorizer)(t_hs text, void *data);
 
 /*
 ** Creates a new t_editor
+**
+** The default prompt is an empty string
 */
 t_editor                *editor_new(int input, int output, int error_output);
 
@@ -63,7 +65,10 @@ void    editor_set_colorizer(t_editor *editor,
                              t_editor_colorizer colorizer,
                              void *data);
 
-void    editor_set_prompt(t_editor *editor, t_hs prompt);
+/*
+** Returns 0 on success or -1 if the given prompt is invalid.
+*/
+int     editor_set_prompt(t_editor *editor, t_hs prompt);
 
 void    editor_clear_history(t_editor *editor);
 
