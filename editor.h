@@ -17,10 +17,20 @@ struct                          s_editor;
 typedef struct s_editor         t_editor;
 
 /*
-** Returs a list of available completions from the given text
+** Returns the index of the begining of the word on the cursor
 */
-typedef t_glist_hs      (*t_editor_completer)(t_hs text, void *data);
+typedef int             (*t_editor_tokenizer)(t_hs text,
+                                              int cursor,
+                                              void *data);
 
+/*
+** Returs a list of available completions from the given word
+*/
+typedef t_glist_hs      (*t_editor_completer)(t_hs word, void *data);
+
+/*
+** Prints the given completions on the output
+*/
 typedef void            (*t_editor_completion_printer)(t_glist_hs matches,
                                                        void *data);
 
@@ -34,12 +44,25 @@ typedef t_hs            (*t_editor_colorizer)(t_hs text, void *data);
 **
 ** The default prompt is an empty string
 */
-t_editor                *editor_new(int input, int output, int error_output);
+t_editor        *editor_new(int input, int output, int error_output);
+
+int             editor_get_input(t_editor *editor);
+int             editor_get_output(t_editor *editor);
+int             editor_get_error_output(t_editor *editor);
 
 /*
 ** Reads a line from the input
 */
-t_hs                    editor_read(t_editor *editor);
+t_hs            editor_read(t_editor *editor);
+
+/*
+** tokenizer: A callback which returns the index of the begining
+** of the word on the cursor. Can be NULL.
+** data: A pointer to pass to the callback. Can be NULL.
+*/
+void    editor_set_tokenizer(t_editor *editor,
+                             t_editor_tokenizer tokenizer,
+                             void *data);
 
 /*
 ** completer: A callback which returns the completion matches. Can be NULL.
