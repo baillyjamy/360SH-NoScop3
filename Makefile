@@ -45,6 +45,12 @@ all: test/test
 test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBCW)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
+rtest: test/test
+	./test/test
+
+vgtest: test/test
+	valgrind --suppressions=egc/valgrind.supp ./test/test
+
 $(LIBCW): $(LIBCW_OBJECTS)
 	ar rc $@ $^
 	ranlib $@
@@ -72,4 +78,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re glist_clean
+.PHONY: all clean fclean re glist_clean rtest vgtest
