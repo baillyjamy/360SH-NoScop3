@@ -19,7 +19,7 @@ RM		= rm -rf
 
 CFLAGS		= -W -Wall -Wextra -std=c89
 
-LDFLAGS		=
+LDFLAGS		= -L./egc/ -legc
 
 ifeq ($(DELIVERY),true)
 	CFLAGS	+= -D NDEBUG
@@ -40,9 +40,9 @@ END		= "\033[0m"
 
 echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
-all: glist_headers test/test
+all: test/test
 
-test/test: $(TEST_OBJECTS) $(LIBCW) $(LIBEGC)
+test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBCW)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 $(LIBCW): $(LIBCW_OBJECTS)
@@ -52,13 +52,13 @@ $(LIBCW): $(LIBCW_OBJECTS)
 $(LIBEGC):
 	$(MAKE) -C egc/ DEBUG=true
 
-glist_headers:
-	$(MAKE) -C egc/ glist
-
 %.o: %.c
 	@$(CC) -c $< -o $@ $(CFLAGS) && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
+
+glist_clean:
+	$(MAKE) -C egc/ glist_clean
 
 clean:
 	$(RM) $(LIBCW_OBJECTS)
@@ -72,4 +72,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re glist_headers
+.PHONY: all clean fclean re glist_clean
