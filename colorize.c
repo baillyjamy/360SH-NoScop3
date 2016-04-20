@@ -66,14 +66,10 @@ static int	parse_style(t_style *style, t_hs string)
 
 t_hs		colorize_hs(const char *color_name, t_hs source)
 {
-  t_glist_hs	words;
+  t_style	style;
   int		i;
 
   i = 0;
-  words = hs_split(source, hs(" "));
-  while (i < glist_hs_length(&words))
-    {
-      egc_printf("%hs\n", glist_hs_get(&words, i));
-    }
+  parse_style(&style, source);
   return (source);
 }
