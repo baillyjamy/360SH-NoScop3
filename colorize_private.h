@@ -11,6 +11,8 @@
 #ifndef COLORIZE_PRIVATE_H
 # define COLORIZE_PRIVATE_H
 
+# include "colorize.h"
+
 typedef struct
 {
   int foreground; // -1

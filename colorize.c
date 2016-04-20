@@ -8,9 +8,9 @@
 ** Last update Mon Apr 18 16:32:30 2016 Pierre-Emmanuel Jacquier
 */
 
-#include "colorize.h"
+#include "colorize_private.h"
 
-static int	parse_color(t_glist_hs words, int *i)
+static int	parse_color(t_glist_hs *words, int *i)
 {
   t_hs		word;
 
@@ -22,7 +22,7 @@ static int	parse_color(t_glist_hs words, int *i)
   return (get_color_code(word._chars));
 }
 
-static int	parse_keyword(t_glist_hs words, int *i, const char *keyword)
+static int	parse_keyword(t_glist_hs *words, int *i, const char *keyword)
 {
   t_hs		word;
 
@@ -30,7 +30,7 @@ static int	parse_keyword(t_glist_hs words, int *i, const char *keyword)
     return (-1);
   word = glist_hs_get(words, *i);
   (*i)++;
-  if (hs_equals_hs_str(word, keyword))
+  if (hs_equals(word, hs(keyword)))
     return (1);
   return (0);
 }
@@ -41,25 +41,25 @@ static int	parse_style(t_style *style, t_hs string)
   int		i;
 
   i = 0;
-  words = hs_split_hs_str(source, " ");
-  if ((style.foreground = parse_color(words, &i)) == -1)
+  words = hs_split(string, hs(" "));
+  if ((style->foreground = parse_color(&words, &i)) == -1)
     return (-1);
-  if (i >= glist_hs_length(words))
+  if (i >= glist_hs_length(&words))
     return (-1);
   if (hs_equals(glist_hs_get(&words, i++), hs("on")) == 0)
     {
-      if ((style.background = parse_color(words, &i)) == -1)
+      if ((style->background = parse_color(&words, &i)) == -1)
 	return (-1);
     }
-  if (i >= glist_hs_length(words))
+  if (i >= glist_hs_length(&words))
     return (-1);
-  if ((style.underlined = parse_keyword(words, &i, "underlined")) == -1)
+  if ((style->underlined = parse_keyword(&words, &i, "underlined")) == -1)
     return (-1);
-  if (i >= glist_hs_length(words))
+  if (i >= glist_hs_length(&words))
     return (-1);
-  if ((style.bold = parse_keyword(words, &i, "bold")) == -1)
+  if ((style->bold = parse_keyword(&words, &i, "bold")) == -1)
     return (-1);
-  if (i >= glist_hs_length(words))
+  if (i >= glist_hs_length(&words))
     return (-1);
   return (0);
 }
