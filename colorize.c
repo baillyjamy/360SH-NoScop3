@@ -46,7 +46,7 @@ static int	parse_style(t_style *style, t_hs string)
     return (-1);
   if (i >= glist_hs_length(&words))
     return (-1);
-  if (hs_equals(glist_hs_get(&words, i++), i), hs("on") == 0)
+  if (hs_equals(glist_hs_get(&words, i++), hs("on")) == 0)
     {
       if ((style->background = parse_color(&words, &i)) == -1)
 	return (-1);
