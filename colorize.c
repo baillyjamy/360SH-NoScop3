@@ -64,12 +64,31 @@ static int	parse_style(t_style *style, t_hs string)
   return (0);
 }
 
+static t_hs	format_color(int style_code)
+{
+  return (hs_format("\x1B[%dm", style_code));
+}
+
+static t_hs	append_color(int style_code, t_hs colorized)
+{
+  return (hs_concat(format_color(style_code), colorized));
+}
+
 t_hs		colorize_hs(const char *color_name, t_hs source)
 {
   t_style	style;
+  t_hs		colorized;
   int		i;
 
   i = 0;
   parse_style(&style, source);
-  return (source);
+  if (style.foreground != -1)
+    colorized = append_color((style.foreground + 30), colorized);
+  if (style.background != -1)
+    colorized = append_color((style.background + 40), colorized);
+  if (style.underlined)
+    colorized = append_color(4, colorized);
+  if (style.bold)
+    colorized = append_color(1, colorized);
+  return (hs_concat(colorized, format_color(0)));
 }
