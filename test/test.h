@@ -43,5 +43,6 @@ void    test_suite_string_find(void);
 void    test_suite_string_type(void);
 void    test_suite_string_type_convert(void);
 void    test_suite_string_type_extend(void);
+void    test_suite_colorize(void);
 
 #endif /* TEST_H */
