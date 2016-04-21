@@ -13,7 +13,7 @@
 
 # include "egc/include/egc.h"
 
-void	colorize_clear(t_hs source);
+t_hs	uncolorize(t_hs source);
 
 /*
 ** A bit like the colorize gem (https://github.com/fazibear/colorize)
