@@ -73,7 +73,7 @@ static t_hs	append_color(int style_code, t_hs colorized)
   return (hs_concat(format_color(style_code), colorized));
 }
 
-t_hs		colorize_hs(const char *color_name, t_hs source)
+t_hs		colorize(const char *color_name, t_hs source)
 {
   t_style	style;
   t_hs		colorized;
