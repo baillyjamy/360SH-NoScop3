@@ -8,7 +8,6 @@
 ## Last update Sat Apr 16 14:31:20 2016 Valentin Pichard
 ##
 
-include libcw.mk
 include test.mk
 
 SOURCES	= \
@@ -48,8 +47,7 @@ else
 	CFLAGS	+= -g
 endif
 
-LIBCW_NAME	= libcw.a
-LIBCW		= libcw/$(LIBCW_NAME)
+LIBSH		= libsh.a
 
 LIBEGC		= egc/libegc.a
 
