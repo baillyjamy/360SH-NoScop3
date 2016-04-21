@@ -9,7 +9,7 @@
 */
 
 #include "test.h"
-#include "../libcw/string.h"
+#include "../string.h"
 
 void    test_suite_string_concat(void)
 {

@@ -8,9 +8,8 @@
 ** Last update Wed Mar  9 19:15:19 2016 Valentin Pichard
 */
 
-#include <stdlib.h>
 #include "test.h"
-#include "../libcw/string_type.h"
+#include "../string.h"
 
 static void     test_string_is_uppercase(void)
 {

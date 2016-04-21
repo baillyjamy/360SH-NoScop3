@@ -10,8 +10,7 @@
 
 #include <stdlib.h>
 #include "test.h"
-#include "../libcw/string.h"
-#include "../libcw/string_type.h"
+#include "../string.h"
 
 static void     test_string_to_uppercase(void)
 {
