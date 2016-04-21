@@ -8,22 +8,22 @@
 ## Last update Sat Apr 16 13:50:03 2016 Valentin Pichard
 ##
 
-LIBCW_SOURCES_NAMES = 	char_type_generic.c \
+LIBCW_SOURCES_NAMES = 	char_type.c \
 			char_type_converter.c \
-			parse_int_generic.c \
+			parse_int.c \
 			parse_and_read_int.c \
 			parse_and_read_int_base.c \
-			position_generic.c \
+			position.c \
 			source_file.c \
-			string_generic.c \
+			string.c \
 			string_concat.c \
 			string_copy.c \
 			string_equals.c \
 			string_find_char.c \
 			string_find.c \
-			string_reader_generic.c \
+			string_reader.c \
 			string_starts_with.c \
-			string_type_generic.c \
+			string_type.c \
 			string_type_converter.c
 
 LIBCW_SOURCES		= $(foreach file,$(LIBCW_SOURCES_NAMES), \
