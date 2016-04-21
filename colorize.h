@@ -27,6 +27,6 @@ t_hs	uncolorize(t_hs source);
 **                          "This text is pink and underlined"));
 */
 
-t_hs	colorize(const char *color_name, t_hs source);
+t_hs	colorize(const char *style, t_hs source);
 
 #endif /* COLORIZE_H */
