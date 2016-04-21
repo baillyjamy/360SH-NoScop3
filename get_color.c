@@ -16,7 +16,7 @@ static void     skip_word(const char **string_pointer)
     (*string_pointer)++;
 }
 
-int		get_color_code(const char *name)
+int             colorize_get_color_code(const char *name)
 {
   const char	*colors;
   int		i;

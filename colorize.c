@@ -19,7 +19,7 @@ static int	parse_color(t_glist_hs *words, int *i)
   word = glist_hs_get(words, *i);
   (*i)++;
   /* TODO: remove this piece of crap */
-  return (get_color_code(word._chars));
+  return (colorize_get_color_code(word._chars));
 }
 
 static int	parse_keyword(t_glist_hs *words, int *i, const char *keyword)

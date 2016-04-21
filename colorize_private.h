@@ -22,7 +22,6 @@ typedef struct
 } t_style;
 
 /*
-
 "on blue"
 {-1, blue, 0, 0}
 
@@ -31,7 +30,8 @@ typedef struct
 
 "green on cyan bold"
 {green, pink, 0, 1};
-
 */
+
+int		colorize_get_color_code(const char *name);
 
 #endif /* COLORIZE_PRIVATE_H */
