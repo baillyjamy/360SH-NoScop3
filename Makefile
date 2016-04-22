@@ -13,6 +13,8 @@ include test.mk
 SOURCES	= \
 	char_type.c \
 	char_type_converter.c \
+	colorize.c \
+	get_color.c \
 	parse_int.c \
 	parse_and_read_int.c \
 	parse_and_read_int_base.c \
