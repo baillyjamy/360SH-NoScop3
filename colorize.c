@@ -79,6 +79,11 @@ t_hs		colorize(const char *style_string, t_hs source)
   t_hs		colorized;
   int		i;
 
+  style.foreground = -1;
+  style.background = -1;
+  style.underlined = 0;
+  style.bold = 0;
+  colorized = hs_new_empty();
   i = 0;
   parse_style(&style, hs(style_string));
   if (style.foreground != -1)
