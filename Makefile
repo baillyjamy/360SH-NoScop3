@@ -29,7 +29,8 @@ SOURCES	= \
 	string/string_starts_with.c \
 	string/string_type.c \
 	string/string_type_converter.c \
-	string_reader.c
+	string_reader.c \
+	uncolorize.c
 
 OBJECTS	= $(SOURCES:.c=.o)
 
