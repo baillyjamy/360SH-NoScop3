@@ -5,20 +5,20 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
-## Last update Sat Apr 16 14:31:20 2016 Valentin Pichard
+## Last update Fri Apr 22 18:30:15 2016 Valentin Pichard
 ##
 
 include test.mk
 
 SOURCES	= \
-	char_type.c \
-	char_type_converter.c \
-	colorize.c \
-	get_color.c \
-	parse_int.c \
-	parse_and_read_int.c \
-	parse_and_read_int_base.c \
-	position.c \
+	char_type/char_type.c \
+	char_type/char_type_converter.c \
+	colorize/colorize.c \
+	colorize/get_color.c \
+	parse/parse_int.c \
+	parse/parse_and_read_int.c \
+	parse/parse_and_read_int_base.c \
+	position/position.c \
 	source_file.c \
 	string/string.c \
 	string/string_concat.c \
@@ -30,7 +30,7 @@ SOURCES	= \
 	string/string_type.c \
 	string/string_type_converter.c \
 	string_reader.c \
-	uncolorize.c
+	colorize/uncolorize.c
 
 OBJECTS	= $(SOURCES:.c=.o)
 
