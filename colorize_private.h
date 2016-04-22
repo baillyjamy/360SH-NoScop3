@@ -13,9 +13,12 @@
 
 # include "colorize.h"
 
+/*
+** foregroud and backgroud defaults to -1.
+*/
 typedef struct
 {
-  int foreground; // -1
+  int foreground;
   int background;
   int underlined;
   int bold;

@@ -9,7 +9,7 @@
 */
 
 #include "string.h"
-#include "char_type.h"
+#include "../char_type.h"
 
 int             string_starts_with(const char *string, const char *begin)
 {

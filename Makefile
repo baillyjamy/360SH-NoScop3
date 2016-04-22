@@ -8,8 +8,31 @@
 ## Last update Sat Apr 16 14:31:20 2016 Valentin Pichard
 ##
 
-include libcw.mk
 include test.mk
+
+SOURCES	= \
+	char_type.c \
+	char_type_converter.c \
+	colorize.c \
+	get_color.c \
+	parse_int.c \
+	parse_and_read_int.c \
+	parse_and_read_int_base.c \
+	position.c \
+	source_file.c \
+	string/string.c \
+	string/string_concat.c \
+	string/string_copy.c \
+	string/string_equals.c \
+	string/string_find_char.c \
+	string/string_find.c \
+	string/string_starts_with.c \
+	string/string_type.c \
+	string/string_type_converter.c \
+	string_reader.c \
+	uncolorize.c
+
+OBJECTS	= $(SOURCES:.c=.o)
 
 DELIVERY	= false
 
@@ -27,8 +50,7 @@ else
 	CFLAGS	+= -g
 endif
 
-LIBCW_NAME	= libcw.a
-LIBCW		= libcw/$(LIBCW_NAME)
+LIBSH		= libsh.a
 
 LIBEGC		= egc/libegc.a
 
@@ -42,7 +64,7 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
 all: test/test
 
-test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBCW)
+test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBSH)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 rtest: test/test
@@ -51,7 +73,7 @@ rtest: test/test
 vgtest: test/test
 	valgrind --suppressions=egc/valgrind.supp ./test/test
 
-$(LIBCW): $(LIBCW_OBJECTS)
+$(LIBSH): $(OBJECTS)
 	ar rc $@ $^
 	ranlib $@
 

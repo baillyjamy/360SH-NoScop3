@@ -10,7 +10,7 @@
 
 #include <stddef.h>
 #include "string_type.h"
-#include "char_type.h"
+#include "../char_type.h"
 #include "string.h"
 
 char            *string_to_lowercase(const char *source)
