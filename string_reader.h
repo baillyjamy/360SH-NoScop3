@@ -11,7 +11,7 @@
 #ifndef STRING_READER_H
 # define STRING_READER_H
 
-# include "position.h"
+# include "position/position.h"
 
 typedef struct  s_string_reader
 {

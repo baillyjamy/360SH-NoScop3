@@ -9,7 +9,7 @@
 */
 
 #include "string.h"
-#include "../char_type.h"
+#include "../char_type/char_type.h"
 
 int             string_equals(const char *a, const char *b)
 {

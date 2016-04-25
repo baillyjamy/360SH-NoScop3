@@ -8,8 +8,8 @@
 ** Last update Wed Mar  9 18:38:56 2016 Valentin Pichard
 */
 
-#include "../char_type.h"
 #include "string.h"
+#include "../char_type/char_type.h"
 
 int     string_is_digit(const char *str)
 {

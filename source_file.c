@@ -11,7 +11,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "position.h"
+#include "position/position.h"
 #include "string.h"
 
 /*

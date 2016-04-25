@@ -9,7 +9,7 @@
 */
 
 #include "position.h"
-#include "egc/include/egc.h"
+#include "../egc/include/egc.h"
 
 void            position_init(t_position *position,
                               t_source_file *source_file)

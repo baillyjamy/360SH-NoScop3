@@ -15,9 +15,9 @@ SOURCES	= \
 	char_type/char_type_converter.c \
 	colorize/colorize.c \
 	colorize/get_color.c \
-	parse/parse_int.c \
-	parse/parse_and_read_int.c \
-	parse/parse_and_read_int_base.c \
+	parse_int/parse_int.c \
+	parse_int/parse_and_read_int.c \
+	parse_int/parse_and_read_int_base.c \
 	position/position.c \
 	source_file.c \
 	string/string.c \
