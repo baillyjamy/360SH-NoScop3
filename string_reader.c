@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "string_reader.h"
-#include "string.h"
+#include "string/string.h"
 
 int             string_reader_init_from_string(t_string_reader *reader,
                                                const char *string)
