@@ -65,7 +65,9 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 all: test/test
 
 test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBSH)
-	$(CC) -o $@ $^ $(LDFLAGS)
+	@$(CC) -o $@ $^ $(LDFLAGS) && \
+		$(ECHO) CC $< || \
+		$(call echo_error,$<)
 
 rtest: test/test
 	./test/test
@@ -74,8 +76,12 @@ vgtest: test/test
 	valgrind --suppressions=egc/valgrind.supp ./test/test
 
 $(LIBSH): $(OBJECTS)
-	ar rc $@ $^
-	ranlib $@
+	@ar rc $@ $^ && \
+		$(ECHO) AR $@ || \
+		$(call echo_error,$<)
+	@ranlib $@ && \
+		$(ECHO) RANLIB $@ || \
+		$(call echo_error,$<)
 
 $(LIBEGC):
 	$(MAKE) -C egc/ DEBUG=true
