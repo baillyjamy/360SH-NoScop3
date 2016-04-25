@@ -7,6 +7,7 @@
 ** Started on  Fri Apr 15 16:18:38 2016 Pierre-Emmanuel Jacquier
 ** Last update Mon Apr 18 16:17:32 2016 Pierre-Emmanuel Jacquier
 */
+
 #include <string.h>
 #include "colorize.h"
 

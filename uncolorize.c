@@ -22,7 +22,7 @@ t_hs	uncolorize(t_hs s)
       code_start = hs_find(s, hs("\x1B["), 0);
       if (code_start == -1)
 	break;
-      code_end = hs_find_char(s, 'm', code_start);
+      code_end = hs_find_char(s, 'm', code_start) + 1;
       left = hs_slice(s, 0, code_start);
       right = hs_slice(s, code_end, hs_length(s));
       s = hs_concat(left, right);

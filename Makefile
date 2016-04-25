@@ -89,9 +89,9 @@ glist_clean:
 	$(MAKE) -C egc/ glist_clean
 
 clean:
-	$(RM) $(LIBCW_OBJECTS)
+	$(RM) $(OBJECTS)
 	$(RM) $(TEST_OBJECTS)
-	$(RM) $(LIBCW)
+	$(RM) $(LIBSH)
 	$(MAKE) -C egc/ clean
 
 fclean: clean
