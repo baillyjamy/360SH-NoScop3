@@ -1,0 +1,7 @@
+ok /[0-9]+\ tests, 0\ failures/
+
+warning /[0-9]+\ tests, [1-9]+\ failures/
+warning /warning/
+
+error /[Ee]rror/
+error /marked build as failure/
