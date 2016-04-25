@@ -9,7 +9,7 @@
 */
 
 #include "test.h"
-#include "../string.h"
+#include "string/string.h"
 
 static void     test_string_is_uppercase(void)
 {

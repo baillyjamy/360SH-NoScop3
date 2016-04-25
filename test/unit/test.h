@@ -11,7 +11,7 @@
 #ifndef TEST_H
 # define TEST_H
 
-# include "../sh.h"
+# include "sh.h"
 
 # define STRINGIFY_(s)          #s
 # define STRINGIFY(s)           STRINGIFY_(s)

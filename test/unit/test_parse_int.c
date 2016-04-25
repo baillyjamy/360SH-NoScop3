@@ -9,7 +9,7 @@
 */
 
 #include "test.h"
-#include "../parse_int/parse_int.h"
+#include "parse_int/parse_int.h"
 
 static void     test_parse_and_read_uint_base(void)
 {

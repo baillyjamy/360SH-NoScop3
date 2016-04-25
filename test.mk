@@ -19,6 +19,6 @@ TEST_SOURCES_NAMES	= test.c \
 			test_suites.c
 
 TEST_SOURCES		= $(foreach file,$(TEST_SOURCES_NAMES), \
-			test/$(file))
+			test/unit/$(file))
 
 TEST_OBJECTS		= $(TEST_SOURCES:.c=.o)

@@ -40,7 +40,7 @@ CC		= cc
 
 RM		= rm -rf
 
-CFLAGS		= -W -Wall -Wextra -std=c89
+CFLAGS		= -W -Wall -Wextra -std=c89 -I.
 
 LDFLAGS		= -L./egc/ -legc
 
