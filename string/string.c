@@ -8,7 +8,7 @@
 ** Last update Mon Feb 29 16:56:34 2016 Valentin Pichard
 */
 
-#include <stdlib.h>
+#include "../egc.h"
 #include "string.h"
 
 void            string_set_n_chars(char *string, char c, int n)
@@ -37,7 +37,7 @@ char            *string_duplicate(const char *source)
 {
   char	*dest;
 
-  if ((dest = malloc(string_get_length(source) + 1)) == NULL)
+  if ((dest = egc_malloc(string_get_length(source) + 1)) == NULL)
     return (NULL);
   return (string_copy(dest, source));
 }
@@ -46,7 +46,7 @@ char            *string_duplicate_n(const char *source, int n)
 {
   char	*dest;
 
-  if ((dest = malloc(n + 1)) == NULL)
+  if ((dest = egc_malloc(n + 1)) == NULL)
     return (NULL);
   return (string_copy_n(dest, source, n));
 }

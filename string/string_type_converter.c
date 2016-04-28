@@ -10,7 +10,7 @@
 
 #include <stddef.h>
 #include "string_type.h"
-#include "../char_type/char_type.h"
+#include "../egc.h"
 #include "string.h"
 
 char            *string_to_lowercase(const char *source)
@@ -22,7 +22,7 @@ char            *string_to_lowercase(const char *source)
   i = 0;
   while (source[i])
     {
-      copy[i] = char_to_lowercase(source[i]);
+      copy[i] = char_to_lower(source[i]);
       i++;
     }
   return (copy);
@@ -37,7 +37,7 @@ char    *string_to_uppercase(const char *source)
   i = 0;
   while (source[i])
     {
-      copy[i] = char_to_uppercase(source[i]);
+      copy[i] = char_to_upper(source[i]);
       i++;
     }
   return (copy);

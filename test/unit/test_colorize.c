@@ -9,7 +9,7 @@
 */
 
 #include "test.h"
-#include "colorize/colorize.h"
+#include "../../colorize/colorize.h"
 
 static void     test_comb(const char *style, t_hs string)
 {

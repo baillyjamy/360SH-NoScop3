@@ -10,7 +10,6 @@
 
 #include <stdlib.h>
 #include "test.h"
-#include "string/string.h"
 
 static void     test_string_to_uppercase(void)
 {
@@ -18,13 +17,10 @@ static void     test_string_to_uppercase(void)
 
   s = string_to_uppercase("");
   ASSERT(string_equals("", s));
-  free(s);
   s = string_to_uppercase(".#$'");
   ASSERT(string_equals(".#$'", s));
-  free(s);
   s = string_to_uppercase("The Quick Brown foX jumps over the Lazy dog");
   ASSERT(string_equals("THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", s));
-  free(s);
 }
 
 static void     test_string_to_lowercase(void)
@@ -33,13 +29,10 @@ static void     test_string_to_lowercase(void)
 
   s = string_to_lowercase("");
   ASSERT(string_equals("", s));
-  free(s);
   s = string_to_lowercase(".#$'");
   ASSERT(string_equals(".#$'", s));
-  free(s);
   s = string_to_lowercase("The Quick Brown foX jumps over the Lazy dog");
   ASSERT(string_equals("the quick brown fox jumps over the lazy dog", s));
-  free(s);
 }
 
 void            test_suite_string_type_convert(void)

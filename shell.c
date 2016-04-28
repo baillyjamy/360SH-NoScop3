@@ -8,6 +8,8 @@
 ** Last update Fri Apr 22 17:50:26 2016 Valentin Pichard
 */
 
+#include "sh.h"
+
 int		main(int argc, char **argv, char **envp)
 {
   return (0);

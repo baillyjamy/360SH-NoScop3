@@ -9,15 +9,15 @@
 */
 
 #include "parse_int.h"
-#include "../char_type/char_type.h"
+#include "../egc.h"
 
 static int      char_to_digit_alpha(char c, int base)
 {
   int           digit;
 
-  if (char_is_uppercase(c))
+  if (char_is_upper(c))
     digit = c - 'A';
-  else if (char_is_lowercase(c))
+  else if (char_is_lower(c))
     digit = c - 'a';
   else
     return (-1);

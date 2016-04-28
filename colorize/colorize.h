@@ -11,7 +11,7 @@
 #ifndef COLORIZE_H
 # define COLORIZE_H
 
-# include "../egc/include/egc.h"
+# include "../egc.h"
 
 t_hs	uncolorize(t_hs source);
 

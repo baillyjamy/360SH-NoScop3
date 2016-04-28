@@ -10,7 +10,7 @@
 
 #include <stdlib.h>
 #include "string.h"
-#include "../char_type/char_type.h"
+#include "../egc.h"
 
 const char      *string_find_char(const char *string, char c)
 {
@@ -25,10 +25,10 @@ const char      *string_find_char(const char *string, char c)
 
 const char      *string_find_char_no_case(const char *string, char c)
 {
-  c = char_to_lowercase(c);
+  c = char_to_lower(c);
   while (*string)
     {
-      if (char_to_lowercase(*string) == c)
+      if (char_to_lower(*string) == c)
 	return (string);
       string++;
     }

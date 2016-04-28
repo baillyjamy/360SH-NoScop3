@@ -9,7 +9,7 @@
 */
 
 #include "string.h"
-#include "../char_type/char_type.h"
+#include "../egc.h"
 
 int             string_equals(const char *a, const char *b)
 {
@@ -25,7 +25,7 @@ int             string_equals(const char *a, const char *b)
 
 int             string_equals_no_case(const char *a, const char *b)
 {
-  while (char_to_lowercase(*a) == char_to_lowercase(*b))
+  while (char_to_lower(*a) == char_to_lower(*b))
     {
       if (!*a)
         return (1);

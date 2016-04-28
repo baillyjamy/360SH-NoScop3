@@ -10,7 +10,6 @@
 
 #include <stdlib.h>
 #include "string.h"
-#include "../char_type/char_type.h"
 
 const char      *string_find(const char *string, const char *needle)
 {
