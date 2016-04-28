@@ -11,8 +11,8 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "position/position.h"
-#include "string/string.h"
+#include "source_file.h"
+#include "../string/string.h"
 
 /*
 ** From Whiskey :-)
@@ -22,22 +22,19 @@ char            *read_whole_file(int file_descriptor)
   size_t        block_size;
   char          *string;
   size_t        length;
-  ssize_t        read_char_count;
+  ssize_t       read_char_count;
 
   string = NULL;
   length = 0;
   block_size = 1024 * 1024;
-  while ((string = realloc(string, length + block_size + 1)) != NULL)
+  while ((string = egc_realloc(string, length + block_size + 1)) != NULL)
     {
       read_char_count = read(file_descriptor, string + length, block_size);
       if (read_char_count > -1)
         string[read_char_count] = '\0';
       length += read_char_count;
       if (read_char_count == -1 || string_get_length(string) != (int)length)
-        {
-          free(string);
-          return (NULL);
-        }
+        return (NULL);
       if (read_char_count != (ssize_t)block_size)
         break;
     }
@@ -45,12 +42,12 @@ char            *read_whole_file(int file_descriptor)
 }
 
 int             source_file_read(t_source_file *file,
-                                 const char *file_name)
+                                 t_hs file_name)
 {
   int           fd;
 
   file->name = file_name;
-  fd = open(file_name, O_RDONLY);
+  fd = open(hs_to_str(file_name), O_RDONLY);
   if (fd == -1)
     return (-1);
   file->content = read_whole_file(fd);
@@ -64,13 +61,8 @@ int             source_file_read(t_source_file *file,
 }
 
 void            source_file_init_unnamed(t_source_file *file,
-                                         const char *content)
+                                         t_hs content)
 {
-  file->name = "<unknown file>";
-  file->content = string_duplicate(content);
-}
-
-void            source_file_free(t_source_file *file)
-{
-  free(file->content);
+  file->name = hs("<unknown file>");
+  file->content = hs_to_str(content);
 }

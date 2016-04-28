@@ -11,15 +11,16 @@
 include test.mk
 
 SOURCES	= \
-	char_type/char_type.c \
-	char_type/char_type_converter.c \
 	colorize/colorize.c \
 	colorize/get_color.c \
+	colorize/uncolorize.c \
+	lexer/lexer.c \
+	lexer/position.c \
+	lexer/source_file.c \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
 	parse_int/parse_and_read_int_base.c \
-	position/position.c \
-	source_file.c \
+	shell.c \
 	string/string.c \
 	string/string_concat.c \
 	string/string_copy.c \
@@ -28,9 +29,7 @@ SOURCES	= \
 	string/string_find.c \
 	string/string_starts_with.c \
 	string/string_type.c \
-	string/string_type_converter.c \
-	string_reader.c \
-	colorize/uncolorize.c
+	string/string_type_converter.c
 
 OBJECTS	= $(SOURCES:.c=.o)
 
@@ -40,7 +39,7 @@ CC		= cc
 
 RM		= rm -rf
 
-CFLAGS		= -W -Wall -Wextra -std=c89 -I.
+CFLAGS		= -W -Wall -Wextra -std=c89
 
 LDFLAGS		= -L./egc/ -legc
 
@@ -90,6 +89,10 @@ $(LIBEGC):
 	@$(CC) -c $< -o $@ $(CFLAGS) && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
+
+delivery:
+	$(MAKE) -C egc/ delivery
+	$(RM) lexer/gen_lexer_h.py
 
 glist_clean:
 	$(MAKE) -C egc/ glist_clean

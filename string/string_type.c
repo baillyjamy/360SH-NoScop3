@@ -9,7 +9,7 @@
 */
 
 #include "string.h"
-#include "../char_type/char_type.h"
+#include "../egc.h"
 
 int     string_is_digit(const char *str)
 {
@@ -29,7 +29,7 @@ int     string_is_uppercase(const char *str)
     return (0);
   while (*str)
     {
-      if (!char_is_uppercase(*str++))
+      if (!char_is_upper(*str++))
 	return (0);
     }
   return (1);
@@ -41,7 +41,7 @@ int     string_is_lowercase(const char *str)
     return (0);
   while (*str)
     {
-      if (!char_is_lowercase(*str++))
+      if (!char_is_lower(*str++))
 	return (0);
     }
   return (1);
@@ -53,7 +53,7 @@ int     string_is_letter(const char *str)
     return (0);
   while (*str)
     {
-      if (!char_is_letter(*str++))
+      if (!char_is_alpha(*str++))
 	return (0);
     }
   return (1);
@@ -65,7 +65,7 @@ int     string_is_alphanumeric(const char *str)
     return (0);
   while (*str)
     {
-      if (!char_is_alphanumeric(*str++))
+      if (!char_is_alpha_numeric(*str++))
 	return (0);
     }
   return (1);

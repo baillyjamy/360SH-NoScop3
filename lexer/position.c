@@ -9,7 +9,6 @@
 */
 
 #include "position.h"
-#include "../egc/include/egc.h"
 
 void            position_init(t_position *position,
                               t_source_file *source_file)
@@ -20,13 +19,15 @@ void            position_init(t_position *position,
   position->column = 0;
 }
 
+t_hs            position_to_hs(const t_position *position)
+{
+  return hs_format("%s:%d:%d",
+                   position->file->name,
+                   position->line,
+                   position->column);
+}
+
 void            position_print(const t_position *position, int file)
 {
-  egc_fprintf(file,
-              "%s:",
-              position->file->name);
-  egc_fprintf(file,
-              "%d:%d",
-              position->line,
-              position->column);
+  hs_print_file(position_to_hs(position), file);
 }

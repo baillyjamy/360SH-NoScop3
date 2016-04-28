@@ -10,7 +10,6 @@
 
 #include <stdlib.h>
 #include "test.h"
-#include "string/string.h"
 
 static void     test_string_find_char(void)
 {

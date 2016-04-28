@@ -11,6 +11,6 @@
 #ifndef SH_H
 # define SH_H
 
-# include "egc/include/egc.h"
+# include "egc.h"
 
 #endif /* SH_H */

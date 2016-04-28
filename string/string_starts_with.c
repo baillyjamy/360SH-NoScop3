@@ -9,7 +9,7 @@
 */
 
 #include "string.h"
-#include "../char_type/char_type.h"
+#include "../egc.h"
 
 int             string_starts_with(const char *string, const char *begin)
 {
@@ -24,7 +24,7 @@ int             string_starts_with(const char *string, const char *begin)
 int             string_starts_with_no_case(const char *string,
                                            const char *begin)
 {
-  while (*string && char_to_lowercase(*string) == char_to_lowercase(*begin))
+  while (*string && char_to_lower(*string) == char_to_lower(*begin))
     {
       string++;
       begin++;
