@@ -5,13 +5,13 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 19:07:49 2016 antoine
-** Last update Sat Apr 30 06:39:29 2016 Jamy Bailly
+** Last update Sat Apr 30 06:51:37 2016 Jamy Bailly
 */
 
 #ifndef READLINE_H
 # define READLINE_H
 
-# include "egc/include/egc.h"
+# include "../egc.h"
 
 struct                          s_readline;
 typedef struct s_readline         t_readline;
