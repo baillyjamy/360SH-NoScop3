@@ -10,7 +10,7 @@
 
 #include <assert.h>
 #include "../sh.h"
-#include "lexer_private.h"
+#include "private.h"
 
 const char              *lexer_get_source(void)
 {

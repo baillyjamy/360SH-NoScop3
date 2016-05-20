@@ -51,7 +51,7 @@ typedef struct          s_syntax_error
   t_position            position;
 }                       t_syntax_error;
 
-t_syntax_error          *syntax_error_new(t_hs message, t_position position);
+t_syntax_error          *syntax_error_new(t_hs message, t_position pos);
 t_hs                    syntax_error_to_hs(const t_syntax_error *e);
 void                    syntax_error_print(const t_syntax_error *e,
                                            int output_file);
