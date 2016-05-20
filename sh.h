@@ -13,4 +13,25 @@
 
 # include "egc.h"
 
+typedef struct  s_test_stats
+{
+  int           failed_test_count;
+  int           total_test_count;
+}               t_test_stats;
+
+/*
+** `test_stats` is used only by the automated tests.
+*/
+typedef struct  s_statics
+{
+  const char    *lexer_input_string;
+  t_test_stats  test_stats;
+}               t_statics;
+
+void            statics_init(t_statics *statics);
+
+# ifndef STATICS
+#  define STATICS        ((t_statics *)egc_get_statics())
+# endif
+
 #endif /* SH_H */

@@ -43,6 +43,8 @@ typedef union           u_token
   t_string_token        string_type;
 }                       t_token;
 
+t_hs                    token_to_hs(const t_token *token);
+
 typedef struct          s_syntax_error
 {
   t_hs                  message;
@@ -60,8 +62,11 @@ typedef struct          s_token_list
   struct s_token_list   *next;
 }                       t_token_list;
 
-t_token_list    *token_list_new(t_token *token, t_token_list *next);
-void            token_list_add(t_token_list **list_p, t_token *token);
+t_token_list            *token_list_new(t_token *token,
+                                        t_token_list *next);
+void                    token_list_add(t_token_list **list_pointer,
+                                       t_token *token);
+t_hs                    token_list_to_hs(const t_token_list *tokens);
 
 typedef struct          s_lexer_result
 {

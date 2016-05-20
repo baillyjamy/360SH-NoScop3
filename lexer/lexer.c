@@ -8,11 +8,19 @@
 ** Last update Thu Apr 28 07:50:24 2016 antoine
 */
 
-#include "assert.h"
+#include <assert.h>
+#include "../sh.h"
 #include "lexer_private.h"
+
+const char              *lexer_get_source(void)
+{
+  return (NULL);
+}
 
 static t_result         lex_word(const char **string_p)
 {
+  while (char_is_alpha(**string_p))
+    (*string_p)++;
   return (RESULT_NULL);
 }
 
@@ -62,7 +70,14 @@ static t_lexer_result   lex_from_str(const char *string)
   return ((t_lexer_result){.tokens = tokens, .error = NULL});
 }
 
-t_lexer_result  lex(t_hs string)
+t_lexer_result          lex(t_hs string)
 {
-  return (lex_from_str(hs_to_str(string)));
+  t_lexer_result        r;
+  const char            *cstr;
+
+  cstr = hs_to_str(string);
+  STATICS->lexer_input_string = cstr;
+  r = lex_from_str(cstr);
+  STATICS->lexer_input_string = NULL;
+  return (r);
 }
