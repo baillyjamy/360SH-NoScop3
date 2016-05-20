@@ -8,7 +8,7 @@
 ** Last update Mon Apr 18 16:32:30 2016 Pierre-Emmanuel Jacquier
 */
 
-#include "colorize_private.h"
+#include "private.h"
 
 /*
 ** Returns 0 if a color has been read or -1 on failure
