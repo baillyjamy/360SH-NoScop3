@@ -8,7 +8,7 @@
 ** Last update Sat Apr 30 06:38:25 2016 Jamy Bailly
 */
 
-#include "readline_private.h"
+#include "private.h"
 
 /*
 ** It is useless to initialize all the pointers to NULL since

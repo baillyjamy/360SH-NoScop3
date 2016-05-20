@@ -1,11 +1,11 @@
 /*
-** colorize_private.h for  in /home/jacqui_p/rendu/PSU/360SH-NoScop3/
+** private.h for  in /home/antoine
 **
-** Made by Pierre-Emmanuel Jacquier
-** Login   <jacqui_p@epitech.eu>
+** Made by antoine
+** Login   <antoine@epitech.net>
 **
-** Started on  Mon Apr 18 17:27:06 2016 Pierre-Emmanuel Jacquier
-** Last update Mon Apr 18 17:27:06 2016 Pierre-Emmanuel Jacquier
+** Started on  Fri May 20 23:03:21 2016 antoine
+** Last update Fri May 20 23:03:21 2016 antoine
 */
 
 #ifndef COLORIZE_PRIVATE_H
