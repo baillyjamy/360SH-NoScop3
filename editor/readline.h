@@ -1,98 +1,98 @@
 /*
-** editor.h for  in /home/antoine
+** readline.h for  in /home/antoine
 **
 ** Made by antoine
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 19:07:49 2016 antoine
-** Last update Sun Apr 17 19:07:49 2016 antoine
+** Last update Sat Apr 30 06:51:37 2016 Jamy Bailly
 */
 
-#ifndef EDITOR_H
-# define EDITOR_H
+#ifndef READLINE_H
+# define READLINE_H
 
-# include "egc/include/egc.h"
+# include "../egc.h"
 
-struct                          s_editor;
-typedef struct s_editor         t_editor;
+struct                          s_readline;
+typedef struct s_readline         t_readline;
 
 /*
 ** Returns the index of the begining of the word on the cursor
 */
-typedef int             (*t_editor_tokenizer)(t_hs text,
+typedef int             (*t_readline_tokenizer)(t_hs text,
                                               int cursor,
                                               void *data);
 
 /*
 ** Returs a list of available completions from the given word
 */
-typedef t_glist_hs      (*t_editor_completer)(t_hs word, void *data);
+typedef t_glist_hs      (*t_readline_completer)(t_hs word, void *data);
 
 /*
 ** Prints the given completions on the output
 */
-typedef void            (*t_editor_completion_printer)(t_glist_hs matches,
+typedef void            (*t_readline_completion_printer)(t_glist_hs matches,
                                                        void *data);
 
 /*
 ** The returned text must have the same length than the given text
 */
-typedef t_hs            (*t_editor_colorizer)(t_hs text, void *data);
+typedef t_hs            (*t_readline_colorizer)(t_hs text, void *data);
 
 /*
-** Creates a new t_editor
+** Creates a new t_readline
 **
 ** The default prompt is an empty string
 */
-t_editor        *editor_new(int input, int output, int error_output);
+t_readline        *readline_new(int input, int output, int error_output);
 
-int             editor_get_input(t_editor *editor);
-int             editor_get_output(t_editor *editor);
-int             editor_get_error_output(t_editor *editor);
+int             readline_get_input(t_readline *readline);
+int             readline_get_output(t_readline *readline);
+int             readline_get_error_output(t_readline *readline);
 
 /*
 ** Reads a line from the input
 */
-t_hs            editor_read(t_editor *editor);
+t_hs            readline_read(t_readline *readline);
 
 /*
 ** tokenizer: A callback which returns the index of the begining
 ** of the word on the cursor. Can be NULL.
 ** data: A pointer to pass to the callback. Can be NULL.
 */
-void    editor_set_tokenizer(t_editor *editor,
-                             t_editor_tokenizer tokenizer,
+void    readline_set_tokenizer(t_readline *readline,
+                             t_readline_tokenizer tokenizer,
                              void *data);
 
 /*
 ** completer: A callback which returns the completion matches. Can be NULL.
 ** data: A pointer to pass to the callback. Can be NULL.
 */
-void    editor_set_completer(t_editor *editor,
-                             t_editor_completer completer,
+void    readline_set_completer(t_readline *readline,
+                             t_readline_completer completer,
                              void *data);
 
 /*
 ** printer: A callback which prints the completion matches. Can be NULL.
 ** data: A pointer to pass to the callback. Can be NULL.
 */
-void    editor_set_completion_printer(t_editor *editor,
-                                      t_editor_completion_printer printer,
+void    readline_set_completion_printer(t_readline *readline,
+                                      t_readline_completion_printer printer,
                                       void *data);
 
 /*
 ** colorizer: A callback which colorizes the given string. Can be NULL.
 ** data: A pointer to pass to the callback. Can be NULL.
 */
-void    editor_set_colorizer(t_editor *editor,
-                             t_editor_colorizer colorizer,
+void    readline_set_colorizer(t_readline *readline,
+                             t_readline_colorizer colorizer,
                              void *data);
 
 /*
 ** Returns 0 on success or -1 if the given prompt is invalid.
 */
-int     editor_set_prompt(t_editor *editor, t_hs prompt);
+int     readline_set_prompt(t_readline *readline, t_hs prompt);
 
-void    editor_clear_history(t_editor *editor);
+void    readline_clear_history(t_readline *readline);
 
-#endif /* EDITOR_H */
+#endif /* READLINE_H */
