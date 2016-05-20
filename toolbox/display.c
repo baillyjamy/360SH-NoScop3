@@ -5,12 +5,11 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Thu May 19 23:13:05 2016 Valentin Pichard
-** Last update Fri May 20 15:54:53 2016 Valentin Pichard
+** Last update Fri May 20 16:07:58 2016 Valentin Pichard
 */
 
-#include "sh.h"
+#include "tools.h"
 #include <stdio.h>
-#include "colorize/colorize.h"
 
 void		display_environment(const char **envp)
 {

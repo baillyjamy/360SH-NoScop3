@@ -5,10 +5,10 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Fri May 20 15:51:12 2016 Valentin Pichard
-** Last update Fri May 20 15:53:01 2016 Valentin Pichard
+** Last update Fri May 20 16:08:18 2016 Valentin Pichard
 */
 
-#include "sh.h"
+#include "tools.h"
 #include <stdio.h>
 
 void		print_string(const char *string)
