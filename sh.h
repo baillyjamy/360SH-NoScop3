@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Thu May 19 23:50:18 2016 Valentin Pichard
+** Last update Fri May 20 15:56:36 2016 Valentin Pichard
 */
 
 #ifndef SH_H
@@ -29,5 +29,15 @@ void		display_prompt(const char *user);
 ** Display segfault error when signal catched
 */
 void		check_segfault(const int status);
+
+/*
+** Print string on stdout
+*/
+void		print_string(const char *string);
+
+/*
+** Print string on stderr
+*/
+void		print_string_error(const char *string);
 
 #endif /* SH_H */
