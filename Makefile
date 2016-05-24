@@ -14,13 +14,15 @@ SOURCES	= \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
+	lexer/error.c \
 	lexer/lexer.c \
 	lexer/position.c \
 	lexer/source_file.c \
+	lexer/token.c \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
 	parse_int/parse_and_read_int_base.c \
-	shell.c \
+	sh.c \
 	string/string.c \
 	string/string_concat.c \
 	string/string_copy.c \
@@ -72,7 +74,11 @@ rtest: test/test
 	./test/test
 
 vgtest: test/test
-	valgrind --suppressions=egc/valgrind.supp ./test/test
+	valgrind \
+		--suppressions=egc/valgrind.supp \
+		--track-origins=yes \
+		--num-callers=100 \
+		./test/test
 
 $(LIBSH): $(OBJECTS)
 	@ar rc $@ $^ && \

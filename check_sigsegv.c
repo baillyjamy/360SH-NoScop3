@@ -11,8 +11,9 @@
 #include "sh.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <signal.h>
 
-void		check_segfault(const int status)
+void		check_sigsegv(int status)
 {
   if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
     fprintf(stderr, "Segmentation fault\n");

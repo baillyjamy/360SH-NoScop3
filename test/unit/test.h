@@ -12,6 +12,9 @@
 # define TEST_H
 
 # include "../../sh.h"
+
+# define STATS          (STATICS->test_stats)
+
 # include "../../string/string.h"
 
 # define STRINGIFY_(s)          #s
@@ -24,14 +27,6 @@ void                    assert_impl(int a, const char *position);
 
 # define FAIL()         fail_impl(TEST_GET_POSITION())
 # define ASSERT(a)      assert_impl(a, TEST_GET_POSITION())
-
-typedef struct          s_test_stats
-{
-  int                   failed_test_count;
-  int                   total_test_count;
-}                       t_test_stats;
-
-# define STATS          ((t_test_stats *)egc_get_statics())
 
 void    run_test_suites(void);
 

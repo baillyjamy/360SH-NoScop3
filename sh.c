@@ -10,7 +10,9 @@
 
 #include "sh.h"
 
-int		main(int argc, char **argv, char **envp)
+void            statics_init(t_statics *s)
 {
-  return (0);
+  s->test_stats.failed_test_count = 0;
+  s->test_stats.total_test_count = 0;
+  s->lexer_input_string = NULL;
 }
