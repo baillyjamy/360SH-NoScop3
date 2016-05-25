@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Thu May 19 23:13:05 2016 Valentin Pichard
-** Last update Fri May 20 16:07:58 2016 Valentin Pichard
+** Last update Wed May 25 14:56:04 2016 Valentin Pichard
 */
 
 #include "tools.h"
@@ -20,7 +20,7 @@ void		display_environment(const char **envp)
     fprintf(stdout, "%s\n", envp[i]);
 }
 
-void		display_prompt(const char *user)
+void		display_prompt(const char *user, const char *host)
 {
-  fprintf(stdout, "%s%s%s@360SH-NoScop3 ~ $ ", FG_RED, user, RESET);
+  fprintf(stdout, "%s%s%s@%s ~ $ ", FG_RED, user, RESET, host);
 }
