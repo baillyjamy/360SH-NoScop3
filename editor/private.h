@@ -19,6 +19,8 @@ struct	s_readline
   int				input;
   int				output;
   int				error_output;
+  t_readline_tokenizer		tokenizer;
+  void				*tokenizer_data;
   t_readline_completer		completer;
   void				*completer_data;
   t_readline_completion_printer printer;
