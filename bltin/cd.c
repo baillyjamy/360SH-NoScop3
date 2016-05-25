@@ -5,11 +5,10 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Tue May 24 15:48:33 2016 Pierre-Emmanuel Jacquier
-** Last update Tue May 24 15:48:33 2016 Pierre-Emmanuel Jacquier
+** Last update Wed May 25 15:49:58 2016 Valentin Pichard
 */
 
-#include "hs.h"
-#include "glist_hs.h"
+#include "../egc.h"
 
 int	cdcmd(t_glist_hs *argv)
 {
