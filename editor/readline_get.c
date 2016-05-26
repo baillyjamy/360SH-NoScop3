@@ -8,7 +8,7 @@
 ** Last update Tue May 24 00:32:20 2016 Jamy Bailly
 */
 
-#include "readline.h"
+#include "private.h"
 
 int	readline_get_input(t_readline *readline)
 {

@@ -8,13 +8,14 @@
 ** Last update Tue May 24 16:19:50 2016 Jamy Bailly
 */
 
-#include "readline.h"
+#include "private.h"
 
 void	readline_set_tokenizer(t_readline *readline,
 			       t_readline_tokenizer tokenizer,
-			       void *data);
+			       void *data)
 {
   readline->tokenizer = tokenizer;
+  readline->tokenizer_data = data;
 }
 
 void	readline_set_completer(t_readline *readline,
@@ -22,6 +23,7 @@ void	readline_set_completer(t_readline *readline,
 			       void *data)
 {
   readline->completer = completer;
+  readline->completer_data = data;
 }
 
 void	readline_set_completion_printer(t_readline *readline,
@@ -29,6 +31,7 @@ void	readline_set_completion_printer(t_readline *readline,
 					void *data)
 {
   readline->printer = printer;
+  readline->printer_data = data;
 }
 
 void	readline_set_colorizer(t_readline *readline,
@@ -36,4 +39,5 @@ void	readline_set_colorizer(t_readline *readline,
 			       void *data)
 {
   readline->colorizer = colorizer;
+  readline->colorizer_data = data;
 }
