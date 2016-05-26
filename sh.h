@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Tue May 24 16:03:45 2016 Valentin Pichard
+** Last update Thu May 26 18:40:28 2016 Valentin Pichard
 */
 
 #ifndef SH_H
@@ -33,6 +33,7 @@ typedef struct  s_statics
 }               t_statics;
 
 void            statics_init(t_statics *statics);
+int		get_env_line(t_hs name, t_hs *value);
 
 # ifndef STATICS
 #  define STATICS        ((t_statics *)egc_get_statics())
