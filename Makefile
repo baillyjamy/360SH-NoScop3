@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
-## Last update Thu May 26 19:53:09 2016 Valentin Pichard
+## Last update Fri May 27 00:18:32 2016 Valentin Pichard
 ##
 
 include test.mk
@@ -42,7 +42,8 @@ SOURCES	= \
 	string/string_find.c \
 	string/string_starts_with.c \
 	string/string_type.c \
-	string/string_type_converter.c
+	string/string_type_converter.c \
+	env.c
 
 OBJECTS	= $(SOURCES:.c=.o)
 
