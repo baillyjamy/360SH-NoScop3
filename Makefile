@@ -1,15 +1,11 @@
 ##
-## Makefile for  in /Users/pichar_v/Documents/tek1/360SH-NoScop3/
+## Makefile for  in /Users/pichar_v/Documents/tek1/42SH/360SH-NoScop3/
 ##
 ## Made by Valentin Pichard
 ## Login   <pichar_v@epitech.eu>
 ##
-## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
-<<<<<<< HEAD
-## Last update Fri May 27 00:18:32 2016 Valentin Pichard
-=======
-## Last update Thu May 26 20:47:52 2016 Pierre-Emmanuel Jacquier
->>>>>>> 94609951a736b7541121a04958e00e05b0ab1027
+## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
+## Last update Fri May 27 00:21:31 2016 Valentin Pichard
 ##
 
 include test.mk
