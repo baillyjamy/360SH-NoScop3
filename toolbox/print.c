@@ -5,18 +5,19 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Fri May 20 15:51:12 2016 Valentin Pichard
-** Last update Fri May 20 16:08:18 2016 Valentin Pichard
+** Last update Thu May 26 11:41:12 2016 Valentin Pichard
 */
 
 #include "tools.h"
 #include <stdio.h>
+#include <unistd.h>
 
 void		print_string(const char *string)
 {
-  fprintf(stdout, "%s", string);
+  egc_fprintf(STDOUT_FILENO, "%s", string);
 }
 
 void		print_string_error(const char *string)
 {
-  fprintf(stderr, "%s", string);
+  egc_fprintf(STDERR_FILENO, "%s", string);
 }
