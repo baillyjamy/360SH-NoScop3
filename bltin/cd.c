@@ -32,7 +32,6 @@ static int	cd_path(t_hs path)
     return (1);
   current_pwd = get_env_line(hs("PWD"));
   set_env_line(hs_concat(hs("OLDPWD"), current_pwd));
-  chdir(hs_to_str(path));
   set_env_line(hs_concat(hs("PWD"), path));
   return (1);
 }
