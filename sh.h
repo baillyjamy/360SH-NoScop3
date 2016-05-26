@@ -29,6 +29,7 @@ typedef struct  s_statics
 {
   const char    *lexer_input_string;
   t_test_stats  test_stats;
+  t_glist_hs	env;
 }               t_statics;
 
 void            statics_init(t_statics *statics);
