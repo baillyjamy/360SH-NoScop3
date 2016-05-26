@@ -5,12 +5,14 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
-## Last update Fri Apr 22 18:30:15 2016 Valentin Pichard
+## Last update Thu May 26 20:37:21 2016 Pierre-Emmanuel Jacquier
 ##
 
 include test.mk
 
 SOURCES	= \
+	./bltin/cd.c \
+	./bltin/cd_errors.c \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \

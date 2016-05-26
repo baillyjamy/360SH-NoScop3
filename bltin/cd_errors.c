@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <errno.h>
-#include "../egc.h"
+#include "../sh.h"
 
 int	chdir_error(t_hs path)
 {

@@ -10,7 +10,20 @@
 
 #include <unistd.h>
 #include <stdio.h>
-#include "../egc.h"
+#include "../sh.h"
+
+static int	set_current_pwd(t_hs *pwd)
+{
+  char		cwd[2048];
+
+  if (getcwd(cwd, sizeof(cwd)) != NULL)
+    {
+      set_env_line(hs("PWD"), hs(cwd));
+      *pwd = hs(cwd);
+      return (0);
+    }
+  return (1);
+}
 
 static int	cd_less(void)
 {
@@ -52,18 +65,6 @@ static int	cd_home(void)
   set_env_line(hs("OLDPWD"), current_pwd);
   return (1);
 
-}
-static int	set_current_pwd(t_hs *pwd)
-{
-  char		cwd[2048];
-
-  if (getcwd(cwd, sizeof(cwd)) != NULL)
-    {
-      set_env_line(hs("PWD"), cwd);
-      *pwd = hs_to_str(cwd);
-      return (0);
-    }
-  return (1);
 }
 
 int	cdcmd(t_glist_hs *argv)
