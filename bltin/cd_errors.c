@@ -23,3 +23,13 @@ int	chdir_error(t_hs path)
     }
   return (0);
 }
+
+int	home_error(t_hs home_path)
+{
+  if (chdir(hs_to_str(home_path)) != 0)
+    {
+      fprintf(stderr, "cd: Can't change to home directory.\n");
+      return (1);
+    }
+  return (0);
+}

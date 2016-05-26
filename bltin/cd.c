@@ -9,6 +9,7 @@
 */
 
 #include <unistd.h>
+#include <stdio.h>
 #include "../egc.h"
 
 static int	cd_less(void)
@@ -16,11 +17,12 @@ static int	cd_less(void)
   t_hs	old_pwd;
   t_hs	current_pwd;
 
-  old_pwd = get_env_line(hs("OLDPWD"));
-  current_pwd = get_env_line(hs("PWD"));
+  if (get_env_line(hs("OLDPWD"), &old_pwd))
+    return (fprintf(stderr, ": No such file or directory.\n"));
+  set_current_pwd(&current_pwd);
   chdir(hs_to_str(old_pwd));
-  set_env_line(hs_concat(hs("PWD"), old_pwd));
-  set_env_line(hs_concat(hs("OLDPWD"), current_pwd));
+  set_env_line(hs("PWD"), old_pwd);
+  set_env_line(hs("OLDPWD"), current_pwd);
   return (1);
 }
 
@@ -28,11 +30,11 @@ static int	cd_path(t_hs path)
 {
   t_hs		current_pwd;
 
+  set_current_pwd(&current_pwd);
   if (chdir_error(path))
     return (1);
-  current_pwd = get_env_line(hs("PWD"));
-  set_env_line(hs_concat(hs("OLDPWD"), current_pwd));
-  set_env_line(hs_concat(hs("PWD"), path));
+  set_env_line(hs("OLDPWD"), current_pwd);
+  set_env_line(hs("PWD"), path);
   return (1);
 }
 
@@ -41,13 +43,26 @@ static int	cd_home(void)
   t_hs		home_path;
   t_hs		current_pwd;
 
-  current_pwd = get_env_line(hs("PWD"));
-  home_path = get_env_line(hs("HOME"));
-  if (home_error(home_path))
+  set_current_pwd(&current_pwd);
+  if (get_env_line(hs("HOME"), &home_path))
+    return (fprintf(stderr, "cd: No home directory.\n"));
+  else if (home_error(home_path))
     return (1);
-  chdir(hs_to_str(home_path));
-  set_env_line(hs_concat(hs("PWD"), home_path));
-  set_env_line(hs_concat(hs("OLDPWD"), current_pwd));
+  set_env_line(hs("PWD"), home_path);
+  set_env_line(hs("OLDPWD"), current_pwd);
+  return (1);
+
+}
+static int	set_current_pwd(t_hs *pwd)
+{
+  char		cwd[2048];
+
+  if (getcwd(cwd, sizeof(cwd)) != NULL)
+    {
+      set_env_line(hs("PWD"), cwd);
+      *pwd = hs_to_str(cwd);
+      return (0);
+    }
   return (1);
 }
 
