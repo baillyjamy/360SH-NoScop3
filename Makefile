@@ -5,10 +5,17 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
-## Last update Thu May 26 20:37:21 2016 Pierre-Emmanuel Jacquier
+## Last update Thu May 26 20:47:52 2016 Pierre-Emmanuel Jacquier
 ##
 
 include test.mk
+
+AR 	= ar rc
+
+UNAME_S	:= $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	AR = libtool -static -o
+endif
 
 SOURCES	= \
 	./bltin/cd.c \
@@ -72,7 +79,7 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 all: test/test
 
 test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBSH)
-	@$(CC) -o $@ $^ $(LDFLAGS) && \
+	@$(CC) -o $@ $(TEST_OBJECTS) $(LDFLAGS) -L. -lsh && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
 
@@ -87,7 +94,7 @@ vgtest: test/test
 		./test/test
 
 $(LIBSH): $(OBJECTS)
-	@ar rc $@ $^ && \
+	@$(AR) $@ $^ && \
 		$(ECHO) AR $@ || \
 		$(call echo_error,$<)
 	@ranlib $@ && \
