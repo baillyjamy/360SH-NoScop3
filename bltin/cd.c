@@ -8,13 +8,27 @@
 ** Last update Wed May 25 15:49:58 2016 Valentin Pichard
 */
 
+#include <unistd.h>
 #include "../egc.h"
+
+int	cd_less(void)
+{
+  t_hs	old_pwd;
+  t_hs	current_pwd;
+
+  old_pwd = get_env_line(hs("OLDPWD"));
+  current_pwd = get_env_line(hs("PWD"));
+  chdir(hs_to_str(old_pwd));
+  set_env_line(hs_concat(hs("PWD"), old_pwd));
+  set_env_line(hs_concat(hs("OLDPWD"), current_pwd));
+  return (1);
+}
 
 int	cdcmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) == 2)
     {
-      if (hs_equals(glist_hs_get(args, 0), hs("-")))
+      if (hs_equals(glist_hs_get(argv, 0), hs("-")))
 	return (cd_less());
       else
 	return (cd_path());
