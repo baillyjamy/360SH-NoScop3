@@ -5,7 +5,11 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
+<<<<<<< HEAD
 ## Last update Fri May 27 00:18:32 2016 Valentin Pichard
+=======
+## Last update Thu May 26 20:47:52 2016 Pierre-Emmanuel Jacquier
+>>>>>>> 94609951a736b7541121a04958e00e05b0ab1027
 ##
 
 include test.mk
@@ -18,6 +22,8 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 SOURCES	= \
+	./bltin/cd.c \
+	./bltin/cd_errors.c \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \

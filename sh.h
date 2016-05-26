@@ -34,6 +34,9 @@ typedef struct  s_statics
 
 void            statics_init(t_statics *statics);
 int		get_env_line(t_hs name, t_hs *value);
+int		chdir_error(t_hs path);
+int		home_error(t_hs home_path);
+void		set_env_line(t_hs variable, t_hs value);
 
 # ifndef STATICS
 #  define STATICS        ((t_statics *)egc_get_statics())
