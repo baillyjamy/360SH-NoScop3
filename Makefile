@@ -14,6 +14,10 @@ SOURCES	= \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
+	editor/readline_get.c \
+	editor/readline_read.c \
+	editor/readline_set.c \
+	editor/readline.c \
 	lexer/error.c \
 	lexer/lexer.c \
 	lexer/position.c \

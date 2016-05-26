@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Fri May 20 16:03:41 2016 Valentin Pichard
-** Last update Thu May 26 11:44:40 2016 Valentin Pichard
+** Last update Thu May 26 18:26:47 2016 Valentin Pichard
 */
 
 #ifndef TOOLS_H
@@ -17,7 +17,7 @@
 /*
 ** Display environment
 */
-void		display_environment(const char **envp);
+void		display_environment(void);
 
 /*
 ** Display user prompt
