@@ -9,6 +9,7 @@
 */
 
 #include <unistd.h>
+#include <termios.h>
 #include "readline.h"
 
 static char     readline_read_char(int input)
@@ -20,12 +21,15 @@ static char     readline_read_char(int input)
   return (c);
 }
 
-t_hs		readline_read(t_readline *readline)
+t_hs			readline_read(t_readline *readline)
 {
-  t_hs          line;
-  char          c;
+  t_hs          	line;
+  char          	c;
+  struct termios	cfg;
 
   line = hs_new_empty();
+  readline_get_term(&cfg);
+  readline_setup_term(cfg);
   while (1)
     {
       c = readline_read_char(readline_get_input(readline));
@@ -33,5 +37,6 @@ t_hs		readline_read(t_readline *readline)
 	break;
       line = hs_concat_hs_char(line, c);
     }
+  readline_restore_term(&cfg);
   return (line);
 }

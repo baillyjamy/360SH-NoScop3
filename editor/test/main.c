@@ -18,7 +18,7 @@ static int	launch()
 
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
   name = readline_read(readline);
-  egc_printf(" %hs!\n", name);
+  egc_printf("Return = %hs\n", name);
   return (0);
 }
 
