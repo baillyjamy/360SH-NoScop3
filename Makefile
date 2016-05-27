@@ -28,6 +28,7 @@ SOURCES	= \
 	editor/readline_get.c \
 	editor/readline_read.c \
 	editor/readline_set.c \
+	editor/readline_term.c \
 	editor/readline.c \
 	lexer/error.c \
 	lexer/lexer.c \
