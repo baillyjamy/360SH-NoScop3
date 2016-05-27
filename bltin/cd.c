@@ -5,7 +5,7 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Tue May 24 15:48:33 2016 Pierre-Emmanuel Jacquier
-** Last update Wed May 25 15:49:58 2016 Valentin Pichard
+** Last update Fri May 27 02:30:24 2016 Valentin Pichard
 */
 
 #include <unistd.h>
@@ -27,11 +27,11 @@ static int	set_current_pwd(t_hs *pwd)
 
 static int	cd_less(void)
 {
-  t_hs	old_pwd;
-  t_hs	current_pwd;
+  t_hs		old_pwd;
+  t_hs		current_pwd;
 
   if (get_env_line(hs("OLDPWD"), &old_pwd))
-    return (fprintf(stderr, ": No such file or directory.\n"));
+    return (egc_fprintf(STDERR_FILENO, ": No such file or directory.\n"));
   set_current_pwd(&current_pwd);
   chdir(hs_to_str(old_pwd));
   set_env_line(hs("PWD"), old_pwd);
@@ -58,7 +58,7 @@ static int	cd_home(void)
 
   set_current_pwd(&current_pwd);
   if (get_env_line(hs("HOME"), &home_path))
-    return (fprintf(stderr, "cd: No home directory.\n"));
+    return (egc_fprintf(STDERR_FILENO, "cd: No home directory.\n"));
   else if (home_error(home_path))
     return (1);
   set_env_line(hs("PWD"), home_path);
@@ -67,7 +67,7 @@ static int	cd_home(void)
 
 }
 
-int	cdcmd(t_glist_hs *argv)
+int		cdcmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) > 2)
     return (egc_fprintf(STDERR_FILENO, "cd: Too many arguments.\n"));
