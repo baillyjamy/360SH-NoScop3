@@ -1,11 +1,11 @@
 ##
-## Makefile for  in /Users/pichar_v/Documents/tek1/42SH/360SH-NoScop3/
+## Makefile for 42sh in /home/antoine/42sh
 ##
 ## Made by Valentin Pichard
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Fri May 27 02:14:55 2016 Valentin Pichard
+## Last update Fri May 27 17:41:12 2016 Antoine Baudrand
 ##
 
 include test.mk
@@ -82,7 +82,7 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 all: test/test
 
 test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBSH)
-	@$(CC) -o $@ $(TEST_OBJECTS) $(LDFLAGS) -L. -lsh && \
+	@$(CC) -o $@ $(TEST_OBJECTS) $(LDFLAGS) -L. -lsh -legc && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
 
