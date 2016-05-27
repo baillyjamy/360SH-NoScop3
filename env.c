@@ -1,11 +1,11 @@
 /*
-** get_env.c for  in /Users/pichar_v/Documents/tek1/42SH/360SH-NoScop3/
+** env.c for 42sh in /home/antoine/42sh
 **
 ** Made by Valentin Pichard
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Wed May 25 16:09:49 2016 Valentin Pichard
-** Last update Fri May 27 02:13:44 2016 Valentin Pichard
+** Last update Fri May 27 16:43:33 2016 Antoine Baudrand
 */
 
 #include "sh.h"
@@ -38,11 +38,12 @@ int		get_env_line(t_hs name, t_hs *value)
   return (-1);
 }
 
-void		set_env_line(t_hs name, t_hs value)
+void		set_env_line(t_hs name, t_hs value, short value_is_null)
 {
   int		i;
   t_hs		line;
 
+  (void) value_is_null;
   i = 0;
   if (env_variable_exists(name))
     {
