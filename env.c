@@ -10,13 +10,13 @@
 
 #include "sh.h"
 
-void		get_env(const char **envp)
+void		env_init(char **env_c_strings)
 {
   STATICS->env = glist_hs_new();
-  while (*envp)
+  while (*env_c_strings)
     {
-      glist_hs_append(&STATICS->env, hs(*envp));
-      envp++;
+      glist_hs_append(&STATICS->env, hs(*env_c_strings));
+      env_c_strings++;
     }
 }
 
