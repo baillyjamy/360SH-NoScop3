@@ -18,7 +18,7 @@ static int	errors_name(t_hs name)
   char	c;
 
   i = 0;
-  if (!is_letter(hs_get(name, 0)))
+  if (!char_is_alpha(hs_get(name, 0)))
     {
       fprintf(stderr, "setenv: Variable name must begin with a letter.\n");
       return (1);
@@ -26,9 +26,10 @@ static int	errors_name(t_hs name)
   while (i < hs_length(name))
     {
       c = hs_get(name, i++);
-      if (!is_letter(c) || !is_digit(c) || c != '_')
+      if (!char_is_alpha(c) || !char_is_digit(c) || c != '_')
 	{
-	  fprintf(stderr, "setenv: Variable name must"
+	  fprintf(stderr,
+                  "setenv: Variable name must"
 		  "contain alphanumeric characters.\n");
 	  return (1);
 	}
@@ -47,7 +48,7 @@ static int	set_variable(t_hs name, t_hs value, short value_is_null)
   return (1);
 }
 
-int	set_env_cmd(t_glist_hs *argv)
+int	setenv_cmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) > 3)
     return (egc_fprintf(STDERR_FILENO, "setenv: Too many arguments.\n"));

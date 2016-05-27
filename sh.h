@@ -40,9 +40,8 @@ void            statics_init(t_statics *statics);
 void		env_init(char **env_c_strings);
 
 void		unsetenv_cmd(t_glist_hs *argv);
-int		set_env_cmd(t_glist_hs *argv);
-int		is_letter(char c);
-int		is_digit(char c);
+int		setenv_cmd(t_glist_hs *argv);
+
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
 void		set_env_line(t_hs variable, t_hs value, short value_is_null);
