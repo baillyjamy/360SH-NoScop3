@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Thu May 26 18:40:28 2016 Valentin Pichard
+** Last update Fri May 27 15:56:08 2016 Valentin Pichard
 */
 
 #ifndef SH_H
@@ -33,10 +33,14 @@ typedef struct  s_statics
 }               t_statics;
 
 void            statics_init(t_statics *statics);
-int		get_env_line(t_hs name, t_hs *value);
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
+
 void		set_env_line(t_hs variable, t_hs value, short vat_is_null);
+int		env_variable_exists(t_hs name);
+void		env_variable_creator(t_hs name, t_hs value);
+int		get_env_line(t_hs name, t_hs *value);
+void		unset_env(t_hs name);
 
 # ifndef STATICS
 #  define STATICS        ((t_statics *)egc_get_statics())
