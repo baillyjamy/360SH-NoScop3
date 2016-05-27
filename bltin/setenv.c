@@ -12,9 +12,9 @@
 #include <stdio.h>
 #include "../sh.h"
 
-int	errors_name(t_hs name)
+static int	errors_name(t_hs name)
 {
-  int	i;
+  unsigned	i;
   char	c;
 
   i = 0;
@@ -36,7 +36,7 @@ int	errors_name(t_hs name)
   return (0);
 }
 
-int	set_variable(t_hs name, t_hs value, short value_is_null)
+static int	set_variable(t_hs name, t_hs value, short value_is_null)
 {
   if (!errors_name(name))
     {

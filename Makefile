@@ -20,6 +20,7 @@ endif
 SOURCES	= \
 	./bltin/cd.c \
 	./bltin/cd_errors.c \
+	./bltin/setenv.c \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
