@@ -32,7 +32,13 @@ typedef struct  s_statics
   t_glist_hs	env;
 }               t_statics;
 
+/*
+** Does not initialize the environment.
+*/
 void            statics_init(t_statics *statics);
+
+void		env_init(char **env_c_strings);
+
 void		unsetenv_cmd(t_glist_hs *argv);
 int		set_env_cmd(t_glist_hs *argv);
 int		is_letter(char c);
