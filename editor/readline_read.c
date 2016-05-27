@@ -9,7 +9,6 @@
 */
 
 #include <unistd.h>
-#include <termios.h>
 #include "readline.h"
 
 static char     readline_read_char(int input)
