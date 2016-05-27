@@ -16,5 +16,5 @@ void	unsetenv_cmd(t_glist_hs *argv)
 
   i = 1;
   while (i < glist_hs_length(argv))
-    glist_hs_get(argv, i++);
+    unset_env(glist_hs_get(argv, i++));
 }
