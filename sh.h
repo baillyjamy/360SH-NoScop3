@@ -33,7 +33,8 @@ typedef struct  s_statics
 }               t_statics;
 
 void            statics_init(t_statics *statics);
-int		set_env(t_glist_hs *argv);
+void		unsetenv_cmd(t_glist_hs *argv);
+int		set_env_cmd(t_glist_hs *argv);
 int		is_letter(char c);
 int		is_digit(char c);
 int		chdir_error(t_hs path);
