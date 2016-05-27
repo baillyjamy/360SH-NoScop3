@@ -12,20 +12,6 @@
 #include <stdio.h>
 #include "../sh.h"
 
-int	is_letter(char c)
-{
-  if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-    return (1);
-  return (0);
-}
-
-int	is_digit(char c)
-{
-  if (c >= '0' && c <= '9')
-    return (1);
-  return (0);
-}
-
 int	errors_name(t_hs name)
 {
   int	i;
