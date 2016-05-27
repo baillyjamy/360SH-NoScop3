@@ -78,7 +78,7 @@ int		cdcmd(t_glist_hs *argv)
       else
 	return (cd_path(glist_hs_get(argv, 1)));
     }
-  else if(glist_hs_length(argv) == 1)
+  else if (glist_hs_length(argv) == 1)
     return (cd_home());
   return (0);
 }

@@ -75,7 +75,7 @@ void		unset_env(t_hs name)
 	  line = glist_hs_get(&STATICS->env, i++);
 	  if (hs_starts_with(line, hs_concat_hs_char(name, '=')))
 	    {
-      	      glist_hs_remove(&STATICS->env, i);
+              glist_hs_remove(&STATICS->env, i);
 	    }
 	}
     }

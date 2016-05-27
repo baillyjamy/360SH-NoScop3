@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include "readline.h"
 
-static char     readline_read_char(int input)
+static char     read_char(int input)
 {
   char          c;
 
@@ -22,18 +22,18 @@ static char     readline_read_char(int input)
 
 t_hs			readline_read(t_readline *readline)
 {
-  t_hs          	line;
-  char          	c;
-  struct termios	cfg;
+  t_hs                  line;
+  char                  c;
+  struct termios        cfg;
 
   line = hs_new_empty();
   readline_get_term(&cfg);
   readline_setup_term(cfg);
   while (1)
     {
-      c = readline_read_char(readline_get_input(readline));
+      c = read_char(readline_get_input(readline));
       if (!c || c == '\n')
-	break;
+	break ;
       line = hs_concat_hs_char(line, c);
     }
   readline_restore_term(&cfg);

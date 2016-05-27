@@ -48,7 +48,6 @@ static int	set_variable(t_hs name, t_hs value, int value_is_null)
 {
   if (!check_variable_name(name))
     return (1);
-
   if (value_is_null)
     set_env_line(name, value, 1);
   set_env_line(name, value, 0);
