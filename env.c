@@ -67,7 +67,7 @@ void		env_remove_variable(t_hs name)
   t_hs		line;
 
   if (!env_variable_exists(name))
-    return;
+    return ;
   i = 0;
   while (i < glist_hs_length(&STATICS->env))
     {

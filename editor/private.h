@@ -11,7 +11,7 @@
 #ifndef READLINE_PRIVATE_H
 # define READLINE_PRIVATE_H
 
-#include "readline.h"
+# include "readline.h"
 
 struct	s_readline
 {
