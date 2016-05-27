@@ -44,13 +44,11 @@ static int	check_variable_name(t_hs name)
   return (0);
 }
 
-static int	set_variable(t_hs name, t_hs value, int value_is_null)
+static int	set_variable(t_hs name, t_hs value)
 {
   if (!check_variable_name(name))
     return (1);
-  if (value_is_null)
-    set_env_line(name, value, 1);
-  set_env_line(name, value, 0);
+  env_set_variable(name, value);
   return (0);
 }
 
@@ -59,9 +57,9 @@ int	setenv_cmd(t_glist_hs *argv)
   if (glist_hs_length(argv) > 3)
     return (egc_fprintf(STDERR_FILENO, "setenv: Too many arguments.\n"));
   if (glist_hs_length(argv) == 2)
-    return (set_variable(glist_hs_get(argv, 2), hs("NULL"), 1));
+    return (set_variable(glist_hs_get(argv, 2), hs("")));
   if (glist_hs_length(argv) == 3)
-    return (set_variable(glist_hs_get(argv, 2), glist_hs_get(argv, 3), 0));
+    return (set_variable(glist_hs_get(argv, 2), glist_hs_get(argv, 3)));
   else if (glist_hs_length(argv) == 1)
     {
       display_environment();

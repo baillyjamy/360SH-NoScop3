@@ -12,14 +12,15 @@
 
 int		env_variable_exists(t_hs name)
 {
-  t_hs		lel;
+  t_hs		dummy;
 
-  return (get_env_line(name, &lel) == 0);
+  return (env_get_variable(name, &dummy) == 0);
 }
 
-void		env_variable_creator(t_hs name, t_hs value)
+void		env_create_variable(t_hs name, t_hs value)
 {
-  glist_hs_append(&STATICS->env,
-		  hs_concat(hs_concat_hs_char(name, '='),
-			    value));
+  t_hs          line;
+
+  line = hs_format("%hs=%hs", name, value);
+  glist_hs_append(&STATICS->env, line);
 }
