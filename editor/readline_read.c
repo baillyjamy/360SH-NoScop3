@@ -24,14 +24,8 @@ static char     read_char(int input)
 
 t_hs			readline_read(t_readline *readline)
 {
-<<<<<<< HEAD
   t_hs          	line;
   char          	c;
-=======
-  t_hs                  line;
-  char                  c;
-  struct termios        cfg;
->>>>>>> b805d5f026f2054bb24786b41fcc1774435875ca
 
   line = hs_new_empty();
   while (1)
