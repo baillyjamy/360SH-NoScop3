@@ -22,7 +22,7 @@ char            *string_copy(char *dest, const char *source)
     }
   dest[i] = 0;
   return (dest);
- }
+}
 
 char            *string_copy_n(char *dest, const char *source, int n)
 {

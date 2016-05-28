@@ -1,19 +1,35 @@
 ##
-## Makefile for  in /Users/pichar_v/Documents/tek1/360SH-NoScop3/
+## Makefile for 42sh in /home/antoine/42sh
 ##
 ## Made by Valentin Pichard
 ## Login   <pichar_v@epitech.eu>
 ##
-## Started on  Sat Apr 16 11:50:36 2016 Valentin Pichard
-## Last update Fri Apr 22 18:30:15 2016 Valentin Pichard
+## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
+## Last update Fri May 27 17:41:12 2016 Antoine Baudrand
 ##
 
 include test.mk
 
+AR 	= ar rc
+
+UNAME_S	:= $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	AR = libtool -static -o
+endif
+
 SOURCES	= \
+	./bltin/cd.c \
+	./bltin/cd_errors.c \
+	./bltin/setenv.c \
+	./bltin/unsetenv.c \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
+	editor/readline_get.c \
+	editor/readline_read.c \
+	editor/readline_set.c \
+	editor/readline_term.c \
+	editor/readline.c \
 	lexer/error.c \
 	lexer/lexer.c \
 	lexer/position.c \
@@ -31,7 +47,9 @@ SOURCES	= \
 	string/string_find.c \
 	string/string_starts_with.c \
 	string/string_type.c \
-	string/string_type_converter.c
+	string/string_type_converter.c \
+	env.c \
+	env_tools.c
 
 OBJECTS	= $(SOURCES:.c=.o)
 
@@ -66,7 +84,7 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 all: test/test
 
 test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBSH)
-	@$(CC) -o $@ $^ $(LDFLAGS) && \
+	@$(CC) -o $@ $(TEST_OBJECTS) $(LDFLAGS) -L. -lsh -legc && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
 
@@ -81,7 +99,7 @@ vgtest: test/test
 		./test/test
 
 $(LIBSH): $(OBJECTS)
-	@ar rc $@ $^ && \
+	@$(AR) $@ $^ && \
 		$(ECHO) AR $@ || \
 		$(call echo_error,$<)
 	@ranlib $@ && \

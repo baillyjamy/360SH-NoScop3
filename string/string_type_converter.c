@@ -1,11 +1,11 @@
 /*
-** string_type_convert.c for  in /Users/westery/Documents/tek1/CPE/corewar/src/libcw/
+** string_type_converter.c for  in /home/antoine
 **
-** Made by Valentin Pichard
-** Login   <pichar_v@epitech.net>
+** Made by antoine
+** Login   <antoine@epitech.net>
 **
-** Started on  Wed Mar  9 01:19:06 2016 Valentin Pichard
-** Last update Wed Mar  9 01:30:11 2016 Valentin Pichard
+** Started on  Fri May 27 23:02:58 2016 antoine
+** Last update Fri May 27 23:02:58 2016 antoine
 */
 
 #include <stddef.h>
