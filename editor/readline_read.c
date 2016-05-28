@@ -20,10 +20,10 @@ static char     read_char(int input)
   return (c);
 }
 
-t_hs			readline_read(t_readline *readline)
+t_hs		readline_read(t_readline *readline)
 {
-  t_hs          	line;
-  char          	c;
+  t_hs         	line;
+  char         	c;
 
   line = hs_new_empty();
   while (1)

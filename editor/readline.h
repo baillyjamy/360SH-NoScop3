@@ -94,21 +94,6 @@ void	readline_set_colorizer(t_readline *readline,
 */
 int	readline_set_prompt(t_readline *readline, t_hs prompt);
 
-/*
-** Set canonical terminal configuration
-*/
-void	readline_setup_term(struct termios cfg);
-
-/*
-** Get terminal configuration
-*/
-void	readline_get_term(struct termios *cfg);
-
-/*
-** Set default terminal configuration
-*/
-void	readline_restore_term(struct termios *cfg);
-
 void	readline_clear_history(t_readline *readline);
 
 #endif /* READLINE_H */
