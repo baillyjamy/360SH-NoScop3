@@ -55,6 +55,7 @@ t_result                lex_word(const char **string_p)
         return (result);
       if (result.token)
         break;
+      (*string_p)++;
     }
   if (begin == end)
     return (RESULT_NULL);
@@ -65,7 +66,7 @@ static t_result         lex_token(const char **string_p)
 {
   t_result              result;
 
-  result = lex_token(string_p);
+  result = lex_token_impl(string_p);
   if (result.token || result.error)
     return (result);
   return (lex_word(string_p));

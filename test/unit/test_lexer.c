@@ -14,8 +14,16 @@
 void                    test_suite_lexer(void)
 {
   t_lexer_result        result;
+  t_token               *token;
 
   result = lex(hs(""));
   ASSERT(result.error == NULL);
+  ASSERT(result.tokens == NULL);
+
+  result = lex(hs("this_is-a/single,Word"));
+  ASSERT(result.error == NULL);
   ASSERT(result.tokens != NULL);
+  token = result.tokens->token;
+  ASSERT(hs_equals(hs("this_is-a/single,Word"), token->source));
+  ASSERT(result.tokens->next == NULL);
 }
