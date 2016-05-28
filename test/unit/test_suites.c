@@ -19,4 +19,5 @@ void    run_test_suites(void)
   test_suite_string_type();
   test_suite_string_type_convert();
   test_suite_colorize();
+  test_suite_lexer();
 }

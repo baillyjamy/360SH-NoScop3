@@ -12,25 +12,13 @@
 #include "../sh.h"
 #include "private.h"
 
-const char              *lexer_get_source(void)
-{
-  return (NULL);
-}
-
-static t_result         lex_word(const char **string_p)
-{
-  while (char_is_alpha(**string_p))
-    (*string_p)++;
-  return (RESULT_NULL);
-}
-
 static void             skip_whitespaces(const char **string_p)
 {
   while (char_is_whitespace(**string_p))
     NEXT(string_p);
 }
 
-static t_result         lex_token(const char **string_p)
+static t_result         lex_token_impl(const char **string_p)
 {
   const char            *begin;
   t_lex_function        functions[32];
@@ -38,7 +26,6 @@ static t_result         lex_token(const char **string_p)
   int                   i;
 
   i = 0;
-  functions[i++] = lex_word;
   functions[i++] = NULL;
   i = 0;
   while (functions[i])
@@ -51,6 +38,37 @@ static t_result         lex_token(const char **string_p)
       i++;
     }
   return (RESULT_NULL);
+}
+
+t_result                lex_word(const char **string_p)
+{
+  t_result              result;
+  const char            *begin;
+  const char            *end;
+
+  begin = *string_p;
+  while (**string_p)
+    {
+      end = *string_p;
+      result = lex_token_impl(string_p);
+      if (result.error)
+        return (result);
+      if (result.token)
+        break;
+    }
+  if (begin == end)
+    return (RESULT_NULL);
+  return (RESULT_TOKEN(TOKEN_NEW_RANGE(WORD, begin, end)));
+}
+
+static t_result         lex_token(const char **string_p)
+{
+  t_result              result;
+
+  result = lex_token(string_p);
+  if (result.token || result.error)
+    return (result);
+  return (lex_word(string_p));
 }
 
 static t_lexer_result   lex_from_str(const char *string)
@@ -80,4 +98,26 @@ t_lexer_result          lex(t_hs string)
   r = lex_from_str(cstr);
   STATICS->lexer_input_string = NULL;
   return (r);
+}
+
+t_position              lexer_get_position(const char *char_addr)
+{
+  const char            *string;
+  t_position            position;
+
+  position_init(&position);
+  string = STATICS->lexer_input_string;
+  assert(char_addr >= string);
+  while (string < char_addr)
+    {
+      if (*string == '\n')
+        {
+          position.line++;
+          position.column = 0;
+        }
+      position.column++;
+      position.index++;
+      string++;
+    }
+  return (position);
 }
