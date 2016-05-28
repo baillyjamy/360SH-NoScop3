@@ -9,8 +9,6 @@
 */
 
 #include <unistd.h>
-#include <stdio.h>
-#include <string.h>
 #include "readline.h"
 
 static char     read_char(int input)
