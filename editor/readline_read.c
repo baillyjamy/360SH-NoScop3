@@ -13,7 +13,7 @@
 #include <string.h>
 #include "readline.h"
 
-static char     readline_read_char(int input)
+static char     read_char(int input)
 {
   char          c;
 
@@ -24,15 +24,21 @@ static char     readline_read_char(int input)
 
 t_hs			readline_read(t_readline *readline)
 {
+<<<<<<< HEAD
   t_hs          	line;
   char          	c;
+=======
+  t_hs                  line;
+  char                  c;
+  struct termios        cfg;
+>>>>>>> b805d5f026f2054bb24786b41fcc1774435875ca
 
   line = hs_new_empty();
   while (1)
     {
-      c = readline_read_char(readline_get_input(readline));
+      c = read_char(readline_get_input(readline));
       if (!c || c == '\n')
-	break;
+	break ;
       line = hs_concat_hs_char(line, c);
     }
   return (line);

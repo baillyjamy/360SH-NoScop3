@@ -26,13 +26,13 @@
 /*
 ** foregroud and backgroud defaults to -1.
 */
-typedef struct
+typedef struct  s_style
 {
-  int foreground;
-  int background;
-  int underlined;
-  int bold;
-} t_style;
+  int           foreground;
+  int           background;
+  int           underlined;
+  int           bold;
+}               t_style;
 
 /*
 "on blue"

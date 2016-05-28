@@ -22,7 +22,7 @@ void		display_environment(void);
 /*
 ** Display user prompt
 */
-void		display_prompt(const char *user, const char *host);
+void		display_prompt(t_hs user, t_hs host);
 
 /*
 ** Display segfault error when signal catched

@@ -12,49 +12,54 @@
 #include <stdio.h>
 #include "../sh.h"
 
-static int	errors_name(t_hs name)
+static int      is_valid_variable_name(t_hs name)
 {
-  unsigned	i;
-  char	c;
+  int           i;
+  char          c;
 
-  i = 0;
-  if (!is_letter(hs_get(name, 0)))
+  i = -1;
+  while (++i < (int)hs_length(name))
     {
-      fprintf(stderr, "setenv: Variable name must begin with a letter.\n");
-      return (1);
-    }
-  while (i < hs_length(name))
-    {
-      c = hs_get(name, i++);
-      if (!is_letter(c) || !is_digit(c) || c != '_')
-	{
-	  fprintf(stderr, "setenv: Variable name must"
-		  "contain alphanumeric characters.\n");
-	  return (1);
-	}
-    }
-  return (0);
-}
-
-static int	set_variable(t_hs name, t_hs value, short value_is_null)
-{
-  if (!errors_name(name))
-    {
-      if (value_is_null)
-	set_env_line(name, value, 1);
-      set_env_line(name, value, 0);
+      c = hs_get(name, i);
+      if (!char_is_alpha_numeric(c) || !char_is_digit(c))
+        return (0);
     }
   return (1);
 }
 
-int	set_env_cmd(t_glist_hs *argv)
+static int	check_variable_name(t_hs name)
+{
+  if (!hs_length(name) || !char_is_alpha(hs_get(name, 0)))
+    {
+      fprintf(stderr, "setenv: Variable name must begin with a letter.\n");
+      return (1);
+    }
+  if (!is_valid_variable_name(name))
+    {
+      fprintf(stderr,
+              "setenv: Variable name must contain alphanumeric "
+              "characters.\n");
+      return (1);
+    }
+  return (0);
+}
+
+static int	set_variable(t_hs name, t_hs value)
+{
+  if (!check_variable_name(name))
+    return (1);
+  env_set_variable(name, value);
+  return (0);
+}
+
+int	setenv_cmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) > 3)
     return (egc_fprintf(STDERR_FILENO, "setenv: Too many arguments.\n"));
   if (glist_hs_length(argv) == 2)
-    return (set_variable(glist_hs_get(argv, 2), hs("NULL"), 1));
+    return (set_variable(glist_hs_get(argv, 2), hs("")));
   if (glist_hs_length(argv) == 3)
-    return (set_variable(glist_hs_get(argv, 2), glist_hs_get(argv, 3), 0));
+    return (set_variable(glist_hs_get(argv, 2), glist_hs_get(argv, 3)));
   else if (glist_hs_length(argv) == 1)
     {
       display_environment();

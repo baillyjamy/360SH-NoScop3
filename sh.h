@@ -32,18 +32,48 @@ typedef struct  s_statics
   t_glist_hs	env;
 }               t_statics;
 
+/*
+** Does not initialize the environment.
+*/
 void            statics_init(t_statics *statics);
+
+void		env_init(char **env_c_strings);
+
+/*
+** Find an environment variable.
+**
+** Write the variable value at the given address.
+** Returns 0 on success or -1 if the variable is not found.
+**
+*/
+int		env_get_variable(t_hs name, t_hs *value_pointer);
+
+/*
+** Sets an environment variable.
+**
+** A new variable is created if it doesn't exists.
+*/
+void		env_set_variable(t_hs name, t_hs value);
+
+/*
+** Removes an environment variable.
+**
+** Does nothing if the variable doesn't exist.
+*/
+void		env_remove_variable(t_hs name);
+
+/*
+** Returns 1 if there is an environment variable with the given name.
+*/
+int		env_variable_exists(t_hs name);
+
+void		env_create_variable(t_hs name, t_hs value);
+
 void		unsetenv_cmd(t_glist_hs *argv);
-int		set_env_cmd(t_glist_hs *argv);
-int		is_letter(char c);
-int		is_digit(char c);
+int		setenv_cmd(t_glist_hs *argv);
+
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
-void		set_env_line(t_hs variable, t_hs value, short value_is_null);
-int		env_variable_exists(t_hs name);
-void		env_variable_creator(t_hs name, t_hs value);
-int		get_env_line(t_hs name, t_hs *value);
-void		unset_env(t_hs name);
 
 # ifndef STATICS
 #  define STATICS        ((t_statics *)egc_get_statics())

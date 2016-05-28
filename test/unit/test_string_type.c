@@ -1,11 +1,11 @@
 /*
-** test_string_type.c for  in /Users/westery/Documents/tek1/CPE/corewar/src/test/
+** test_string_type.c for  in /home/antoine
 **
-** Made by Valentin Pichard
-** Login   <pichar_v@epitech.net>
+** Made by antoine
+** Login   <antoine@epitech.net>
 **
-** Started on  Wed Mar  9 11:11:00 2016 Valentin Pichard
-** Last update Wed Mar  9 19:15:19 2016 Valentin Pichard
+** Started on  Fri May 27 23:00:27 2016 antoine
+** Last update Fri May 27 23:00:27 2016 antoine
 */
 
 #include "test.h"

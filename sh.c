@@ -8,6 +8,7 @@
 ** Last update Fri Apr 22 17:50:26 2016 Valentin Pichard
 */
 
+#include <string.h>
 #include "sh.h"
 
 void            statics_init(t_statics *s)

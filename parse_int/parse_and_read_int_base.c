@@ -70,7 +70,7 @@ int             parse_and_read_uint_base(const char **string_pointer,
     {
       digit = char_to_digit(**string_pointer, base);
       if (digit == -1)
-        break;
+        break ;
       if (mul_and_add(result_pointer, base, digit))
         return (-1);
       (*string_pointer)++;
