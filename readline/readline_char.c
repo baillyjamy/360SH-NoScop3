@@ -16,7 +16,7 @@ t_hs	readline_insert_char(t_hs line, char c, int *cursor_pos)
   t_hs	right_hs;
   t_hs	new_line;
 
-  left_hs = hs_slice(line, 0, *cursor_pos - 1);
+  left_hs = hs_slice(line, 0, *cursor_pos);
   right_hs = hs_slice(line, *cursor_pos, hs_length(line));
   new_line = hs_concat_hs_char(left_hs, c);
   new_line = hs_concat(new_line, right_hs);

@@ -31,6 +31,7 @@ SOURCES	= \
 	readline/readline_term.c \
 	readline/readline.c \
 	readline/readline_test.c \
+	readline/readline_char.c \
 	lexer/error.c \
 	lexer/lexer.c \
 	lexer/position.c \

@@ -9,7 +9,7 @@
 */
 
 #include <unistd.h>
-#include "readline.h"
+#include "private.h"
 
 static char     read_char(int input)
 {
@@ -36,7 +36,7 @@ t_hs		readline_read(t_readline *readline)
 	break ;
       else
 	{
-	  line = readline_test(line, c);
+	  line = readline_test(line, c, readline);
 	}
     }
   readline_restore_term(&cfg);

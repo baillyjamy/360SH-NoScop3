@@ -10,22 +10,21 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#include "readline.h"
+#include "private.h"
 
-t_hs	readline_test(t_hs line, char c)
+t_hs	readline_test(t_hs line, char c, t_readline *readline)
 {
   t_hs	new_line;
 
   if (c == '\x7f')
     {
-      egc_printf("\x1b[1K");
-      return (line);
+      new_line = readline_delete_char(line, &readline->cursor_pos);
     }
   else
     {
-      new_line = hs_concat_hs_char(line, c);
-      egc_printf("\x1b[1K\x1b[u");
-      egc_printf("%hs", new_line);
-      return (new_line);
+      new_line = readline_insert_char(line, c, &readline->cursor_pos);
     }
+  egc_printf("\x1b[1K\x1b[u");
+  egc_printf("%hs", new_line);
+  return (new_line);
 }
