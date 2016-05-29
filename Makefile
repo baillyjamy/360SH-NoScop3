@@ -23,6 +23,7 @@ SOURCES	= \
 	./bltin/setenv.c \
 	./bltin/unsetenv.c \
 	./bltin/echo.c \
+	./bltin/exit.c \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
