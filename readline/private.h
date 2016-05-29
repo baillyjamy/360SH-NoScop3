@@ -19,6 +19,7 @@ struct	s_readline
   int				input;
   int				output;
   int				error_output;
+  int				cursor_pos;
   t_readline_tokenizer		tokenizer;
   void				*tokenizer_data;
   t_readline_completer		completer;

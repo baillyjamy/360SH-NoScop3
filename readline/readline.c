@@ -22,6 +22,7 @@ t_readline      *readline_new(int input, int output, int error_output)
   readline->input = input;
   readline->output = output;
   readline->error_output = error_output;
+  readline->cursor_pos = 0;
   readline->prompt = hs_new_empty();
   return (readline);
 }
