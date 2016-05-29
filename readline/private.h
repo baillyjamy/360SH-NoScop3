@@ -29,4 +29,10 @@ struct	s_readline
   void				*colorizer_data;
 };
 
+void	readline_setup_term(struct termios cfg);
+
+void	readline_get_term(struct termios *cfg);
+
+void	readline_restore_term(struct termios *cfg);
+
 #endif /* READLINE_PRIVATE_H */

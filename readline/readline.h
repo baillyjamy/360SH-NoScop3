@@ -94,12 +94,6 @@ void	readline_set_colorizer(t_readline *readline,
 */
 int	readline_set_prompt(t_readline *readline, t_hs prompt);
 
-void	readline_setup_term(struct termios cfg);
-
-void	readline_get_term(struct termios *cfg);
-
-void	readline_restore_term(struct termios *cfg);
-
 void	readline_clear_history(t_readline *readline);
 
 t_hs	readline_test(t_hs line, char c);
