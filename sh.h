@@ -75,6 +75,12 @@ int		setenv_cmd(t_glist_hs *argv);
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
 
+/*
+** parse_int
+*/
+
+int     parse_int(const char *string, long *result_pointer);
+
 # ifndef STATICS
 #  define STATICS        ((t_statics *)egc_get_statics())
 # endif
