@@ -34,7 +34,10 @@ t_hs		readline_read(t_readline *readline)
       c = read_char(readline_get_input(readline));
       if (!c || c == '\n')
 	break ;
-      line = hs_concat_hs_char(line, c);
+      else
+	{
+	  line = readline_test(line, c);
+	}
     }
   readline_restore_term(&cfg);
   return (line);

@@ -102,4 +102,6 @@ void	readline_restore_term(struct termios *cfg);
 
 void	readline_clear_history(t_readline *readline);
 
+t_hs	readline_test(t_hs line, char c);
+
 #endif /* READLINE_H */
