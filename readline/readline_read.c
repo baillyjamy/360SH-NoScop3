@@ -22,10 +22,13 @@ static char     read_char(int input)
 
 t_hs		readline_read(t_readline *readline)
 {
+  struct termios	cfg;
   t_hs         	line;
   char         	c;
 
   line = hs_new_empty();
+  readline_get_term(&cfg);
+  readline_setup_term(cfg);
   while (1)
     {
       c = read_char(readline_get_input(readline));
@@ -33,5 +36,6 @@ t_hs		readline_read(t_readline *readline)
 	break ;
       line = hs_concat_hs_char(line, c);
     }
+  readline_restore_term(&cfg);
   return (line);
 }

@@ -12,6 +12,7 @@
 # define READLINE_H
 
 # include "../egc.h"
+# include <termios.h>
 
 struct				s_readline;
 typedef struct s_readline	t_readline;
@@ -92,6 +93,12 @@ void	readline_set_colorizer(t_readline *readline,
 ** Returns 0 on success or -1 if the given prompt is invalid.
 */
 int	readline_set_prompt(t_readline *readline, t_hs prompt);
+
+void	readline_setup_term(struct termios cfg);
+
+void	readline_get_term(struct termios *cfg);
+
+void	readline_restore_term(struct termios *cfg);
 
 void	readline_clear_history(t_readline *readline);
 
