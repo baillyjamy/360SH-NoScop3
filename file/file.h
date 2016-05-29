@@ -1,17 +1,17 @@
 /*
-** editor.h for  in /Users/pichar_v/Documents/tek1/42SH/360SH-NoScop3/
+** file.h for  in /Users/pichar_v/Documents/tek1/42SH/360SH-NoScop3/
 **
 ** Made by Valentin Pichard
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Sun May 29 23:38:48 2016 Valentin Pichard
+** Last update Mon May 30 00:21:23 2016 Valentin Pichard
 */
 
 #ifndef EDITOR_H
 # define EDITOR_H
 
-# include "egc.h"
+# include "../egc.h"
 
 /*
 ** Create a new file using the filename in params.
