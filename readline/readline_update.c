@@ -10,20 +10,17 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <ncurses.h>
 #include "private.h"
 
-t_hs	readline_test(t_hs line, char c, t_readline *readline)
+t_hs	readline_update(t_hs line, char c, int *cursor_pos)
 {
   t_hs	new_line;
 
   if (c == '\x7f')
-    {
-      new_line = readline_delete_char(line, &readline->cursor_pos);
-    }
+    new_line = readline_delete_char(line, cursor_pos);
   else
-    {
-      new_line = readline_insert_char(line, c, &readline->cursor_pos);
-    }
+    new_line = readline_insert_char(line, c, cursor_pos);
   egc_printf("\x1b[1K\x1b[u");
   egc_printf("%hs", new_line);
   return (new_line);

@@ -35,9 +35,7 @@ t_hs		readline_read(t_readline *readline)
       if (!c || c == '\n')
 	break ;
       else
-	{
-	  line = readline_test(line, c, readline);
-	}
+	line = readline_update(line, c, &readline->cursor_pos);
     }
   readline_restore_term(&cfg);
   return (line);

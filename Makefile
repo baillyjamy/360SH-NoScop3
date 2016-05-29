@@ -25,13 +25,13 @@ SOURCES	= \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
+	readline/readline_char.c \
 	readline/readline_get.c \
 	readline/readline_read.c \
 	readline/readline_set.c \
 	readline/readline_term.c \
+	readline/readline_update.c \
 	readline/readline.c \
-	readline/readline_test.c \
-	readline/readline_char.c \
 	lexer/error.c \
 	lexer/lexer.c \
 	lexer/position.c \

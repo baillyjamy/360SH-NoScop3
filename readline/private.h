@@ -40,4 +40,6 @@ t_hs	readline_insert_char(t_hs line, char c, int *cursor_pos);
 
 t_hs	readline_delete_char(t_hs line, int *cursor_pos);
 
+t_hs	readline_update(t_hs line, char c, int *cursor_pos);
+
 #endif /* READLINE_PRIVATE_H */

@@ -9,16 +9,18 @@
 */
 
 #include <unistd.h>
+#include <ncurses.h>
+#include <term.h>
 #include "../readline.h"
 
 static int	launch()
 {
-  t_hs		name;
+  t_hs		line;
   t_readline	*readline;
 
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
-  name = readline_read(readline);
-  egc_printf("\nReturn = %hs\n", name);
+  line = readline_read(readline);
+  egc_printf("\nReturn = %hs\n", line);
   return (0);
 }
 

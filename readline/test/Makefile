@@ -33,7 +33,7 @@ build_sh:
 	$(MAKE) -C ../../ all
 
 $(NAME): $(OBJECTS) ../../libsh.a ../../egc/libegc.a
-	$(CC) -o $@ $^
+	$(CC) -o $@ $^ -lncurses
 
 %.o: %.c
 	@$(CC) -c $< -o $@ $(CFLAGS) && \

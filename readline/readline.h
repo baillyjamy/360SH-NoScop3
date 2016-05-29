@@ -96,6 +96,4 @@ int	readline_set_prompt(t_readline *readline, t_hs prompt);
 
 void	readline_clear_history(t_readline *readline);
 
-t_hs	readline_test(t_hs line, char c, t_readline *readline);
-
 #endif /* READLINE_H */
