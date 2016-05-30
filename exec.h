@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 ** 
 ** Started on  Mon May 30 14:33:55 2016 Antoine Baudrand
-** Last update Mon May 30 14:52:48 2016 Antoine Baudrand
+** Last update Mon May 30 15:27:47 2016 Antoine Baudrand
 */
 
 #ifndef EXEC_H_
@@ -18,17 +18,17 @@ typedef struct      s_exec
   const char        *filename;
   const char        **argv;
   const char        *envp;
-  int               stdin_fd;
-  int               stdout_fd;
-  int               stderr_fd;
+  const int         stdin_fd;
+  const int         stdout_fd;
+  const int         stderr_fd;
 }                   t_exec;
 
 typedef struct      s_process
 {
-  pid_t             pid;
+  const pid_t       pid;
   int               exit_code;
 }                   t_process;
 
-t_process           *exec(t_exec *);
+t_process           *exec(const t_exec *);
 
 #endif /* !EXEC_H_ */
