@@ -81,6 +81,17 @@ int		home_error(t_hs home_path);
 
 int     parse_int(const char *string, long *result_pointer);
 
+/*
+** built-in fonctions
+*/
+
+void		envcmd(void);
+int		cdcmd(t_glist_hs *argv);
+int		exitcmd(t_glist_hs *argv);
+int		echocmd(t_glist_hs *argv);
+int		setenv_cmd(t_glist_hs *argv);
+void		unsetenv_cmd(t_glist_hs *argv);
+
 # ifndef STATICS
 #  define STATICS        ((t_statics *)egc_get_statics())
 # endif
