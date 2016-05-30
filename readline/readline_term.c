@@ -17,15 +17,15 @@ void	readline_setup_term(struct termios cfg)
   cfg.c_lflag &= (unsigned int) ~ICANON;
   cfg.c_cc[VMIN] = 0;
   cfg.c_cc[VTIME] = 100;
-  ioctl(0, TCSETS, &cfg);
+  tcsetattr(0, TCSANOW, &cfg);
 }
 
 void	readline_get_term(struct termios *cfg)
 {
-  ioctl(0, TCGETS, cfg);
+  tcgetattr(0, cfg);
 }
 
 void	readline_restore_term(struct termios *cfg)
 {
-  ioctl(0, TCSETS, cfg);
+  tcsetattr(0, TCSANOW, cfg);
 }
