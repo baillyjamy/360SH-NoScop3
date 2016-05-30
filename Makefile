@@ -65,7 +65,7 @@ RM		= rm -rf
 
 CFLAGS		= -W -Wall -Wextra -std=c89
 
-LDFLAGS		= -L./egc/ -legc
+LDFLAGS		= -L./egc/ -legc -lncurses
 
 ifeq ($(DELIVERY),true)
 	CFLAGS	+= -D NDEBUG
