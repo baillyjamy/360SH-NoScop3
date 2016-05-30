@@ -71,8 +71,9 @@ void		env_remove_variable(t_hs name)
   i = 0;
   while (i < glist_hs_length(&STATICS->env))
     {
-      line = glist_hs_get(&STATICS->env, i++);
+      line = glist_hs_get(&STATICS->env, i);
       if (hs_starts_with(line, hs_concat_hs_char(name, '=')))
         glist_hs_remove(&STATICS->env, i);
+      i++;
     }
 }
