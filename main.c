@@ -64,6 +64,7 @@ int	main2(int argc, char **argv)
 {
   t_hs	input;
   t_hs	user;
+  t_hs	pwd;
   t_statics     statics;
   t_glist_hs	args;
 
@@ -73,7 +74,8 @@ int	main2(int argc, char **argv)
   while (42)
     {
       env_get_variable(hs("USER"), &user);
-      display_prompt(user, hs("42sh"));
+      env_get_variable(hs("PWD"), &pwd);
+      display_prompt(user, pwd);
       input = read_line();
       args = hs_split(input, hs(" "));
       bltin(&args);
