@@ -5,11 +5,13 @@
 ** Login   <baudra_a@epitech.net>
 ** 
 ** Started on  Mon May 30 14:33:55 2016 Antoine Baudrand
-** Last update Mon May 30 14:48:47 2016 Antoine Baudrand
+** Last update Mon May 30 14:52:48 2016 Antoine Baudrand
 */
 
 #ifndef EXEC_H_
 # define EXEC_H_
+
+#include <unistd.h>
 
 typedef struct      s_exec
 {
