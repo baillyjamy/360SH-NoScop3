@@ -51,13 +51,14 @@ void		env_set_variable(t_hs name, t_hs value)
   i = 0;
   while (i < glist_hs_length(&STATICS->env))
     {
-      line = glist_hs_get(&STATICS->env, i++);
+      line = glist_hs_get(&STATICS->env, i);
       if (hs_starts_with(line, hs_concat_hs_char(name, '=')))
         {
           glist_hs_set(&STATICS->env,
                        i,
                        hs_concat(hs_concat_hs_char(name, '='), value));
         }
+      i++;
     }
 }
 
