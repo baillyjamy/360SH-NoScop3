@@ -13,14 +13,18 @@
 #include <term.h>
 #include "../readline.h"
 
+#include <string.h>
+
 static int	launch()
 {
   t_hs		line;
   t_readline	*readline;
 
+  setupterm(NULL, 1, NULL);
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
   line = readline_read(readline);
   egc_printf("\nReturn = %hs\n", line);
+  egc_printf("%d\n", strlen(tigetstr("kcub1")));
   return (0);
 }
 
