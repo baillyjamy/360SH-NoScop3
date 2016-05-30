@@ -41,3 +41,8 @@ void	readline_set_colorizer(t_readline *readline,
   readline->colorizer = colorizer;
   readline->colorizer_data = data;
 }
+
+void	readline_set_prompt(t_readline *readline, t_hs prompt)
+{
+  readline->prompt = prompt;
+}
