@@ -62,7 +62,7 @@ int	setenv_cmd(t_glist_hs *argv)
     return (set_variable(glist_hs_get(argv, 2), glist_hs_get(argv, 3)));
   else if (glist_hs_length(argv) == 1)
     {
-      display_environment();
+      envcmd();
       return (1);
     }
   return (0);
