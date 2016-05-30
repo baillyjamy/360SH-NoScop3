@@ -5,13 +5,14 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Mon May 30 00:21:23 2016 Valentin Pichard
+** Last update Mon May 30 13:22:15 2016 Valentin Pichard
 */
 
 #ifndef EDITOR_H
 # define EDITOR_H
 
 # include "../egc.h"
+# include <stdio.h>
 
 /*
 ** Create a new file using the filename in params.
@@ -73,5 +74,9 @@ int		line_exist(const t_hs filename, const t_hs line);
 ** Returns 0 on success or -1 if all the lines dont exist.
 */
 int		lines_exist(const t_hs filename, const t_glist_hs lines);
+
+FILE		*open_file(const t_hs filename, const t_hs mode);
+void		close_file(FILE *fp);
+FILE		*edit_file(const t_hs filename);
 
 #endif /* EDITOR_H */
