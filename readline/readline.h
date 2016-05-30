@@ -92,7 +92,7 @@ void	readline_set_colorizer(t_readline *readline,
 /*
 ** Returns 0 on success or -1 if the given prompt is invalid.
 */
-int	readline_set_prompt(t_readline *readline, t_hs prompt);
+void	readline_set_prompt(t_readline *readline, t_hs prompt);
 
 void	readline_clear_history(t_readline *readline);
 
