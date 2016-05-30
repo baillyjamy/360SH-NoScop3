@@ -5,27 +5,28 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Mon May 30 00:21:23 2016 Valentin Pichard
+** Last update Mon May 30 13:35:41 2016 Valentin Pichard
 */
 
 #ifndef EDITOR_H
 # define EDITOR_H
 
 # include "../egc.h"
+# include <stdio.h>
 
 /*
 ** Create a new file using the filename in params.
 **
 ** Returns 0 on success or -1 if can't create file.
 */
-int		create_file(const t_hs filename);
+void		create_file(const t_hs filename);
 
 /*
 ** Reset file lines.
 **
 ** Returns 0 on success or -1 if can't edit file.
 */
-int		reset_file(const t_hs filename);
+void		reset_file(const t_hs filename);
 
 /*
 ** Add new line at the nline number in the file.
@@ -48,7 +49,7 @@ int		delete_lines(const t_hs filename, const t_glist_hs lines);
 **
 ** Returns 0 on success or -1 if can't found the file.
 */
-int		file_exist(const t_hs filename);
+int		file_exist_and_edit(const t_hs filename);
 
 /*
 ** Read all the file and return all lines in t_glist_hs.
@@ -73,5 +74,9 @@ int		line_exist(const t_hs filename, const t_hs line);
 ** Returns 0 on success or -1 if all the lines dont exist.
 */
 int		lines_exist(const t_hs filename, const t_glist_hs lines);
+
+FILE		*open_file(const t_hs filename, const t_hs mode);
+void		close_file(FILE *fp);
+FILE		*edit_file(const t_hs filename);
 
 #endif /* EDITOR_H */
