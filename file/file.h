@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Mon May 30 13:22:15 2016 Valentin Pichard
+** Last update Mon May 30 13:35:41 2016 Valentin Pichard
 */
 
 #ifndef EDITOR_H
@@ -19,14 +19,14 @@
 **
 ** Returns 0 on success or -1 if can't create file.
 */
-int		create_file(const t_hs filename);
+void		create_file(const t_hs filename);
 
 /*
 ** Reset file lines.
 **
 ** Returns 0 on success or -1 if can't edit file.
 */
-int		reset_file(const t_hs filename);
+void		reset_file(const t_hs filename);
 
 /*
 ** Add new line at the nline number in the file.
@@ -49,7 +49,7 @@ int		delete_lines(const t_hs filename, const t_glist_hs lines);
 **
 ** Returns 0 on success or -1 if can't found the file.
 */
-int		file_exist(const t_hs filename);
+int		file_exist_and_edit(const t_hs filename);
 
 /*
 ** Read all the file and return all lines in t_glist_hs.
