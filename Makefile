@@ -31,6 +31,7 @@ SOURCES	= \
 	readline/readline_char.c \
 	readline/readline_get.c \
 	readline/readline_new.c \
+	readline/readline_print.c \
 	readline/readline_read.c \
 	readline/readline_set.c \
 	readline/readline_term.c \
@@ -56,7 +57,8 @@ SOURCES	= \
 	string/string_type_converter.c \
 	env.c \
 	env_tools.c \
-	./toolbox/display.c
+	toolbox/display.c \
+	toolbox/prompt.c \
 
 OBJECTS	= $(SOURCES:.c=.o)
 
