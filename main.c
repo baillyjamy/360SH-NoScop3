@@ -73,8 +73,10 @@ int	main2(int argc, char **argv)
   env_init(envp);
   while (42)
     {
-      env_get_variable(hs("USER"), &user);
-      env_get_variable(hs("PWD"), &pwd);
+      if (env_get_variable(hs("USER"), &user) == -1)
+	user = hs_new_empty();
+      if (env_get_variable(hs("PWD"), &pwd) == -1)
+	pwd = hs_new_empty();
       display_prompt(user, pwd);
       input = read_line();
       if (hs_get(input, 0) != '\0')

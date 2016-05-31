@@ -21,10 +21,9 @@ static int      is_valid_variable_name(t_hs name)
   while (++i < (int)hs_length(name))
     {
       c = hs_get(name, i);
-      if (!char_is_alpha_numeric(c) || !char_is_digit(c))
-        return (0);
+      if (!char_is_alpha_numeric(c) && !char_is_digit(c) && c != '_')
+	return (0);
     }
-  egc_printf("%hs\n", name);
   return (1);
 }
 
@@ -48,9 +47,8 @@ static int	check_variable_name(t_hs name)
 static int	set_variable(t_hs name, t_hs value)
 {
   if (!check_variable_name(name))
-    return (1);
-  env_set_variable(name, value);
-  return (0);
+    env_set_variable(name, value);
+  return (1);
 }
 
 int	setenv_cmd(t_glist_hs *argv)
