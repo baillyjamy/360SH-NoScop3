@@ -62,6 +62,11 @@ void		env_set_variable(t_hs name, t_hs value)
     }
 }
 
+void		env_remove_all_variable(void)
+{
+  STATICS->env = glist_hs_new();
+}
+
 void		env_remove_variable(t_hs name)
 {
   int		i;
