@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Mon May 30 18:44:14 2016 Valentin Pichard
+** Last update Tue May 31 15:50:10 2016 Valentin Pichard
 */
 
 #ifndef EDITOR_H
@@ -57,7 +57,7 @@ int		file_exist_and_edit(const t_hs filename);
 /*
 ** Read all the file and return all lines in t_glist_hs.
 */
-t_glist_hs	read_file(const t_hs filename);
+int		read_file(const t_hs filename, t_glist_hs *lines);
 
 /*
 ** Read the file line in params and return the line in t_hs.
@@ -81,5 +81,6 @@ int		lines_exist(const t_hs filename, const t_glist_hs lines);
 int		open_file(const t_hs pathname, int mode);
 void		close_file(int fd);
 int		edit_file(const t_hs filename);
+ssize_t		get_file_length(const t_hs filename);
 
 #endif /* EDITOR_H */
