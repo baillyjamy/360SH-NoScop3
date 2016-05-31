@@ -5,13 +5,14 @@
 ** Login   <baudra_a@epitech.net>
 ** 
 ** Started on  Mon May 30 14:33:55 2016 Antoine Baudrand
-** Last update Wed Jun 01 01:04:44 2016 Antoine Baudrand
+** Last update Wed Jun 01 01:33:17 2016 Antoine Baudrand
 */
 
 #ifndef EXEC_H_
 # define EXEC_H_
 
 #include <unistd.h>
+#include <sys/types.h>
 
 /*
 ** yan typedef pid_t

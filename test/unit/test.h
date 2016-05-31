@@ -1,11 +1,11 @@
 /*
-** test.h for  in /home/antoine
+** test.h for unit in /home/antoine/42sh/test/unit
 **
 ** Made by antoine
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Wed Feb 24 20:01:52 2016 antoine
-** Last update Sat Apr 16 13:52:53 2016 Valentin Pichard
+** Last update Wed Jun 01 01:19:53 2016 Antoine Baudrand
 */
 
 #ifndef TEST_H
@@ -39,5 +39,6 @@ void    test_suite_string_find(void);
 void    test_suite_string_type(void);
 void    test_suite_string_type_convert(void);
 void    test_suite_colorize(void);
+void    test_suite_exec(void);
 
 #endif /* TEST_H */

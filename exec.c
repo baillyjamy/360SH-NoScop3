@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 ** 
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
-** Last update Wed Jun 01 01:15:35 2016 Antoine Baudrand
+** Last update Wed Jun 01 01:34:45 2016 Antoine Baudrand
 */
 
 #include <unistd.h>
@@ -17,7 +17,7 @@ t_process       *exec(const t_exec *exec)
 {
   t_process     *proc;
 
-  proc = malloc(sizeof(t_process));
+  proc = egc_malloc(sizeof(t_process));
   proc->exit_code = 0;
   proc->pid = fork();
   if (proc->pid == 0)
