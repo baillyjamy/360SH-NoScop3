@@ -77,8 +77,11 @@ int	main2(int argc, char **argv)
       env_get_variable(hs("PWD"), &pwd);
       display_prompt(user, pwd);
       input = read_line();
-      args = hs_split(input, hs(" "));
-      bltin(&args);
+      if (hs_get(input, 0) != '\0')
+	{
+	  args = hs_split(input, hs(" "));
+	  bltin(&args);
+	}
     }
   return (0);
 }
