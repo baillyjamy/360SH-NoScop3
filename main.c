@@ -8,41 +8,13 @@
 ** Last update Mon May 30 19:08:52 2016 Pierre-Emmanuel Jacquier
 */
 
-#include "sh.h"
 #include <unistd.h>
+#include <ncurses.h>
+#include <term.h>
+#include "sh.h"
+#include "./readline/readline.h"
 
 char	**envp;
-
-static char     read_char(void)
-{
-  char          c;
-
-  if (read(STDIN_FILENO, &c, 1) != 1)
-    return ('\0');
-  return (c);
-}
-
-/*
-** Reads a line from the standard input
-**
-** The line is terminated by a Ctrl+D or a '\n'.
-*/
-
-static t_hs     read_line(void)
-{
-  t_hs          line;
-  char          c;
-
-  line = hs_new_empty();
-  while (1)
-    {
-      c = read_char();
-      if (!c || c == '\n')
-        break ;
-      line = hs_concat_hs_char(line, c);
-    }
-  return (line);
-}
 
 void	bltin(t_glist_hs *args)
 {
@@ -65,6 +37,7 @@ int	main2(int argc, char **argv)
   t_hs	input;
   t_hs	user;
   t_hs	pwd;
+  t_readline	*readline;
   t_statics     statics;
   t_glist_hs	args;
 
@@ -77,8 +50,10 @@ int	main2(int argc, char **argv)
 	user = hs_new_empty();
       if (env_get_variable(hs("PWD"), &pwd) == -1)
 	pwd = hs_new_empty();
+      setupterm(NULL, 1, NULL);
       display_prompt(user, pwd);
-      input = read_line();
+      readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
+      input = readline_read(readline);
       if (hs_get(input, 0) != '\0')
 	{
 	  args = hs_split(input, hs(" "));
