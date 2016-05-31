@@ -1,0 +1,3 @@
+[submodule "egc"]
+	path = egc
+	url = https://github.com/motet-a/egc.git
