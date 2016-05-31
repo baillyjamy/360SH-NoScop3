@@ -21,8 +21,8 @@ static int      is_valid_variable_name(t_hs name)
   while (++i < (int)hs_length(name))
     {
       c = hs_get(name, i);
-      if (!char_is_alpha_numeric(c) || !char_is_digit(c))
-        return (0);
+      if (!char_is_alpha_numeric(c) && !char_is_digit(c) && c != '_')
+	return (0);
     }
   return (1);
 }
@@ -47,9 +47,8 @@ static int	check_variable_name(t_hs name)
 static int	set_variable(t_hs name, t_hs value)
 {
   if (!check_variable_name(name))
-    return (1);
-  env_set_variable(name, value);
-  return (0);
+    env_set_variable(name, value);
+  return (1);
 }
 
 int	setenv_cmd(t_glist_hs *argv)
@@ -57,9 +56,9 @@ int	setenv_cmd(t_glist_hs *argv)
   if (glist_hs_length(argv) > 3)
     return (egc_fprintf(STDERR_FILENO, "setenv: Too many arguments.\n"));
   if (glist_hs_length(argv) == 2)
-    return (set_variable(glist_hs_get(argv, 2), hs("")));
+    return (set_variable(glist_hs_get(argv, 1), hs("")));
   if (glist_hs_length(argv) == 3)
-    return (set_variable(glist_hs_get(argv, 2), glist_hs_get(argv, 3)));
+    return (set_variable(glist_hs_get(argv, 1), glist_hs_get(argv, 2)));
   else if (glist_hs_length(argv) == 1)
     {
       envcmd();

@@ -24,7 +24,6 @@ static int	launch()
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
   line = readline_read(readline);
   egc_printf("\nReturn = %hs\n", line);
-  egc_printf("%d\n", strlen(tigetstr("kcub1")));
   return (0);
 }
 

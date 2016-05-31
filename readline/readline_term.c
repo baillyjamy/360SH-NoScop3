@@ -8,15 +8,22 @@
 ** Last update Sun May 29 17:57:34 2016 Jamy Bailly
 */
 
+#include <ncurses.h>
 #include <sys/ioctl.h>
-#include <termios.h>
+#include <unistd.h>
+#include "readline.h"
 
 void	readline_setup_term(struct termios cfg)
 {
+  char	*smkx;
+
   cfg.c_lflag &= (unsigned int) ~ECHO;
   cfg.c_lflag &= (unsigned int) ~ICANON;
-  cfg.c_cc[VMIN] = 0;
-  cfg.c_cc[VTIME] = 100;
+  cfg.c_cc[VMIN] = 1;
+  cfg.c_cc[VTIME] = 0;
+  keypad(stdscr, true);
+  smkx = tigetstr("smkx");
+  write(1, smkx, egc_strlen(smkx));
   tcsetattr(0, TCSANOW, &cfg);
 }
 
