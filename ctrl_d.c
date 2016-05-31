@@ -13,4 +13,5 @@
 void	ctrl_d(void)
 {
   egc_printf("exit\n");
+  exitcmd(0);
 }
