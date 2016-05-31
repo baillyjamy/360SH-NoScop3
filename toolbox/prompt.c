@@ -29,7 +29,7 @@ static t_hs	get_hostname(void)
 	return (hs("42sh"));
       if (c == '\n' || c == '\0')
 	break;
-      hs_concat_hs_char(host, c);
+      host = hs_concat_hs_char(host, c);
     }
   close(fd);
   return (host);
@@ -58,9 +58,13 @@ t_hs	create_prompt(void)
   env_get_variable(hs("PWD"), &pwd);
   env_get_variable(hs("HOME"), &prompt);
   host = get_hostname();
-  egc_printf("%hs\n", host);
   pwd = format_pwd(pwd, prompt);
-  prompt = hs_format(hs_to_str(colorize("red", user)), "@", hs_to_str(host), ":", hs_to_str(colorize("blue", pwd)), "$");
-  egc_printf("%hs\n", prompt);
+  prompt = hs("");
+  prompt = hs_concat(prompt, colorize("red", user));
+  prompt = hs_concat(prompt, hs("@"));
+  prompt = hs_concat(prompt, host);
+  prompt = hs_concat(prompt, hs(":"));
+  prompt = hs_concat(prompt, colorize("blue", pwd));
+  prompt = hs_concat(prompt, hs("$"));
   return (prompt);
 }
