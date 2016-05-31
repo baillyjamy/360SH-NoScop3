@@ -50,5 +50,6 @@ t_hs			readline_read(t_readline *readline)
 	line = readline_update(line, c, &readline->cursor_pos);
     }
   readline_restore_term(&cfg);
+  egc_printf("\n");
   return (line);
 }
