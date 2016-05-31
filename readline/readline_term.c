@@ -11,6 +11,7 @@
 #include <ncurses.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <term.h>
 #include "readline.h"
 
 void	readline_setup_term(struct termios cfg)
@@ -21,6 +22,7 @@ void	readline_setup_term(struct termios cfg)
   cfg.c_lflag &= (unsigned int) ~ICANON;
   cfg.c_cc[VMIN] = 1;
   cfg.c_cc[VTIME] = 0;
+  setupterm(NULL, 1, NULL);
   keypad(stdscr, true);
   smkx = tigetstr("smkx");
   write(1, smkx, egc_strlen(smkx));

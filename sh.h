@@ -12,7 +12,8 @@
 # define SH_H
 
 # include "egc.h"
-# include "toolbox/tools.h"
+# include "./readline/readline.h"
+# include "./toolbox/tools.h"
 
 # define GOODBYE(x) egc_exit(x)
 

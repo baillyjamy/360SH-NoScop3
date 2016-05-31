@@ -11,18 +11,12 @@
 #ifndef TOOLS_H
 # define TOOLS_H
 
-# include "../sh.h"
 # include "../colorize/colorize.h"
 
 /*
 ** Display environment
 */
 void		display_environment(void);
-
-/*
-** Display user prompt
-*/
-void		display_prompt(t_hs user, t_hs host);
 
 /*
 ** Display segfault error when signal catched
@@ -38,5 +32,10 @@ void		print_string(const char *string);
 ** Print string on stderr
 */
 void		print_string_error(const char *string);
+
+/*
+** Retrun new prompt
+*/
+t_hs		create_prompt(void);
 
 #endif /* TOOLS_H */

@@ -12,7 +12,6 @@
 #include <ncurses.h>
 #include <term.h>
 #include "sh.h"
-#include "./readline/readline.h"
 
 char	**envp;
 
@@ -32,11 +31,10 @@ void	bltin(t_glist_hs *args)
     unsetenv_cmd(args);
 }
 
-int	main2(int argc, char **argv)
+int		launch(__attribute__((unused))int argc,
+		       __attribute__((unused))char **argv)
 {
-  t_hs	input;
-  t_hs	user;
-  t_hs	pwd;
+  t_hs		input;
   t_readline	*readline;
   t_statics     statics;
   t_glist_hs	args;
@@ -46,12 +44,7 @@ int	main2(int argc, char **argv)
   env_init(envp);
   while (42)
     {
-      if (env_get_variable(hs("USER"), &user) == -1)
-	user = hs_new_empty();
-      if (env_get_variable(hs("PWD"), &pwd) == -1)
-	pwd = hs_new_empty();
-      setupterm(NULL, 1, NULL);
-      display_prompt(user, pwd);
+      readline_set_prompt(readline, create_prompt());
       readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
       input = readline_read(readline);
       if (hs_get(input, 0) != '\0')
@@ -63,8 +56,9 @@ int	main2(int argc, char **argv)
   return (0);
 }
 
-int             main(int argc, char **argv, char **env)
+int             main(__attribute__((unused))int argc,
+		     __attribute__((unused))char **argv, char **env)
 {
   envp = env;
-  return (egc_run(0, NULL, main2));
+  return (egc_run(0, NULL, launch));
 }
