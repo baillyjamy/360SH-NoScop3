@@ -38,12 +38,13 @@ t_hs		readline_read(t_readline *readline)
   readline_setup_term(cfg);
   while (1)
     {
+      egc_printf("%s", tigetstr("sc"));
       c_str = read_char(readline_get_input(readline));
       c = c_str[0];
       if (!c || c == '\n')
 	break ;
-      else if (c == 27)
-	readline_event(c_str);
+      if (c == 27)
+	readline_event(c_str, &readline->cursor_pos);
       else
 	line = readline_update(line, c, &readline->cursor_pos);
     }

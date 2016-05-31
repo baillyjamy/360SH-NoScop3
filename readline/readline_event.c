@@ -13,10 +13,18 @@
 
 #include "string.h"
 
-void	readline_event(char *c_str)
+void	readline_event(char *c_str, int *cursor_pos)
 {
   if (!strcmp(c_str, tigetstr("kcub1")))
-    egc_printf("\nKEY LEFT !");
+    {
+      *cursor_pos -= 1;
+      egc_printf("%s", tigetstr("cub1"));
+      egc_printf("%s", tigetstr("sc"));
+    }
   else if (!strcmp(c_str, tigetstr("kcuf1")))
-    egc_printf("\nKEY RIGHT\n");
+    {
+      *cursor_pos += 1;
+      egc_printf("%s", tigetstr("cuf1"));
+      egc_printf("%s", tigetstr("sc"));
+    }
 }

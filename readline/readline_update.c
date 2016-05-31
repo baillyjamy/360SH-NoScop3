@@ -23,5 +23,6 @@ t_hs	readline_update(t_hs line, char c, int *cursor_pos)
     new_line = readline_insert_char(line, c, cursor_pos);
   egc_printf("\x1b[1K\x1b[1G");
   egc_printf("%hs", new_line);
+  egc_printf("%s", tigetstr("rc"));
   return (new_line);
 }
