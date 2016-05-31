@@ -15,7 +15,7 @@
 
 void	readline_event(char *c_str, int *cursor_pos)
 {
-  if (!strcmp(c_str, tigetstr("kcub1")))
+  if (!strcmp(c_str, tigetstr("kcub1")) && *cursor_pos > 0)
     {
       *cursor_pos -= 1;
       egc_printf("%s", tigetstr("cub1"));
