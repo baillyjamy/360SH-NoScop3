@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Fri May 27 17:41:12 2016 Antoine Baudrand
+## Last update Mon May 30 18:03:06 2016 Pierre-Emmanuel Jacquier
 ##
 
 include test.mk
@@ -24,6 +24,7 @@ SOURCES	= \
 	./bltin/unsetenv.c \
 	./bltin/echo.c \
 	./bltin/exit.c \
+	./bltin/env_cmd.c \
 	colorize/colorize.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
@@ -54,7 +55,8 @@ SOURCES	= \
 	string/string_type.c \
 	string/string_type_converter.c \
 	env.c \
-	env_tools.c
+	env_tools.c \
+	./toolbox/display.c
 
 OBJECTS	= $(SOURCES:.c=.o)
 
@@ -87,6 +89,11 @@ END		= "\033[0m"
 echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
 all: test/test
+
+shell: $(LIBEGC) $(LIBSH) main.o
+	@$(CC) -o $@ main.o $(LDFLAGS) -L. -lsh -legc && \
+		$(ECHO) CC $< || \
+		$(call echo_error,$<)
 
 test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBSH)
 	@$(CC) -o $@ $(TEST_OBJECTS) $(LDFLAGS) -L. -lsh -legc && \

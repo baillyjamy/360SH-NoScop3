@@ -43,7 +43,7 @@ void		env_set_variable(t_hs name, t_hs value)
   int		i;
   t_hs		line;
 
-  if (env_variable_exists(name))
+  if (!env_variable_exists(name))
     {
       env_create_variable(name, value);
       return ;
@@ -51,14 +51,20 @@ void		env_set_variable(t_hs name, t_hs value)
   i = 0;
   while (i < glist_hs_length(&STATICS->env))
     {
-      line = glist_hs_get(&STATICS->env, i++);
+      line = glist_hs_get(&STATICS->env, i);
       if (hs_starts_with(line, hs_concat_hs_char(name, '=')))
         {
           glist_hs_set(&STATICS->env,
                        i,
                        hs_concat(hs_concat_hs_char(name, '='), value));
         }
+      i++;
     }
+}
+
+void		env_remove_all_variable(void)
+{
+  STATICS->env = glist_hs_new();
 }
 
 void		env_remove_variable(t_hs name)
@@ -71,8 +77,9 @@ void		env_remove_variable(t_hs name)
   i = 0;
   while (i < glist_hs_length(&STATICS->env))
     {
-      line = glist_hs_get(&STATICS->env, i++);
+      line = glist_hs_get(&STATICS->env, i);
       if (hs_starts_with(line, hs_concat_hs_char(name, '=')))
         glist_hs_remove(&STATICS->env, i);
+      i++;
     }
 }

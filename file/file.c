@@ -5,39 +5,38 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:18:20 2016 Valentin Pichard
-** Last update Mon May 30 13:25:45 2016 Valentin Pichard
+** Last update Mon May 30 18:43:59 2016 Valentin Pichard
 */
 
-#include <stdlib.h>
 #include "file.h"
 
-FILE		*open_file(const t_hs filename, const t_hs mode)
+int		open_file(const t_hs pathname, int mode)
 {
-  FILE		*fp;
+  int		fd;
 
-  fp = fopen(hs_to_str(filename), hs_to_str(mode));
-  return (fp);
+  fd = open(hs_to_str(pathname), mode, 00644);
+  return (fd);
 }
 
-void		close_file(FILE *fp)
+void		close_file(int fd)
 {
-  fclose(fp);
+  close(fd);
 }
 
 void		create_file(const t_hs filename)
 {
-  close_file(open_file(filename, hs("a")));
+  close_file(open_file(filename, O_CREAT));
 }
 
 void		reset_file(const t_hs filename)
 {
-  close_file(open_file(filename, hs("w")));
+  close_file(open_file(filename, O_RDWR | O_TRUNC));
 }
 
-FILE		*edit_file(const t_hs filename)
+int		edit_file(const t_hs filename)
 {
-  FILE		*fp;
+  int		fd;
 
-  fp = open_file(filename, hs("r+"));
-  return (fp);
+  fd = open_file(filename, O_APPEND);
+  return (fd);
 }

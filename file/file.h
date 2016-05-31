@@ -5,14 +5,17 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Mon May 30 13:35:41 2016 Valentin Pichard
+** Last update Mon May 30 18:44:14 2016 Valentin Pichard
 */
 
 #ifndef EDITOR_H
 # define EDITOR_H
 
-# include "../egc.h"
 # include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include "../egc.h"
+# include "../parse_int/parse_int.h"
 
 /*
 ** Create a new file using the filename in params.
@@ -75,8 +78,8 @@ int		line_exist(const t_hs filename, const t_hs line);
 */
 int		lines_exist(const t_hs filename, const t_glist_hs lines);
 
-FILE		*open_file(const t_hs filename, const t_hs mode);
-void		close_file(FILE *fp);
-FILE		*edit_file(const t_hs filename);
+int		open_file(const t_hs pathname, int mode);
+void		close_file(int fd);
+int		edit_file(const t_hs filename);
 
 #endif /* EDITOR_H */
