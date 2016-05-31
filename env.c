@@ -43,7 +43,7 @@ void		env_set_variable(t_hs name, t_hs value)
   int		i;
   t_hs		line;
 
-  if (env_variable_exists(name))
+  if (!env_variable_exists(name))
     {
       env_create_variable(name, value);
       return ;
