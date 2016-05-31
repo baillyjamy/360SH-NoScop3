@@ -13,7 +13,7 @@
 
 #include "string.h"
 
-void	readline_event(char *c_str, int *cursor_pos)
+void	readline_event(char *c_str, int *cursor_pos, int len_line)
 {
   if (!strcmp(c_str, tigetstr("kcub1")) && *cursor_pos > 0)
     {
@@ -21,7 +21,7 @@ void	readline_event(char *c_str, int *cursor_pos)
       egc_printf("%s", tigetstr("cub1"));
       egc_printf("%s", tigetstr("sc"));
     }
-  else if (!strcmp(c_str, tigetstr("kcuf1")))
+  else if (!strcmp(c_str, tigetstr("kcuf1")) && *cursor_pos < len_line)
     {
       *cursor_pos += 1;
       egc_printf("%s", tigetstr("cuf1"));
