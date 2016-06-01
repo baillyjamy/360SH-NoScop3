@@ -46,6 +46,7 @@ static int	cd_path(t_hs path)
   set_current_pwd(&current_pwd);
   if (chdir_error(path))
     return (1);
+  set_current_pwd(&path);
   env_set_variable(hs("OLDPWD"), current_pwd);
   env_set_variable(hs("PWD"), path);
   return (1);
