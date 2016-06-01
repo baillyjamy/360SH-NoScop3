@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Thu Apr 28 04:19:43 2016 antoine
-** Last update Thu Apr 28 04:19:43 2016 antoine
+** Last update Wed Jun  1 15:14:47 2016 Valentin Pichard
 */
 
 #ifndef LEXER_H
@@ -89,5 +89,7 @@ typedef struct          s_lexer_result
 }                       t_lexer_result;
 
 t_lexer_result  lex(t_hs string);
+void            skip_whitespaces(const char **string_p);
+t_position      lexer_get_position(const char *char_addr);
 
 #endif /* LEXER_H */

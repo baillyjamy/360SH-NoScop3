@@ -5,7 +5,7 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Sat May 28 19:39:43 2016 Pierre-Emmanuel Jacquier
-** Last update Sat May 28 19:39:43 2016 Pierre-Emmanuel Jacquier
+** Last update Wed Jun  1 14:57:41 2016 Valentin Pichard
 */
 
 #include "../sh.h"
@@ -33,7 +33,7 @@ static int	print_args(t_glist_hs *argv)
 int	echocmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) == 1)
-    return(egc_printf("\n"));
+    return (egc_printf("\n"));
   else if (glist_hs_length(argv) > 1)
     return (print_args(argv));
   return (0);
