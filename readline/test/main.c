@@ -29,5 +29,5 @@ static int	launch()
 
 int	main(void)
 {
-  return (egc_run(0, NULL, launch));
+  return (egc_run(0, NULL, NULL, launch));
 }
