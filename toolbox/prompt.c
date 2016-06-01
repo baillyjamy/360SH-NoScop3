@@ -62,7 +62,7 @@ t_hs	create_prompt(void)
   if (env_get_variable(hs("HOME"), &prompt) != -1)
     pwd = format_pwd(pwd, prompt);
   host = get_hostname();
-  prompt = hs_format("%hs%hs%hs:%hs$",
+  prompt = hs_format("%hs%hs%hs:%hs$ ",
 		     colorize("red bold", user),
 		     colorize("red bold", hs("@")),
 		     colorize("red bold", host),
