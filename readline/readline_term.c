@@ -23,7 +23,7 @@ void	readline_setup_term(struct termios cfg)
   cfg.c_cc[VMIN] = 1;
   cfg.c_cc[VTIME] = 0;
   setupterm(NULL, 1, NULL);
-  smkx = tigetstr("smkx");
+  smkx = "\x1b[?1h\x1b=";
   write(1, smkx, egc_strlen(smkx));
   tcsetattr(0, TCSANOW, &cfg);
 }
