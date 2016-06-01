@@ -8,8 +8,8 @@
 ** Last update Thu May 26 18:26:47 2016 Valentin Pichard
 */
 
-#ifndef TOOLS_H
-# define TOOLS_H
+#ifndef TOOLS_H_
+# define TOOLS_H_
 
 # include "../colorize/colorize.h"
 
@@ -38,4 +38,4 @@ void		print_string_error(const char *string);
 */
 t_hs		create_prompt(void);
 
-#endif /* TOOLS_H */
+#endif /* !TOOLS_H_ */
