@@ -8,8 +8,8 @@
 ** Last update Wed Jun  1 15:14:47 2016 Valentin Pichard
 */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef LEXER_H_
+# define LEXER_H_
 
 # include "../egc.h"
 # include "position.h"
@@ -92,4 +92,4 @@ t_lexer_result  lex(t_hs string);
 void            skip_whitespaces(const char **string_p);
 t_position      lexer_get_position(const char *char_addr);
 
-#endif /* LEXER_H */
+#endif /* !LEXER_H_ */

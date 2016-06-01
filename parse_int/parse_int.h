@@ -8,8 +8,8 @@
 ** Last update Mon Feb 22 23:36:07 2016 antoine
 */
 
-#ifndef PARSE_INT_H
-# define PARSE_INT_H
+#ifndef PARSE_INT_H_
+# define PARSE_INT_H_
 
 /*
 ** Parses an unsigned integer.
@@ -82,4 +82,4 @@ int     parse_uint(const char *string, unsigned long *result_pointer);
 */
 int     parse_int(const char *string, long *result_pointer);
 
-#endif /* PARSE_INT_H */
+#endif /* !PARSE_INT_H_ */

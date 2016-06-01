@@ -8,10 +8,10 @@
 ** Last update Thu Apr 28 04:16:52 2016 antoine
 */
 
-#ifndef SOURCE_FILE_H
-# define SOURCE_FILE_H
+#ifndef SOURCE_FILE_H_
+# define SOURCE_FILE_H_
 
-#include "../egc.h"
+# include "../egc.h"
 
 typedef struct  s_source_file
 {
@@ -42,4 +42,4 @@ void            source_file_free(t_source_file *file);
 */
 char            *read_whole_file(int file_descriptor);
 
-#endif /* SOURCE_FILE_H */
+#endif /* !SOURCE_FILE_H_ */

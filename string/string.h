@@ -8,8 +8,8 @@
 ** Last update Mon Feb 29 15:04:46 2016 Valentin Pichard
 */
 
-#ifndef STRING_H
-# define STRING_H
+#ifndef STRING_H_
+# define STRING_H_
 
 # include "string_type.h"
 
@@ -105,4 +105,4 @@ int		string_ends_with(const char *string,
 int		string_ends_with_no_case(const char *string,
                                          const char *end);
 
-#endif /* STRING_H */
+#endif /* !STRING_H_ */

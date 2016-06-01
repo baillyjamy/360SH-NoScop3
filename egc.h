@@ -8,11 +8,11 @@
 ** Last update Thu Apr 28 05:11:20 2016 antoine
 */
 
-#ifndef EGC_H
-# define EGC_H
+#ifndef EGC_H_
+# define EGC_H_
 
-# undef EGC_H
+# undef EGC_H_
 
 # include "egc/include/egc.h"
 
-#endif /* EGC_H */
+#endif /* !EGC_H_ */

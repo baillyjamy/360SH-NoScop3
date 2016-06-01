@@ -8,8 +8,8 @@
 ** Last update Wed Jun  1 15:38:33 2016 Valentin Pichard
 */
 
-#ifndef EDITOR_H
-# define EDITOR_H
+#ifndef FILE_H_
+# define FILE_H_
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -37,14 +37,25 @@ int		reset_file(const t_hs filename);
 ** Returns 0 on success or -1 if can't edit file.
 */
 int		insert_line(const t_hs filename, t_hs line, const int nline);
-/* Add new line at the end of the file */
+
+/*
+** Add new line at the end of the file
+*/
 int		insert_line_end(const t_hs filename, const t_hs line);
-/* Add new lines at the end of the file */
+
+/*
+** Add new lines at the end of the file
+*/
 int		insert_lines(const t_hs filename, const t_glist_hs lines);
 
-/* Delete line passed in params in the file */
+/*
+** Delete line passed in params in the file
+*/
 int		delete_line(const t_hs filename, const t_hs line);
-/* Delete lines passed in params in the file */
+
+/*
+** Delete lines passed in params in the file
+*/
 int		delete_lines(const t_hs filename, const t_glist_hs lines);
 
 /*
@@ -83,4 +94,4 @@ void		close_file(int fd);
 int		edit_file(const t_hs filename);
 ssize_t		get_file_length(const t_hs filename);
 
-#endif /* EDITOR_H */
+#endif /* !FILE_H_ */

@@ -8,8 +8,8 @@
 ** Last update Thu Apr 28 04:16:59 2016 antoine
 */
 
-#ifndef POSITION_H
-# define POSITION_H
+#ifndef POSITION_H_
+# define POSITION_H_
 
 # include "../egc.h"
 # include "source_file.h"
@@ -36,4 +36,4 @@ t_hs            position_to_hs(const t_position *position);
 void            position_print(const t_position *position,
                                int output_file_descriptor);
 
-#endif /* POSITION_H */
+#endif /* !POSITION_H_ */

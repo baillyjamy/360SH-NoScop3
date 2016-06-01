@@ -1,11 +1,11 @@
 /*
-** colorize_extend.c for  in /Users/pichar_v/Documents/shared/360SH-NoScop3/colorize/
+** colorize_extend.c for  in /home/antoine
 **
-** Made by Valentin Pichard
-** Login   <pichar_v@epitech.eu>
+** Made by antoine
+** Login   <antoine@epitech.net>
 **
-** Started on  Wed Jun  1 14:58:17 2016 Valentin Pichard
-** Last update Wed Jun  1 14:59:24 2016 Valentin Pichard
+** Started on  Wed Jun  1 16:21:06 2016 antoine
+** Last update Wed Jun  1 16:21:06 2016 antoine
 */
 
 #include "private.h"
