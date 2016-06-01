@@ -18,11 +18,11 @@ void	readline_setup_term(struct termios cfg)
 {
   char	*smkx;
 
+  setupterm(NULL, 1, NULL);
   cfg.c_lflag &= (unsigned int) ~ECHO;
   cfg.c_lflag &= (unsigned int) ~ICANON;
   cfg.c_cc[VMIN] = 1;
   cfg.c_cc[VTIME] = 0;
-  setupterm(NULL, 1, NULL);
   smkx = "\x1b[?1h\x1b=";
   write(1, smkx, egc_strlen(smkx));
   tcsetattr(0, TCSANOW, &cfg);
