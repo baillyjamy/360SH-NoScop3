@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Wed Jun 01 01:45:39 2016 Antoine Baudrand
+## Last update Wed Jun  1 15:17:19 2016 Valentin Pichard
 ##
 
 include test.mk
@@ -26,6 +26,7 @@ SOURCES	= \
 	./bltin/exit.c \
 	./bltin/env_cmd.c \
 	colorize/colorize.c \
+	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
 	readline/readline_char.c \
@@ -39,6 +40,7 @@ SOURCES	= \
 	readline/readline_event.c \
 	lexer/error.c \
 	lexer/lexer.c \
+	lexer/lexer_extend.c \
 	lexer/position.c \
 	lexer/source_file.c \
 	lexer/syntax_error.c \
