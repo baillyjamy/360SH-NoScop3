@@ -8,8 +8,8 @@
 ** Last update Fri May 20 23:02:46 2016 antoine
 */
 
-#ifndef READLINE_PRIVATE_H
-# define READLINE_PRIVATE_H
+#ifndef PRIVATE_H_
+# define PRIVATE_H_
 
 # include "readline.h"
 
@@ -44,4 +44,4 @@ t_hs	readline_update(t_hs line, char c, int *cursor_pos);
 
 void	readline_event(char *c_str, int *cursor_pos, int len_line);
 
-#endif /* READLINE_PRIVATE_H */
+#endif /* !PRIVATE_H_ */
