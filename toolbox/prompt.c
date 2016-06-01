@@ -5,7 +5,7 @@
 ** Login   <bailly_j@epitech.net>
 **
 ** Started on  Tue May 31 21:13:23 2016 Jamy Bailly
-** Last update Tue May 31 21:13:23 2016 Jamy Bailly
+** Last update Wed Jun  1 15:07:20 2016 Valentin Pichard
 */
 
 #include "../sh.h"
@@ -37,10 +37,10 @@ static t_hs	get_hostname(void)
 
 static t_hs	format_pwd(t_hs pwd, t_hs home)
 {
- if (hs_starts_with(pwd, home))
+  if (hs_starts_with(pwd, home))
     return (hs_concat_char_hs('~',
 			      hs_slice(pwd, hs_length(home), hs_length(pwd))));
-    return (pwd);
+  return (pwd);
 }
 
 t_hs	create_prompt(void)
