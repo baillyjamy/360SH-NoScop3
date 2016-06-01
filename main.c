@@ -13,8 +13,6 @@
 #include <term.h>
 #include "sh.h"
 
-char	**envp;
-
 void	bltin(t_glist_hs *args)
 {
   if (hs_equals(glist_hs_get(args, 0), hs("cd")))
@@ -31,7 +29,7 @@ void	bltin(t_glist_hs *args)
     unsetenv_cmd(args);
 }
 
-int		launch(int argc, char **argv)
+int		launch(int argc, char **argv, char **env)
 {
   t_hs		input;
   t_readline	*readline;
@@ -40,7 +38,7 @@ int		launch(int argc, char **argv)
 
   statics_init(&statics);
   egc_set_statics(&statics, sizeof(t_statics));
-  env_init(envp);
+  env_init(env);
   while (42)
     {
       readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
@@ -57,6 +55,5 @@ int		launch(int argc, char **argv)
 
 int             main(int argc, char **argv, char **env)
 {
-  envp = env;
-  return (egc_run(0, NULL, launch));
+  return (egc_run(argc, argv, env, launch));
 }
