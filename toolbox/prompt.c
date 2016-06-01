@@ -61,8 +61,8 @@ t_hs	create_prompt(void)
   host = get_hostname();
   prompt = hs("");
   prompt = hs_concat(prompt, colorize("red bold", user));
-  prompt = hs_concat(prompt, colorize("bold", hs("@")));
-  prompt = hs_concat(prompt, colorize("bold", host));
+  prompt = hs_concat(prompt, colorize("red bold", hs("@")));
+  prompt = hs_concat(prompt, colorize("red bold", host));
   prompt = hs_concat(prompt, hs(":"));
   prompt = hs_concat(prompt, colorize("blue bold", pwd));
   prompt = hs_concat(prompt, hs("$"));
