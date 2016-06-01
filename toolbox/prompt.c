@@ -20,7 +20,7 @@ static t_hs	get_hostname(void)
   char	c;
   t_hs	host;
 
-  host = hs_new_empty();
+  host = hs("");
   if ((fd = open("/etc/hostname", O_RDONLY)) == -1)
     return (hs("42sh"));
   while (42)
@@ -58,12 +58,9 @@ t_hs	create_prompt(void)
   env_get_variable(hs("PWD"), &pwd);
   env_get_variable(hs("HOME"), &prompt);
   host = get_hostname();
+  egc_printf("%hs\n", host);
   pwd = format_pwd(pwd, prompt);
-  prompt = hs_format(hs_to_str(colorize("red", user)),
-		     "@",
-		     hs_to_str(host),
-		     ":",
-		     colorize("blue", pwd),
-		     hs("$"));
+  prompt = hs_format(hs_to_str(colorize("red", user)), "@", hs_to_str(host), ":", hs_to_str(colorize("blue", pwd)), "$");
+  egc_printf("%hs\n", prompt);
   return (prompt);
 }

@@ -44,8 +44,8 @@ int		launch(__attribute__((unused))int argc,
   env_init(envp);
   while (42)
     {
-      readline_set_prompt(readline, create_prompt());
       readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
+      readline_set_prompt(readline, create_prompt());
       input = readline_read(readline);
       if (hs_get(input, 0) != '\0')
 	{
