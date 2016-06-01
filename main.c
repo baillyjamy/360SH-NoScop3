@@ -36,6 +36,8 @@ int		launch(int argc, char **argv, char **env)
   t_statics     statics;
   t_glist_hs	args;
 
+  (void) argc;
+  (void) argv;
   statics_init(&statics);
   egc_set_statics(&statics, sizeof(t_statics));
   env_init(env);
