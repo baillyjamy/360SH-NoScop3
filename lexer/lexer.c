@@ -5,20 +5,14 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Thu Apr 28 07:50:24 2016 antoine
-** Last update Thu Apr 28 07:50:24 2016 antoine
+** Last update Wed Jun  1 15:14:26 2016 Valentin Pichard
 */
 
 #include <assert.h>
 #include "../sh.h"
 #include "private.h"
 
-static void             skip_whitespaces(const char **string_p)
-{
-  while (char_is_whitespace(**string_p))
-    NEXT(string_p);
-}
-
-static t_result         lex_token_impl(const char **string_p)
+static t_result         	lex_token_impl(const char **string_p)
 {
   const char            *begin;
   t_lex_function        functions[32];
@@ -107,26 +101,4 @@ t_lexer_result          lex(t_hs string)
   r = lex_from_str(cstr);
   STATICS->lexer_input_string = NULL;
   return (r);
-}
-
-t_position              lexer_get_position(const char *char_addr)
-{
-  const char            *string;
-  t_position            position;
-
-  position_init(&position);
-  string = STATICS->lexer_input_string;
-  assert(char_addr >= string);
-  while (string < char_addr)
-    {
-      if (*string == '\n')
-        {
-          position.line++;
-          position.column = 0;
-        }
-      position.column++;
-      position.index++;
-      string++;
-    }
-  return (position);
 }
