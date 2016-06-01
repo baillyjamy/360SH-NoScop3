@@ -31,8 +31,7 @@ void	bltin(t_glist_hs *args)
     unsetenv_cmd(args);
 }
 
-int		launch(__attribute__((unused))int argc,
-		       __attribute__((unused))char **argv)
+int		launch(int argc, char **argv)
 {
   t_hs		input;
   t_readline	*readline;
@@ -56,8 +55,7 @@ int		launch(__attribute__((unused))int argc,
   return (0);
 }
 
-int             main(__attribute__((unused))int argc,
-		     __attribute__((unused))char **argv, char **env)
+int             main(int argc, char **argv, char **env)
 {
   envp = env;
   return (egc_run(0, NULL, launch));
