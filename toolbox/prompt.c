@@ -29,7 +29,7 @@ static t_hs	get_hostname(void)
 	return (hs("42sh"));
       if (c == '\n' || c == '\0')
 	break;
-      hs_concat_hs_char(host, c);
+      host = hs_concat_hs_char(host, c);
     }
   close(fd);
   return (host);
