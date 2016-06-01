@@ -90,6 +90,13 @@ RED		= "\033[0;91m"
 GREEN		= "\033[0;92m"
 END		= "\033[0m"
 
+ifneq ($(findstring vgtest,$(MAKECMDGOALS)),)
+	DEBUG_OPT	= DEBUG=true
+else
+	DEBUG_OPT	=
+endif
+
+
 echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
 all: test/test
@@ -123,7 +130,7 @@ $(LIBSH): $(OBJECTS)
 		$(call echo_error,$<)
 
 $(LIBEGC):
-	$(MAKE) -C egc/ DEBUG=true
+	$(MAKE) -C egc/ $(DEBUG_OPT)
 
 %.o: %.c
 	@$(CC) -c $< -o $@ $(CFLAGS) && \
