@@ -13,7 +13,6 @@
 
 void		readline_print_prompt(t_readline *readline)
 {
-  egc_printf("\x1b[1K\x1b[1G");
+  egc_printf("\x1b[1G\x1b[1K");
   egc_printf("%hs", readline->prompt);
-  egc_printf("%s", tigetstr("cuf1"));
 }

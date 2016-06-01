@@ -39,6 +39,7 @@ t_hs                    readline_read(t_readline *readline)
   while (1)
     {
       readline_print_prompt(readline);
+      egc_printf("%hs", line);
       c_str = read_char(readline_get_input(readline));
       c = c_str[0];
       if (!c || c == '\n')
