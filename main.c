@@ -47,6 +47,7 @@ int		launch(__attribute__((unused))int argc,
       readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
       readline_set_prompt(readline, create_prompt());
       input = readline_read(readline);
+      egc_printf("\nReturn = %hs\n", input);
       if (hs_get(input, 0) != '\0')
 	{
 	  args = hs_split(input, hs(" "));
