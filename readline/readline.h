@@ -94,6 +94,8 @@ void	readline_set_colorizer(t_readline *readline,
 */
 void	readline_set_prompt(t_readline *readline, t_hs prompt);
 
+void	readline_print_prompt(t_readline *readline);
+
 void	readline_clear_history(t_readline *readline);
 
 #endif /* READLINE_H */

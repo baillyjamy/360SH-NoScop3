@@ -38,6 +38,7 @@ t_hs			readline_read(t_readline *readline)
   readline_setup_term(cfg);
   while (1)
     {
+      readline_print_prompt(readline);
       egc_printf("%s", tigetstr("sc"));
       c_str = read_char(readline_get_input(readline));
       c = c_str[0];
