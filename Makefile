@@ -132,7 +132,8 @@ $(LIBEGC):
 
 delivery:
 	$(MAKE) -C egc/ delivery
-	$(RM) lexer/gen_lexer_h.py
+	$(RM) test/unit/log_parsing.rules
+	$(RM) README.md
 
 glist_clean:
 	$(MAKE) -C egc/ glist_clean
