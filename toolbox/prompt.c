@@ -56,9 +56,9 @@ t_hs	create_prompt(void)
   prompt = hs("");
   env_get_variable(hs("USER"), &user);
   env_get_variable(hs("PWD"), &pwd);
-  env_get_variable(hs("HOME"), &prompt);
+  if (env_get_variable(hs("HOME"), &prompt) != -1)
+    pwd = format_pwd(pwd, prompt);
   host = get_hostname();
-  pwd = format_pwd(pwd, prompt);
   prompt = hs("");
   prompt = hs_concat(prompt, colorize("red bold", user));
   prompt = hs_concat(prompt, colorize("bold", hs("@")));
