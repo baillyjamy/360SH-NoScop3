@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Tue May 31 15:50:10 2016 Valentin Pichard
+** Last update Wed Jun  1 15:38:33 2016 Valentin Pichard
 */
 
 #ifndef EDITOR_H
@@ -22,14 +22,14 @@
 **
 ** Returns 0 on success or -1 if can't create file.
 */
-void		create_file(const t_hs filename);
+int		create_file(const t_hs filename);
 
 /*
 ** Reset file lines.
 **
 ** Returns 0 on success or -1 if can't edit file.
 */
-void		reset_file(const t_hs filename);
+int		reset_file(const t_hs filename);
 
 /*
 ** Add new line at the nline number in the file.
