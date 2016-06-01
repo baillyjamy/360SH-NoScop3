@@ -5,7 +5,7 @@
 ** Login   <bailly_j@epitech.net>
 **
 ** Started on  Tue May 31 21:13:23 2016 Jamy Bailly
-** Last update Tue May 31 21:13:23 2016 Jamy Bailly
+** Last update Wed Jun  1 15:07:20 2016 Valentin Pichard
 */
 
 #include "../sh.h"
@@ -26,9 +26,12 @@ static t_hs	get_hostname(void)
   while (42)
     {
       if (read(fd, &c, 1) == -1)
-	return (hs("42sh"));
+	{
+	  close(fd);
+	  return (hs("42sh"));
+	}
       if (c == '\n' || c == '\0')
-	break;
+	break ;
       host = hs_concat_hs_char(host, c);
     }
   close(fd);
@@ -37,10 +40,10 @@ static t_hs	get_hostname(void)
 
 static t_hs	format_pwd(t_hs pwd, t_hs home)
 {
- if (hs_starts_with(pwd, home))
+  if (hs_starts_with(pwd, home))
     return (hs_concat_char_hs('~',
 			      hs_slice(pwd, hs_length(home), hs_length(pwd))));
-    return (pwd);
+  return (pwd);
 }
 
 t_hs	create_prompt(void)
@@ -56,15 +59,13 @@ t_hs	create_prompt(void)
   prompt = hs("");
   env_get_variable(hs("USER"), &user);
   env_get_variable(hs("PWD"), &pwd);
-  env_get_variable(hs("HOME"), &prompt);
+  if (env_get_variable(hs("HOME"), &prompt) != -1)
+    pwd = format_pwd(pwd, prompt);
   host = get_hostname();
-  pwd = format_pwd(pwd, prompt);
-  prompt = hs("");
-  prompt = hs_concat(prompt, colorize("red bold", user));
-  prompt = hs_concat(prompt, colorize("bold", hs("@")));
-  prompt = hs_concat(prompt, colorize("bold", host));
-  prompt = hs_concat(prompt, hs(":"));
-  prompt = hs_concat(prompt, colorize("blue bold", pwd));
-  prompt = hs_concat(prompt, hs("$"));
+  prompt = hs_format("%hs%hs%hs:%hs$",
+		     colorize("red bold", user),
+		     colorize("red bold", hs("@")),
+		     colorize("red bold", host),
+		     colorize("blue bold", pwd));
   return (prompt);
 }

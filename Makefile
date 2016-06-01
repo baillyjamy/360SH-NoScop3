@@ -5,14 +5,14 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Wed Jun 01 01:45:39 2016 Antoine Baudrand
+## Last update Wed Jun  1 17:49:07 2016 Pierre-Emmanuel Jacquier
 ##
 
 include test.mk
 
 AR 	= ar rc
 
-UNAME_S	:= $(shell uname -s)
+UNAME_S	:= $(42sh uname -s)
 ifeq ($(UNAME_S),Darwin)
 	AR = libtool -static -o
 endif
@@ -26,6 +26,7 @@ SOURCES	= \
 	./bltin/exit.c \
 	./bltin/env_cmd.c \
 	colorize/colorize.c \
+	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
 	readline/readline_char.c \
@@ -38,9 +39,12 @@ SOURCES	= \
 	readline/readline_update.c \
 	readline/readline_event.c \
 	lexer/error.c \
+	lexer/get_position.c \
 	lexer/lexer.c \
+	lexer/lexer_extend.c \
 	lexer/position.c \
 	lexer/source_file.c \
+	lexer/syntax_error.c \
 	lexer/token.c \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
@@ -89,11 +93,18 @@ RED		= "\033[0;91m"
 GREEN		= "\033[0;92m"
 END		= "\033[0m"
 
+ifneq ($(findstring vgtest,$(MAKECMDGOALS)),)
+	DEBUG_OPT	= DEBUG=true
+else
+	DEBUG_OPT	=
+endif
+
+
 echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
-all: test/test
+all: 42sh
 
-shell: $(LIBEGC) $(LIBSH) main.o
+42sh: $(LIBEGC) $(LIBSH) main.o
 	@$(CC) -o $@ main.o $(LDFLAGS) -L. -lsh -legc -lncurses && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
@@ -122,7 +133,7 @@ $(LIBSH): $(OBJECTS)
 		$(call echo_error,$<)
 
 $(LIBEGC):
-	$(MAKE) -C egc/ DEBUG=true
+	$(MAKE) -C egc/ $(DEBUG_OPT)
 
 %.o: %.c
 	@$(CC) -c $< -o $@ $(CFLAGS) && \
@@ -131,7 +142,8 @@ $(LIBEGC):
 
 delivery:
 	$(MAKE) -C egc/ delivery
-	$(RM) lexer/gen_lexer_h.py
+	$(RM) test/unit/log_parsing.rules
+	$(RM) README.md
 
 glist_clean:
 	$(MAKE) -C egc/ glist_clean
@@ -139,14 +151,14 @@ glist_clean:
 clean:
 	$(RM) $(OBJECTS)
 	$(RM) $(TEST_OBJECTS)
+	$(RM) main.o
 	$(RM) $(LIBSH)
 	$(MAKE) -C egc/ clean
 
 fclean: clean
 	$(RM) test/test
 	$(MAKE) -C egc/ fclean
-	$(RM) main.o
-	$(RM) shell
+	$(RM) 42sh
 	$(RM) onch
 
 re: fclean all

@@ -8,8 +8,8 @@
 ** Last update Sat Apr 30 06:51:37 2016 Jamy Bailly
 */
 
-#ifndef READLINE_H
-# define READLINE_H
+#ifndef READLINE_H_
+# define READLINE_H_
 
 # include "../egc.h"
 # include <termios.h>
@@ -98,4 +98,4 @@ void	readline_print_prompt(t_readline *readline);
 
 void	readline_clear_history(t_readline *readline);
 
-#endif /* READLINE_H */
+#endif /* !READLINE_H_ */

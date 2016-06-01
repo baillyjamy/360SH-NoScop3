@@ -30,10 +30,10 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 all: build_sh $(NAME)
 
 build_sh:
-	$(MAKE) -C ../../ all
+	$(MAKE) -C ../../ all DEBUG_OPT="DEBUG=true"
 
-$(NAME): $(OBJECTS) ../../libsh.a ../../egc/libegc.a
-	$(CC) -o $@ $^ -lncurses
+$(NAME): $(OBJECTS)
+	$(CC) -o $@ $(OBJECTS) -L../../ -L../../egc/ -lsh -legc -lncurses
 
 %.o: %.c
 	@$(CC) -c $< -o $@ $(CFLAGS) && \

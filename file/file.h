@@ -5,11 +5,11 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Tue May 31 15:50:10 2016 Valentin Pichard
+** Last update Wed Jun  1 15:38:33 2016 Valentin Pichard
 */
 
-#ifndef EDITOR_H
-# define EDITOR_H
+#ifndef FILE_H_
+# define FILE_H_
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -22,14 +22,14 @@
 **
 ** Returns 0 on success or -1 if can't create file.
 */
-void		create_file(const t_hs filename);
+int		create_file(const t_hs filename);
 
 /*
 ** Reset file lines.
 **
 ** Returns 0 on success or -1 if can't edit file.
 */
-void		reset_file(const t_hs filename);
+int		reset_file(const t_hs filename);
 
 /*
 ** Add new line at the nline number in the file.
@@ -37,14 +37,25 @@ void		reset_file(const t_hs filename);
 ** Returns 0 on success or -1 if can't edit file.
 */
 int		insert_line(const t_hs filename, t_hs line, const int nline);
-/* Add new line at the end of the file */
+
+/*
+** Add new line at the end of the file
+*/
 int		insert_line_end(const t_hs filename, const t_hs line);
-/* Add new lines at the end of the file */
+
+/*
+** Add new lines at the end of the file
+*/
 int		insert_lines(const t_hs filename, const t_glist_hs lines);
 
-/* Delete line passed in params in the file */
+/*
+** Delete line passed in params in the file
+*/
 int		delete_line(const t_hs filename, const t_hs line);
-/* Delete lines passed in params in the file */
+
+/*
+** Delete lines passed in params in the file
+*/
 int		delete_lines(const t_hs filename, const t_glist_hs lines);
 
 /*
@@ -83,4 +94,4 @@ void		close_file(int fd);
 int		edit_file(const t_hs filename);
 ssize_t		get_file_length(const t_hs filename);
 
-#endif /* EDITOR_H */
+#endif /* !FILE_H_ */

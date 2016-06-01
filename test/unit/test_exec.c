@@ -1,9 +1,9 @@
 /*
 ** test_exec.c for unit in /home/antoine/42sh/test/unit
-** 
+**
 ** Made by Antoine Baudrand
 ** Login   <baudra_a@epitech.net>
-** 
+**
 ** Started on  Wed Jun 01 01:20:33 2016 Antoine Baudrand
 ** Last update Wed Jun 01 01:45:10 2016 Antoine Baudrand
 */
@@ -12,10 +12,10 @@
 #include "../../exec.h"
 #include "../../egc.h"
 
-void        test_suite_exec()
+void            test_suite_exec(void)
 {
-  t_exec    *e;
-  t_process *proc;
+  t_exec        *e;
+  t_process     *proc;
 
   e = egc_malloc(sizeof(t_exec));
   e->filename = "/bin/true";

@@ -5,32 +5,14 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Thu Apr 28 07:50:24 2016 antoine
-** Last update Thu Apr 28 07:50:24 2016 antoine
+** Last update Wed Jun  1 15:14:26 2016 Valentin Pichard
 */
 
 #include <assert.h>
 #include "../sh.h"
 #include "private.h"
 
-const char              *lexer_get_source(void)
-{
-  return (NULL);
-}
-
-static t_result         lex_word(const char **string_p)
-{
-  while (char_is_alpha(**string_p))
-    (*string_p)++;
-  return (RESULT_NULL);
-}
-
-static void             skip_whitespaces(const char **string_p)
-{
-  while (char_is_whitespace(**string_p))
-    NEXT(string_p);
-}
-
-static t_result         lex_token(const char **string_p)
+static t_result         	lex_token_impl(const char **string_p)
 {
   const char            *begin;
   t_lex_function        functions[32];
@@ -38,19 +20,56 @@ static t_result         lex_token(const char **string_p)
   int                   i;
 
   i = 0;
-  functions[i++] = lex_word;
   functions[i++] = NULL;
   i = 0;
   while (functions[i])
     {
       begin = *string_p;
-      res = functions[i](string_p);
+      res = (functions[i])(string_p);
       if (res.error || res.token)
         return (res);
       assert(*string_p == begin);
       i++;
     }
   return (RESULT_NULL);
+}
+
+t_result                lex_word(const char **string_p)
+{
+  t_result              result;
+  const char            *begin;
+  const char            *end;
+  t_token               *token;
+
+  begin = *string_p;
+  end = begin;
+  while (*end && !char_is_whitespace(*end))
+    {
+      result = lex_token_impl(string_p);
+      if (result.error)
+        return (result);
+      if (result.token)
+        break ;
+      (*string_p)++;
+      end = *string_p;
+    }
+  if (begin == end)
+    return (RESULT_NULL);
+  token = TOKEN_NEW_RANGE(WORD, begin, end);
+  return (RESULT_TOKEN(token));
+}
+
+static t_result         lex_token(const char **string_p)
+{
+  t_result              result;
+
+  result = lex_token_impl(string_p);
+  if (result.token || result.error)
+    return (result);
+  result = lex_word(string_p);
+  if (result.token || result.error)
+    return (result);
+  return (RESULT_ERROR(hs("Unexpected character"), *string_p));
 }
 
 static t_lexer_result   lex_from_str(const char *string)
@@ -62,6 +81,8 @@ static t_lexer_result   lex_from_str(const char *string)
   while (*string)
     {
       skip_whitespaces(&string);
+      if (!*string)
+        break ;
       res = lex_token(&string);
       if (res.error)
         return ((t_lexer_result){.tokens = NULL, .error = res.error});

@@ -8,8 +8,8 @@
 ** Last update Fri May 27 15:56:08 2016 Valentin Pichard
 */
 
-#ifndef SH_H
-# define SH_H
+#ifndef SH_H_
+# define SH_H_
 
 # include "egc.h"
 # include "./readline/readline.h"
@@ -77,12 +77,9 @@ int		setenv_cmd(t_glist_hs *argv);
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
 void		ctrl_d(void);
+
 /*
-** parse_int
-*/
-int		parse_int(const char *string, long *result_pointer);
-/*
-** built-in fonctions
+** built-in functions
 */
 void		envcmd(void);
 int		cdcmd(t_glist_hs *argv);
@@ -92,7 +89,7 @@ int		setenv_cmd(t_glist_hs *argv);
 void		unsetenv_cmd(t_glist_hs *argv);
 
 # ifndef STATICS
-#  define STATICS        ((t_statics *)egc_get_statics())
+#  define STATICS       ((t_statics *)egc_get_statics())
 # endif
 
-#endif /* SH_H */
+#endif /* !SH_H_ */

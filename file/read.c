@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:15:40 2016 Valentin Pichard
-** Last update Tue May 31 15:48:27 2016 Valentin Pichard
+** Last update Wed Jun  1 15:33:53 2016 Valentin Pichard
 */
 
 #include "file.h"
@@ -24,15 +24,14 @@ int		read_file(const t_hs filename, t_glist_hs *lines)
 {
   char		*data;
   int		fd;
-  size_t	file_length;
+  ssize_t	file_length;
   int		i;
   t_hs		ths;
   t_glist_hs	new_lines;
 
   i = 0;
-  if ((file_length = get_file_length(filename)) == -1)
-    return (-1);
-  if ((data = egc_malloc(file_length + 1)) == NULL)
+  if ((file_length = get_file_length(filename)) == -1 &&
+     (data = egc_malloc(file_length + 1)) == NULL)
     return (-1);
   if ((fd = open_file(filename, O_RDONLY)) == -1)
     return (-1);
@@ -43,7 +42,7 @@ int		read_file(const t_hs filename, t_glist_hs *lines)
     }
   close_file(fd);
   ths = hs(data);
-  if (hs_length(ths) != file_length)
+  if ((int)hs_length(ths) != file_length)
     return (-1);
   new_lines = hs_split(ths, hs("\n"));
   glist_hs_append_all(lines, &new_lines);

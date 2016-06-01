@@ -8,8 +8,8 @@
 ** Last update Fri May 20 23:03:21 2016 antoine
 */
 
-#ifndef COLORIZE_PRIVATE_H
-# define COLORIZE_PRIVATE_H
+#ifndef PRIVATE_H_
+# define PRIVATE_H_
 
 # include "colorize.h"
 
@@ -25,6 +25,15 @@
 
 /*
 ** foregroud and backgroud defaults to -1.
+**
+** "on blue"
+** {-1, blue, 0, 0}
+**
+** "undelined"
+** {-1, -1, 1, 0};
+**
+** "green on cyan bold"
+** {green, pink, 0, 1};
 */
 typedef struct  s_style
 {
@@ -34,17 +43,6 @@ typedef struct  s_style
   int           bold;
 }               t_style;
 
-/*
-"on blue"
-{-1, blue, 0, 0}
-
-"undelined"
-{-1, -1, 1, 0};
-
-"green on cyan bold"
-{green, pink, 0, 1};
-*/
-
 int		colorize_get_color_code(const char *name);
 
-#endif /* COLORIZE_PRIVATE_H */
+#endif /* !PRIVATE_H_ */

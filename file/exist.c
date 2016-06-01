@@ -5,17 +5,45 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:14:18 2016 Valentin Pichard
-** Last update Mon May 30 00:21:53 2016 Valentin Pichard
+** Last update Wed Jun  1 16:27:20 2016 Valentin Pichard
 */
 
 #include "file.h"
 
 int		line_exist(const t_hs filename, const t_hs line)
 {
+  t_glist_hs	lines;
+  int		i;
+  t_hs		sline;
+
+  i = 0;
+  lines = glist_hs_new();
+  if (read_file(filename, &lines) == -1)
+    return (-1);
+  while (i < glist_hs_length(&lines))
+    {
+      sline = glist_hs_get(&lines, i++);
+      if (hs_equals(sline, line))
+	return (1);
+    }
   return (0);
 }
 
 int		lines_exist(const t_hs filename, const t_glist_hs lines)
 {
-  return (0);
+  t_hs		line;
+  int		i;
+  int		i2;
+
+  i = 0;
+  i2 = 0;
+  while (i < glist_hs_length(&lines))
+    {
+      line = glist_hs_get(&lines, i++);
+      if (line_exist(filename, line) == 0)
+	return (0);
+      else if (line_exist(filename, line) == -1)
+	return (-1);
+    }
+  return (1);
 }

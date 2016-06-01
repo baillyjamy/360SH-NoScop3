@@ -36,7 +36,7 @@ char            *read_whole_file(int file_descriptor)
       if (read_char_count == -1 || string_get_length(string) != (int)length)
         return (NULL);
       if (read_char_count != (ssize_t)block_size)
-        break;
+        break ;
     }
   return (string);
 }

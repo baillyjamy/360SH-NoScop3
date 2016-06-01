@@ -8,8 +8,8 @@
 ** Last update Wed Jun 01 01:19:53 2016 Antoine Baudrand
 */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef TEST_H_
+# define TEST_H_
 
 # include "../../sh.h"
 
@@ -40,5 +40,6 @@ void    test_suite_string_type(void);
 void    test_suite_string_type_convert(void);
 void    test_suite_colorize(void);
 void    test_suite_exec(void);
+void    test_suite_lexer(void);
 
-#endif /* TEST_H */
+#endif /* !TEST_H_ */
