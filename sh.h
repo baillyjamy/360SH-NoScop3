@@ -80,7 +80,7 @@ void		ctrl_d(void);
 /*
 ** parse_int
 */
-int     parse_int(const char *string, long *result_pointer);
+int		parse_int(const char *string, long *result_pointer);
 /*
 ** built-in fonctions
 */
