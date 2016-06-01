@@ -26,11 +26,11 @@ static char     *read_char(int input)
   return (c);
 }
 
-t_hs                    readline_read(t_readline *readline)
+t_hs			readline_read(t_readline *readline)
 {
-  struct termios        cfg;
-  t_hs                  line;
-  char                  *c_str;
+  struct termios	cfg;
+  t_hs         		line;
+  char         		*c_str;
   char			c;
 
   line = hs_new_empty();
