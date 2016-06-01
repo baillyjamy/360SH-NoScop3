@@ -36,8 +36,9 @@ t_hs	readline_delete_char(t_hs line, int *cursor_pos)
   left_hs = hs_slice(line, 0, *cursor_pos - 1);
   right_hs = hs_slice(line, *cursor_pos + 1, hs_length(line));
   new_line = hs_concat(left_hs, right_hs);
-  /*egc_printf("%s", tigetstr("cub1"));
-  egc_printf("%s", tigetstr("sc"));*/
+  egc_printf("%s", tigetstr("cub1"));
+  egc_printf("%s", tigetstr("sc"));
+  egc_printf("%s", tigetstr("dch1"));
   *cursor_pos -= 1;
   return (new_line);
 }
