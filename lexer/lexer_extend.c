@@ -9,33 +9,10 @@
 */
 
 #include <assert.h>
-#include "../sh.h"
 #include "private.h"
 
 void             	skip_whitespaces(const char **string_p)
 {
   while (char_is_whitespace(**string_p))
     NEXT(string_p);
-}
-
-t_position              lexer_get_position(const char *char_addr)
-{
-  const char            *string;
-  t_position            position;
-
-  position_init(&position);
-  string = STATICS->lexer_input_string;
-  assert(char_addr >= string);
-  while (string < char_addr)
-    {
-      if (*string == '\n')
-        {
-          position.line++;
-          position.column = 0;
-        }
-      position.column++;
-      position.index++;
-      string++;
-    }
-  return (position);
 }

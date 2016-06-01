@@ -39,6 +39,7 @@ SOURCES	= \
 	readline/readline_update.c \
 	readline/readline_event.c \
 	lexer/error.c \
+	lexer/get_position.c \
 	lexer/lexer.c \
 	lexer/lexer_extend.c \
 	lexer/position.c \
@@ -101,7 +102,7 @@ endif
 
 echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
-all: test/test
+all: shell
 
 shell: $(LIBEGC) $(LIBSH) main.o
 	@$(CC) -o $@ main.o $(LDFLAGS) -L. -lsh -legc -lncurses && \
@@ -150,13 +151,13 @@ glist_clean:
 clean:
 	$(RM) $(OBJECTS)
 	$(RM) $(TEST_OBJECTS)
+	$(RM) main.o
 	$(RM) $(LIBSH)
 	$(MAKE) -C egc/ clean
 
 fclean: clean
 	$(RM) test/test
 	$(MAKE) -C egc/ fclean
-	$(RM) main.o
 	$(RM) shell
 	$(RM) onch
 

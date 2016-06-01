@@ -11,6 +11,7 @@
 #ifndef PRIVATE_H_
 # define PRIVATE_H_
 
+# include "../sh.h"
 # include "lexer.h"
 
 # define NEXT(string_pointer) ((*string_pointer)++)

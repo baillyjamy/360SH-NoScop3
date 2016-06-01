@@ -9,6 +9,7 @@
 */
 
 #include <unistd.h>
+#include "../parse_int/parse_int.h"
 #include "../sh.h"
 
 void	print_exit(int status)
