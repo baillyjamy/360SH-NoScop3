@@ -58,9 +58,13 @@ t_hs	create_prompt(void)
   env_get_variable(hs("PWD"), &pwd);
   env_get_variable(hs("HOME"), &prompt);
   host = get_hostname();
-  egc_printf("%hs\n", host);
   pwd = format_pwd(pwd, prompt);
-  prompt = hs_format(hs_to_str(colorize("red", user)), "@", hs_to_str(host), ":", hs_to_str(colorize("blue", pwd)), "$");
-  egc_printf("%hs\n", prompt);
+  prompt = hs("");
+  prompt = hs_concat(prompt, colorize("red", user));
+  prompt = hs_concat(prompt, hs("@"));
+  prompt = hs_concat(prompt, host);
+  prompt = hs_concat(prompt, hs(":"));
+  prompt = hs_concat(prompt, colorize("blue", pwd));
+  prompt = hs_concat(prompt, hs("$"));
   return (prompt);
 }
