@@ -33,7 +33,7 @@ t_token         *token_new_range(t_token_type type,
   t_hs          source;
   int           length;
 
-  length = end - begin + 1;
+  length = end - begin;
   assert(length > 0);
   source = hs_new_from_n_chars(length, begin);
   pos = lexer_get_position(begin);

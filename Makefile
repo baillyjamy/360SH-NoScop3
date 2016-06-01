@@ -34,6 +34,7 @@ SOURCES	= \
 	lexer/lexer.c \
 	lexer/position.c \
 	lexer/source_file.c \
+	lexer/syntax_error.c \
 	lexer/token.c \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
