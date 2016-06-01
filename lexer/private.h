@@ -8,8 +8,8 @@
 ** Last update Fri May 20 23:07:27 2016 antoine
 */
 
-#ifndef LEXER_PRIVATE_H
-# define LEXER_PRIVATE_H
+#ifndef PRIVATE_H_
+# define PRIVATE_H_
 
 # include "lexer.h"
 
@@ -33,4 +33,4 @@ const char              *lexer_get_source(void);
 
 typedef t_result        (*t_lex_function)(const char **string_pointer);
 
-#endif /* LEXER_PRIVATE_H */
+#endif /* !PRIVATE_H_ */

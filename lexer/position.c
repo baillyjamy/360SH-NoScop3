@@ -19,7 +19,7 @@ void            position_init(t_position *position)
 
 t_hs            position_to_hs(const t_position *position)
 {
-  return hs_format("%d:%d", position->line, position->column);
+  return (hs_format("%d:%d", position->line, position->column));
 }
 
 void            position_print(const t_position *position, int file)
