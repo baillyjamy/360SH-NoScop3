@@ -63,6 +63,7 @@ t_hs	create_prompt(void)
 		     "@",
 		     hs_to_str(host),
 		     ":",
-		     colorize("blue", pwd));
+		     colorize("blue", pwd),
+		     hs("$"));
   return (prompt);
 }
