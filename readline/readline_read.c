@@ -39,7 +39,10 @@ t_hs			readline_read(t_readline *readline)
   readline_print_prompt(readline);
   while (1)
     {
-      break;
+      c_str = read_char(readline_get_input(readline));
+      c = c_str[0];
+      if (!c || c == '\n')
+	break ;
     }
   readline_restore_term(&cfg);
   egc_printf("\n");
