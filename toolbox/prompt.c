@@ -26,7 +26,10 @@ static t_hs	get_hostname(void)
   while (42)
     {
       if (read(fd, &c, 1) == -1)
-	return (hs("42sh"));
+	{
+	  close(fd);
+	  return (hs("42sh"));
+	}
       if (c == '\n' || c == '\0')
 	break ;
       host = hs_concat_hs_char(host, c);
@@ -59,12 +62,10 @@ t_hs	create_prompt(void)
   if (env_get_variable(hs("HOME"), &prompt) != -1)
     pwd = format_pwd(pwd, prompt);
   host = get_hostname();
-  prompt = hs("");
-  prompt = hs_concat(prompt, colorize("red bold", user));
-  prompt = hs_concat(prompt, colorize("red bold", hs("@")));
-  prompt = hs_concat(prompt, colorize("red bold", host));
-  prompt = hs_concat(prompt, hs(":"));
-  prompt = hs_concat(prompt, colorize("blue bold", pwd));
-  prompt = hs_concat(prompt, hs("$"));
+  prompt = hs_format("%hs%hs%hs:%hs$",
+		     colorize("red bold", user),
+		     colorize("red bold", hs("@")),
+		     colorize("red bold", host),
+		     colorize("blue bold", pwd));
   return (prompt);
 }
