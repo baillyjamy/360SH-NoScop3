@@ -8,8 +8,8 @@
 ** Last update Fri May 27 15:56:08 2016 Valentin Pichard
 */
 
-#ifndef SH_H
-# define SH_H
+#ifndef SH_H_
+# define SH_H_
 
 # include "egc.h"
 # include "./readline/readline.h"
@@ -95,4 +95,4 @@ void		unsetenv_cmd(t_glist_hs *argv);
 #  define STATICS        ((t_statics *)egc_get_statics())
 # endif
 
-#endif /* SH_H */
+#endif /* !SH_H_ */
