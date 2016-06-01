@@ -93,7 +93,7 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 all: test/test
 
 shell: $(LIBEGC) $(LIBSH) main.o
-	@$(CC) -o $@ main.o $(LDFLAGS) -L. -lsh -legc && \
+	@$(CC) -o $@ main.o $(LDFLAGS) -L. -lsh -legc -lncurses && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
 
