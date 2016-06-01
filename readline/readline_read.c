@@ -5,7 +5,7 @@
 ** Login   <bailly_j@epitech.net>
 **
 ** Started on  Wed May 25 15:34:49 2016 Jamy Bailly
-** Last update Wed Jun  1 15:08:56 2016 Valentin Pichard
+** Last update Wed May 25 15:34:49 2016 Jamy Bailly
 */
 
 #include <unistd.h>
@@ -14,10 +14,10 @@
 #include <ncurses.h>
 #include <string.h>
 
-static char     	*read_char(int input)
+static char     *read_char(int input)
 {
-  char          	*c;
-  int			lim;
+  char          *c;
+  int		lim;
 
   c = egc_malloc(7);
   if ((lim = read(input, c, 6)) < 1)
