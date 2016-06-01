@@ -10,21 +10,16 @@
 
 #include "position.h"
 
-void            position_init(t_position *position,
-                              t_source_file *source_file)
+void            position_init(t_position *position)
 {
-  position->file = source_file;
   position->index = 0;
   position->line = 1;
-  position->column = 0;
+  position->column = 1;
 }
 
 t_hs            position_to_hs(const t_position *position)
 {
-  return hs_format("%s:%d:%d",
-                   position->file->name,
-                   position->line,
-                   position->column);
+  return hs_format("%d:%d", position->line, position->column);
 }
 
 void            position_print(const t_position *position, int file)

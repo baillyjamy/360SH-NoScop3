@@ -12,25 +12,13 @@
 #include "../sh.h"
 #include "private.h"
 
-const char              *lexer_get_source(void)
-{
-  return (NULL);
-}
-
-static t_result         lex_word(const char **string_p)
-{
-  while (char_is_alpha(**string_p))
-    (*string_p)++;
-  return (RESULT_NULL);
-}
-
 static void             skip_whitespaces(const char **string_p)
 {
   while (char_is_whitespace(**string_p))
     NEXT(string_p);
 }
 
-static t_result         lex_token(const char **string_p)
+static t_result         lex_token_impl(const char **string_p)
 {
   const char            *begin;
   t_lex_function        functions[32];
@@ -38,19 +26,56 @@ static t_result         lex_token(const char **string_p)
   int                   i;
 
   i = 0;
-  functions[i++] = lex_word;
   functions[i++] = NULL;
   i = 0;
   while (functions[i])
     {
       begin = *string_p;
-      res = functions[i](string_p);
+      res = (functions[i])(string_p);
       if (res.error || res.token)
         return (res);
       assert(*string_p == begin);
       i++;
     }
   return (RESULT_NULL);
+}
+
+t_result                lex_word(const char **string_p)
+{
+  t_result              result;
+  const char            *begin;
+  const char            *end;
+  t_token               *token;
+
+  begin = *string_p;
+  end = begin;
+  while (*end && !char_is_whitespace(*end))
+    {
+      result = lex_token_impl(string_p);
+      if (result.error)
+        return (result);
+      if (result.token)
+        break ;
+      (*string_p)++;
+      end = *string_p;
+    }
+  if (begin == end)
+    return (RESULT_NULL);
+  token = TOKEN_NEW_RANGE(WORD, begin, end);
+  return (RESULT_TOKEN(token));
+}
+
+static t_result         lex_token(const char **string_p)
+{
+  t_result              result;
+
+  result = lex_token_impl(string_p);
+  if (result.token || result.error)
+    return (result);
+  result = lex_word(string_p);
+  if (result.token || result.error)
+    return (result);
+  return (RESULT_ERROR(hs("Unexpected character"), *string_p));
 }
 
 static t_lexer_result   lex_from_str(const char *string)
@@ -62,6 +87,8 @@ static t_lexer_result   lex_from_str(const char *string)
   while (*string)
     {
       skip_whitespaces(&string);
+      if (!*string)
+        break ;
       res = lex_token(&string);
       if (res.error)
         return ((t_lexer_result){.tokens = NULL, .error = res.error});
@@ -80,4 +107,26 @@ t_lexer_result          lex(t_hs string)
   r = lex_from_str(cstr);
   STATICS->lexer_input_string = NULL;
   return (r);
+}
+
+t_position              lexer_get_position(const char *char_addr)
+{
+  const char            *string;
+  t_position            position;
+
+  position_init(&position);
+  string = STATICS->lexer_input_string;
+  assert(char_addr >= string);
+  while (string < char_addr)
+    {
+      if (*string == '\n')
+        {
+          position.line++;
+          position.column = 0;
+        }
+      position.column++;
+      position.index++;
+      string++;
+    }
+  return (position);
 }

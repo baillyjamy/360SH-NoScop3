@@ -20,7 +20,6 @@
 */
 typedef struct  s_position
 {
-  t_source_file *file;
   int           index;
   int           line;
   int           column;
@@ -30,8 +29,7 @@ typedef struct  s_position
 ** Initialize a new position.
 ** Character index 0, first line, first column.
 */
-void            position_init(t_position *position,
-                              t_source_file *source_file);
+void            position_init(t_position *position);
 
 t_hs            position_to_hs(const t_position *position);
 
