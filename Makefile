@@ -5,14 +5,14 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Wed Jun  1 15:17:19 2016 Valentin Pichard
+## Last update Wed Jun  1 17:49:07 2016 Pierre-Emmanuel Jacquier
 ##
 
 include test.mk
 
 AR 	= ar rc
 
-UNAME_S	:= $(shell uname -s)
+UNAME_S	:= $(42sh uname -s)
 ifeq ($(UNAME_S),Darwin)
 	AR = libtool -static -o
 endif
@@ -102,9 +102,9 @@ endif
 
 echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
-all: shell
+all: 42sh
 
-shell: $(LIBEGC) $(LIBSH) main.o
+42sh: $(LIBEGC) $(LIBSH) main.o
 	@$(CC) -o $@ main.o $(LDFLAGS) -L. -lsh -legc -lncurses && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
@@ -158,7 +158,7 @@ clean:
 fclean: clean
 	$(RM) test/test
 	$(MAKE) -C egc/ fclean
-	$(RM) shell
+	$(RM) 42sh
 	$(RM) onch
 
 re: fclean all
