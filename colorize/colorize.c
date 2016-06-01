@@ -5,46 +5,10 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Mon Apr 18 16:32:30 2016 Pierre-Emmanuel Jacquier
-** Last update Mon Apr 18 16:32:30 2016 Pierre-Emmanuel Jacquier
+** Last update Wed Jun  1 14:59:09 2016 Valentin Pichard
 */
 
 #include "private.h"
-
-/*
-** Returns 0 if a color has been read or -1 on failure
-**
-** `*i` is kept unchanged on failure
-*/
-static int	read_color(t_glist_hs *words, int *i)
-{
-  t_hs		word;
-  int           color;
-
-  word = glist_hs_get(words, *i);
-  color = colorize_get_color_code(hs_to_str(word));
-  if (color != -1)
-    (*i)++;
-  return (color);
-}
-
-/*
-** Returns 0 if the given keyword has been read or -1 on failure
-**
-** `*i` is kept unchanged on failure
-*/
-static int	read_keyword(t_glist_hs *words, int *i, const char *keyword)
-{
-  t_hs		word;
-
-  word = glist_hs_get(words, *i);
-  if (hs_equals(word, hs(keyword)))
-    {
-      (*i)++;
-      return (1);
-    }
-  else
-    return (-1);
-}
 
 static int	parse_style(t_style *style, t_hs string)
 {

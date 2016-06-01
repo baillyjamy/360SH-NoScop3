@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Thu Apr 14 11:47:15 2016 antoine
-** Last update Thu May 19 23:51:15 2016 Valentin Pichard
+** Last update Wed Jun  1 14:59:52 2016 Valentin Pichard
 */
 
 #ifndef COLORIZE_H
@@ -28,5 +28,7 @@ t_hs	uncolorize(t_hs source);
 */
 
 t_hs	colorize(const char *style, t_hs source);
+int	read_keyword(t_glist_hs *words, int *i, const char *keyword);
+int	read_color(t_glist_hs *words, int *i);
 
 #endif /* COLORIZE_H */
