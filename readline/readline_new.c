@@ -12,13 +12,13 @@
 
 /*
 ** It is useless to initialize all the pointers to NULL since
-** egc_malloc() sets all its returned data to zero.
+** egc_malloc() (and EGC_NEW()) sets all its returned data to zero.
 */
 t_readline      *readline_new(int input, int output, int error_output)
 {
   t_readline    *readline;
 
-  readline = egc_malloc(sizeof(t_readline));
+  readline = EGC_NEW(t_readline);
   readline->input = input;
   readline->output = output;
   readline->error_output = error_output;
