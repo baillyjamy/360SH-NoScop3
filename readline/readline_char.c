@@ -37,8 +37,8 @@ t_hs	readline_delete_char(t_capacity *capacity,
   t_hs	right_hs;
   t_hs	new_line;
 
-  egc_printf("%s", capacity->CAPACITY_CURSOR_LEFT);
-  egc_printf("%s", capacity->CAPACITY_CLR_EOL);
+  egc_printf("%s", capacity->capacity_cursor_left);
+  egc_printf("%s", capacity->capacity_clr_eol);
   left_hs = hs_slice(line, 0, *cursor_pos - 1);
   right_hs = hs_slice(line, *cursor_pos, hs_length(line));
   egc_printf("%hs", right_hs);

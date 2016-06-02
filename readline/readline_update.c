@@ -21,7 +21,7 @@ void	readline_update_cursor(t_capacity *capacity,
   new_pos = len_line;
   while (new_pos != *cursor_pos)
     {
-      egc_printf("%s", capacity->CAPACITY_CURSOR_LEFT);
+      egc_printf("%s", capacity->capacity_cursor_left);
       new_pos--;
     }
 }

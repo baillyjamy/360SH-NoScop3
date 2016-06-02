@@ -14,7 +14,7 @@
 void	readline_ctrl_event(t_capacity *capacity, char c)
 {
   if (c == 0x0C)
-    egc_printf("%s", capacity->CAPACITY_CLEAR_SCREEN);
+    egc_printf("%s", capacity->capacity_clear_screen);
   else
     return ;
 }
@@ -24,15 +24,15 @@ void	readline_event(t_capacity *capacity,
 		       int *cursor_pos,
 		       int len_line)
 {
-  if (!strcmp(c_str, capacity->CAPACITY_KEY_LEFT) && *cursor_pos > 0)
+  if (!strcmp(c_str, capacity->capacity_key_left) && *cursor_pos > 0)
     {
       *cursor_pos -= 1;
-      egc_printf("%s", capacity->CAPACITY_CURSOR_LEFT);
+      egc_printf("%s", capacity->capacity_cursor_left);
     }
-  else if (!strcmp(c_str, capacity->CAPACITY_KEY_RIGHT)
+  else if (!strcmp(c_str, capacity->capacity_key_right)
 	   && *cursor_pos < len_line)
     {
       *cursor_pos += 1;
-      egc_printf("%s", capacity->CAPACITY_CURSOR_RIGHT);
+      egc_printf("%s", capacity->capacity_cursor_right);
     }
 }
