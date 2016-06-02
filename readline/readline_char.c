@@ -10,40 +10,36 @@
 
 #include "private.h"
 
-t_hs	readline_insert_char(t_capacity *capacity,
-			     t_hs line,
-			     char c,
-			     int *cursor_pos)
+void	readline_insert_char(t_readline *readline, char c)
 {
   t_hs	left_hs;
   t_hs	right_hs;
   t_hs	new_line;
+  t_hs  old;
 
-  left_hs = hs_slice(line, 0, *cursor_pos);
-  right_hs = hs_slice(line, *cursor_pos, hs_length(line));
+  old = readline->line;
+  left_hs = hs_slice(old, 0, readline->cursor_pos);
+  right_hs = hs_slice(old, readline->cursor_pos, hs_length(old));
   new_line = hs_concat_char_hs(c, right_hs);
   egc_printf("%hs", new_line);
-  new_line = hs_concat(left_hs, new_line);
-  *cursor_pos += 1;
-  readline_update_cursor(capacity, cursor_pos, hs_length(new_line));
-  return (new_line);
+  readline->line = hs_concat(left_hs, new_line);
+  readline->cursor_pos++;
+  readline_update_cursor(readline);
 }
 
-t_hs	readline_delete_char(t_capacity *capacity,
-			     t_hs line,
-			     int *cursor_pos)
+void	readline_delete_char(t_readline *readline)
 {
   t_hs	left_hs;
   t_hs	right_hs;
-  t_hs	new_line;
+  t_hs  old;
 
-  egc_printf("%s", capacity->CAPACITY_CURSOR_LEFT);
-  egc_printf("%s", capacity->CAPACITY_CLR_EOL);
-  left_hs = hs_slice(line, 0, *cursor_pos - 1);
-  right_hs = hs_slice(line, *cursor_pos, hs_length(line));
+  egc_printf("%s", readline->capacity->CAPACITY_CURSOR_LEFT);
+  egc_printf("%s", readline->capacity->CAPACITY_CLR_EOL);
+  old = readline->line;
+  left_hs = hs_slice(old, 0, readline->cursor_pos - 1);
+  right_hs = hs_slice(old, readline->cursor_pos, hs_length(readline->line));
   egc_printf("%hs", right_hs);
-  new_line = hs_concat(left_hs, right_hs);
-  *cursor_pos -= 1;
-  readline_update_cursor(capacity, cursor_pos, hs_length(new_line));
-  return (new_line);
+  readline->line = hs_concat(left_hs, right_hs);
+  readline->cursor_pos--;
+  readline_update_cursor(readline);
 }
