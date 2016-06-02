@@ -36,12 +36,12 @@ void	readline_get_term(struct termios *cfg);
 
 void	readline_restore_term(struct termios *cfg);
 
-/*t_hs	readline_insert_char(t_hs line, char c, int *cursor_pos);
+t_hs	readline_insert_char(t_hs line, char c, int *cursor_pos);
 
 t_hs	readline_delete_char(t_hs line, int *cursor_pos);
 
 t_hs	readline_update(t_hs line, char c, int *cursor_pos);
 
-void	readline_event(char *c_str, int *cursor_pos, int len_line);*/
+/*void	readline_event(char *c_str, int *cursor_pos, int len_line);*/
 
 #endif /* !PRIVATE_H_ */

@@ -43,6 +43,11 @@ t_hs			readline_read(t_readline *readline)
       c = c_str[0];
       if (!c || c == '\n')
 	break ;
+      if (c == 27)
+	egc_printf("OK");
+	/*readline_event(c_str, &readline->cursor_pos, hs_length(line));*/
+      else
+	line = readline_update(line, c, &readline->cursor_pos);
     }
   readline_restore_term(&cfg);
   egc_printf("\n");

@@ -29,12 +29,14 @@ SOURCES	= \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
+	readline/readline_char.c \
 	readline/readline_get.c \
 	readline/readline_new.c \
 	readline/readline_print.c \
 	readline/readline_read.c \
 	readline/readline_set.c \
 	readline/readline_term.c \
+	readline/readline_update.c \
 	lexer/error.c \
 	lexer/get_position.c \
 	lexer/lexer.c \
