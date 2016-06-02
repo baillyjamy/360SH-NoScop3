@@ -31,7 +31,7 @@ int		read_file(const t_hs filename, t_glist_hs *lines)
 
   i = 0;
   if ((file_length = get_file_length(filename)) == -1 &&
-     (data = egc_malloc(file_length + 1)) == NULL)
+     (data = egc_malloc_atomic(file_length + 1)) == NULL)
     return (-1);
   if ((fd = open_file(filename, O_RDONLY)) == -1)
     return (-1);

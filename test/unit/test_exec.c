@@ -17,11 +17,10 @@ void            test_suite_exec(void)
   t_exec        *e;
   t_process     *proc;
 
-  e = egc_malloc(sizeof(t_exec));
-  e->filename = "/bin/true";
-  e->argv = egc_malloc(sizeof(char *) * 2);
-  e->argv[0] = "true";
-  e->argv[1] = NULL;
+  e = EGC_NEW(t_exec);
+  e->filename = hs("/bin/true");
+  e->argv = hs_split(hs("true"), hs(""));
+  e->env = hs_split(hs(""), hs(""));
   e->stdin_fd = 0;
   e->stdout_fd = 1;
   e->stderr_fd = 2;
