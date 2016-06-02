@@ -8,10 +8,10 @@
 ** Last update Mon May 30 19:08:52 2016 Pierre-Emmanuel Jacquier
 */
 
+#include "sh.h"
 #include <unistd.h>
 #include <ncurses.h>
 #include <term.h>
-#include "sh.h"
 
 void	bltin(t_glist_hs *args)
 {
