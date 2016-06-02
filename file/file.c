@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:18:20 2016 Valentin Pichard
-** Last update Wed Jun  1 15:45:36 2016 Valentin Pichard
+** Last update Thu Jun  2 10:51:39 2016 Valentin Pichard
 */
 
 #include "file.h"
@@ -43,5 +43,12 @@ int		reset_file(const t_hs filename)
 
 int		edit_file(const t_hs filename)
 {
-  return (open_file(filename, O_APPEND));
+  int		fd;
+
+  if ((fd = open_file(filename, O_RDWR | O_APPEND)) == -1)
+    {
+      close(fd);
+      return (-1);
+    }
+  return (fd);
 }
