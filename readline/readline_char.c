@@ -37,13 +37,18 @@ t_hs	readline_delete_char(t_capacity *capacity,
   t_hs	right_hs;
   t_hs	new_line;
 
-  egc_printf("%s", capacity->capacity_cursor_left);
-  egc_printf("%s", capacity->capacity_clr_eol);
-  left_hs = hs_slice(line, 0, *cursor_pos - 1);
-  right_hs = hs_slice(line, *cursor_pos, hs_length(line));
-  egc_printf("%hs", right_hs);
-  new_line = hs_concat(left_hs, right_hs);
-  *cursor_pos -= 1;
-  readline_update_cursor(capacity, cursor_pos, hs_length(new_line));
+  if (*cursor_pos != 0)
+    {
+      egc_printf("%s", capacity->capacity_cursor_left);
+      egc_printf("%s", capacity->capacity_clr_eol);
+      left_hs = hs_slice(line, 0, *cursor_pos - 1);
+      right_hs = hs_slice(line, *cursor_pos, hs_length(line));
+      egc_printf("%hs", right_hs);
+      new_line = hs_concat(left_hs, right_hs);
+      *cursor_pos -= 1;
+      readline_update_cursor(capacity, cursor_pos, hs_length(new_line));
+    }
+  else
+    new_line = hs_new_empty();
   return (new_line);
 }
