@@ -43,6 +43,8 @@ typedef t_hs            (*t_readline_colorizer)(t_hs text, void *data);
 /*
 ** Creates a new t_readline
 **
+** It is useless to initialize all the pointers to NULL since
+** egc_malloc() sets all its returned data to zero.
 ** The default prompt is an empty string
 */
 t_readline	*readline_new(int input, int output, int error_output);

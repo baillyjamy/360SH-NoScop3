@@ -11,9 +11,6 @@
 #include <unistd.h>
 #include "private.h"
 
-#include <ncurses.h>
-#include <string.h>
-
 static char     *read_char(int input)
 {
   char          *c;
@@ -43,13 +40,13 @@ t_hs			readline_read(t_readline *readline)
       c = c_str[0];
       if (!c || c == '\n' || c == 0x0C)
 	{
-	  readline_ctrl_event(c);
+	  readline_ctrl_event(RDC, c);
 	  break ;
 	}
       if (c == 27)
-	readline_event(c_str, &readline->cursor_pos, hs_length(line));
+	readline_event(RDC, c_str, &readline->cursor_pos, hs_length(line));
       else
-	line = readline_update(line, c, &readline->cursor_pos);
+	line = readline_update(RDC, line, c, &readline->cursor_pos);
     }
   readline_restore_term(&cfg);
   egc_printf("\n");
