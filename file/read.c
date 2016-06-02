@@ -5,11 +5,11 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:15:40 2016 Valentin Pichard
-** Last update Thu Jun  2 11:11:29 2016 Valentin Pichard
+** Last update Thu Jun  2 16:18:54 2016 Valentin Pichard
 */
 
-#include "file.h"
 #include <sys/stat.h>
+#include "file.h"
 
 ssize_t		get_file_length(const t_hs filename)
 {

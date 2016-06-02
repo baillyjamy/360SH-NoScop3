@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Wed Jun  1 17:49:07 2016 Pierre-Emmanuel Jacquier
+## Last update Thu Jun  2 16:24:27 2016 Valentin Pichard
 ##
 
 include test.mk
@@ -68,6 +68,10 @@ SOURCES	= \
 	env_tools.c \
 	toolbox/display.c \
 	toolbox/prompt.c \
+	file/exist.c \
+	file/file.c \
+	file/insert.c \
+	file/read.c \
 
 OBJECTS	= $(SOURCES:.c=.o)
 
