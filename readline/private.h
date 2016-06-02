@@ -46,4 +46,6 @@ void	readline_update_cursor(int *cursor_pos, size_t len_line);
 
 void	readline_event(char *c_str, int *cursor_pos, int len_line);
 
+void	readline_ctrl_event(char c);
+
 #endif /* !PRIVATE_H_ */

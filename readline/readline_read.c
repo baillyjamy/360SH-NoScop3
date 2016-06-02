@@ -41,8 +41,11 @@ t_hs			readline_read(t_readline *readline)
     {
       c_str = read_char(readline_get_input(readline));
       c = c_str[0];
-      if (!c || c == '\n')
-	break ;
+      if (!c || c == '\n' || c == 0x0C)
+	{
+	  readline_ctrl_event(c);
+	  break ;
+	}
       if (c == 27)
 	readline_event(c_str, &readline->cursor_pos, hs_length(line));
       else

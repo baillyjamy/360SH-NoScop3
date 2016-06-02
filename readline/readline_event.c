@@ -13,6 +13,14 @@
 
 #include "string.h"
 
+void	readline_ctrl_event(char c)
+{
+  if (c == 0x0C)
+    egc_printf("%s", tigetstr("clear"));
+  else
+    return ;
+}
+
 void	readline_event(char *c_str, int *cursor_pos, int len_line)
 {
   if (!strcmp(c_str, tigetstr("kcub1")) && *cursor_pos > 0)
