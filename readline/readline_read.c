@@ -29,6 +29,7 @@ t_hs			readline_read(t_readline *readline)
   t_hs         		line;
   char         		*c_str;
   char			c;
+  int			i;
 
   line = hs_new_empty();
   readline_get_term(&cfg);
@@ -46,7 +47,11 @@ t_hs			readline_read(t_readline *readline)
       if (c == 27)
 	readline_event(RDC, c_str, &readline->cursor_pos, hs_length(line));
       else
-	line = readline_update(RDC, line, c, &readline->cursor_pos);
+	{
+	  i = -1;
+	  while (c_str[++i])
+	    line = readline_update(RDC, line, c_str[i], &readline->cursor_pos);
+	}
     }
   readline_restore_term(&cfg);
   egc_printf("\n");
