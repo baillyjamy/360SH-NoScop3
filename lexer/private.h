@@ -27,11 +27,17 @@ typedef struct          s_result
 # define RESULT_FROM_ERROR(e)   ((t_result){.token = NULL, .error = e})
 # define RESULT_ERROR(msg, cp)  (lexer_create_error(msg, cp))
 
-t_result                lexer_create_error(t_hs message,
-                                           const char *char_addr);
+# define TOKEN_NEW(t, p, s)             token_new(TOKEN_TYPE_##t, p, s)
+# define TOKEN_NEW_RANGE(t, b, e)       token_new_range(TOKEN_TYPE_##t, b, e)
 
-const char              *lexer_get_source(void);
+#define RESULT_TOKEN_RANGE(t, b, e)     RESULT_TOKEN(TOKEN_NEW_RANGE(t, b, e))
+
+t_result        lexer_create_error(t_hs message, const char *char_addr);
+
+const char      *lexer_get_source(void);
 
 typedef t_result        (*t_lex_function)(const char **string_pointer);
+
+t_result        lex_symbols(const char **string_p);
 
 #endif /* !PRIVATE_H_ */

@@ -11,6 +11,7 @@
 TEST_SOURCES_NAMES	= test.c \
 			test_colorize.c \
 			test_lexer.c \
+			test_lexer_symbols.c \
 			test_parse_int.c \
 			test_string_concat.c \
 			test_string_find.c \

@@ -53,12 +53,9 @@ t_token *token_new_range(t_token_type type,
                          const char *begin,
                          const char *end);
 
-t_hs    token_to_hs(const t_token *token);
-
 const char      *token_type_to_str(t_token_type type);
 
-# define TOKEN_NEW(t, p, s)             token_new_range(TOKEN_TYPE_##t, p, s)
-# define TOKEN_NEW_RANGE(t, b, e)       token_new_range(TOKEN_TYPE_##t, b, e)
+t_hs    token_to_hs(const t_token *token);
 
 t_position      lexer_get_position(const char *char_address);
 

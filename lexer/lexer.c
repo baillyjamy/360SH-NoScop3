@@ -20,6 +20,7 @@ static t_result         lex_token_impl(const char **string_p)
   int                   i;
 
   i = 0;
+  functions[i++] = &lex_symbols;
   functions[i++] = NULL;
   i = 0;
   while (functions[i])
@@ -49,7 +50,10 @@ static t_result lex_word(const char **string_p)
       if (result.error)
         return (result);
       if (result.token)
-        break ;
+        {
+          *string_p = end;
+          break ;
+        }
       (*string_p)++;
       end = *string_p;
     }

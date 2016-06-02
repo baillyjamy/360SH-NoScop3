@@ -21,8 +21,8 @@ const char      *token_type_to_str(t_token_type type)
 {
   const char    *string;
 
-  string = ("and\0and_and\0heredoc\0left_paren\0pipe\0pipe_pipe\0"
-            "right_paren\0semicolon\0string\0word\0\0");
+  string = ("and\0and_and\0gt\0heredoc\0left_paren\0lt\0pipe\0pipe_pipe\0"
+            "right_paren\0semicolon\0s_quotes\0d_quotes\0word\0\0");
   while (*string)
     {
       if (!type)

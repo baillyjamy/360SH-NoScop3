@@ -42,6 +42,7 @@ SOURCES	= \
 	readline/readline_update.c \
 	lexer/error.c \
 	lexer/get_position.c \
+	lexer/lex_symbols.c \
 	lexer/lexer.c \
 	lexer/lexer_extend.c \
 	lexer/position.c \
