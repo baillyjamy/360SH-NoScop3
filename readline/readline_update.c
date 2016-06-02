@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#include <ncurses.h>
 #include "private.h"
 
 void	readline_update_cursor(t_capacity *capacity,

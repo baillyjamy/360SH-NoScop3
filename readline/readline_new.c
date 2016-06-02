@@ -8,7 +8,6 @@
 ** Last update Sat Apr 30 06:38:25 2016 Jamy Bailly
 */
 
-#include <ncurses.h>
 #include <term.h>
 #include "private.h"
 
