@@ -114,8 +114,8 @@ $(NAME): $(LIBEGC) $(LIBSH) main.o
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
 
-test/test: $(LIBEGC) $(TEST_OBJECTS) $(LIBSH)
-	@$(CC) -o $@ $(TEST_OBJECTS) $(LDFLAGS) -L. -lsh -legc && \
+test/test: $(LIBEGC) $(LIBSH) $(TEST_OBJECTS)
+	@$(CC) -o $@ $(TEST_OBJECTS) $(LDFLAGS) -L. -lsh -legc -lncurses && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
 
