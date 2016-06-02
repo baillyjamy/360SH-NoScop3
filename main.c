@@ -5,7 +5,7 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Mon May 30 19:08:52 2016 Pierre-Emmanuel Jacquier
-** Last update Fri Jun 03 00:06:01 2016 Antoine Baudrand
+** Last update Fri Jun 03 00:10:57 2016 Antoine Baudrand
 */
 
 #include "sh.h"
@@ -33,7 +33,10 @@ int		    launch(int argc, char **argv, char **env)
           tokens = lex(input).tokens;
           while (tokens)
             {
-              egc_printf("----| TOKEN |----\n type: %d\n string: %hs\n value: %hs\n", tokens->token->type, tokens->token->string_value, tokens->token->source);
+              egc_printf("----| TOKEN |----\n type: %s\n string: %hs\n value: %hs\n",
+                         token_type_to_str(tokens->token->type),
+                         tokens->token->string_value,
+                         tokens->token->source);
               tokens = tokens->next;
             }
 	}
