@@ -14,14 +14,16 @@
 # include <unistd.h>
 # include <sys/types.h>
 
+# include "sh.h"
+
 /*
 ** yan typedef pid_t
 */
 typedef struct  s_exec
 {
-  char          *filename;
-  char          **argv;
-  char          **envp;
+  t_hs          filename;
+  t_glist_hs    argv;
+  t_glist_hs    env;
   int           stdin_fd;
   int           stdout_fd;
   int           stderr_fd;

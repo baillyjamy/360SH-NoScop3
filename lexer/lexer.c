@@ -12,7 +12,7 @@
 #include "../sh.h"
 #include "private.h"
 
-static t_result         	lex_token_impl(const char **string_p)
+static t_result         lex_token_impl(const char **string_p)
 {
   const char            *begin;
   t_lex_function        functions[32];
@@ -34,12 +34,12 @@ static t_result         	lex_token_impl(const char **string_p)
   return (RESULT_NULL);
 }
 
-t_result                lex_word(const char **string_p)
+static t_result lex_word(const char **string_p)
 {
-  t_result              result;
-  const char            *begin;
-  const char            *end;
-  t_token               *token;
+  t_result      result;
+  const char    *begin;
+  const char    *end;
+  t_token       *token;
 
   begin = *string_p;
   end = begin;
