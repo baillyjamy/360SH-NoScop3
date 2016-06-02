@@ -13,6 +13,18 @@
 #include <ncurses.h>
 #include "private.h"
 
+void	readline_update_cursor(int *cursor_pos, size_t len_line)
+{
+  int	new_pos;
+
+  new_pos = len_line;
+  while (new_pos != *cursor_pos)
+    {
+      egc_printf("%s", tigetstr("cub1"));
+      new_pos--;
+    }
+}
+
 t_hs	readline_update(t_hs line, char c, int *cursor_pos)
 {
   t_hs	new_line;

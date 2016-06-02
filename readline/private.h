@@ -42,6 +42,8 @@ t_hs	readline_delete_char(t_hs line, int *cursor_pos);
 
 t_hs	readline_update(t_hs line, char c, int *cursor_pos);
 
-/*void	readline_event(char *c_str, int *cursor_pos, int len_line);*/
+void	readline_update_cursor(int *cursor_pos, size_t len_line);
+
+void	readline_event(char *c_str, int *cursor_pos, int len_line);
 
 #endif /* !PRIVATE_H_ */

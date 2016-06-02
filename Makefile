@@ -30,6 +30,7 @@ SOURCES	= \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
 	readline/readline_char.c \
+	readline/readline_event.c \
 	readline/readline_get.c \
 	readline/readline_new.c \
 	readline/readline_print.c \
