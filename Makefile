@@ -12,7 +12,9 @@ include test.mk
 
 AR 	= ar rc
 
-UNAME_S	:= $(42sh uname -s)
+NAME	= 42sh
+
+UNAME_S	:= $(sh uname -s)
 ifeq ($(UNAME_S),Darwin)
 	AR = libtool -static -o
 endif
@@ -93,18 +95,21 @@ RED		= "\033[0;91m"
 GREEN		= "\033[0;92m"
 END		= "\033[0m"
 
-ifneq ($(findstring vgtest,$(MAKECMDGOALS)),)
-	DEBUG_OPT	= DEBUG=true
-else
+EGC_DEBUG	= $(or 	$(findstring vgtest,$(MAKECMDGOALS)), \
+			$(findstring vg,$(MAKECMDGOALS)))
+
+ifeq (EGC_DEBUG,)
 	DEBUG_OPT	=
+else
+	DEBUG_OPT	= DEBUG=true
 endif
 
 
 echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 
-all: 42sh
+all: $(NAME)
 
-42sh: $(LIBEGC) $(LIBSH) main.o
+$(NAME): $(LIBEGC) $(LIBSH) main.o
 	@$(CC) -o $@ main.o $(LDFLAGS) -L. -lsh -legc -lncurses && \
 		$(ECHO) CC $< || \
 		$(call echo_error,$<)
@@ -123,6 +128,13 @@ vgtest: test/test
 		--track-origins=yes \
 		--num-callers=100 \
 		./test/test
+
+vg: $(NAME)
+	valgrind \
+		--suppressions=egc/valgrind.supp \
+		--track-origins=yes \
+		--num-callers=100 \
+		./$(NAME)
 
 $(LIBSH): $(OBJECTS)
 	@$(AR) $@ $^ && \
@@ -158,7 +170,7 @@ clean:
 fclean: clean
 	$(RM) test/test
 	$(MAKE) -C egc/ fclean
-	$(RM) 42sh
+	$(RM) $(NAME)
 	$(RM) onch
 
 re: fclean all
