@@ -9,9 +9,6 @@
 */
 
 #include "sh.h"
-#include <unistd.h>
-#include <ncurses.h>
-#include <term.h>
 
 void	bltin(t_glist_hs *args)
 {
