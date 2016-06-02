@@ -28,6 +28,7 @@ t_hs			readline_read(t_readline *readline)
   struct termios	cfg;
   char         		*c_str;
   char			c;
+  int			i;
 
   readline->line = hs_new_empty();
   readline_get_term(&cfg);
@@ -46,7 +47,11 @@ t_hs			readline_read(t_readline *readline)
 	readline_event(readline->capacity, c_str, &readline->cursor_pos,
                        hs_length(readline->line));
       else
-	readline_update(readline, c);
+	{
+	  i = -1;
+	  while (c_str[++i])
+	    readline_update(readline, c_str[i]);
+	}
     }
   readline_restore_term(&cfg);
   egc_printf("\n");

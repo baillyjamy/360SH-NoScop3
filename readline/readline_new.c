@@ -11,17 +11,19 @@
 #include <term.h>
 #include "private.h"
 
+#include <string.h>
+
 t_capacity	*readline_new_capacity(void)
 {
   t_capacity	*capacity;
 
   capacity = EGC_NEW(t_capacity);
-  capacity->CAPACITY_CLEAR_SCREEN = tigetstr("CAPACITY_CLEAR_SCREEN");
-  capacity->CAPACITY_KEY_LEFT = tigetstr("CAPACITY_KEY_LEFT");
-  capacity->CAPACITY_KEY_RIGHT = tigetstr("CAPACITY_KEY_RIGHT");
-  capacity->CAPACITY_CURSOR_LEFT = tigetstr("CAPACITY_CURSOR_LEFT");
-  capacity->CAPACITY_CURSOR_RIGHT = tigetstr("CAPACITY_CURSOR_RIGHT");
-  capacity->CAPACITY_CLR_EOL = tigetstr("CAPACITY_CLR_EOL");
+  capacity->capacity_clear_screen = tigetstr("clear");
+  capacity->capacity_key_left = tigetstr("kcub1");
+  capacity->capacity_key_right = tigetstr("kcuf1");
+  capacity->capacity_cursor_left = tigetstr("cub1");
+  capacity->capacity_cursor_right = tigetstr("cuf1");
+  capacity->capacity_clr_eol = tigetstr("el");
   return (capacity);
 }
 

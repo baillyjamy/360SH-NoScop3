@@ -33,11 +33,16 @@ void	readline_delete_char(t_readline *readline)
   t_hs	right_hs;
   t_hs  old;
 
-  egc_printf("%s", readline->capacity->CAPACITY_CURSOR_LEFT);
-  egc_printf("%s", readline->capacity->CAPACITY_CLR_EOL);
+  if (readline->cursor_pos == 0)
+    {
+      readline->line = hs_new_empty();
+      return ;
+    }
+  egc_printf("%s", readline->capacity->capacity_cursor_left);
+  egc_printf("%s", readline->capacity->capacity_clr_eol);
   old = readline->line;
   left_hs = hs_slice(old, 0, readline->cursor_pos - 1);
-  right_hs = hs_slice(old, readline->cursor_pos, hs_length(readline->line));
+  right_hs = hs_slice(old, readline->cursor_pos, hs_length(old));
   egc_printf("%hs", right_hs);
   readline->line = hs_concat(left_hs, right_hs);
   readline->cursor_pos--;
