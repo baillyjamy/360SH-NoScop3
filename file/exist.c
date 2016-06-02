@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:14:18 2016 Valentin Pichard
-** Last update Wed Jun  1 16:27:20 2016 Valentin Pichard
+** Last update Thu Jun  2 23:01:16 2016 Valentin Pichard
 */
 
 #include "file.h"
@@ -33,10 +33,8 @@ int		lines_exist(const t_hs filename, const t_glist_hs lines)
 {
   t_hs		line;
   int		i;
-  int		i2;
 
   i = 0;
-  i2 = 0;
   while (i < glist_hs_length(&lines))
     {
       line = glist_hs_get(&lines, i++);
