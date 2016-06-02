@@ -10,45 +10,41 @@
 
 #include "private.h"
 
-t_hs	readline_insert_char(t_capacity *capacity,
-			     t_hs line,
-			     char c,
-			     int *cursor_pos)
+void	readline_insert_char(t_readline *readline, char c)
 {
   t_hs	left_hs;
   t_hs	right_hs;
   t_hs	new_line;
+  t_hs  old;
 
-  left_hs = hs_slice(line, 0, *cursor_pos);
-  right_hs = hs_slice(line, *cursor_pos, hs_length(line));
+  old = readline->line;
+  left_hs = hs_slice(old, 0, readline->cursor_pos);
+  right_hs = hs_slice(old, readline->cursor_pos, hs_length(old));
   new_line = hs_concat_char_hs(c, right_hs);
   egc_printf("%hs", new_line);
-  new_line = hs_concat(left_hs, new_line);
-  *cursor_pos += 1;
-  readline_update_cursor(capacity, cursor_pos, hs_length(new_line));
-  return (new_line);
+  readline->line = hs_concat(left_hs, new_line);
+  readline->cursor_pos++;
+  readline_update_cursor(readline);
 }
 
-t_hs	readline_delete_char(t_capacity *capacity,
-			     t_hs line,
-			     int *cursor_pos)
+void	readline_delete_char(t_readline *readline)
 {
   t_hs	left_hs;
   t_hs	right_hs;
-  t_hs	new_line;
+  t_hs  old;
 
-  if (*cursor_pos != 0)
+  if (readline->cursor_pos == 0)
     {
-      egc_printf("%s", capacity->capacity_cursor_left);
-      egc_printf("%s", capacity->capacity_clr_eol);
-      left_hs = hs_slice(line, 0, *cursor_pos - 1);
-      right_hs = hs_slice(line, *cursor_pos, hs_length(line));
-      egc_printf("%hs", right_hs);
-      new_line = hs_concat(left_hs, right_hs);
-      *cursor_pos -= 1;
-      readline_update_cursor(capacity, cursor_pos, hs_length(new_line));
+      readline->line = hs_new_empty();
+      return ;
     }
-  else
-    new_line = hs_new_empty();
-  return (new_line);
+  egc_printf("%s", readline->capacity->capacity_cursor_left);
+  egc_printf("%s", readline->capacity->capacity_clr_eol);
+  old = readline->line;
+  left_hs = hs_slice(old, 0, readline->cursor_pos - 1);
+  right_hs = hs_slice(old, readline->cursor_pos, hs_length(old));
+  egc_printf("%hs", right_hs);
+  readline->line = hs_concat(left_hs, right_hs);
+  readline->cursor_pos--;
+  readline_update_cursor(readline);
 }

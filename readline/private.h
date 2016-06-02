@@ -13,8 +13,6 @@
 
 # include "readline.h"
 
-# define RDC readline->capacity
-
 typedef struct	s_capacity
 {
   char		*smkx;
@@ -26,8 +24,9 @@ typedef struct	s_capacity
   char		*capacity_clr_eol;
 }		t_capacity;
 
-struct	s_readline
+struct                          s_readline
 {
+  t_hs                          line;
   t_hs				prompt;
   int				input;
   int				output;
@@ -50,21 +49,13 @@ void	readline_get_term(struct termios *cfg);
 
 void	readline_restore_term(struct termios *cfg);
 
-t_hs	readline_insert_char(t_capacity *capacity,
-			     t_hs line,
-			     char c,
-			     int *cursor_pos);
+void	readline_insert_char(t_readline *readline, char c);
 
-t_hs	readline_delete_char(t_capacity *capacity, t_hs line, int *cursor_pos);
+void	readline_delete_char(t_readline *readline);
 
-t_hs	readline_update(t_capacity *capacity,
-			t_hs line,
-			char c,
-			int *cursor_pos);
+void	readline_update(t_readline *readline, char c);
 
-void	readline_update_cursor(t_capacity *capacity,
-			       int *cursor_pos,
-			       size_t len_line);
+void	readline_update_cursor(const t_readline *readline);
 
 void	readline_event(t_capacity *capacity,
 		       char *c_str,
