@@ -12,3 +12,5 @@ test/test
 
 mysh
 shell
+42sh
+*.dSYM

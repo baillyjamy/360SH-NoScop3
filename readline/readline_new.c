@@ -15,7 +15,7 @@ t_capacity	*readline_new_capacity(void)
 {
   t_capacity	*capacity;
 
-  capacity = egc_malloc(sizeof(t_capacity));
+  capacity = EGC_NEW(t_capacity);
   capacity->CAPACITY_CLEAR_SCREEN = tigetstr("CAPACITY_CLEAR_SCREEN");
   capacity->CAPACITY_KEY_LEFT = tigetstr("CAPACITY_KEY_LEFT");
   capacity->CAPACITY_KEY_RIGHT = tigetstr("CAPACITY_KEY_RIGHT");
@@ -29,7 +29,7 @@ t_readline      *readline_new(int input, int output, int error_output)
 {
   t_readline    *readline;
 
-  readline = egc_malloc(sizeof(t_readline));
+  readline = EGC_NEW(t_readline);
   readline->input = input;
   readline->output = output;
   readline->error_output = error_output;

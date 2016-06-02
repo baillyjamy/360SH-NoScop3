@@ -16,7 +16,7 @@ static char     *read_char(int input)
   char          *c;
   int		lim;
 
-  c = egc_malloc(7);
+  c = egc_malloc_atomic(7);
   if ((lim = read(input, c, 6)) < 1)
     return (NULL);
   c[lim] = 0;
@@ -36,7 +36,7 @@ t_hs			readline_read(t_readline *readline)
   readline_print_prompt(readline);
   while (1)
     {
-      c_str = read_char(readline_get_input(readline));
+      c_str = read_char(readline->input);
       c = c_str[0];
       if (!c || c == '\n' || c == 0x0C)
 	{

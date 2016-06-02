@@ -13,11 +13,41 @@
 #include "exec.h"
 #include "egc.h"
 
+/*
+** Returns a NULL-terminated array of NUL-terminated C strings.
+*/
+static char     **hs_list_to_charpp(const t_glist_hs *list)
+{
+  int           i;
+  char          **array;
+
+  array = egc_malloc(sizeof(char *) + 1);
+  i = -1;
+  while (++i < glist_hs_length(list))
+    {
+      array[i] = hs_to_str(glist_hs_get(list, i));
+    }
+  array[i] = NULL;
+  return (array);
+}
+
+static int      execve_wrapper(const t_exec *exec)
+{
+  char          *file;
+  char          **argv;
+  char          **env;
+
+  file = hs_to_str(exec->filename);
+  argv = hs_list_to_charpp(&exec->argv);
+  env = hs_list_to_charpp(&exec->env);
+  return (execve(file, argv, env));
+}
+
 t_process       *exec(const t_exec *exec)
 {
   t_process     *proc;
 
-  proc = egc_malloc(sizeof(t_process));
+  proc = EGC_NEW(t_process);
   proc->exit_code = 0;
   proc->pid = fork();
   if (proc->pid == 0)
@@ -28,8 +58,8 @@ t_process       *exec(const t_exec *exec)
         dup2(exec->stdin_fd, STDIN_FILENO);
       if (exec->stderr_fd != STDERR_FILENO)
         dup2(exec->stdin_fd, STDERR_FILENO);
-      execve(exec->filename, exec->argv, exec->envp);
-      egc_fprintf(STDERR_FILENO, "Unable to execve %s\n", exec->filename);
+      execve_wrapper(exec);
+      egc_fprintf(STDERR_FILENO, "Unable to execve %hs\n", exec->filename);
       egc_exit(127);
     }
   if (exec->stdout_fd != STDOUT_FILENO)

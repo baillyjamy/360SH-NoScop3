@@ -5,22 +5,34 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:12:36 2016 Valentin Pichard
-** Last update Mon May 30 00:22:02 2016 Valentin Pichard
+** Last update Thu Jun  2 11:42:51 2016 Valentin Pichard
 */
 
 #include "file.h"
 
-int		insert_line(const t_hs filename, t_hs line, const int nline)
+int		insert_line(const t_hs filename, const t_hs line)
 {
-  return (0);
-}
+  int		fd;
 
-int		insert_line_end(const t_hs filename, const t_hs line)
-{
+  if ((fd = edit_file(filename)) == -1)
+    return (-1);
+  write(fd, hs_to_str(hs_concat_hs_char(line, '\n')), hs_length(line) + 1);
+  close(fd);
   return (0);
 }
 
 int		insert_lines(const t_hs filename, const t_glist_hs lines)
 {
+  int		i;
+  t_hs		line;
+
+  i = 0;
+  while (i < glist_hs_length(&lines))
+    {
+      line = glist_hs_get(&lines, i);
+      if (insert_line(filename, line) == -1)
+	return (-1);
+      i++;
+    }
   return (0);
 }
