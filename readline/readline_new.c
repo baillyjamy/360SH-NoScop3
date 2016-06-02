@@ -9,6 +9,7 @@
 */
 
 #include <ncurses.h>
+#include <term.h>
 #include "private.h"
 
 t_capacity	*readline_new_capacity(void)
@@ -29,6 +30,7 @@ t_readline      *readline_new(int input, int output, int error_output)
 {
   t_readline    *readline;
 
+  setupterm(NULL, 1, NULL);
   readline = EGC_NEW(t_readline);
   readline->input = input;
   readline->output = output;

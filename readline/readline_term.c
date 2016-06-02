@@ -9,16 +9,13 @@
 */
 
 #include <ncurses.h>
-#include <sys/ioctl.h>
 #include <unistd.h>
-#include <term.h>
 #include "readline.h"
 
 void	readline_setup_term(struct termios cfg)
 {
   char	*smkx;
 
-  setupterm(NULL, 1, NULL);
   cfg.c_lflag &= (unsigned int) ~ECHO;
   cfg.c_lflag &= (unsigned int) ~ICANON;
   cfg.c_cc[VMIN] = 1;
