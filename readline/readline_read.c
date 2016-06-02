@@ -1,11 +1,11 @@
 /*
-** readline_read.c for  in /home/bailly_j/rendu/360SH-NoScop3/editor/
+** readline_read.c for readline in /home/antoine/360SH-NoScop3/readline
 **
 ** Made by Jamy Bailly
 ** Login   <bailly_j@epitech.net>
 **
 ** Started on  Wed May 25 15:34:49 2016 Jamy Bailly
-** Last update Wed May 25 15:34:49 2016 Jamy Bailly
+** Last update Thu Jun 02 22:49:40 2016 Antoine Baudrand
 */
 
 #include <unistd.h>
@@ -17,9 +17,15 @@ static char     *read_char(int input)
   int		lim;
 
   c = egc_malloc_atomic(7);
-  if ((lim = read(input, c, 6)) < 1)
+  if ((lim = read(input, c, 1)) < 1)
     return (NULL);
   c[lim] = 0;
+  if (c[0] == 27)
+    {
+      if ((lim += read(input, (c + 1), 5)) < 1)
+        return (NULL);
+      c[lim] = 0;
+    }
   return (c);
 }
 
@@ -39,14 +45,14 @@ t_hs			readline_read(t_readline *readline)
       c_str = read_char(readline->input);
       c = c_str[0];
       if (!c || c == '\n' || c == 0x0C)
-	{
-	  readline_ctrl_event(RDC, c);
-	  break ;
-	}
+        {
+          readline_ctrl_event(RDC, c);
+          break ;
+        }
       if (c == 27)
-	readline_event(RDC, c_str, &readline->cursor_pos, hs_length(line));
+        readline_event(RDC, c_str, &readline->cursor_pos, hs_length(line));
       else
-	line = readline_update(RDC, line, c, &readline->cursor_pos);
+        line = readline_update(RDC, line, c, &readline->cursor_pos);
     }
   readline_restore_term(&cfg);
   egc_printf("\n");
