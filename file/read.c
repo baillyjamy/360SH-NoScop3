@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:15:40 2016 Valentin Pichard
-** Last update Wed Jun  1 15:33:53 2016 Valentin Pichard
+** Last update Thu Jun  2 11:11:29 2016 Valentin Pichard
 */
 
 #include "file.h"
@@ -47,12 +47,4 @@ int		read_file(const t_hs filename, t_glist_hs *lines)
   new_lines = hs_split(ths, hs("\n"));
   glist_hs_append_all(lines, &new_lines);
   return (0);
-}
-
-t_hs		read_line_file(const t_hs filename, int nline)
-{
-  t_hs		lel;
-
-  lel = hs("");
-  return (lel);
 }
