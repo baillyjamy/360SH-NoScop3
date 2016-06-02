@@ -60,11 +60,11 @@ t_hs	create_prompt(void)
   host = get_hostname();
   pwd = format_pwd(pwd, prompt);
   prompt = hs("");
-  prompt = hs_concat(prompt, colorize("red", user));
-  prompt = hs_concat(prompt, hs("@"));
-  prompt = hs_concat(prompt, host);
+  prompt = hs_concat(prompt, colorize("red bold", user));
+  prompt = hs_concat(prompt, colorize("bold", hs("@")));
+  prompt = hs_concat(prompt, colorize("bold", host));
   prompt = hs_concat(prompt, hs(":"));
-  prompt = hs_concat(prompt, colorize("blue", pwd));
+  prompt = hs_concat(prompt, colorize("blue bold", pwd));
   prompt = hs_concat(prompt, hs("$"));
   return (prompt);
 }

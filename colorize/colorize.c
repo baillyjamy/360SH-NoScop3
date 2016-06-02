@@ -40,7 +40,7 @@ static int	read_keyword(t_glist_hs *words, int *i, const char *keyword)
   if (hs_equals(word, hs(keyword)))
     {
       (*i)++;
-      return (0);
+      return (1);
     }
   else
     return (-1);
@@ -64,12 +64,12 @@ static int	parse_style(t_style *style, t_hs string)
     }
   if (i >= glist_hs_length(&words))
     return (0);
+  style->bold = read_keyword(&words, &i, "bold");
+  if (i >= glist_hs_length(&words))
+    return (0);
   style->underlined = read_keyword(&words, &i, "underlined");
   if (i >= glist_hs_length(&words))
     return (0);
-  style->bold = read_keyword(&words, &i, "bold");
-  if (i < glist_hs_length(&words))
-    return (-1);
   return (0);
 }
 
