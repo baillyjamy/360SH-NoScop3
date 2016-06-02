@@ -21,7 +21,7 @@ static int      is_valid_variable_name(t_hs name)
   while (++i < (int)hs_length(name))
     {
       c = hs_get(name, i);
-      if (!char_is_alpha_numeric(c) && !char_is_digit(c) && c != '_')
+      if (!char_is_alpha_numeric(c) && c != '_')
 	return (0);
     }
   return (1);

@@ -22,24 +22,23 @@ endif
 SOURCES	= \
 	./bltin/cd.c \
 	./bltin/cd_errors.c \
+	./bltin/echo.c \
+	./bltin/env_cmd.c \
+	./bltin/exit.c \
 	./bltin/setenv.c \
 	./bltin/unsetenv.c \
-	./bltin/echo.c \
-	./bltin/exit.c \
-	./bltin/env_cmd.c \
 	colorize/colorize.c \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
-	readline/readline_char.c \
-	readline/readline_event.c \
-	readline/readline_get.c \
-	readline/readline_new.c \
-	readline/readline_print.c \
-	readline/readline_read.c \
-	readline/readline_set.c \
-	readline/readline_term.c \
-	readline/readline_update.c \
+	env.c \
+	env_tools.c \
+	exec.c \
+	expand_variables.c \
+	file/exist.c \
+	file/file.c \
+	file/insert.c \
+	file/read.c \
 	lexer/error.c \
 	lexer/get_position.c \
 	lexer/lex_symbols.c \
@@ -54,6 +53,15 @@ SOURCES	= \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
 	parse_int/parse_and_read_int_base.c \
+	readline/readline_char.c \
+	readline/readline_event.c \
+	readline/readline_get.c \
+	readline/readline_new.c \
+	readline/readline_print.c \
+	readline/readline_read.c \
+	readline/readline_set.c \
+	readline/readline_term.c \
+	readline/readline_update.c \
 	sh.c \
 	string/string.c \
 	string/string_concat.c \
@@ -64,15 +72,8 @@ SOURCES	= \
 	string/string_starts_with.c \
 	string/string_type.c \
 	string/string_type_converter.c \
-	env.c \
-	exec.c \
-	env_tools.c \
 	toolbox/display.c \
 	toolbox/prompt.c \
-	file/exist.c \
-	file/file.c \
-	file/insert.c \
-	file/read.c \
 
 OBJECTS	= $(SOURCES:.c=.o)
 

@@ -19,10 +19,9 @@ static int	print_args(t_glist_hs *argv)
     i = 2;
   while (i < glist_hs_length(argv))
     {
-      if (i < glist_hs_length(argv) - 1)
-	egc_printf("%hs ", glist_hs_get(argv, i));
-      else if (i < glist_hs_length(argv))
-	egc_printf("%hs", glist_hs_get(argv, i));
+      hs_print(glist_hs_get(argv, i));
+      if (i != glist_hs_length(argv) - 1)
+	hs_print(hs(" "));
       i++;
     }
   if (!hs_equals(glist_hs_get(argv, 1), hs("-n")))

@@ -14,12 +14,13 @@ void	unsetenv_cmd(t_glist_hs *argv)
 {
   int	i;
 
-  i = 1;
   if (glist_hs_length(argv) == 2)
     {
       if (hs_equals(glist_hs_get(argv, 1), hs("*")))
 	env_remove_all_variable();
+      return ;
     }
+  i = 1;
   while (i < glist_hs_length(argv))
     env_remove_variable(glist_hs_get(argv, i++));
 }
