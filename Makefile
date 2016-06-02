@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Wed Jun  1 23:36:35 2016 Pierre-Emmanuel Jacquier
+## Last update Wed Jun 01 01:45:39 2016 Antoine Baudrand
 ##
 
 include test.mk
@@ -56,6 +56,7 @@ SOURCES	= \
 	string/string_type.c \
 	string/string_type_converter.c \
 	env.c \
+	exec.c \
 	env_tools.c \
 	toolbox/display.c \
 	toolbox/prompt.c \
