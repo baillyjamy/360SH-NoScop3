@@ -11,7 +11,10 @@
 #include <ncurses.h>
 #include "private.h"
 
-t_hs	readline_insert_char(t_hs line, char c, int *cursor_pos)
+t_hs	readline_insert_char(t_capacity *capacity,
+			     t_hs line,
+			     char c,
+			     int *cursor_pos)
 {
   t_hs	left_hs;
   t_hs	right_hs;
@@ -23,23 +26,25 @@ t_hs	readline_insert_char(t_hs line, char c, int *cursor_pos)
   egc_printf("%hs", new_line);
   new_line = hs_concat(left_hs, new_line);
   *cursor_pos += 1;
-  readline_update_cursor(cursor_pos, hs_length(new_line));
+  readline_update_cursor(capacity, cursor_pos, hs_length(new_line));
   return (new_line);
 }
 
-t_hs	readline_delete_char(t_hs line, int *cursor_pos)
+t_hs	readline_delete_char(t_capacity *capacity,
+			     t_hs line,
+			     int *cursor_pos)
 {
   t_hs	left_hs;
   t_hs	right_hs;
   t_hs	new_line;
 
-  egc_printf("%s", tigetstr("cub1"));
-  egc_printf("%s", tigetstr("el"));
+  egc_printf("%s", capacity->CAPACITY_CURSOR_LEFT);
+  egc_printf("%s", capacity->CAPACITY_CLR_EOL);
   left_hs = hs_slice(line, 0, *cursor_pos - 1);
   right_hs = hs_slice(line, *cursor_pos, hs_length(line));
   egc_printf("%hs", right_hs);
   new_line = hs_concat(left_hs, right_hs);
   *cursor_pos -= 1;
-  readline_update_cursor(cursor_pos, hs_length(new_line));
+  readline_update_cursor(capacity, cursor_pos, hs_length(new_line));
   return (new_line);
 }

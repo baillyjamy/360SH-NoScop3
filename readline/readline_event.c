@@ -9,28 +9,31 @@
 */
 
 #include <ncurses.h>
-#include "readline.h"
-
+#include "private.h"
 #include "string.h"
 
-void	readline_ctrl_event(char c)
+void	readline_ctrl_event(t_capacity *capacity, char c)
 {
   if (c == 0x0C)
-    egc_printf("%s", tigetstr("clear"));
+    egc_printf("%s", capacity->CAPACITY_CLEAR_SCREEN);
   else
     return ;
 }
 
-void	readline_event(char *c_str, int *cursor_pos, int len_line)
+void	readline_event(t_capacity *capacity,
+		       char *c_str,
+		       int *cursor_pos,
+		       int len_line)
 {
-  if (!strcmp(c_str, tigetstr("kcub1")) && *cursor_pos > 0)
+  if (!strcmp(c_str, capacity->CAPACITY_KEY_LEFT) && *cursor_pos > 0)
     {
       *cursor_pos -= 1;
-      egc_printf("%s", tigetstr("cub1"));
+      egc_printf("%s", capacity->CAPACITY_CURSOR_LEFT);
     }
-  else if (!strcmp(c_str, tigetstr("kcuf1")) && *cursor_pos < len_line)
+  else if (!strcmp(c_str, capacity->CAPACITY_KEY_RIGHT)
+	   && *cursor_pos < len_line)
     {
       *cursor_pos += 1;
-      egc_printf("%s", tigetstr("cuf1"));
+      egc_printf("%s", capacity->CAPACITY_CURSOR_RIGHT);
     }
 }

@@ -8,12 +8,23 @@
 ** Last update Sat Apr 30 06:38:25 2016 Jamy Bailly
 */
 
+#include <ncurses.h>
 #include "private.h"
 
-/*
-** It is useless to initialize all the pointers to NULL since
-** egc_malloc() (and EGC_NEW()) sets all its returned data to zero.
-*/
+t_capacity	*readline_new_capacity(void)
+{
+  t_capacity	*capacity;
+
+  capacity = EGC_NEW(t_capacity);
+  capacity->CAPACITY_CLEAR_SCREEN = tigetstr("CAPACITY_CLEAR_SCREEN");
+  capacity->CAPACITY_KEY_LEFT = tigetstr("CAPACITY_KEY_LEFT");
+  capacity->CAPACITY_KEY_RIGHT = tigetstr("CAPACITY_KEY_RIGHT");
+  capacity->CAPACITY_CURSOR_LEFT = tigetstr("CAPACITY_CURSOR_LEFT");
+  capacity->CAPACITY_CURSOR_RIGHT = tigetstr("CAPACITY_CURSOR_RIGHT");
+  capacity->CAPACITY_CLR_EOL = tigetstr("CAPACITY_CLR_EOL");
+  return (capacity);
+}
+
 t_readline      *readline_new(int input, int output, int error_output)
 {
   t_readline    *readline;
@@ -24,5 +35,6 @@ t_readline      *readline_new(int input, int output, int error_output)
   readline->error_output = error_output;
   readline->cursor_pos = 0;
   readline->prompt = hs_new_empty();
+  readline->capacity = readline_new_capacity();
   return (readline);
 }
