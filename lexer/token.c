@@ -42,6 +42,13 @@ t_token         *token_new_range(t_token_type type,
 
 t_hs            token_to_hs(const t_token *token)
 {
+  if (token->type == TOKEN_TYPE_D_QUOTES)
+    {
+      return (hs_format("<%s \"%hs\" %hs>",
+                        token_type_to_str(token->type),
+                        token->string_value,
+                        token->source));
+    }
   return (hs_format("<%s %hs>",
                     token_type_to_str(token->type),
                     token->source));

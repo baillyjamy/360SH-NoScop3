@@ -21,6 +21,7 @@ static t_result         lex_token_impl(const char **string_p)
 
   i = 0;
   functions[i++] = &lex_symbols;
+  functions[i++] = &lex_d_quotes;
   functions[i++] = NULL;
   i = 0;
   while (functions[i])

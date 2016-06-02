@@ -31,8 +31,19 @@ static void     test_1(void)
                    hs("<word a><gt >><word b><pipe_pipe ||><word c>")));
 }
 
+static void     test_d_quotes(void)
+{
+  t_lexer_result        result;
+
+  result = lex(hs("\"lol\""));
+  ASSERT(result.error == NULL);
+  ASSERT(hs_equals(token_list_to_hs(result.tokens),
+                   hs("<d_quotes \"lol\" \"lol\">")));
+}
+
 void    test_suite_lexer_symbols(void)
 {
   test_0();
   test_1();
+  test_d_quotes();
 }
