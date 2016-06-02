@@ -5,13 +5,25 @@
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
-** Last update Wed Jun 01 01:34:45 2016 Antoine Baudrand
+** Last update Thu Jun  2 22:51:17 2016 Valentin Pichard
 */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "exec.h"
 #include "egc.h"
+
+t_glist_hs	get_path(void)
+{
+  t_hs		value;
+  t_glist_hs	path;
+
+  path = glist_hs_new();
+  if (env_get_variable(hs("PATH"), &value) == -1)
+    return (path);
+  path = hs_split(value, hs(":"));
+  return (path);
+}
 
 /*
 ** Returns a NULL-terminated array of NUL-terminated C strings.

@@ -12,30 +12,22 @@
 #include <unistd.h>
 #include "private.h"
 
-void	readline_update_cursor(t_capacity *capacity,
-			       int *cursor_pos,
-			       size_t len_line)
+void	readline_update_cursor(const t_readline *readline)
 {
   int	new_pos;
 
-  new_pos = len_line;
-  while (new_pos != *cursor_pos)
+  new_pos = hs_length(readline->line);
+  while (new_pos != readline->cursor_pos)
     {
-      egc_printf("%s", capacity->capacity_cursor_left);
+      egc_printf("%s", readline->capacity->capacity_cursor_left);
       new_pos--;
     }
 }
 
-t_hs	readline_update(t_capacity *capacity,
-			t_hs line,
-			char c,
-			int *cursor_pos)
+void	readline_update(t_readline *readline, char c)
 {
-  t_hs	new_line;
-
   if (c == '\x7f')
-    new_line = readline_delete_char(capacity, line, cursor_pos);
+    readline_delete_char(readline);
   else
-    new_line = readline_insert_char(capacity, line, c, cursor_pos);
-  return (new_line);
+    readline_insert_char(readline, c);
 }

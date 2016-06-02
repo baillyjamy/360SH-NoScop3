@@ -21,8 +21,8 @@ typedef struct s_readline	t_readline;
 ** Returns the index of the begining of the word on the cursor
 */
 typedef int             (*t_readline_tokenizer)(t_hs text,
-                                              int cursor,
-                                              void *data);
+                                                int cursor,
+                                                void *data);
 
 /*
 ** Returs a list of available completions from the given word
@@ -33,7 +33,7 @@ typedef t_glist_hs      (*t_readline_completer)(t_hs word, void *data);
 ** Prints the given completions on the output
 */
 typedef void            (*t_readline_completion_printer)(t_glist_hs matches,
-                                                       void *data);
+                                                         void *data);
 
 /*
 ** The returned text must have the same length than the given text
