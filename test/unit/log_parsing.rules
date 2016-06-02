@@ -4,4 +4,5 @@ warning /[1-9]+\ failures/
 warning /warning/
 
 error /\[ERROR\]/
+error /KO\ \-\ /
 error /marked build as failure/
