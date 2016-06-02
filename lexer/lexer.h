@@ -55,6 +55,8 @@ t_token *token_new_range(t_token_type type,
 
 t_hs    token_to_hs(const t_token *token);
 
+const char      *token_type_to_str(t_token_type type);
+
 # define TOKEN_NEW(t, p, s)             token_new_range(TOKEN_TYPE_##t, p, s)
 # define TOKEN_NEW_RANGE(t, b, e)       token_new_range(TOKEN_TYPE_##t, b, e)
 

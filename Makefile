@@ -48,6 +48,8 @@ SOURCES	= \
 	lexer/source_file.c \
 	lexer/syntax_error.c \
 	lexer/token.c \
+	lexer/token_list.c \
+	lexer/token_type.c \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
 	parse_int/parse_and_read_int_base.c \
@@ -98,7 +100,7 @@ END		= "\033[0m"
 EGC_DEBUG	= $(or 	$(findstring vgtest,$(MAKECMDGOALS)), \
 			$(findstring vg,$(MAKECMDGOALS)))
 
-ifeq (EGC_DEBUG,)
+ifeq ($(EGC_DEBUG),)
 	DEBUG_OPT	=
 else
 	DEBUG_OPT	= DEBUG=true
