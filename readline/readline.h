@@ -90,10 +90,13 @@ void	readline_set_colorizer(t_readline *readline,
 			       void *data);
 
 /*
-** Returns 0 on success or -1 if the given prompt is invalid.
+** Save the prompt ine readline module
 */
 void	readline_set_prompt(t_readline *readline, t_hs prompt);
 
+/*
+** Print the prompt
+*/
 void	readline_print_prompt(t_readline *readline);
 
 void	readline_clear_history(t_readline *readline);
