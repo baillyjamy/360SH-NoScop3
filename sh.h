@@ -89,6 +89,11 @@ int		echocmd(t_glist_hs *argv);
 int		setenv_cmd(t_glist_hs *argv);
 void		unsetenv_cmd(t_glist_hs *argv);
 
+/*
+** Return 0 if success and -1 if not
+*/
+int	expand_variables(t_hs input, const t_glist_hs *vars, t_hs *result);
+
 # ifndef STATICS
 #  define STATICS       ((t_statics *)egc_get_statics())
 # endif

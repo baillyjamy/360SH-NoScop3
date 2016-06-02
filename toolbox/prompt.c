@@ -5,7 +5,7 @@
 ** Login   <bailly_j@epitech.net>
 **
 ** Started on  Tue May 31 21:13:23 2016 Jamy Bailly
-** Last update Wed Jun  1 15:07:20 2016 Valentin Pichard
+** Last update Thu Jun  2 23:12:29 2016 Valentin Pichard
 */
 
 #include "../sh.h"
@@ -16,9 +16,9 @@
 
 static t_hs	get_hostname(void)
 {
-  int	fd;
-  char	c;
-  t_hs	host;
+  int		fd;
+  char		c;
+  t_hs		host;
 
   host = hs("");
   if ((fd = open("/etc/hostname", O_RDONLY)) == -1)
