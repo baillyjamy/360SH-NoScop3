@@ -1,9 +1,9 @@
 /*
 ** exec.c for 42sh in /home/antoine/42sh
-** 
+**
 ** Made by Antoine Baudrand
 ** Login   <baudra_a@epitech.net>
-** 
+**
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
 ** Last update Wed Jun 01 01:34:45 2016 Antoine Baudrand
 */
@@ -30,7 +30,7 @@ t_process       *exec(const t_exec *exec)
         dup2(exec->stdin_fd, STDERR_FILENO);
       execve(exec->filename, exec->argv, exec->envp);
       egc_fprintf(STDERR_FILENO, "Unable to execve %s\n", exec->filename);
-      exit(127);
+      egc_exit(127);
     }
   if (exec->stdout_fd != STDOUT_FILENO)
     close(exec->stdout_fd);
