@@ -12,17 +12,20 @@
 
 void	bltin(t_glist_hs *args)
 {
-  if (hs_equals(glist_hs_get(args, 0), hs("cd")))
+  t_hs  cmd;
+
+  cmd = glist_hs_get(args, 0);
+  if (hs_equals(cmd, hs("cd")))
     cdcmd(args);
-  if (hs_equals(glist_hs_get(args, 0), hs("echo")))
+  if (hs_equals(cmd, hs("echo")))
     echocmd(args);
-  if (hs_equals(glist_hs_get(args, 0), hs("exit")))
+  if (hs_equals(cmd, hs("exit")))
     exitcmd(args);
-  if (hs_equals(glist_hs_get(args, 0), hs("setenv")))
+  if (hs_equals(cmd, hs("setenv")))
     setenv_cmd(args);
-  if (hs_equals(glist_hs_get(args, 0), hs("env")))
+  if (hs_equals(cmd, hs("env")))
     envcmd();
-  if (hs_equals(glist_hs_get(args, 0), hs("unsetenv")))
+  if (hs_equals(cmd, hs("unsetenv")))
     unsetenv_cmd(args);
 }
 

@@ -8,7 +8,6 @@
 ** Last update Sun May 29 17:57:34 2016 Jamy Bailly
 */
 
-#include <ncurses.h>
 #include <unistd.h>
 #include "readline.h"
 

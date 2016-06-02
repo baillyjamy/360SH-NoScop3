@@ -39,5 +39,6 @@ const char      *lexer_get_source(void);
 typedef t_result        (*t_lex_function)(const char **string_pointer);
 
 t_result        lex_symbols(const char **string_p);
+t_result        lex_d_quotes(const char **string_p);
 
 #endif /* !PRIVATE_H_ */

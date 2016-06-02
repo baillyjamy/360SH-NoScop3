@@ -84,7 +84,7 @@ RM		= rm -rf
 
 CFLAGS		= -W -Wall -Wextra -std=c89
 
-LDFLAGS		= -L./egc/ -legc -lncurses
+LDFLAGS		= -L./egc -legc -lncurses
 
 ifeq ($(DELIVERY),true)
 	CFLAGS	+= -D NDEBUG
@@ -117,14 +117,14 @@ echo_error	= $(ECHO) $(RED) $(1) "[ERROR]" $(END)
 all: $(NAME)
 
 $(NAME): $(LIBEGC) $(LIBSH) main.o
-	@$(CC) -o $@ main.o $(LDFLAGS) -L. -lsh -legc -lncurses && \
-		$(ECHO) CC $< || \
-		$(call echo_error,$<)
+	@$(CC) -o $@ main.o -L. -lsh $(LDFLAGS) && \
+		$(ECHO) CC $@ || \
+		$(call echo_error,$@)
 
 test/test: $(LIBEGC) $(LIBSH) $(TEST_OBJECTS)
-	@$(CC) -o $@ $(TEST_OBJECTS) $(LDFLAGS) -L. -lsh -legc -lncurses && \
-		$(ECHO) CC $< || \
-		$(call echo_error,$<)
+	@$(CC) -o $@ $(TEST_OBJECTS) -L. -lsh $(LDFLAGS) && \
+		$(ECHO) CC $@ || \
+		$(call echo_error,$@)
 
 rtest: test/test
 	./test/test

@@ -8,7 +8,6 @@
 ** Last update Mon May 30 17:54:45 2016 Jamy Bailly
 */
 
-#include <ncurses.h>
 #include "private.h"
 #include "string.h"
 

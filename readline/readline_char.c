@@ -8,7 +8,6 @@
 ** Last update Mon May 30 00:25:27 2016 Jamy Bailly
 */
 
-#include <ncurses.h>
 #include "private.h"
 
 t_hs	readline_insert_char(t_capacity *capacity,
