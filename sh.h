@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Fri May 27 15:56:08 2016 Valentin Pichard
+** Last update Thu Jun  2 16:50:48 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -14,6 +14,7 @@
 # include "egc.h"
 # include "./readline/readline.h"
 # include "./toolbox/tools.h"
+# include "file/file.h"
 
 # define GOODBYE(x) egc_exit(x)
 
