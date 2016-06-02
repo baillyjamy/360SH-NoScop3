@@ -15,22 +15,15 @@
 
 # define RDC readline->capacity
 
-# define CAPACITY_CLEAR_SCREEN clear
-# define CAPACITY_KEY_LEFT kcub1
-# define CAPACITY_KEY_RIGHT kcuf1
-# define CAPACITY_CURSOR_LEFT cub1
-# define CAPACITY_CURSOR_RIGHT cuf1
-# define CAPACITY_CLR_EOL el
-
 typedef struct	s_capacity
 {
   char		*smkx;
-  char		*CAPACITY_CLEAR_SCREEN;
-  char		*CAPACITY_KEY_LEFT;
-  char		*CAPACITY_KEY_RIGHT;
-  char		*CAPACITY_CURSOR_LEFT;
-  char		*CAPACITY_CURSOR_RIGHT;
-  char		*CAPACITY_CLR_EOL;
+  char		*capacity_clear_screen;
+  char		*capacity_key_left;
+  char		*capacity_key_right;
+  char		*capacity_cursor_left;
+  char		*capacity_cursor_right;
+  char		*capacity_clr_eol;
 }		t_capacity;
 
 struct	s_readline
