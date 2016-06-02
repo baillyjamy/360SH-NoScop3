@@ -5,7 +5,7 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Mon May 30 19:08:52 2016 Pierre-Emmanuel Jacquier
-** Last update Mon May 30 19:08:52 2016 Pierre-Emmanuel Jacquier
+** Last update Thu Jun  2 22:39:15 2016 Valentin Pichard
 */
 
 #include "sh.h"
@@ -41,7 +41,7 @@ int		launch(int argc, char **argv, char **env)
   statics_init(&statics);
   egc_set_statics(&statics, sizeof(t_statics));
   env_init(env);
-  while (1)
+  while (42)
     {
       readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
       readline_set_prompt(readline, create_prompt());
