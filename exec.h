@@ -1,11 +1,11 @@
 /*
-** exec.h for 42sh in /home/antoine/42sh
+** exec.h for 360SH-NoScop3 in /home/antoine/360SH-NoScop3
 **
 ** Made by Antoine Baudrand
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Mon May 30 14:33:55 2016 Antoine Baudrand
-** Last update Wed Jun 01 01:33:17 2016 Antoine Baudrand
+** Last update Fri Jun 03 16:25:12 2016 Antoine Baudrand
 */
 
 #ifndef EXEC_H_
@@ -36,5 +36,6 @@ typedef struct  s_process
 }               t_process;
 
 t_process       *exec(const t_exec *);
+t_glist_hs	get_path(void);
 
 #endif /* !EXEC_H_ */

@@ -12,7 +12,6 @@
 # define SH_H_
 
 # include "egc.h"
-# include "./readline/readline.h"
 # include "./toolbox/tools.h"
 # include "file/file.h"
 
@@ -77,7 +76,8 @@ int		setenv_cmd(t_glist_hs *argv);
 
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
-void		ctrl_d(void);
+void		ctrl_d(int status);
+void		print_exit(int status);
 
 /*
 ** built-in functions

@@ -10,8 +10,8 @@
 
 #include "sh.h"
 
-void	ctrl_d(void)
+void	ctrl_d(int status)
 {
   egc_printf("exit\n");
-  exitcmd(0);
+  print_exit(status);
 }

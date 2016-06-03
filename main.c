@@ -9,6 +9,7 @@
 */
 
 #include "sh.h"
+#include "readline/readline.h"
 #include "lexer/lexer.h"
 #include "parser/parser.h"
 
