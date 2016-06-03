@@ -18,6 +18,7 @@ TEST_SOURCES_NAMES	= test.c \
 			test_string_find_char.c \
 			test_string_type.c \
 			test_exec.c \
+			test_expand_variables.c \
 			test_string_type_convert.c \
 			test_suites.c
 

@@ -5,20 +5,17 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Thu Jun  2 16:50:13 2016 Valentin Pichard
-** Last update Fri Jun  3 17:34:07 2016 Valentin Pichard
+** Last update Fri Jun  3 19:02:46 2016 Valentin Pichard
 */
 
 #include "sh.h"
 
-int		rcfile_exist(void)
+int		get_rcfile(t_glist_hs *to_exec)
 {
-  if (file_exist(hs("~/.360sh-noscop3rc")) == 0)
-    return (0);
-  else
-    {
-      if (create_file(hs("~/.360sh-noscop3rc")) == 0)
-	return (1);
-      else
-	return (-1);
-    }
+  t_hs		path;
+
+  path = hs("~/.360sh-noscop3rc");
+  if (fshell_init(path, to_exec))
+    return (-1);
+  return (0);
 }

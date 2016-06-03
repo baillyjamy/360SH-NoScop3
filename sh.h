@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Thu Jun  2 16:50:48 2016 Valentin Pichard
+** Last update Fri Jun  3 19:00:02 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -34,10 +34,15 @@ typedef struct  s_statics
 }               t_statics;
 
 /*
-** Does not initialize the environment.
+** Initializes the statics variables, with an empty environment.
 */
 void            statics_init(t_statics *statics);
 
+/*
+** Initializes the environment from an array of strings.
+**
+** Should be called after statics_init().
+*/
 void		env_init(char **env_c_strings);
 
 /*
@@ -88,6 +93,12 @@ int		exitcmd(t_glist_hs *argv);
 int		echocmd(t_glist_hs *argv);
 int		setenv_cmd(t_glist_hs *argv);
 void		unsetenv_cmd(t_glist_hs *argv);
+
+/*
+** Rcfile functions
+*/
+int		get_rcfile(t_glist_hs *to_exec);
+int		get_history(t_glist_hs *history);
 
 /*
 ** Return 0 if success and -1 if not

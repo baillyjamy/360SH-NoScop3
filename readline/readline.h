@@ -55,6 +55,9 @@ int		readline_get_error_output(t_readline *readline);
 
 /*
 ** Reads a line from the input
+**
+** If the EOF is reached (and Ctrl+D pressed), the string "exit" is
+** returned.
 */
 t_hs	readline_read(t_readline *readline);
 

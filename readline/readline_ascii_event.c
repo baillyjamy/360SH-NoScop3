@@ -22,7 +22,7 @@ static void	init_event_list(int *event_list)
   event_list[1] = 0x0C;
 }
 
-void			readline_ascii_event(t_readline *readline, char c)
+int			readline_ascii_event(t_readline *readline, char c)
 {
   int			event_list[9];
   t_readline_ascii	event_ptr[9];
@@ -34,10 +34,8 @@ void			readline_ascii_event(t_readline *readline, char c)
   while (i < 2)
     {
       if (c == event_list[i])
-	{
-	  event_ptr[i](readline);
-	  i++;
-	}
+	return (event_ptr[i](readline));
+      i++;
     }
-    return ;
+    return (0);
 }

@@ -5,19 +5,23 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:18:20 2016 Valentin Pichard
-** Last update Thu Jun  2 16:20:59 2016 Valentin Pichard
+** Last update Fri Jun  3 18:49:26 2016 Valentin Pichard
 */
 
 #include <sys/stat.h>
 #include "file.h"
 
-int		file_exist(const t_hs filename)
+int		file_creator(t_hs path)
 {
-  struct stat   fstat;
-
-  if (stat(hs_to_str(filename), &fstat) == 0)
+  if (file_exist(path) == 0)
     return (0);
-  return (-1);
+  else
+    {
+      if (create_file(path) == 0)
+	return (1);
+      else
+	return (-1);
+    }
 }
 
 int		open_file(const t_hs pathname, int mode)

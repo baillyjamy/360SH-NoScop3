@@ -11,15 +11,14 @@
 #include "private.h"
 #include "../sh.h"
 
-void	readline_ctrl_d(t_readline *readline)
+int	readline_ctrl_d(t_readline *readline)
 {
   (void) readline;
-  egc_printf("exit\n");
-  print_exit(0);
+  return (-1);
 }
 
-void	readline_ctrl_l(t_readline *readline)
+int	readline_ctrl_l(t_readline *readline)
 {
   egc_printf("%s", readline->capacity->capacity_clear_screen);
-  return ;
+  return (0);
 }

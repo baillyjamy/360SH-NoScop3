@@ -28,12 +28,12 @@ static void	readline_escape_envent(t_readline *readline, char *c)
     }
 }
 
-void	readline_event(t_readline *readline, char *c)
+int     readline_event(t_readline *readline, char *c)
 {
   if (c[0] == 27)
     {
       readline_escape_envent(readline, c);
+      return (0);
     }
-  else
-    readline_ascii_event(readline->capacity, c[0]);
+  return (readline_ascii_event(readline, c[0]));
 }
