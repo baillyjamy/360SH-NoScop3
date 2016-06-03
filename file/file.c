@@ -13,7 +13,7 @@
 
 int		file_creator(t_hs path)
 {
-  if (file_exist(path) == 0)
+  if (file_exist(path))
     return (0);
   else
     {

@@ -30,6 +30,7 @@ static void             eval_hs(t_hs input)
       return ;
     }
   hs_puts(node_to_hs(parse_res.node));
+  hs_puts(hs("------------------------"));
   eval(parse_res.node);
 }
 

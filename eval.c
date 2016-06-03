@@ -16,9 +16,18 @@ static int      eval_command(t_node *node)
 {
   t_process     *process;
   t_exec        e;
+  t_glist_hs    path_list;
+  t_hs          cmd;
 
   assert(glist_hs_length(&node->args));
-  e.filename = glist_hs_get(&node->args, 0);
+  cmd = glist_hs_get(&node->args, 0);
+  path_list = get_path_list();
+  e.filename = find_executable(&path_list, cmd);
+  if (!hs_length(e.filename))
+    {
+      egc_fprintf(STDERR_FILENO, "%hs: Command not found.\n", cmd);
+      return (-1);
+    }
   e.argv = glist_hs_copy(&node->args);
   e.env = glist_hs_new();
   e.stdin_fd = node->redir.input;

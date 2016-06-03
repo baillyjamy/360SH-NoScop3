@@ -36,6 +36,13 @@ typedef struct  s_process
 }               t_process;
 
 t_process       *exec(const t_exec *exec);
-t_glist_hs	get_path(void);
+t_glist_hs	get_path_list(void);
+
+/*
+** Finds the absolute path of an executable.
+**
+** Returns an empty string if not found.
+*/
+t_hs    find_executable(t_glist_hs *path_list, t_hs executable_name);
 
 #endif /* !EXEC_H_ */

@@ -75,7 +75,12 @@ int		open_file(const t_hs pathname, int mode);
 void		close_file(int fd);
 int		edit_file(const t_hs filename);
 ssize_t		get_file_length(const t_hs filename);
+
+/*
+** Returns 1 if the file exists, 0 othewise.
+*/
 int		file_exist(const t_hs filename);
+
 int		file_creator(t_hs path);
 int		fshell_init(t_hs path, t_glist_hs *lines);
 
