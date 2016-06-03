@@ -20,13 +20,13 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 SOURCES	= \
-	./bltin/cd.c \
-	./bltin/cd_errors.c \
-	./bltin/echo.c \
-	./bltin/env_cmd.c \
-	./bltin/exit.c \
-	./bltin/setenv.c \
-	./bltin/unsetenv.c \
+	bltin/cd.c \
+	bltin/cd_errors.c \
+	bltin/echo.c \
+	bltin/env_cmd.c \
+	bltin/exit.c \
+	bltin/setenv.c \
+	bltin/unsetenv.c \
 	colorize/colorize.c \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
