@@ -9,12 +9,14 @@
 */
 
 #include <unistd.h>
+#include "../readline/readline.h"
 #include "../parse_int/parse_int.h"
 #include "../sh.h"
 
 void	print_exit(int status)
 {
   egc_printf("exit\n");
+  readline_restore_term(STATICS->term_cfg);
   egc_exit(status);
 }
 

@@ -45,12 +45,6 @@ struct                          s_readline
 
 typedef int	(*t_readline_ascii)(t_readline *);
 
-void	readline_setup_term(struct termios cfg);
-
-void	readline_get_term(struct termios *cfg);
-
-void	readline_restore_term(struct termios *cfg);
-
 void	readline_insert_char(t_readline *readline, char c);
 
 void	readline_delete_char(t_readline *readline);
