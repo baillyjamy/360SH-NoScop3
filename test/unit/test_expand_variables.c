@@ -15,5 +15,7 @@ void	test_expand_variables(void)
   t_hs	input;
   t_hs	result;
 
+  input = hs("");
+  result = hs("");
   expand_variables(input, &result);
 }
