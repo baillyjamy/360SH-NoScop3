@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Thu Jun  2 23:04:47 2016 antoine
-** Last update Fri Jun 03 12:01:13 2016 Antoine Baudrand
+** Last update Fri Jun 03 12:35:33 2016 Antoine Baudrand
 */
 
 #ifndef PARSER_H_
@@ -62,6 +62,8 @@ typedef struct  s_node
   t_node_type   type;
   t_exec        command;
   int           pipe_background;
+  t_hs          file_in;
+  t_hs          file_out;
   struct s_node *left;
   struct s_node *right;
 }               t_node;
