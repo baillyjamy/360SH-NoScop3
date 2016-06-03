@@ -36,14 +36,19 @@ static void     test_env()
   ASSERT(hs_equals(result, hs("hello")));
 }
 
-void	test_suite_expand_variables(void)
+static void     test_var()
 {
-  t_hs	result;
+  t_hs          result;
 
-  test_env();
-  test_empty();
-  test_no_vars();
   env_set_variable(hs("test_variable"), hs("hello"));
   ASSERT(expand_variables(hs("$test_variable world"), &result) == 0);
   ASSERT(hs_equals(result, hs("hello world")));
+}
+
+void	test_suite_expand_variables(void)
+{
+  test_env();
+  test_empty();
+  test_no_vars();
+  test_var();
 }
