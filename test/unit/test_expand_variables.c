@@ -10,6 +10,16 @@
 
 #include "test.h"
 
+static void     test_env()
+{
+  t_hs          result;
+
+  ASSERT(env_get_variable(hs("unknown_variable"), &result) == -1);
+  env_set_variable(hs("test_variable"), hs("hello"));
+  ASSERT(env_get_variable(hs("test_variable"), &result) == 0);
+  ASSERT(hs_equals(result, hs("hello")));
+}
+
 static void     test_empty()
 {
   t_hs          result;
@@ -26,36 +36,28 @@ static void     test_no_vars()
   ASSERT(hs_equals(result, hs("hi $ no variables here")));
 }
 
-static void     test_env()
+static void     test_unknown_variable()
 {
   t_hs          result;
 
-  ASSERT(env_get_variable(hs("unknown_variable"), &result) == -1);
+  ASSERT(expand_variables(hs("$unknown_variable"), &result) == -1);
+  ASSERT(hs_equals(result, hs("unknown_variable: Undefined variable.")));
+}
+
+static void     test_var()
+{
+  t_hs          result;
+
   env_set_variable(hs("test_variable"), hs("hello"));
-  ASSERT(env_get_variable(hs("test_variable"), &result) == 0);
-  ASSERT(hs_equals(result, hs("hello")));
+  ASSERT(expand_variables(hs("$test_variable world"), &result) == 0);
+  ASSERT(hs_equals(result, hs("hello world")));
 }
 
 void	test_suite_expand_variables(void)
 {
-  t_hs	result;
-  t_hs	variable;
-
-  result = hs("");
-  expand_variables(hs(""), &result);
-  ASSERT(hs_equals(result, hs("")));
-  result = hs("");
-  expand_variables(hs("momo$TAMERE  hello"), &result);
-  ASSERT(hs_equals(result, hs("momo$TAMERE  hello")));
-  result = hs("");
-  variable = hs("");
-  env_get_variable(hs("HOME"), &variable);
-  expand_variables(hs("$HOME"), &result);
-  ASSERT(hs_equals(result, variable));
   test_env();
   test_empty();
   test_no_vars();
-  env_set_variable(hs("test_variable"), hs("hello"));
-  ASSERT(expand_variables(hs("$test_variable world"), &result) == 0);
-  ASSERT(hs_equals(result, hs("hello world")));
+  test_var();
+  test_unknown_variable();
 }
