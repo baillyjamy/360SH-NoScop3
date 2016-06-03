@@ -22,4 +22,5 @@ void    run_test_suites(void)
   test_suite_exec();
   test_suite_lexer();
   test_suite_lexer_symbols();
+  test_expand_variables();
 }
