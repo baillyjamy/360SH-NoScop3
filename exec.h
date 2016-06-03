@@ -35,7 +35,7 @@ typedef struct  s_process
   int           exit_code;
 }               t_process;
 
-t_process       *exec(const t_exec *);
+t_process       *exec(const t_exec *exec);
 t_glist_hs	get_path(void);
 
 #endif /* !EXEC_H_ */

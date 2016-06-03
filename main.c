@@ -8,12 +8,10 @@
 ** Last update Fri Jun 03 11:26:08 2016 Antoine Baudrand
 */
 
-#include "sh.h"
 #include "readline/readline.h"
-#include "lexer/lexer.h"
-#include "parser/parser.h"
+#include "eval.h"
 
-static void             eval(t_hs input)
+static void             eval_hs(t_hs input)
 {
   t_lexer_result        lex_res;
   t_parser_result       parse_res;
@@ -32,6 +30,7 @@ static void             eval(t_hs input)
       return ;
     }
   hs_puts(node_to_hs(parse_res.node));
+  eval(parse_res.node);
 }
 
 int             launch(int argc, char **argv, char **env)
@@ -51,7 +50,7 @@ int             launch(int argc, char **argv, char **env)
       readline_set_prompt(readline, create_prompt());
       input = readline_read(readline);
       if (hs_length(input))
-        eval(input);
+        eval_hs(input);
     }
   return (0);
 }

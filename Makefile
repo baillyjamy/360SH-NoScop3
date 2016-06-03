@@ -33,6 +33,7 @@ SOURCES	= \
 	colorize/uncolorize.c \
 	env.c \
 	env_tools.c \
+	eval.c \
 	exec.c \
 	expand_variables.c \
 	file/exist.c \
