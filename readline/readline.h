@@ -11,8 +11,8 @@
 #ifndef READLINE_H_
 # define READLINE_H_
 
-# include "../egc.h"
 # include <termios.h>
+# include "../egc.h"
 
 struct				s_readline;
 typedef struct s_readline	t_readline;

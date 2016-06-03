@@ -9,6 +9,7 @@
 */
 
 #include <unistd.h>
+#include "../sh.h"
 #include "readline.h"
 
 void	readline_setup_term(struct termios cfg)
@@ -27,6 +28,7 @@ void	readline_setup_term(struct termios cfg)
 void	readline_get_term(struct termios *cfg)
 {
   tcgetattr(0, cfg);
+  STATICS->term_cfg = cfg;
 }
 
 void	readline_restore_term(struct termios *cfg)

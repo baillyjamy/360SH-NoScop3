@@ -31,7 +31,6 @@ SOURCES	= \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
-	ctrl_d.c \
 	env.c \
 	env_tools.c \
 	exec.c \

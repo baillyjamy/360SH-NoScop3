@@ -11,6 +11,7 @@
 #ifndef SH_H_
 # define SH_H_
 
+# include <termios.h>
 # include "egc.h"
 # include "./toolbox/tools.h"
 # include "file/file.h"
@@ -26,12 +27,13 @@ typedef struct  s_test_stats
 /*
 ** `test_stats` is used only by the automated tests.
 */
-typedef struct  s_statics
+typedef struct  	s_statics
 {
-  const char    *lexer_input_string;
-  t_test_stats  test_stats;
-  t_glist_hs	env;
-}               t_statics;
+  const char    	*lexer_input_string;
+  t_test_stats  	test_stats;
+  t_glist_hs		env;
+  struct termios	*term_cfg;
+}               	t_statics;
 
 /*
 ** Initializes the statics variables, with an empty environment.
@@ -81,7 +83,6 @@ int		setenv_cmd(t_glist_hs *argv);
 
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
-void		ctrl_d(int status);
 void		print_exit(int status);
 
 /*
