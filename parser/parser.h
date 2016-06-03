@@ -1,16 +1,18 @@
 /*
-** parser.h for  in /home/antoine
+** parser.h for parser in /home/antoine/360SH-NoScop3/parser
 **
 ** Made by antoine
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Thu Jun  2 23:04:47 2016 antoine
-** Last update Thu Jun  2 23:04:47 2016 antoine
+** Last update Fri Jun 03 12:01:13 2016 Antoine Baudrand
 */
 
 #ifndef PARSER_H_
 # define PARSER_H_
 
+# include "../lexer/lexer.h"
+# include "../exec.h"
 # include "../sh.h"
 
 typedef enum    e_node_type
@@ -58,9 +60,7 @@ char const      *node_type_to_str(t_node_type type);
 typedef struct  s_node
 {
   t_node_type   type;
-  int           input;
-  int           error_output;
-  int           output;
+  t_exec        command;
   int           pipe_background;
   struct s_node *left;
   struct s_node *right;
@@ -70,5 +70,7 @@ typedef struct  s_node
 ** Returns a string describing the node, for debugging purposes.
 */
 t_hs    node_to_hs(const t_node *node);
+t_node  *add_node(t_node_type type, t_node *left);
+void    parse(t_token_list *tokens);
 
 #endif /* PARSER_H_ */
