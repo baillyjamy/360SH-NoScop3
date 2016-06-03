@@ -10,6 +10,7 @@
 
 #include "private.h"
 #include "string.h"
+#include "../sh.h"
 
 static void	readline_escape_envent(t_readline *readline, char *c)
 {
@@ -31,6 +32,11 @@ static void	readline_ascii_event(t_capacity *capacity, char c)
 {
   if (c == 0x0C)
     egc_printf("%s", capacity->capacity_clear_screen);
+  else if (c == 0x04)
+    {
+      egc_printf("exit\n");
+      exitcmd(0);
+    }
   else
     return ;
 }
