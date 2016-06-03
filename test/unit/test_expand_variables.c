@@ -12,10 +12,18 @@
 
 void	test_expand_variables(void)
 {
-  t_hs	input;
   t_hs	result;
+  t_hs	variable;
 
-  input = hs("");
   result = hs("");
-  expand_variables(input, &result);
+  expand_variables(hs(""), &result);
+  ASSERT(hs_equals(result, hs("")));
+  result = hs("");
+  expand_variables(hs("momo$TAMERE  hello"), &result);
+  ASSERT(hs_equals(result, hs("momo$TAMERE  hello")));
+  result = hs("");
+  variable = hs("");
+  env_get_variable(hs("HOME"), &variable);
+  expand_variables(hs("$HOME"), &result);
+  ASSERT(hs_equals(result, variable));
 }
