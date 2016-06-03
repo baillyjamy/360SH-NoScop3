@@ -54,7 +54,9 @@ SOURCES	= \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
 	parse_int/parse_and_read_int_base.c \
+	readline/readline_ascii_event.c\
 	readline/readline_char.c \
+	readline/readline_event_ctrl.c\
 	readline/readline_event.c \
 	readline/readline_get.c \
 	readline/readline_new.c \

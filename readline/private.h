@@ -43,6 +43,8 @@ struct                          s_readline
   void				*colorizer_data;
 };
 
+typedef void	(*t_readline_ascii)(t_readline *);
+
 void	readline_setup_term(struct termios cfg);
 
 void	readline_get_term(struct termios *cfg);
@@ -58,5 +60,11 @@ void	readline_update(t_readline *readline, char c);
 void	readline_update_cursor(const t_readline *readline);
 
 void	readline_event(t_readline *readline, char *c);
+
+void	readline_ascii_event(t_readline *readline, char c);
+
+void	readline_ctrl_d(t_readline *readline);
+
+void	readline_ctrl_l(t_readline *readline);
 
 #endif /* !PRIVATE_H_ */
