@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Fri Jun  3 18:16:18 2016 Valentin Pichard
+** Last update Fri Jun  3 19:00:02 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -92,7 +92,8 @@ void		unsetenv_cmd(t_glist_hs *argv);
 /*
 ** Rcfile functions
 */
-int		rcfile_init(void);
+int		get_rcfile(void);
+int		get_history(void);
 
 /*
 ** Return 0 if success and -1 if not

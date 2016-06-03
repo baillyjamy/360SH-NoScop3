@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Fri Jun  3 19:28:17 2016 Pierre-Emmanuel Jacquier
+## Last update Fri Jun  3 19:00:56 2016 Valentin Pichard
 ##
 
 include test.mk
@@ -40,6 +40,7 @@ SOURCES	= \
 	file/file.c \
 	file/insert.c \
 	file/read.c \
+	history.c \
 	lexer/error.c \
 	lexer/get_position.c \
 	lexer/lex_symbols.c \
@@ -54,6 +55,7 @@ SOURCES	= \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
 	parse_int/parse_and_read_int_base.c \
+	rcfile.c \
 	readline/readline_char.c \
 	readline/readline_event.c \
 	readline/readline_get.c \
