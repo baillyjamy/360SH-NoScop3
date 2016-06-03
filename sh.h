@@ -76,6 +76,7 @@ int		setenv_cmd(t_glist_hs *argv);
 
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
+void		ctrl_d(void);
 
 /*
 ** built-in functions
