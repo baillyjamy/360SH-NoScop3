@@ -57,11 +57,6 @@ void	readline_update(t_readline *readline, char c);
 
 void	readline_update_cursor(const t_readline *readline);
 
-void	readline_event(t_capacity *capacity,
-		       char *c_str,
-		       int *cursor_pos,
-		       int len_line);
-
-void	readline_ctrl_event(t_capacity *capacity, char c);
+void	readline_event(t_readline *readline, char *c);
 
 #endif /* !PRIVATE_H_ */

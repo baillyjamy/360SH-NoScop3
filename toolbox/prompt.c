@@ -5,7 +5,7 @@
 ** Login   <bailly_j@epitech.net>
 **
 ** Started on  Tue May 31 21:13:23 2016 Jamy Bailly
-** Last update Thu Jun  2 23:12:29 2016 Valentin Pichard
+** Last update Fri Jun  3 16:20:40 2016 Valentin Pichard
 */
 
 #include "../sh.h"
@@ -21,14 +21,14 @@ static t_hs	get_hostname(void)
   t_hs		host;
 
   host = hs("");
-  if ((fd = open("/etc/hostname", O_RDONLY)) == -1)
-    return (hs("42sh"));
+  if ((fd = open_file(hs("/etc/hostname"), O_RDONLY)) == -1)
+    return (hs("360SH-NoScop3"));
   while (42)
     {
       if (read(fd, &c, 1) == -1)
 	{
 	  close(fd);
-	  return (hs("42sh"));
+	  return (hs("360SH-NoScop3"));
 	}
       if (c == '\n' || c == '\0')
 	break ;
@@ -42,16 +42,18 @@ static t_hs	format_pwd(t_hs pwd, t_hs home)
 {
   if (hs_starts_with(pwd, home))
     return (hs_concat_char_hs('~',
-			      hs_slice(pwd, hs_length(home), hs_length(pwd))));
+			      hs_slice(pwd,
+				       hs_length(home),
+				       hs_length(pwd))));
   return (pwd);
 }
 
-t_hs	create_prompt(void)
+t_hs		create_prompt(void)
 {
-  t_hs	user;
-  t_hs	host;
-  t_hs	pwd;
-  t_hs	prompt;
+  t_hs		user;
+  t_hs		host;
+  t_hs		pwd;
+  t_hs		prompt;
 
   user = hs("nobody");
   host = hs("42sh");

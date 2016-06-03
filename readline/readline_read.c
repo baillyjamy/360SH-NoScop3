@@ -32,8 +32,7 @@ static char     *read_char(int input)
 t_hs			readline_read(t_readline *readline)
 {
   struct termios	cfg;
-  char         		*c_str;
-  char			c;
+  char         		*c;
   int			i;
 
   readline->line = hs_new_empty();
@@ -42,21 +41,16 @@ t_hs			readline_read(t_readline *readline)
   readline_print_prompt(readline);
   while (1)
     {
-      c_str = read_char(readline->input);
-      c = c_str[0];
-      if (!c || c == '\n' || c == 0x0C)
-	{
-	  readline_ctrl_event(readline->capacity, c);
-	  break ;
-	}
-      if (c == 27)
-	readline_event(readline->capacity, c_str, &readline->cursor_pos,
-                       hs_length(readline->line));
+      c = read_char(readline->input);
+      if (!c[0] || c[0] == '\n')
+	break ;
+      else if (c[0] > 0 && c[0] < 32)
+	readline_event(readline, c);
       else
 	{
 	  i = -1;
-	  while (c_str[++i])
-	    readline_update(readline, c_str[i]);
+	  while (c[++i])
+	    readline_update(readline, c[i]);
 	}
     }
   readline_restore_term(&cfg);

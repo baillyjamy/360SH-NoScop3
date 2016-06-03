@@ -12,7 +12,6 @@
 # define SH_H_
 
 # include "egc.h"
-# include "./readline/readline.h"
 # include "./toolbox/tools.h"
 # include "file/file.h"
 
