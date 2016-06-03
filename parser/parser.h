@@ -93,6 +93,17 @@ t_node  *node_new(t_node_type type);
 */
 t_hs    node_to_hs(const t_node *node);
 
-t_node  *parse(t_token_list *tokens);
+/*
+** If `success` is true, `error` is unititialized.
+** If `success` is false, `error` contains an error message.
+*/
+typedef struct  s_parser_result
+{
+  t_node        *node;
+  t_hs          error;
+  int           success;
+}               t_parser_result;
+
+t_parser_result parse(t_token_list *tokens);
 
 #endif /* PARSER_H_ */

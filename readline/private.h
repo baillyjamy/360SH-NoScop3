@@ -57,6 +57,9 @@ void	readline_update(t_readline *readline, char c);
 
 void	readline_update_cursor(const t_readline *readline);
 
-void	readline_event(t_readline *readline, char *c);
+/*
+** Returns 0 on success, or -1 on EOF (Ctrl+D).
+*/
+int	readline_event(t_readline *readline, char *c);
 
 #endif /* !PRIVATE_H_ */
