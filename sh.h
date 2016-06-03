@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Thu Jun  2 16:50:48 2016 Valentin Pichard
+** Last update Fri Jun  3 19:00:02 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -76,7 +76,8 @@ int		setenv_cmd(t_glist_hs *argv);
 
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
-void		ctrl_d(void);
+void		ctrl_d(int status);
+void		print_exit(int status);
 
 /*
 ** built-in functions
@@ -87,6 +88,12 @@ int		exitcmd(t_glist_hs *argv);
 int		echocmd(t_glist_hs *argv);
 int		setenv_cmd(t_glist_hs *argv);
 void		unsetenv_cmd(t_glist_hs *argv);
+
+/*
+** Rcfile functions
+*/
+int		get_rcfile(void);
+int		get_history(void);
 
 /*
 ** Return 0 if success and -1 if not

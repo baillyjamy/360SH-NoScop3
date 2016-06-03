@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:15:40 2016 Valentin Pichard
-** Last update Thu Jun  2 23:01:35 2016 Valentin Pichard
+** Last update Fri Jun  3 19:04:30 2016 Valentin Pichard
 */
 
 #include <sys/stat.h>
@@ -35,10 +35,10 @@ int		read_file(const t_hs filename, t_glist_hs *lines)
     return (-1);
   if (read(fd, data, get_file_length(filename)) == -1)
     {
-      close_file(fd);
+      close(fd);
       return (-1);
     }
-  close_file(fd);
+  close(fd);
   ths = hs(data);
   if ((int)hs_length(ths) != file_length)
     return (-1);

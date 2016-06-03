@@ -18,7 +18,7 @@ void	print_exit(int status)
   egc_exit(status);
 }
 
-int		check_syntax(t_hs value)
+static int	check_syntax(t_hs value)
 {
   int		i;
   char          c;

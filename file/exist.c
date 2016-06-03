@@ -5,10 +5,29 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:14:18 2016 Valentin Pichard
-** Last update Thu Jun  2 23:01:16 2016 Valentin Pichard
+** Last update Fri Jun  3 19:01:59 2016 Valentin Pichard
 */
 
+#include <sys/stat.h>
 #include "file.h"
+
+int		file_exist(const t_hs filename)
+{
+  struct stat   fstat;
+
+  if (stat(hs_to_str(filename), &fstat) == 0)
+    return (0);
+  return (-1);
+}
+
+int		fshell_init(t_hs path, t_glist_hs *lines)
+{
+  if (file_exist(path) == -1)
+    return (-1);
+  if (read_file(path, lines) == -1)
+    return (-1);
+  return (0);
+}
 
 int		line_exist(const t_hs filename, const t_hs line)
 {
