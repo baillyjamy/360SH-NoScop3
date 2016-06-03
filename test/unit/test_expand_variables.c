@@ -10,6 +10,16 @@
 
 #include "test.h"
 
+static void     test_env()
+{
+  t_hs          result;
+
+  ASSERT(env_get_variable(hs("unknown_variable"), &result) == -1);
+  env_set_variable(hs("test_variable"), hs("hello"));
+  ASSERT(env_get_variable(hs("test_variable"), &result) == 0);
+  ASSERT(hs_equals(result, hs("hello")));
+}
+
 static void     test_empty()
 {
   t_hs          result;
@@ -26,14 +36,12 @@ static void     test_no_vars()
   ASSERT(hs_equals(result, hs("hi $ no variables here")));
 }
 
-static void     test_env()
+static void     test_unknown_variable()
 {
   t_hs          result;
 
-  ASSERT(env_get_variable(hs("unknown_variable"), &result) == -1);
-  env_set_variable(hs("test_variable"), hs("hello"));
-  ASSERT(env_get_variable(hs("test_variable"), &result) == 0);
-  ASSERT(hs_equals(result, hs("hello")));
+  ASSERT(expand_variables(hs("$unknown_variable"), &result) == -1);
+  ASSERT(hs_equals(result, hs("unknown_variable: Undefined variable.")));
 }
 
 static void     test_var()
@@ -51,4 +59,5 @@ void	test_suite_expand_variables(void)
   test_empty();
   test_no_vars();
   test_var();
+  test_unknown_variable();
 }
