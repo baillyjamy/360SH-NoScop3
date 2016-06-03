@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Fri Jun 03 17:02:07 2016 Antoine Baudrand
+## Last update Fri Jun  3 19:13:55 2016 Pierre-Emmanuel Jacquier
 ##
 
 include test.mk
@@ -20,13 +20,13 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 SOURCES	= \
-	bltin/cd.c \
-	bltin/cd_errors.c \
-	bltin/echo.c \
-	bltin/env_cmd.c \
-	bltin/exit.c \
-	bltin/setenv.c \
-	bltin/unsetenv.c \
+	bltins/cd.c \
+	bltins/cd_errors.c \
+	bltins/echo.c \
+	bltins/env_cmd.c \
+	bltins/exit.c \
+	bltins/setenv.c \
+	bltins/unsetenv.c \
 	colorize/colorize.c \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
