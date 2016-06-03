@@ -27,6 +27,13 @@ typedef enum    e_node_type
 
 char const      *node_type_to_str(t_node_type type);
 
+typedef struct  s_redir
+{
+  int           input;
+  int           output;
+  int           error_output;
+}               t_redir;
+
 struct                  s_node;
 typedef struct s_node   t_node;
 
@@ -62,18 +69,16 @@ typedef struct s_node   t_node;
 **
 ** <all node types>:
 **      type: The type of the node.
-**      input, error_output, output: File descriptors. If one of these
-**      file descriptors is not equal to 0, 1 or 2, it is open and should
-**      be closed.
+**      redir: The redirections file descriptors.
+**      If one of these file descriptors is not equal to 0, 1 or 2, it is
+**      open and should be closed.
 **
 ** The other properties are left undefined.
 */
 struct  s_node
 {
   t_node_type   type;
-  int           input;
-  int           error_output;
-  int           output;
+  t_redir       redir;
   int           pipe_background;
   t_node        *left;
   t_node        *right;
@@ -81,12 +86,12 @@ struct  s_node
   t_glist_voidp children;
 };
 
+void    parser_redir_close(t_redir *redir);
+
 /*
-** Creates a new node.
-**
-** Initializes only the property shared by all the node types.
+** Close the file descriptors associated with the given node.
 */
-t_node  *node_new(t_node_type type);
+void    node_close(t_node *node);
 
 /*
 ** Returns a string describing the node, for debugging purposes.

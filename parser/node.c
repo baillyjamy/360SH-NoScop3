@@ -10,18 +10,44 @@
 
 #include <assert.h>
 #include <unistd.h>
-#include "parser.h"
+#include "private.h"
 
-t_node          *node_new(t_node_type type)
+t_node          *node_new(t_node_type type, const t_redir *redir)
 {
   t_node        *new;
 
   new = EGC_NEW(t_node);
   new->type = type;
-  new->input = STDIN_FILENO;
-  new->output = STDOUT_FILENO;
-  new->error_output = STDERR_FILENO;
+  new->redir = *redir;
   return (new);
+}
+
+void    parser_redir_init(t_redir *redir)
+{
+  redir->input = STDIN_FILENO;
+  redir->output = STDOUT_FILENO;
+  redir->error_output = STDERR_FILENO;
+}
+
+void    parser_redir_close(t_redir *redir)
+{
+  assert(redir->input >= 0);
+  assert(redir->output >= 0);
+  assert(redir->error_output >= 0);
+  if (redir->input > 2)
+    close(redir->input);
+  if (redir->output > 2)
+    close(redir->output);
+  if (redir->error_output > 2)
+    close(redir->error_output);
+  redir->input = -1;
+  redir->output = -1;
+  redir->error_output = -1;
+}
+
+void    node_close(t_node *node)
+{
+  parser_redir_close(&node->redir);
 }
 
 t_hs    node_to_hs(const t_node *node)

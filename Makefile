@@ -55,6 +55,9 @@ SOURCES	= \
 	parse_int/parse_int.c \
 	parse_int/parse_and_read_int.c \
 	parse_int/parse_and_read_int_base.c \
+	parser/node.c \
+	parser/redir.c \
+	parser/parser.c \
 	rcfile.c \
 	readline/readline_char.c \
 	readline/readline_event.c \
@@ -76,9 +79,7 @@ SOURCES	= \
 	string/string_type.c \
 	string/string_type_converter.c \
 	toolbox/display.c \
-	toolbox/prompt.c \
-	parser/parser.c \
-	parser/node.c \
+	toolbox/prompt.c
 
 OBJECTS	= $(SOURCES:.c=.o)
 
