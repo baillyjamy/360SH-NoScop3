@@ -11,8 +11,8 @@
 #ifndef READLINE_H_
 # define READLINE_H_
 
-# include "../egc.h"
 # include <termios.h>
+# include "../egc.h"
 
 struct				s_readline;
 typedef struct s_readline	t_readline;
@@ -103,6 +103,21 @@ void	readline_set_prompt(t_readline *readline, t_hs prompt);
 ** Print the prompt
 */
 void	readline_print_prompt(t_readline *readline);
+
+/*
+** Set terminal configuration
+*/
+void	readline_setup_term(struct termios cfg);
+
+/*
+** Get terminal configuration
+*/
+void	readline_get_term(struct termios *cfg);
+
+/*
+** Restore terminal configuration
+*/
+void	readline_restore_term(struct termios *cfg);
 
 void	readline_clear_history(t_readline *readline);
 

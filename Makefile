@@ -31,7 +31,6 @@ SOURCES	= \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
-	ctrl_d.c \
 	env.c \
 	env_tools.c \
 	exec.c \
@@ -59,7 +58,9 @@ SOURCES	= \
 	parser/redir.c \
 	parser/parser.c \
 	rcfile.c \
+	readline/readline_ascii_event.c\
 	readline/readline_char.c \
+	readline/readline_event_ctrl.c\
 	readline/readline_event.c \
 	readline/readline_get.c \
 	readline/readline_new.c \

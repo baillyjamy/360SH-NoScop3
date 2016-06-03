@@ -28,15 +28,6 @@ static void	readline_escape_envent(t_readline *readline, char *c)
     }
 }
 
-static int	readline_ascii_event(t_capacity *capacity, char c)
-{
-  if (c == 0x04)
-    return (-1);
-  if (c == 0x0C)
-    egc_printf("%s", capacity->capacity_clear_screen);
-  return (0);
-}
-
 int     readline_event(t_readline *readline, char *c)
 {
   if (c[0] == 27)
@@ -44,5 +35,5 @@ int     readline_event(t_readline *readline, char *c)
       readline_escape_envent(readline, c);
       return (0);
     }
-  return (readline_ascii_event(readline->capacity, c[0]));
+  return (readline_ascii_event(readline, c[0]));
 }
