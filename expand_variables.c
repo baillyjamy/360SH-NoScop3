@@ -96,7 +96,6 @@ int	expand_variables(t_hs input, t_hs *result)
   name = get_variable_name(after);
   if (hs_length(name) == 0)
     return (expand_dollar(before, after, result));
-  egc_printf("name = %hs", value);
   if (env_get_variable(name, &value) == -1)
     {
       *result = hs_format("%hs: Undefined variable.", name);

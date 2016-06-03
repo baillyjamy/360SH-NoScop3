@@ -39,19 +39,7 @@ static void     test_env()
 void	test_suite_expand_variables(void)
 {
   t_hs	result;
-  t_hs	variable;
 
-  result = hs("");
-  expand_variables(hs(""), &result);
-  ASSERT(hs_equals(result, hs("")));
-  result = hs("");
-  expand_variables(hs("momo$TAMERE  hello"), &result);
-  ASSERT(hs_equals(result, hs("momo$TAMERE  hello")));
-  result = hs("");
-  variable = hs("");
-  env_get_variable(hs("HOME"), &variable);
-  expand_variables(hs("$HOME"), &result);
-  ASSERT(hs_equals(result, variable));
   test_env();
   test_empty();
   test_no_vars();
