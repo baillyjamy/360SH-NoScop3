@@ -13,12 +13,26 @@
 #include "lexer/lexer.h"
 #include "parser/parser.h"
 
-int		    launch(int argc, char **argv, char **env)
+static void             eval(t_hs input)
 {
-  t_hs		    input;
-  t_readline	    *readline;
-  t_statics         statics;
-  t_token_list      *tokens;
+  t_lexer_result        lex_res;
+  t_parser_result       parse_res;
+
+  lex_res = lex(input);
+  if (lex_res.error)
+    {
+      hs_puts(syntax_error_to_hs(lex_res.error));
+      return ;
+    }
+  hs_puts(token_list_to_hs(lex_res.tokens));
+  parse_res = parse(lex_res.tokens);
+}
+
+int             launch(int argc, char **argv, char **env)
+{
+  t_hs          input;
+  t_readline    *readline;
+  t_statics     statics;
 
   (void) argc;
   (void) argv;
@@ -30,11 +44,8 @@ int		    launch(int argc, char **argv, char **env)
       readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
       readline_set_prompt(readline, create_prompt());
       input = readline_read(readline);
-      if (hs_get(input, 0) != '\0')
-	{
-          tokens = lex(input).tokens;
-          parse(tokens);
-	}
+      if (hs_length(input))
+        eval(input);
     }
   return (0);
 }

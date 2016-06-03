@@ -45,7 +45,13 @@ t_hs			readline_read(t_readline *readline)
       if (!c[0] || c[0] == '\n')
 	break ;
       else if (c[0] > 0 && c[0] < 32)
-	readline_event(readline, c);
+        {
+          if (readline_event(readline, c))
+            {
+              hs_puts(hs("exit"));
+              return (hs("exit"));
+            }
+        }
       else
 	{
 	  i = -1;

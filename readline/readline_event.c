@@ -28,25 +28,21 @@ static void	readline_escape_envent(t_readline *readline, char *c)
     }
 }
 
-static void	readline_ascii_event(t_capacity *capacity, char c)
+static int	readline_ascii_event(t_capacity *capacity, char c)
 {
+  if (c == 0x04)
+    return (-1);
   if (c == 0x0C)
     egc_printf("%s", capacity->capacity_clear_screen);
-  else if (c == 0x04)
-    {
-      egc_printf("exit\n");
-      exitcmd(0);
-    }
-  else
-    return ;
+  return (0);
 }
 
-void	readline_event(t_readline *readline, char *c)
+int     readline_event(t_readline *readline, char *c)
 {
   if (c[0] == 27)
     {
       readline_escape_envent(readline, c);
+      return (0);
     }
-  else
-    readline_ascii_event(readline->capacity, c[0]);
+  return (readline_ascii_event(readline->capacity, c[0]));
 }
