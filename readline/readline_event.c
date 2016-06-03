@@ -11,7 +11,23 @@
 #include "private.h"
 #include "string.h"
 
-void	readline_ctrl_event(t_capacity *capacity, char c)
+static void	readline_escape_envent(t_readline *readline, char *c)
+{
+  if (!strcmp(c, readline->capacity->capacity_key_left)
+      && readline->cursor_pos > 0)
+    {
+      readline->cursor_pos -= 1;
+      egc_printf("%s", readline->capacity->capacity_cursor_left);
+    }
+  else if (!strcmp(c, readline->capacity->capacity_key_right)
+	   && readline->cursor_pos < (int) hs_length(readline->line))
+    {
+      readline->cursor_pos += 1;
+      egc_printf("%s", readline->capacity->capacity_cursor_right);
+    }
+}
+
+static void	readline_ascii_event(t_capacity *capacity, char c)
 {
   if (c == 0x0C)
     egc_printf("%s", capacity->capacity_clear_screen);
@@ -19,20 +35,12 @@ void	readline_ctrl_event(t_capacity *capacity, char c)
     return ;
 }
 
-void	readline_event(t_capacity *capacity,
-		       char *c_str,
-		       int *cursor_pos,
-		       int len_line)
+void	readline_event(t_readline *readline, char *c)
 {
-  if (!strcmp(c_str, capacity->capacity_key_left) && *cursor_pos > 0)
+  if (c[0] == 27)
     {
-      *cursor_pos -= 1;
-      egc_printf("%s", capacity->capacity_cursor_left);
+      readline_escape_envent(readline, c);
     }
-  else if (!strcmp(c_str, capacity->capacity_key_right)
-	   && *cursor_pos < len_line)
-    {
-      *cursor_pos += 1;
-      egc_printf("%s", capacity->capacity_cursor_right);
-    }
+  else
+    readline_ascii_event(readline->capacity, c[0]);
 }
