@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 ** 
 ** Started on  Fri Jun 03 11:50:59 2016 Antoine Baudrand
-** Last update Fri Jun 03 12:36:05 2016 Antoine Baudrand
+** Last update Fri Jun 03 14:07:47 2016 Antoine Baudrand
 */
 
 #include <unistd.h>
@@ -19,6 +19,7 @@ t_node      *add_node(t_node_type type, t_node *left)
   new = EGC_NEW(t_node);
   new->type = type;
   new->command.argv = glist_hs_new();
+  new->command.env = glist_hs_new();
   new->command.stdin_fd = STDIN_FILENO;
   new->command.stdout_fd = STDOUT_FILENO;
   new->command.stderr_fd = STDERR_FILENO;
