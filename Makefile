@@ -141,6 +141,7 @@ rtest: test/test
 vgtest: test/test
 	valgrind \
 		--suppressions=egc/valgrind.supp \
+		--leak-check=full \
 		--track-origins=yes \
 		--num-callers=100 \
 		./test/test
@@ -148,6 +149,7 @@ vgtest: test/test
 vg: $(NAME)
 	valgrind \
 		--suppressions=egc/valgrind.supp \
+		--leak-check=full \
 		--track-origins=yes \
 		--num-callers=100 \
 		./$(NAME)
