@@ -41,9 +41,10 @@ static t_hs	get_variable_name(t_hs string)
   while (hs_length(string))
     {
       c = hs_get(string, 0);
-      if (!char_is_alpha_numeric(c))
+      if (!char_is_alpha_numeric(c) && c != '_')
 	break ;
       string = hs_slice(string, 1, hs_length(string));
+      name = hs_concat_hs_char(name, c);
     }
   return (name);
 }
@@ -72,7 +73,7 @@ int	expand_values(t_hs left, t_hs value, t_hs rigth, t_hs *result)
       *result = exp_right;
       return (-1);
     }
-  hs_format("%hs%hs", left, value, exp_right);
+  *result = hs_format("%hs%hs%hs", left, value, exp_right);
   return (0);
 }
 

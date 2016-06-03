@@ -34,10 +34,15 @@ typedef struct  s_statics
 }               t_statics;
 
 /*
-** Does not initialize the environment.
+** Initializes the statics variables, with an empty environment.
 */
 void            statics_init(t_statics *statics);
 
+/*
+** Initializes the environment from an array of strings.
+**
+** Should be called after statics_init().
+*/
 void		env_init(char **env_c_strings);
 
 /*

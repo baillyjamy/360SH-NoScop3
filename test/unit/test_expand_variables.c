@@ -10,12 +10,40 @@
 
 #include "test.h"
 
-void	test_expand_variables(void)
+static void     test_empty()
 {
-  t_hs	input;
+  t_hs          result;
+
+  ASSERT(expand_variables(hs(""), &result) == 0);
+  ASSERT(hs_equals(result, hs("")));
+}
+
+static void     test_no_vars()
+{
+  t_hs          result;
+
+  ASSERT(expand_variables(hs("hi $ no variables here"), &result) == 0);
+  ASSERT(hs_equals(result, hs("hi $ no variables here")));
+}
+
+static void     test_env()
+{
+  t_hs          result;
+
+  ASSERT(env_get_variable(hs("unknown_variable"), &result) == -1);
+  env_set_variable(hs("test_variable"), hs("hello"));
+  ASSERT(env_get_variable(hs("test_variable"), &result) == 0);
+  ASSERT(hs_equals(result, hs("hello")));
+}
+
+void	test_suite_expand_variables(void)
+{
   t_hs	result;
 
-  input = hs("");
-  result = hs("");
-  expand_variables(input, &result);
+  test_env();
+  test_empty();
+  test_no_vars();
+  env_set_variable(hs("test_variable"), hs("hello"));
+  ASSERT(expand_variables(hs("$test_variable world"), &result) == 0);
+  ASSERT(hs_equals(result, hs("hello world")));
 }
