@@ -10,13 +10,12 @@
 
 #include "sh.h"
 
-int		get_history(void)
+int		get_history(t_glist_hs *history)
 {
   t_hs		path;
-  t_glist_hs	history;
 
   path = hs("~/.360sh-noscop3_history");
-  if (fshell_init(path, &history) == -1)
+  if (fshell_init(path, history))
     return (-1);
   return (0);
 }
