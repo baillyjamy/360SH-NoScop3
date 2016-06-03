@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 ** 
 ** Started on  Fri Jun 03 11:18:33 2016 Antoine Baudrand
-** Last update Fri Jun 03 14:47:46 2016 Antoine Baudrand
+** Last update Fri Jun 03 15:22:44 2016 Antoine Baudrand
 */
 
 #include "../lexer/lexer.h"
@@ -25,7 +25,7 @@ static void     parse_command(t_token_list **tokens, t_node **nodes)
 }
 
 
-t_hs	        get_command_from_path(t_hs cmd)
+/*t_hs	        get_command_from_path(t_hs cmd)
 {
   t_hs          res;
   t_glist_hs    path;
@@ -47,7 +47,7 @@ t_hs	        get_command_from_path(t_hs cmd)
     }
   return (0);
 }
-
+*/
 void        parse(t_token_list *tokens)
 {
   t_node    *nodes;
