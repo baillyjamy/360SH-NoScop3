@@ -92,8 +92,8 @@ void		unsetenv_cmd(t_glist_hs *argv);
 /*
 ** Rcfile functions
 */
-int		get_rcfile(void);
-int		get_history(void);
+int		get_rcfile(t_glist_hs *to_exec);
+int		get_history(t_glist_hs *history);
 
 /*
 ** Return 0 if success and -1 if not

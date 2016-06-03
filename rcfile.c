@@ -10,13 +10,12 @@
 
 #include "sh.h"
 
-int		get_rcfile(void)
+int		get_rcfile(t_glist_hs *to_exec)
 {
   t_hs		path;
-  t_glist_hs	to_exec;
 
   path = hs("~/.360sh-noscop3rc");
-  if (fshell_init(path, &to_exec) == 0)
+  if (fshell_init(path, to_exec))
     return (-1);
   return (0);
 }
