@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Thu Jun  2 16:50:48 2016 Valentin Pichard
+** Last update Fri Jun  3 18:16:18 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -88,6 +88,11 @@ int		exitcmd(t_glist_hs *argv);
 int		echocmd(t_glist_hs *argv);
 int		setenv_cmd(t_glist_hs *argv);
 void		unsetenv_cmd(t_glist_hs *argv);
+
+/*
+** Rcfile functions
+*/
+int		rcfile_init(void);
 
 /*
 ** Return 0 if success and -1 if not

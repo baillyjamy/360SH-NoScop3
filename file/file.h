@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Fri Jun  3 17:35:20 2016 Valentin Pichard
+** Last update Fri Jun  3 18:02:49 2016 Valentin Pichard
 */
 
 #ifndef FILE_H_
@@ -76,6 +76,5 @@ void		close_file(int fd);
 int		edit_file(const t_hs filename);
 ssize_t		get_file_length(const t_hs filename);
 int		file_exist(const t_hs filename);
-int		rcfile_exist(void);
 
 #endif /* !FILE_H_ */
