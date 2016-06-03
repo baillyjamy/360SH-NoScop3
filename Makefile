@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Fri Jun 03 12:00:05 2016 Antoine Baudrand
+## Last update Fri Jun 03 17:02:07 2016 Antoine Baudrand
 ##
 
 include test.mk
@@ -85,7 +85,7 @@ CC		= cc
 
 RM		= rm -rf
 
-CFLAGS		= -W -Wall -Wextra -std=c89
+CFLAGS		= -W -Wall -Wextra
 
 LDFLAGS		= -L./egc -legc -lncurses
 
