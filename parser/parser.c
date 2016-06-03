@@ -74,6 +74,20 @@ int             parse_word_or_string(t_token_list **list_pointer,
   return (0);
 }
 
+t_parser_result parse_command_end(t_token_list **list_pointer,
+                                  t_node *node)
+{
+  t_hs          word;
+
+  while (1)
+    {
+      if (parse_word_or_string(list_pointer, &word))
+        break ;
+      glist_hs_append(&node->args, word);
+    }
+  return (NODE(node));
+}
+
 t_parser_result parse_command(t_token_list **list_pointer)
 {
   t_node        *node;
@@ -86,7 +100,7 @@ t_parser_result parse_command(t_token_list **list_pointer)
   node = node_new(NODE_COMMAND);
   node->args = glist_hs_new();
   glist_hs_append(&node->args, word);
-  return (NODE(node));
+  return (parse_command_end(list_pointer, node));
 }
 
 t_node          *node_new_empty_list(void)
@@ -104,7 +118,14 @@ t_parser_result         parse(t_token_list *tokens)
   t_node                *node;
 
   result = parse_command(&tokens);
-  if (result.success && !result.node)
+  if (!result.success)
+    return (result);
+  if (tokens)
+    {
+      return (ERROR(hs_format("Unexpected token '%hs'",
+                              tokens->token->source)));
+    }
+  if (!result.node)
     {
       node = node_new_empty_list();
       return (NODE(node));

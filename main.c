@@ -26,6 +26,12 @@ static void             eval(t_hs input)
     }
   hs_puts(token_list_to_hs(lex_res.tokens));
   parse_res = parse(lex_res.tokens);
+  if (!parse_res.success)
+    {
+      hs_puts(parse_res.error);
+      return ;
+    }
+  hs_puts(node_to_hs(parse_res.node));
 }
 
 int             launch(int argc, char **argv, char **env)

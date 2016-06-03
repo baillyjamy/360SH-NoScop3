@@ -12,7 +12,6 @@
 
 void		env_init(char **env_c_strings)
 {
-  STATICS->env = glist_hs_new();
   while (*env_c_strings)
     {
       glist_hs_append(&STATICS->env, hs(*env_c_strings));
