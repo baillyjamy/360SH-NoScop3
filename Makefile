@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Fri Jun  3 19:20:13 2016 Pierre-Emmanuel Jacquier
+## Last update Fri Jun  3 19:28:17 2016 Pierre-Emmanuel Jacquier
 ##
 
 include test.mk
@@ -31,6 +31,7 @@ SOURCES	= \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
+	ctrl_d.c \
 	env.c \
 	env_tools.c \
 	exec.c \
