@@ -5,11 +5,12 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Mon May 30 19:08:52 2016 Pierre-Emmanuel Jacquier
-** Last update Fri Jun 03 00:10:57 2016 Antoine Baudrand
+** Last update Fri Jun 03 11:26:08 2016 Antoine Baudrand
 */
 
 #include "sh.h"
 #include "lexer/lexer.h"
+#include "parser/parser.h"
 
 int		    launch(int argc, char **argv, char **env)
 {
@@ -31,14 +32,7 @@ int		    launch(int argc, char **argv, char **env)
       if (hs_get(input, 0) != '\0')
 	{
           tokens = lex(input).tokens;
-          while (tokens)
-            {
-              egc_printf("----| TOKEN |----\n type: %s\n string: %hs\n value: %hs\n",
-                         token_type_to_str(tokens->token->type),
-                         tokens->token->string_value,
-                         tokens->token->source);
-              tokens = tokens->next;
-            }
+          parse(tokens);
 	}
     }
   return (0);

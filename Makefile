@@ -1,11 +1,11 @@
 ##
-## Makefile for 42sh in /home/antoine/42sh
+## Makefile for 360SH-NoScop3 in /home/antoine/360SH-NoScop3
 ##
 ## Made by Valentin Pichard
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Thu Jun  2 16:24:27 2016 Valentin Pichard
+## Last update Fri Jun 03 12:00:05 2016 Antoine Baudrand
 ##
 
 include test.mk
@@ -74,6 +74,8 @@ SOURCES	= \
 	string/string_type_converter.c \
 	toolbox/display.c \
 	toolbox/prompt.c \
+	parser/parser.c \
+	parser/node.c \
 
 OBJECTS	= $(SOURCES:.c=.o)
 
