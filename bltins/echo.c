@@ -29,7 +29,7 @@ static int	print_args(t_glist_hs *argv)
   return (1);
 }
 
-int	echocmd(t_glist_hs *argv)
+int	echo_cmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) == 1)
     return (egc_printf("\n"));

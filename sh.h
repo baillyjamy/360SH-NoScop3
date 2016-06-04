@@ -32,7 +32,6 @@ typedef struct  	s_statics
   const char    	*lexer_input_string;
   t_test_stats  	test_stats;
   t_glist_hs		env;
-  struct termios	*term_cfg;
 }               	t_statics;
 
 /*
@@ -78,9 +77,6 @@ int		env_variable_exists(t_hs name);
 
 void		env_create_variable(t_hs name, t_hs value);
 
-void		unsetenv_cmd(t_glist_hs *argv);
-int		setenv_cmd(t_glist_hs *argv);
-
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
 void		print_exit(int status);
@@ -88,12 +84,20 @@ void		print_exit(int status);
 /*
 ** built-in functions
 */
-void		envcmd(void);
-int		cdcmd(t_glist_hs *argv);
-int		exitcmd(t_glist_hs *argv);
-int		echocmd(t_glist_hs *argv);
+typedef int     (*t_bltin_function)(t_glist_hs *args);
+
+typedef struct          s_bltin
+{
+  const char            *name;
+  t_bltin_function      function;
+}                       t_bltin;
+
+int		env_cmd(t_glist_hs *argv);
+int		cd_cmd(t_glist_hs *argv);
+int		exit_cmd(t_glist_hs *argv);
+int		echo_cmd(t_glist_hs *argv);
 int		setenv_cmd(t_glist_hs *argv);
-void		unsetenv_cmd(t_glist_hs *argv);
+int		unsetenv_cmd(t_glist_hs *argv);
 
 /*
 ** Rcfile functions

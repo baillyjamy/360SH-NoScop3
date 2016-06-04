@@ -10,7 +10,9 @@
 
 #include "../sh.h"
 
-void	envcmd(void)
+int	env_cmd(t_glist_hs *args)
 {
+  (void) args;
   display_environment();
+  return (0);
 }

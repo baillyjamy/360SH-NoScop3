@@ -16,7 +16,6 @@
 void	print_exit(int status)
 {
   egc_printf("exit\n");
-  readline_restore_term(STATICS->term_cfg);
   egc_exit(status);
 }
 
@@ -41,7 +40,7 @@ static int	check_syntax(t_hs value)
   return (1);
 }
 
-int	exitcmd(t_glist_hs *argv)
+int	exit_cmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) > 2)
     return (egc_fprintf(STDERR_FILENO, "exit: Expression Syntax.\n"));

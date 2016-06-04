@@ -12,22 +12,49 @@
 #include "eval.h"
 #include "exec.h"
 
-static int      eval_command(t_node *node)
+static void     get_bltins(t_bltin *bltins)
+{
+  int           i;
+
+  i = 0;
+  bltins[i].name = "env";
+  bltins[i++].function = env_cmd;
+  bltins[i].name = "setenv";
+  bltins[i++].function = setenv_cmd;
+  bltins[i].name = "cd";
+  bltins[i++].function = cd_cmd;
+  bltins[i].name = "exit";
+  bltins[i++].function = exit_cmd;
+  bltins[i].name = "unsetenv";
+  bltins[i++].function = unsetenv_cmd;
+  bltins[i].name = "echo";
+  bltins[i++].function = echo_cmd;
+  bltins[i].name = NULL;
+  bltins[i++].function = NULL;
+}
+
+static t_bltin_function find_bltin(t_hs command)
+{
+  t_bltin               builtins[32];
+  t_bltin               *builtin;
+
+  get_bltins(builtins);
+  builtin = builtins;
+  while (builtin->name)
+    {
+      if (hs_equals(command, hs(builtin->name)))
+        return (builtin->function);
+      builtin++;
+    }
+  return (NULL);
+}
+
+static int      eval_command_path(const t_node *node, t_hs command_path)
 {
   t_process     *process;
   t_exec        e;
-  t_glist_hs    path_list;
-  t_hs          cmd;
 
-  assert(glist_hs_length(&node->args));
-  cmd = glist_hs_get(&node->args, 0);
-  path_list = get_path_list();
-  e.filename = find_executable(&path_list, cmd);
-  if (!hs_length(e.filename))
-    {
-      egc_fprintf(STDERR_FILENO, "%hs: Command not found.\n", cmd);
-      return (-1);
-    }
+  e.filename = command_path;
   e.argv = glist_hs_copy(&node->args);
   e.env = glist_hs_new();
   e.stdin_fd = node->redir.input;
@@ -37,7 +64,33 @@ static int      eval_command(t_node *node)
   return (0);
 }
 
-static int      eval_list(t_node *node)
+static int              eval_command(const t_node *node)
+{
+  t_hs                  cmd;
+  t_hs                  cmd_path;
+  t_bltin_function      bltin;
+  t_glist_hs            path_list;
+  t_glist_hs            new_args;
+
+  assert(glist_hs_length(&node->args));
+  cmd = glist_hs_get(&node->args, 0);
+  bltin = find_bltin(cmd);
+  if (bltin)
+    {
+      new_args = glist_hs_copy(&node->args);
+      return (bltin(&new_args));
+    }
+  path_list = get_path_list();
+  cmd_path = find_executable(&path_list, cmd);
+  if (!hs_length(cmd_path))
+    {
+      egc_fprintf(STDERR_FILENO, "%hs: Command not found.\n", cmd);
+      return (-1);
+    }
+  return (eval_command_path(node, cmd_path));
+}
+
+static int      eval_list(const t_node *node)
 {
   int           i;
   int           last_status;
@@ -53,7 +106,7 @@ static int      eval_list(t_node *node)
   return (last_status);
 }
 
-int     eval(t_node *node)
+int     eval(const t_node *node)
 {
   if (node->type == NODE_COMMAND)
     return (eval_command(node));

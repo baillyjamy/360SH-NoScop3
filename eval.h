@@ -13,6 +13,6 @@
 
 # include "parser/parser.h"
 
-int     eval(t_node *node);
+int     eval(const t_node *node);
 
 #endif /* EVAL_H */

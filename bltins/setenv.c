@@ -51,7 +51,7 @@ static int	set_variable(t_hs name, t_hs value)
   return (1);
 }
 
-int	setenv_cmd(t_glist_hs *argv)
+int             setenv_cmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) > 3)
     return (egc_fprintf(STDERR_FILENO, "setenv: Too many arguments.\n"));
@@ -61,8 +61,8 @@ int	setenv_cmd(t_glist_hs *argv)
     return (set_variable(glist_hs_get(argv, 1), glist_hs_get(argv, 2)));
   else if (glist_hs_length(argv) == 1)
     {
-      envcmd();
-      return (1);
+      display_environment();
+      return (0);
     }
   return (0);
 }

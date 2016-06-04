@@ -68,7 +68,7 @@ static int	cd_home(void)
 
 }
 
-int		cdcmd(t_glist_hs *argv)
+int		cd_cmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) > 2)
     return (egc_fprintf(STDERR_FILENO, "cd: Too many arguments.\n"));

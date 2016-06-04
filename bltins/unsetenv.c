@@ -10,7 +10,7 @@
 
 #include "../sh.h"
 
-void	unsetenv_cmd(t_glist_hs *argv)
+int	unsetenv_cmd(t_glist_hs *argv)
 {
   int	i;
 
@@ -18,9 +18,10 @@ void	unsetenv_cmd(t_glist_hs *argv)
     {
       if (hs_equals(glist_hs_get(argv, 1), hs("*")))
 	env_remove_all_variable();
-      return ;
+      return (0);
     }
   i = 1;
   while (i < glist_hs_length(argv))
     env_remove_variable(glist_hs_get(argv, i++));
+  return (0);
 }

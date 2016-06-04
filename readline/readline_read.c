@@ -14,17 +14,20 @@
 static char     *read_char(int input)
 {
   char          *c;
-  int		lim;
+  int		length;
+  int		read_length;
 
   c = egc_malloc_atomic(7);
-  if ((lim = read(input, c, 1)) < 1)
+  if ((length = read(input, c, 1)) < 1)
     return (NULL);
-  c[lim] = 0;
+  c[length] = 0;
   if (c[0] == 27)
     {
-      if ((lim += read(input, (c + 1), 5)) < 1)
+      length = 1;
+      if ((read_length = read(input, c + 1, 5)) < 1)
         return (NULL);
-      c[lim] = 0;
+      length += read_length;
+      c[length] = 0;
     }
   return (c);
 }
@@ -37,7 +40,7 @@ t_hs			readline_read(t_readline *readline)
 
   readline->line = hs_new_empty();
   readline_get_term(&cfg);
-  readline_setup_term(cfg);
+  readline_setup_term(&cfg);
   readline_print_prompt(readline);
   while (1)
     {
@@ -46,10 +49,11 @@ t_hs			readline_read(t_readline *readline)
 	break ;
       else if (c[0] > 0 && c[0] < 32)
         {
-          if (readline_event(readline, c))
+          if (readline_event(readline, c) && !hs_length(readline->line))
             {
-              hs_puts(hs("exit"));
-              return (hs("exit"));
+              hs_print(hs("exit"));
+              readline->line = hs("exit");
+              break ;
             }
         }
       else
