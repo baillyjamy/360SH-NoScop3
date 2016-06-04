@@ -77,7 +77,7 @@ static int      init(t_readline *readline)
     return (-1);
   readline_init_capacity(&readline->capacity);
   readline->line = hs_new_empty();
-  readline->cursor_pos = 0;
+  readline->cursor_index = 0;
   readline_setup_term(readline->output, &readline->termios);
   readline_print_prompt(readline);
   readline_get_term_cursor_pos(readline, &readline->cursor_pos_x, &readline->cursor_pos_y);
