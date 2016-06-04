@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Fri Jun  3 19:00:02 2016 Valentin Pichard
+** Last update Sat Jun  4 13:54:15 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -79,7 +79,7 @@ void		env_create_variable(t_hs name, t_hs value);
 
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
-void		print_exit(int status);
+void		print_exit(int status, int print_needed);
 
 /*
 ** built-in functions
