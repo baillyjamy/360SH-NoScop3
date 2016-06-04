@@ -44,10 +44,13 @@ SOURCES	= \
 	history.c \
 	lexer/error.c \
 	lexer/get_position.c \
+	lexer/lex_d_quotes.c \
+	lexer/lex_heredoc.c \
 	lexer/lex_symbols.c \
 	lexer/lexer.c \
 	lexer/lexer_extend.c \
 	lexer/position.c \
+	lexer/read_string.c \
 	lexer/source_file.c \
 	lexer/syntax_error.c \
 	lexer/token.c \

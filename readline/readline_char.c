@@ -38,8 +38,8 @@ void	readline_delete_char(t_readline *readline)
       readline->line = hs_new_empty();
       return ;
     }
-  egc_printf("%s", readline->capacity->capacity_cursor_left);
-  egc_printf("%s", readline->capacity->capacity_clr_eol);
+  egc_printf("%s", readline->capacity.capacity_cursor_left);
+  egc_printf("%s", readline->capacity.capacity_clr_eol);
   old = readline->line;
   left_hs = hs_slice(old, 0, readline->cursor_pos - 1);
   right_hs = hs_slice(old, readline->cursor_pos, hs_length(old));

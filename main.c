@@ -44,6 +44,10 @@ static void     exit_on_ctrl_d(void)
   exit_cmd(&args);
 }
 
+/*
+** TODO: We can't use any garbage-collected stuff in an signal handler.
+** We should do this differently.
+*/
 void	ctrl_c()
 {
   t_readline    *readline;
@@ -52,7 +56,7 @@ void	ctrl_c()
   readline_set_prompt(readline, create_prompt());
 }
 
-int             launch(int argc, char **argv, char **env)
+static int      main_loop(int argc, char **argv, char **env)
 {
   t_hs          input;
   t_readline    *readline;
@@ -64,10 +68,10 @@ int             launch(int argc, char **argv, char **env)
   statics_init(&statics);
   egc_set_statics(&statics, sizeof(t_statics));
   env_init(env);
+  readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
+  readline_set_prompt(readline, create_prompt());
   while (42)
     {
-      readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
-      readline_set_prompt(readline, create_prompt());
       if (readline_read(readline, &input))
         exit_on_ctrl_d();
       if (hs_length(input))
@@ -78,5 +82,5 @@ int             launch(int argc, char **argv, char **env)
 
 int             main(int argc, char **argv, char **env)
 {
-  return (egc_run(argc, argv, env, launch));
+  return (egc_run(argc, argv, env, main_loop));
 }

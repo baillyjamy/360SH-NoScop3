@@ -8,6 +8,7 @@
 ** Last update Fri Jun  3 23:55:56 2016 antoine
 */
 
+#include <sys/wait.h>
 #include <assert.h>
 #include "eval.h"
 #include "exec.h"
@@ -53,6 +54,7 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
 {
   t_process     *process;
   t_exec        e;
+  int           status;
 
   e.filename = command_path;
   e.argv = glist_hs_copy(&node->args);
@@ -61,6 +63,7 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
   e.stdout_fd = node->redir.output;
   e.stderr_fd = node->redir.error_output;
   process = exec(&e);
+  waitpid(process->pid, &status, 0);
   return (0);
 }
 
