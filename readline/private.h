@@ -32,7 +32,7 @@ struct                          s_readline
   int				input;
   int				output;
   int				error_output;
-  int				cursor_pos;
+  int				cursor_index;
   int				cursor_pos_x;
   int				cursor_pos_y;
   t_capacity			capacity;

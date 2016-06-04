@@ -15,15 +15,15 @@
 static void	readline_escape_envent(t_readline *readline, char *c)
 {
   if (!strcmp(c, readline->capacity.capacity_key_left)
-      && readline->cursor_pos > 0)
+      && readline->cursor_index > 0)
     {
-      readline->cursor_pos -= 1;
+      readline->cursor_index -= 1;
       egc_printf("%s", readline->capacity.capacity_cursor_left);
     }
   else if (!strcmp(c, readline->capacity.capacity_key_right)
-	   && readline->cursor_pos < (int) hs_length(readline->line))
+	   && readline->cursor_index < (int) hs_length(readline->line))
     {
-      readline->cursor_pos += 1;
+      readline->cursor_index += 1;
       egc_printf("%s", readline->capacity.capacity_cursor_right);
     }
 }
