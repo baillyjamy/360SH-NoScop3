@@ -34,10 +34,7 @@ void	readline_delete_char(t_readline *readline)
   t_hs  old;
 
   if (readline->cursor_pos == 0)
-    {
-      readline->line = hs_new_empty();
-      return ;
-    }
+    return ;
   egc_printf("%s", readline->capacity.capacity_cursor_left);
   egc_printf("%s", readline->capacity.capacity_clr_eol);
   old = readline->line;
