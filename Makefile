@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Fri Jun  3 19:00:56 2016 Valentin Pichard
+## Last update Sat Jun 04 19:00:12 2016 Antoine Baudrand
 ##
 
 include test.mk
@@ -36,6 +36,7 @@ SOURCES	= \
 	env_tools.c \
 	eval.c \
 	exec.c \
+	path.c \
 	expand_variables.c \
 	file/exist.c \
 	file/file.c \
