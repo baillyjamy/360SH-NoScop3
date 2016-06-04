@@ -80,7 +80,7 @@ static int      init(t_readline *readline)
   readline->cursor_index = 0;
   readline_setup_term(readline->output, &readline->termios);
   readline_print_prompt(readline);
-  readline_get_term_cursor_pos(readline, &readline->cursor_pos_x, &readline->cursor_pos_y);
+  readline_get_cursor_pos(readline, &readline->cursor_x, &readline->cursor_y);
   return (0);
 }
 

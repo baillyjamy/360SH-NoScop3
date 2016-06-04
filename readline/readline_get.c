@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include "private.h"
 
-int	readline_get_term_cursor_pos(t_readline *readline, int *x, int *y)
+int	readline_get_cursor_pos(t_readline *readline, int *x, int *y)
 {
   struct termios	save;
   struct termios	raw;

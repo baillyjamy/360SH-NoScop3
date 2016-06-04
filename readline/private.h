@@ -33,8 +33,8 @@ struct                          s_readline
   int				output;
   int				error_output;
   int				cursor_index;
-  int				cursor_pos_x;
-  int				cursor_pos_y;
+  int				cursor_x;
+  int				cursor_y;
   t_capacity			capacity;
   t_readline_tokenizer		tokenizer;
   void				*tokenizer_data;
@@ -90,7 +90,7 @@ int	readline_restore_term(const struct termios *cfg);
 */
 void	readline_cfmakeraw(struct termios *t);
 
-int	readline_get_term_cursor_pos(t_readline *readline, int *x, int *y);
+int	readline_get_cursor_pos(t_readline *readline, int *x, int *y);
 
 int     readline_parse_cursor_position(int input_fd, int *x, int *y);
 
