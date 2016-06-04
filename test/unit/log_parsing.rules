@@ -5,5 +5,5 @@ warning /warning/
 
 error /\[ERROR\]/
 error /KO\ \-\ /
-info /OK\ \-\ /
+info /OK/
 error /marked build as failure/
