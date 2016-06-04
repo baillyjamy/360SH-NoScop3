@@ -4,8 +4,8 @@
 ** Made by antoine
 ** Login   <antoine@epitech.net>
 **
-** Started on  Sat Jun  4 11:57:16 2016 antoine
-** Last update Sat Jun  4 11:57:16 2016 antoine
+** Started on  Sat Jun  4 12:07:15 2016 antoine
+** Last update Sat Jun  4 12:07:15 2016 antoine
 */
 
 #ifndef SH_FILE_H_
@@ -80,6 +80,11 @@ ssize_t		get_file_length(const t_hs filename);
 ** Returns 1 if the file exists, 0 othewise.
 */
 int		file_exist(const t_hs filename);
+
+/*
+** Return 1 if the file is a directory
+*/
+int             is_dir(char *file_name);
 
 int		file_creator(t_hs path);
 int		fshell_init(t_hs path, t_glist_hs *lines);
