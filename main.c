@@ -31,8 +31,8 @@ static int              eval_hs(t_hs input)
       hs_puts(parse_res.error);
       return (1);
     }
-  hs_puts(node_to_hs(parse_res.node));
-  hs_puts(hs("------------------------"));
+  /*hs_puts(node_to_hs(parse_res.node));
+  hs_puts(hs("------------------------"));*/
   r = eval(parse_res.node);
   return (r < 0 ? 1 : r);
 }
