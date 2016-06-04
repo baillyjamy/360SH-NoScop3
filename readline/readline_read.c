@@ -73,7 +73,6 @@ t_hs			readline_read(t_readline *readline)
 {
   struct termios	cfg;
   char         		*c;
-  int			i;
 
   if (!isatty(readline->input) || readline_get_term(&cfg))
     return (readline_raw(readline));
@@ -87,19 +86,11 @@ t_hs			readline_read(t_readline *readline)
 	break ;
       else if (c[0] > 0 && c[0] < 32)
         {
-          if (readline_event(readline, c) && !hs_length(readline->line))
-            {
-              hs_print(hs("exit"));
-              readline->line = hs("exit");
-              break ;
-            }
+          if (readline_event(readline, c))
+	    break ;
         }
       else
-	{
-	  i = -1;
-	  while (c[++i])
-	    readline_update(readline, c[i]);
-	}
+	readline_update(readline, c);
     }
   readline_restore_term(&cfg);
   egc_printf("\n");

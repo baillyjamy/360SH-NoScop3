@@ -24,10 +24,16 @@ void	readline_update_cursor(const t_readline *readline)
     }
 }
 
-void	readline_update(t_readline *readline, char c)
+void	readline_update(t_readline *readline, char *c)
 {
-  if (c == '\x7f')
-    readline_delete_char(readline);
-  else
-    readline_insert_char(readline, c);
+  int	i;
+
+  i = -1;
+  while (c[++i])
+    {
+      if (c[i] == '\x7f')
+	readline_delete_char(readline);
+      else
+	readline_insert_char(readline, c[i]);
+  }
 }

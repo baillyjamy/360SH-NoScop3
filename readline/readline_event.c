@@ -31,9 +31,12 @@ static void	readline_escape_envent(t_readline *readline, char *c)
 int     readline_event(t_readline *readline, char *c)
 {
   if (c[0] == 27)
+    readline_escape_envent(readline, c);
+  else if (readline_ascii_event(readline, c[0]) && !hs_length(readline->line))
     {
-      readline_escape_envent(readline, c);
-      return (0);
+      hs_print(hs("exit"));
+      readline->line = hs("exit");
+      return (-1);
     }
-  return (readline_ascii_event(readline, c[0]));
+  return (0);
 }
