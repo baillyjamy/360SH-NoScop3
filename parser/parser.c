@@ -84,13 +84,16 @@ t_token_result          parse_token_type(t_token_list **list_pointer,
 {
   t_token_result        result;
   t_token_list          *begin;
+  t_redir               begin_redir;
 
+  begin_redir = *redir;
   begin = *list_pointer;
   result = parse_token(list_pointer, redir);
   if (!result.token)
     return (result);
   if (result.token->type != type)
     {
+      *redir = begin_redir;
       *list_pointer = begin;
       return (TOKEN_RESULT_NULL);
     }
@@ -105,13 +108,16 @@ t_token_result          parse_word_or_string_token(t_token_list **list_ptr,
 {
   t_token_result        result;
   t_token_list          *begin;
+  t_redir               begin_redir;
 
+  begin_redir = *redir;
   begin = *list_ptr;
   result = parse_token(list_ptr, redir);
   if (hs_length(result.error) || !result.token)
     return (result);
   if (!parser_is_word_or_string(result.token))
     {
+      *redir = begin_redir;
       *list_ptr = begin;
       return (TOKEN_RESULT_NULL);
     }
