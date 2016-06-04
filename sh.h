@@ -29,9 +29,9 @@ typedef struct  s_test_stats
 */
 typedef struct  	s_statics
 {
-  const char    	*lexer_input_string;
-  t_test_stats  	test_stats;
-  t_glist_hs		env;
+  const char            *lexer_input_string;
+  t_test_stats          test_stats;
+  t_glist_hs            env;
 }               	t_statics;
 
 /*

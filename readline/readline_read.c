@@ -71,7 +71,7 @@ static int      readline_raw(t_readline *readline, t_hs *line)
 int			readline_read(t_readline *readline, t_hs *line)
 {
   struct termios	cfg;
-  char         		*c;
+  char                  *c;
   int                   r;
 
   if (!isatty(readline->input) || readline_get_term(&cfg))
