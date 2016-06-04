@@ -51,6 +51,8 @@ t_result        lex_symbols(const char **string_p)
     return (RESULT_TOKEN_RANGE(LEFT_PAREN, begin, *string_p));
   if (read_string(")", string_p))
     return (RESULT_TOKEN_RANGE(RIGHT_PAREN, begin, *string_p));
+  if (read_string(";", string_p))
+    return (RESULT_TOKEN_RANGE(SEMICOLON, begin, *string_p));
   return (RESULT_NULL);
 }
 

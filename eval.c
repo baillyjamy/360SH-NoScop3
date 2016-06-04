@@ -37,10 +37,28 @@ static int      eval_command(t_node *node)
   return (0);
 }
 
+static int      eval_list(t_node *node)
+{
+  int           i;
+  int           last_status;
+  t_node        *child;
+
+  i = -1;
+  last_status = 0;
+  while (++i < glist_voidp_length(&node->children))
+    {
+      child = glist_voidp_get(&node->children, i);
+      last_status = eval(child);
+    }
+  return (last_status);
+}
+
 int     eval(t_node *node)
 {
   if (node->type == NODE_COMMAND)
     return (eval_command(node));
+  if (node->type == NODE_LIST)
+    return (eval_list(node));
   assert(0);
   return (0);
 }

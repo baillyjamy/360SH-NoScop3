@@ -23,7 +23,7 @@ t_node  *node_new(t_node_type type, const t_redir *redir);
 void    parser_redir_init(t_redir *redir);
 
 # define ERROR(message) ((t_parser_result){.error = message, .success = 0})
-# define NODE(node)     ((t_parser_result){.node = node, .success = 1})
+# define NODE(node_)    ((t_parser_result){.node = node_, .success = 1})
 # define NULL_RESULT    ((t_parser_result){.node = NULL, .success = 1})
 
 typedef struct  s_token_result

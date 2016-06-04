@@ -8,6 +8,7 @@
 ** Last update Fri Jun 03 21:22:20 2016 Antoine Baudrand
 */
 
+#include <assert.h>
 #include "private.h"
 
 t_hs    parser_get_word(t_token *token)
@@ -171,34 +172,62 @@ t_parser_result parse_command(t_token_list **list_pointer)
   return (parse_command_end(list_pointer, node));
 }
 
-t_node          *node_new_empty_list(void)
+t_token_result          parser_skip_semicolons(t_token_list **list_pointer,
+                                               t_redir *redir)
 {
-  t_node        *node;
-  t_redir       redir;
+  t_token_result        result;
+  t_token_result        prev;
+
+  prev = TOKEN_RESULT_NULL;
+  while (*list_pointer)
+    {
+      result = parse_token_type(list_pointer, TOKEN_TYPE_SEMICOLON, redir);
+      if (!result.token)
+        break ;
+      prev = result;
+    }
+  return (prev);
+}
+
+t_parser_result         parse_command_list(t_token_list **list_pointer)
+{
+  t_node                *list;
+  t_parser_result       result;
+  t_token_result        tr;
+  t_redir               redir;
 
   parser_redir_init(&redir);
-  node = node_new(NODE_LIST, &redir);
-  node->children = glist_voidp_new();
-  return (node);
+  list = node_new(NODE_LIST, &redir);
+  list->children = glist_voidp_new();
+  while (*list_pointer)
+    {
+      result = parse_command(list_pointer);
+      if (hs_length(result.error))
+        return (result);
+      if (!result.node)
+        break ;
+      glist_voidp_append(&list->children, result.node);
+      tr = parser_skip_semicolons(list_pointer, &redir);
+      if (TOKEN_RESULT_IS_NULL(tr))
+        break ;
+      if (TOKEN_RESULT_IS_ERR(tr))
+        return (ERROR(tr.error));
+    }
+  return (NODE(list));
 }
 
 t_parser_result         parse(t_token_list *tokens)
 {
   t_parser_result       result;
-  t_node                *node;
 
-  result = parse_command(&tokens);
+  result = parse_command_list(&tokens);
   if (!result.success)
     return (result);
   if (tokens)
     {
-      return (ERROR(hs_format("Unexpected token '%hs'",
+      return (ERROR(hs_format("Unexpected token '%hs'.",
                               tokens->token->source)));
     }
-  if (!result.node)
-    {
-      node = node_new_empty_list();
-      return (NODE(node));
-    }
+  assert(result.node);
   return (result);
 }
