@@ -67,9 +67,9 @@ static int      main_loop(int argc, char **argv, char **env)
   egc_set_statics(&statics, sizeof(t_statics));
   env_init(env);
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
-  readline_set_prompt(readline, create_prompt());
   while (42)
     {
+      readline_set_prompt(readline, create_prompt());
       if (readline_read(readline, &input))
         exit_on_ctrl_d(r);
       if (hs_length(input))

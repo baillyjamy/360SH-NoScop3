@@ -31,7 +31,7 @@ typedef enum    e_token_type
   TOKEN_TYPE_SEMICOLON,
   TOKEN_TYPE_S_QUOTES,
   TOKEN_TYPE_D_QUOTES,
-  TOKEN_TYPE_WORD,
+  TOKEN_TYPE_WORD
 }               t_token_type;
 
 typedef struct  s_token
