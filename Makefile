@@ -63,6 +63,7 @@ SOURCES	= \
 	parse_int/parse_and_read_int.c \
 	parse_int/parse_and_read_int_base.c \
 	parser/node.c \
+	parser/node_to_hs.c \
 	parser/redir.c \
 	parser/parser.c \
 	parser/parser_0.c \

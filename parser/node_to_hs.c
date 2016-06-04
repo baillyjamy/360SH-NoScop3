@@ -1,11 +1,11 @@
 /*
-** node_conv.c for parser in /home/antoine/360SH-NoScop3/parser
+** node_to_hs.c for  in /home/antoine
 **
-** Made by Antoine Baudrand
-** Login   <baudra_a@epitech.net>
+** Made by antoine
+** Login   <antoine@epitech.net>
 **
-** Started on  Sat Jun 04 19:13:19 2016 Antoine Baudrand
-** Last update Sat Jun 04 19:56:36 2016 Antoine Baudrand
+** Started on  Sat Jun  4 22:11:39 2016 antoine
+** Last update Sat Jun  4 22:11:39 2016 antoine
 */
 
 #include <assert.h>
