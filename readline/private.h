@@ -64,4 +64,19 @@ int	readline_ctrl_d(t_readline *readline);
 
 int	readline_ctrl_l(t_readline *readline);
 
+/*
+** Set terminal configuration
+*/
+int	readline_setup_term(const struct termios *cfg);
+
+/*
+** Get terminal configuration
+*/
+int	readline_get_term(struct termios *cfg);
+
+/*
+** Restore terminal configuration
+*/
+int	readline_restore_term(const struct termios *cfg);
+
 #endif /* !PRIVATE_H_ */

@@ -104,21 +104,6 @@ void	readline_set_prompt(t_readline *readline, t_hs prompt);
 */
 void	readline_print_prompt(t_readline *readline);
 
-/*
-** Set terminal configuration
-*/
-void	readline_setup_term(const struct termios *cfg);
-
-/*
-** Get terminal configuration
-*/
-void	readline_get_term(struct termios *cfg);
-
-/*
-** Restore terminal configuration
-*/
-void	readline_restore_term(const struct termios *cfg);
-
 void	readline_clear_history(t_readline *readline);
 
 #endif /* !READLINE_H_ */

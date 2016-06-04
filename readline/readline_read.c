@@ -32,6 +32,43 @@ static char     *read_char(int input)
   return (c);
 }
 
+/*
+** Reads a character from the standard input
+**
+** If the EOF is reach or an error occured, '\0' is returned.
+*/
+static char     read_char_raw(int input)
+{
+  char          c;
+
+  if (read(input, &c, 1) != 1)
+    return ('\0');
+  return (c);
+}
+
+/*
+** Reads a line from the standard input
+**
+** The line is terminated by a Ctrl+D or a '\n'.
+*/
+static t_hs     readline_raw(t_readline *readline)
+{
+  t_hs          line;
+  char          c;
+
+  line = hs_new_empty();
+  while (1)
+    {
+      c = read_char_raw(readline->input);
+      if (!c && !hs_length(line))
+        return (hs("exit"));
+      if (!c || c == '\n')
+        break ;
+      line = hs_concat_hs_char(line, c);
+    }
+  return (line);
+}
+
 t_hs			readline_read(t_readline *readline)
 {
   struct termios	cfg;
@@ -39,7 +76,8 @@ t_hs			readline_read(t_readline *readline)
   int			i;
 
   readline->line = hs_new_empty();
-  readline_get_term(&cfg);
+  if (!isatty(readline->input) || readline_get_term(&cfg))
+    return (readline_raw(readline));
   readline_setup_term(&cfg);
   readline_print_prompt(readline);
   while (1)
