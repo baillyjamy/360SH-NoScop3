@@ -17,7 +17,7 @@ void	readline_update_cursor(const t_readline *readline)
   int	new_pos;
 
   new_pos = hs_length(readline->line);
-  while (new_pos != readline->cursor_pos)
+  while (new_pos != readline->cursor_index)
     {
       egc_printf("%s", readline->capacity.capacity_cursor_left);
       new_pos--;

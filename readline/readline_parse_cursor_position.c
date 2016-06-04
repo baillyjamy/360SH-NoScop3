@@ -1,11 +1,11 @@
 /*
-** parse_cursor_position.c for  in /home/antoine
+** readline_parse_cursor_position.c for  in /home/bailly_j/rendu/360SH-NoScop3/readline/
 **
-** Made by antoine
-** Login   <antoine@epitech.net>
+** Made by Jamy Bailly
+** Login   <bailly_j@epitech.net>
 **
-** Started on  Sat Jun  4 19:03:31 2016 antoine
-** Last update Sat Jun  4 19:03:31 2016 antoine
+** Started on  Sun Jun  5 01:30:31 2016 Jamy Bailly
+** Last update Sun Jun  5 01:30:31 2016 Jamy Bailly
 */
 
 #include <unistd.h>
