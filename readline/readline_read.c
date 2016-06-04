@@ -51,31 +51,32 @@ static char     read_char_raw(int input)
 **
 ** The line is terminated by a Ctrl+D or a '\n'.
 */
-static t_hs     readline_raw(t_readline *readline)
+static int      readline_raw(t_readline *readline, t_hs *line)
 {
-  t_hs          line;
   char          c;
 
-  line = hs_new_empty();
+  *line = hs_new_empty();
   while (1)
     {
       c = read_char_raw(readline->input);
-      if (!c && !hs_length(line))
-        return (hs("exit"));
+      if (!c && !hs_length(*line))
+        return (-1);
       if (!c || c == '\n')
         break ;
-      line = hs_concat_hs_char(line, c);
+      *line = hs_concat_hs_char(*line, c);
     }
-  return (line);
+  return (0);
 }
 
-t_hs			readline_read(t_readline *readline)
+int			readline_read(t_readline *readline, t_hs *line)
 {
   struct termios	cfg;
-  char         		*c;
+  char                  *c;
+  int                   r;
 
   if (!isatty(readline->input) || readline_get_term(&cfg))
-    return (readline_raw(readline));
+    return (readline_raw(readline, line));
+  r = 0;
   readline->line = hs_new_empty();
   readline_setup_term(readline->output, &cfg);
   readline_print_prompt(readline);
@@ -84,15 +85,12 @@ t_hs			readline_read(t_readline *readline)
       c = read_char(readline->input);
       if (!c || !c[0] || c[0] == '\n')
 	break ;
-      else if (c[0] > 0 && c[0] < 32)
-        {
-          if (readline_event(readline, c))
-	    break ;
-        }
+      else if (c[0] > 0 && c[0] < 32 && (r = readline_event(readline, c)))
+	break ;
       else
 	readline_update(readline, c);
     }
   readline_restore_term(&cfg);
-  egc_printf("\n");
-  return (readline->line);
+  *line = readline->line;
+  return (r);
 }

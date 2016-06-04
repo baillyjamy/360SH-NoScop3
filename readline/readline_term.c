@@ -36,5 +36,6 @@ int	readline_get_term(struct termios *cfg)
 
 int	readline_restore_term(const struct termios *cfg)
 {
+  egc_printf("\n");
   return (tcsetattr(0, TCSANOW, cfg));
 }
