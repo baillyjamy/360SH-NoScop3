@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:18:20 2016 Valentin Pichard
-** Last update Sat Jun 04 11:57:29 2016 Antoine Baudrand
+** Last update Sat Jun 04 19:51:22 2016 Antoine Baudrand
 */
 
 #include <sys/stat.h>
@@ -65,15 +65,4 @@ int		edit_file(const t_hs filename)
       return (-1);
     }
   return (fd);
-}
-
-int	        is_dir(char *file_name)
-{
-  struct stat	file_stat;
-
-  if (stat(file_name, &file_stat) != 0)
-    return (0);
-  else if ((file_stat.st_mode & S_IFMT) == S_IFDIR)
-    return (1);
-  return (0);
 }

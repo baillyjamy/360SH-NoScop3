@@ -1,11 +1,11 @@
 /*
-** private.h for  in /home/antoine
+** private.h for parser in /home/antoine/360SH-NoScop3/parser
 **
 ** Made by antoine
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 17:47:53 2016 antoine
-** Last update Fri Jun  3 17:47:53 2016 antoine
+** Last update Sat Jun 04 19:45:30 2016 Antoine Baudrand
 */
 
 #ifndef PRIVATE_H_
@@ -40,11 +40,19 @@ typedef struct  s_token_result
 /*
 ** Returns an empty string on success, or a error message on failure.
 */
-t_hs    parse_redir(t_token_list **list_pointer, t_redir *redir);
+t_hs            parse_redir(t_token_list **list_pointer, t_redir *redir);
 
-t_hs    parser_get_word(t_token *token);
-int     parser_is_word_or_string(t_token *token);
-t_token *parse_token_impl(t_token_list **list_pointer);
-t_token *parse_token_type_impl(t_token_list **list_pointer, t_token_type t);
+t_hs            parser_get_word(t_token *token);
+int             parser_is_word_or_string(t_token *token);
+t_token         *parse_token_impl(t_token_list **list_pointer);
+t_token         *parse_token_type_impl(t_token_list **list_pointer,
+                                       t_token_type t);
+t_token_result  parse_token(t_token_list **list_pointer, t_redir *redir);
+int             parse_word_or_string(t_token_list **list_pointer,
+                                     t_hs *result,
+                                     t_redir *redir);
+t_token_result  parse_token_type(t_token_list **list_pointer,
+                                 t_token_type type,
+                                 t_redir *redir);
 
 #endif /* !PRIVATE_H_ */

@@ -1,11 +1,11 @@
 /*
 ** path.c for 360SH-NoScop3 in /home/antoine/360SH-NoScop3
-** 
+**
 ** Made by Antoine Baudrand
 ** Login   <baudra_a@epitech.net>
-** 
+**
 ** Started on  Sat Jun 04 18:53:29 2016 Antoine Baudrand
-** Last update Sat Jun 04 18:59:40 2016 Antoine Baudrand
+** Last update Sat Jun 04 19:11:53 2016 Antoine Baudrand
 */
 
 #include "exec.h"
@@ -22,7 +22,6 @@ t_glist_hs	get_path_list(void)
   path = hs_split(value, hs(":"));
   return (path);
 }
-
 
 t_hs    concat_path(t_hs left, t_hs right)
 {

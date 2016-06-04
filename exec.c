@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
-** Last update Sat Jun 04 18:59:45 2016 Antoine Baudrand
+** Last update Sat Jun 04 19:06:03 2016 Antoine Baudrand
 */
 
 #include <unistd.h>
@@ -14,7 +14,6 @@
 #include <errno.h>
 #include "exec.h"
 #include "egc.h"
-
 
 /*
 ** Returns a NULL-terminated array of NUL-terminated C strings.

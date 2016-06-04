@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Sat Jun 04 19:00:12 2016 Antoine Baudrand
+## Last update Sat Jun 04 19:52:16 2016 Antoine Baudrand
 ##
 
 include test.mk
@@ -35,11 +35,13 @@ SOURCES	= \
 	env.c \
 	env_tools.c \
 	eval.c \
+	eval_bltns.c \
 	exec.c \
 	path.c \
 	expand_variables.c \
 	file/exist.c \
 	file/file.c \
+	file/is_dir.c \
 	file/insert.c \
 	file/read.c \
 	history.c \
@@ -63,6 +65,8 @@ SOURCES	= \
 	parser/node.c \
 	parser/redir.c \
 	parser/parser.c \
+	parser/parser_0.c \
+	parser/parser_1.c \
 	rcfile.c \
 	readline/readline_ascii_event.c\
 	readline/readline_char.c \

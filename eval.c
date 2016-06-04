@@ -1,54 +1,17 @@
 /*
-** eval.c for  in /home/antoine
+** eval.c for 360SH-NoScop3 in /home/antoine/360SH-NoScop3
 **
 ** Made by antoine
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Fri Jun  3 23:55:56 2016 antoine
+** Last update Sat Jun 04 19:49:15 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
 #include <assert.h>
 #include "eval.h"
 #include "exec.h"
-
-static void     get_bltins(t_bltin *bltins)
-{
-  int           i;
-
-  i = 0;
-  bltins[i].name = "env";
-  bltins[i++].function = env_cmd;
-  bltins[i].name = "setenv";
-  bltins[i++].function = setenv_cmd;
-  bltins[i].name = "cd";
-  bltins[i++].function = cd_cmd;
-  bltins[i].name = "exit";
-  bltins[i++].function = exit_cmd;
-  bltins[i].name = "unsetenv";
-  bltins[i++].function = unsetenv_cmd;
-  bltins[i].name = "echo";
-  bltins[i++].function = echo_cmd;
-  bltins[i].name = NULL;
-  bltins[i++].function = NULL;
-}
-
-static t_bltin_function find_bltin(t_hs command)
-{
-  t_bltin               builtins[32];
-  t_bltin               *builtin;
-
-  get_bltins(builtins);
-  builtin = builtins;
-  while (builtin->name)
-    {
-      if (hs_equals(command, hs(builtin->name)))
-        return (builtin->function);
-      builtin++;
-    }
-  return (NULL);
-}
 
 static int      eval_command_path(const t_node *node, t_hs command_path)
 {
