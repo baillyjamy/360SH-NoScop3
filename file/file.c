@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:18:20 2016 Valentin Pichard
-** Last update Sat Jun 04 11:15:58 2016 Antoine Baudrand
+** Last update Sat Jun 04 11:57:29 2016 Antoine Baudrand
 */
 
 #include <sys/stat.h>
@@ -69,7 +69,7 @@ int		edit_file(const t_hs filename)
 }
 
 
-static int	is_dir(char *file_name)
+int	        is_dir(char *file_name)
 {
   struct stat	file_stat;
 

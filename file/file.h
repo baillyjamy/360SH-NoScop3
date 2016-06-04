@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Sat Jun 04 11:16:39 2016 Antoine Baudrand
+** Last update Sat Jun 04 11:57:05 2016 Antoine Baudrand
 */
 
 #ifndef FILE_H_
@@ -84,7 +84,7 @@ int		file_exist(const t_hs filename);
 /*
 ** Return 1 if the file is a directory
 */
-int             is_dir(char *file_name)
+int             is_dir(char *file_name);
 
 int		file_creator(t_hs path);
 int		fshell_init(t_hs path, t_glist_hs *lines);
