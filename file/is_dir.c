@@ -1,11 +1,11 @@
 /*
 ** is_dir.c for file in /home/antoine/360SH-NoScop3/file
-** 
+**
 ** Made by Antoine Baudrand
 ** Login   <baudra_a@epitech.net>
-** 
+**
 ** Started on  Sat Jun 04 19:51:30 2016 Antoine Baudrand
-** Last update Sat Jun 04 19:51:49 2016 Antoine Baudrand
+** Last update Sat Jun 04 19:55:27 2016 Antoine Baudrand
 */
 
 #include <sys/stat.h>

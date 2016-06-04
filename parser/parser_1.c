@@ -1,11 +1,11 @@
 /*
 ** parser_1.c for parser in /home/antoine/360SH-NoScop3/parser
-** 
+**
 ** Made by Antoine Baudrand
 ** Login   <baudra_a@epitech.net>
-** 
+**
 ** Started on  Sat Jun 04 19:34:39 2016 Antoine Baudrand
-** Last update Sat Jun 04 19:34:49 2016 Antoine Baudrand
+** Last update Sat Jun 04 19:56:55 2016 Antoine Baudrand
 */
 
 #include <assert.h>

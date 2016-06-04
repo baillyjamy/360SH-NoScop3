@@ -1,11 +1,11 @@
 /*
 ** eval_bltns.c for 360SH-NoScop3 in /home/antoine/360SH-NoScop3
-** 
+**
 ** Made by Antoine Baudrand
 ** Login   <baudra_a@epitech.net>
-** 
+**
 ** Started on  Sat Jun 04 19:47:39 2016 Antoine Baudrand
-** Last update Sat Jun 04 19:48:46 2016 Antoine Baudrand
+** Last update Sat Jun 04 19:55:42 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
