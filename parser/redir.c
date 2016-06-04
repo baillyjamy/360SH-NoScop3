@@ -41,13 +41,20 @@ static t_hs     parse_gt(t_token_list **list_pointer, t_redir *redir)
   t_token       *t;
   t_hs          word;
   int           mode;
+  int           append;
+  int           flags;
 
+  append = parse_token_type_impl(list_pointer, TOKEN_TYPE_GT) != NULL;
   t = parse_token_impl(list_pointer);
   if (!t || !parser_is_word_or_string(t))
     return (hs("Missing name for redirect."));
   word = parser_get_word(t);
   mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
-  return (open_redir_file(word, &redir->output, O_WRONLY | O_CREAT, mode));
+  flags = O_WRONLY | O_CREAT | O_TRUNC;
+  egc_printf("redirection: %d\n", append);
+  if (append)
+    flags |= O_APPEND;
+  return (open_redir_file(word, &redir->output, flags, mode));
 }
 
 t_hs    parse_redir(t_token_list **list_pointer, t_redir *redir)

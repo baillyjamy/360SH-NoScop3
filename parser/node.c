@@ -62,6 +62,7 @@ static t_hs     list_to_hs(const t_node *node)
     {
       child = glist_voidp_get(&node->children, i);
       s = hs_concat(s, node_to_hs(child));
+      s = hs_concat(s, hs("; "));
     }
   return (s);
 }
