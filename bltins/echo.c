@@ -26,13 +26,16 @@ static int	print_args(t_glist_hs *argv)
     }
   if (!hs_equals(glist_hs_get(argv, 1), hs("-n")))
     egc_printf("\n");
-  return (1);
+  return (0);
 }
 
 int	echo_cmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) == 1)
-    return (egc_printf("\n"));
+    {
+      egc_printf("\n");
+      return (0);
+    }
   else if (glist_hs_length(argv) > 1)
     return (print_args(argv));
   return (0);
