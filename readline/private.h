@@ -82,4 +82,6 @@ int	readline_get_term(struct termios *cfg);
 */
 int	readline_restore_term(const struct termios *cfg);
 
+int     readline_parse_cursor_position(int input_fd, int *x, int *y);
+
 #endif /* !PRIVATE_H_ */
