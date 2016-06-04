@@ -13,34 +13,36 @@
 #include "readline/readline.h"
 #include "eval.h"
 
-static void             eval_hs(t_hs input)
+static int              eval_hs(t_hs input)
 {
   t_lexer_result        lex_res;
   t_parser_result       parse_res;
+  int                   r;
 
   lex_res = lex(input);
   if (lex_res.error)
     {
       hs_puts(syntax_error_to_hs(lex_res.error));
-      return ;
+      return (1);
     }
   hs_puts(token_list_to_hs(lex_res.tokens));
   parse_res = parse(lex_res.tokens);
   if (!parse_res.success)
     {
       hs_puts(parse_res.error);
-      return ;
+      return (1);
     }
   hs_puts(node_to_hs(parse_res.node));
   hs_puts(hs("------------------------"));
-  eval(parse_res.node);
+  r = eval(parse_res.node);
+  return (r < 0 ? 1 : r);
 }
 
-static void     exit_on_ctrl_d(void)
+static void     exit_on_ctrl_d(int r)
 {
   t_glist_hs    args;
 
-  args = hs_split(hs("exit"), hs(""));
+  args = hs_split(hs_format("exit %d", r), hs(" "));
   exit_cmd(&args);
 }
 
@@ -50,10 +52,6 @@ static void     exit_on_ctrl_d(void)
 */
 void	ctrl_c()
 {
-  t_readline    *readline;
-
-  readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
-  readline_set_prompt(readline, create_prompt());
 }
 
 static int      main_loop(int argc, char **argv, char **env)
@@ -61,6 +59,7 @@ static int      main_loop(int argc, char **argv, char **env)
   t_hs          input;
   t_readline    *readline;
   t_statics     statics;
+  int           r;
 
   (void) argc;
   (void) argv;
@@ -73,11 +72,11 @@ static int      main_loop(int argc, char **argv, char **env)
   while (42)
     {
       if (readline_read(readline, &input))
-        exit_on_ctrl_d();
+        exit_on_ctrl_d(r);
       if (hs_length(input))
-        eval_hs(input);
+        r = eval_hs(input);
     }
-  return (0);
+  return (r);
 }
 
 int             main(int argc, char **argv, char **env)
