@@ -71,7 +71,7 @@ static int      readline_raw(t_readline *readline, t_hs *line)
 int			readline_read(t_readline *readline, t_hs *line)
 {
   struct termios	cfg;
-  char                  *c;
+  char         		*c;
   int                   r;
 
   if (!isatty(readline->input) || readline_get_term(&cfg))
@@ -85,8 +85,11 @@ int			readline_read(t_readline *readline, t_hs *line)
       c = read_char(readline->input);
       if (!c || !c[0] || c[0] == '\n')
 	break ;
-      else if (c[0] > 0 && c[0] < 32 && (r = readline_event(readline, c)))
-	break ;
+      else if (c[0] > 0 && c[0] < 32)
+        {
+          if ((r = readline_event(readline, c)))
+	    break ;
+        }
       else
 	readline_update(readline, c);
     }
