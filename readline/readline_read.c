@@ -80,13 +80,14 @@ static int      init(t_readline *readline)
   readline->cursor_pos = 0;
   readline_setup_term(readline->output, &readline->termios);
   readline_print_prompt(readline);
+  readline_get_term_cursor_pos(readline, &readline->cursor_pos_x, &readline->cursor_pos_y);
   return (0);
 }
 
-int			readline_read(t_readline *readline, t_hs *line)
+int	readline_read(t_readline *readline, t_hs *line)
 {
-  char                  *c;
-  int                   r;
+  char	*c;
+  int	r;
 
   if (!isatty(readline->input) || readline_get_term(&readline->termios))
     return (readline_raw(readline, line));
