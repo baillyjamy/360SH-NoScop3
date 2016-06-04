@@ -82,4 +82,12 @@ int	readline_get_term(struct termios *cfg);
 */
 int	readline_restore_term(const struct termios *cfg);
 
+/*
+** Make a pre-existing termios structure into "raw" mode: character-at-a-time
+** mode with no characters interpreted, 8-bit data path.
+*/
+void	readline_cfmakeraw(struct termios *t);
+
+int     readline_parse_cursor_position(int input_fd, int *x, int *y);
+
 #endif /* !PRIVATE_H_ */

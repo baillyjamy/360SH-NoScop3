@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
-** Last update Sat Jun 04 19:06:03 2016 Antoine Baudrand
+** Last update Sat Jun  4 23:18:58 2016 Valentin Pichard
 */
 
 #include <unistd.h>
@@ -14,6 +14,16 @@
 #include <errno.h>
 #include "exec.h"
 #include "egc.h"
+
+/*
+**
+*/
+static	int	is_absolute_path(t_hs path)
+{
+  if (hs_find(path, hs(".."), 0) == 0 || hs_find_char(path, '/', 0) == 0)
+    return (1);
+  return (0);
+}
 
 /*
 ** Returns a NULL-terminated array of NUL-terminated C strings.
@@ -93,4 +103,3 @@ t_process       *exec(const t_exec *exec)
     close(exec->stdin_fd);
   return (proc);
 }
-
