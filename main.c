@@ -69,6 +69,9 @@ static int      main_loop(int argc, char **argv, char **env)
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
   while (42)
     {
+      if (!env_variable_exists(hs("PATH")))
+	env_set_variable(hs("PATH"), hs("/usr/local/bin:/usr/bin:/bin:"
+			    "/usr/local/games:/usr/games:/sbin"));
       readline_set_prompt(readline, create_prompt());
       if (readline_read(readline, &input))
         exit_on_ctrl_d(r);
