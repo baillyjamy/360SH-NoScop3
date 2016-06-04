@@ -75,15 +75,15 @@ t_hs			readline_read(t_readline *readline)
   char         		*c;
   int			i;
 
-  readline->line = hs_new_empty();
   if (!isatty(readline->input) || readline_get_term(&cfg))
     return (readline_raw(readline));
-  readline_setup_term(&cfg);
+  readline->line = hs_new_empty();
+  readline_setup_term(readline->output, &cfg);
   readline_print_prompt(readline);
   while (1)
     {
       c = read_char(readline->input);
-      if (!c[0] || c[0] == '\n')
+      if (!c || !c[0] || c[0] == '\n')
 	break ;
       else if (c[0] > 0 && c[0] < 32)
         {

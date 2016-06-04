@@ -67,7 +67,7 @@ int	readline_ctrl_l(t_readline *readline);
 /*
 ** Set terminal configuration
 */
-int	readline_setup_term(const struct termios *cfg);
+int	readline_setup_term(int output_fd, const struct termios *cfg);
 
 /*
 ** Get terminal configuration
