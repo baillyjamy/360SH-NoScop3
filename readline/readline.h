@@ -56,10 +56,11 @@ int		readline_get_error_output(t_readline *readline);
 /*
 ** Reads a line from the input
 **
-** If the EOF is reached (and Ctrl+D pressed), the string "exit" is
-** returned.
+** If Ctrl+D is pressed in an empty line, -1 is returned.
+**
+** The line is written at the given address, `line`.
 */
-t_hs	readline_read(t_readline *readline);
+int	readline_read(t_readline *readline, t_hs *line);
 
 /*
 ** tokenizer: A callback which returns the index of the begining

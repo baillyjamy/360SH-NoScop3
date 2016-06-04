@@ -17,6 +17,7 @@
 static t_hs     open_redir_file(t_hs file_name, int *fd, int flags, int mode)
 {
   int           err;
+
   *fd = open(hs_to_str(file_name), flags, mode);
   err = errno;
   if (*fd == -1)

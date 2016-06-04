@@ -30,7 +30,7 @@ typedef struct          s_result
 # define TOKEN_NEW(t, p, s)             token_new(TOKEN_TYPE_##t, p, s)
 # define TOKEN_NEW_RANGE(t, b, e)       token_new_range(TOKEN_TYPE_##t, b, e)
 
-#define RESULT_TOKEN_RANGE(t, b, e)     RESULT_TOKEN(TOKEN_NEW_RANGE(t, b, e))
+# define RESULT_TOKEN_RANGE(t, b, e)    RESULT_TOKEN(TOKEN_NEW_RANGE(t, b, e))
 
 t_result        lexer_create_error(t_hs message, const char *char_addr);
 
@@ -38,7 +38,10 @@ const char      *lexer_get_source(void);
 
 typedef t_result        (*t_lex_function)(const char **string_pointer);
 
+int             lexer_read_string(const char *exp, const char **string_p);
+
 t_result        lex_symbols(const char **string_p);
 t_result        lex_d_quotes(const char **string_p);
+t_result        lex_heredoc(const char **string_p);
 
 #endif /* !PRIVATE_H_ */

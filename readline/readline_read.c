@@ -8,6 +8,7 @@
 ** Last update Thu Jun 02 22:55:49 2016 Antoine Baudrand
 */
 
+#include <term.h>
 #include <unistd.h>
 #include "private.h"
 
@@ -29,6 +30,8 @@ static char     *read_char(int input)
       length += read_length;
       c[length] = 0;
     }
+  if (!c[0] || c[0] == '\n')
+    return (NULL);
   return (c);
 }
 
@@ -51,48 +54,59 @@ static char     read_char_raw(int input)
 **
 ** The line is terminated by a Ctrl+D or a '\n'.
 */
-static t_hs     readline_raw(t_readline *readline)
+static int      readline_raw(t_readline *readline, t_hs *line)
 {
-  t_hs          line;
   char          c;
 
-  line = hs_new_empty();
+  *line = hs_new_empty();
   while (1)
     {
       c = read_char_raw(readline->input);
-      if (!c && !hs_length(line))
-        return (hs("exit"));
+      if (!c && !hs_length(*line))
+        return (-1);
       if (!c || c == '\n')
         break ;
-      line = hs_concat_hs_char(line, c);
+      *line = hs_concat_hs_char(*line, c);
     }
-  return (line);
+  return (0);
 }
 
-t_hs			readline_read(t_readline *readline)
+static int      init(t_readline *readline)
 {
-  struct termios	cfg;
-  char         		*c;
-
-  if (!isatty(readline->input) || readline_get_term(&cfg))
-    return (readline_raw(readline));
+  if (setupterm(NULL, readline->output, NULL))
+    return (-1);
+  readline_init_capacity(&readline->capacity);
   readline->line = hs_new_empty();
-  readline_setup_term(readline->output, &cfg);
+  readline->cursor_pos = 0;
+  readline_setup_term(readline->output, &readline->termios);
   readline_print_prompt(readline);
+  return (0);
+}
+
+int			readline_read(t_readline *readline, t_hs *line)
+{
+  char                  *c;
+  int                   r;
+;
+  if (!isatty(readline->input) || readline_get_term(&readline->termios))
+    return (readline_raw(readline, line));
+  init(readline);
+  r = 0;
   while (1)
     {
       c = read_char(readline->input);
-      if (!c || !c[0] || c[0] == '\n')
-	break ;
-      else if (c[0] > 0 && c[0] < 32)
-        {
-          if (readline_event(readline, c))
-	    break ;
-        }
-      else
+      if (!c)
+        break ;
+      if (c[0] >= 32)
 	readline_update(readline, c);
+      else if (readline_event(readline, c))
+        {
+          r = -1;
+          break ;
+        }
     }
-  readline_restore_term(&cfg);
-  egc_printf("\n");
-  return (readline->line);
+  readline_restore_term(&readline->termios);
+  egc_printf(r == -1 ? "" : "\n");
+  *line = readline->line;
+  return (r);
 }

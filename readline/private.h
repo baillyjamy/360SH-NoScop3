@@ -15,7 +15,7 @@
 
 typedef struct	s_capacity
 {
-  char		*smkx;
+  char		*capacity_smkx;
   char		*capacity_clear_screen;
   char		*capacity_key_left;
   char		*capacity_key_right;
@@ -26,13 +26,14 @@ typedef struct	s_capacity
 
 struct                          s_readline
 {
+  struct termios                termios;
   t_hs                          line;
   t_hs				prompt;
   int				input;
   int				output;
   int				error_output;
   int				cursor_pos;
-  t_capacity			*capacity;
+  t_capacity			capacity;
   t_readline_tokenizer		tokenizer;
   void				*tokenizer_data;
   t_readline_completer		completer;
@@ -44,6 +45,8 @@ struct                          s_readline
 };
 
 typedef int	(*t_readline_ascii)(t_readline *);
+
+void    readline_init_capacity(t_capacity *capacity);
 
 void	readline_insert_char(t_readline *readline, char c);
 

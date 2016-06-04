@@ -37,5 +37,5 @@ int			readline_ascii_event(t_readline *readline, char c)
 	return (event_ptr[i](readline));
       i++;
     }
-    return (0);
+  return (0);
 }

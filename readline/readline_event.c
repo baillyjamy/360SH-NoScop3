@@ -14,17 +14,17 @@
 
 static void	readline_escape_envent(t_readline *readline, char *c)
 {
-  if (!strcmp(c, readline->capacity->capacity_key_left)
+  if (!strcmp(c, readline->capacity.capacity_key_left)
       && readline->cursor_pos > 0)
     {
       readline->cursor_pos -= 1;
-      egc_printf("%s", readline->capacity->capacity_cursor_left);
+      egc_printf("%s", readline->capacity.capacity_cursor_left);
     }
-  else if (!strcmp(c, readline->capacity->capacity_key_right)
+  else if (!strcmp(c, readline->capacity.capacity_key_right)
 	   && readline->cursor_pos < (int) hs_length(readline->line))
     {
       readline->cursor_pos += 1;
-      egc_printf("%s", readline->capacity->capacity_cursor_right);
+      egc_printf("%s", readline->capacity.capacity_cursor_right);
     }
 }
 
@@ -33,10 +33,6 @@ int     readline_event(t_readline *readline, char *c)
   if (c[0] == 27)
     readline_escape_envent(readline, c);
   else if (readline_ascii_event(readline, c[0]) && !hs_length(readline->line))
-    {
-      hs_print(hs("exit"));
-      readline->line = hs("exit");
-      return (-1);
-    }
+    return (-1);
   return (0);
 }
