@@ -19,6 +19,6 @@ int	readline_ctrl_d(t_readline *readline)
 
 int	readline_ctrl_l(t_readline *readline)
 {
-  egc_printf("%s", readline->capacity->capacity_clear_screen);
+  egc_printf("%s", readline->capacity.capacity_clear_screen);
   return (0);
 }

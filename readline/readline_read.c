@@ -8,6 +8,7 @@
 ** Last update Thu Jun 02 22:55:49 2016 Antoine Baudrand
 */
 
+#include <term.h>
 #include <unistd.h>
 #include "private.h"
 
@@ -70,18 +71,23 @@ static int      readline_raw(t_readline *readline, t_hs *line)
   return (0);
 }
 
-static void     init(t_readline *readline)
+static int      init(t_readline *readline)
 {
+  if (setupterm(NULL, readline->output, NULL))
+    return (-1);
+  readline_init_capacity(&readline->capacity);
   readline->line = hs_new_empty();
+  readline->cursor_pos = 0;
   readline_setup_term(readline->output, &readline->termios);
   readline_print_prompt(readline);
+  return (0);
 }
 
 int			readline_read(t_readline *readline, t_hs *line)
 {
   char                  *c;
   int                   r;
-
+;
   if (!isatty(readline->input) || readline_get_term(&readline->termios))
     return (readline_raw(readline, line));
   init(readline);

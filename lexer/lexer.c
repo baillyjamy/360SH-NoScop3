@@ -20,8 +20,9 @@ static t_result         lex_token_impl(const char **string_p)
   int                   i;
 
   i = 0;
-  functions[i++] = &lex_symbols;
   functions[i++] = &lex_d_quotes;
+  functions[i++] = &lex_heredoc;
+  functions[i++] = &lex_symbols;
   functions[i++] = NULL;
   i = 0;
   while (functions[i])
