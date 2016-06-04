@@ -35,6 +35,14 @@ static void             eval_hs(t_hs input)
   eval(parse_res.node);
 }
 
+static void     exit_on_ctrl_d(void)
+{
+  t_glist_hs    args;
+
+  args = hs_split(hs("exit"), hs(""));
+  exit_cmd(&args);
+}
+
 int             launch(int argc, char **argv, char **env)
 {
   t_hs          input;
@@ -50,7 +58,8 @@ int             launch(int argc, char **argv, char **env)
     {
       readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
       readline_set_prompt(readline, create_prompt());
-      input = readline_read(readline);
+      if (readline_read(readline, &input))
+        exit_on_ctrl_d();
       if (hs_length(input))
         eval_hs(input);
     }
