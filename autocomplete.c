@@ -39,7 +39,7 @@ int		sort_by_keyword(t_hs keyword, t_glist_hs *files)
       if (hs_starts_with(keyword, glist_hs_get(files, i)))
 	glist_hs_append(&sorted, glist_hs_get(files, i));
     }
-  if (glist_hs_length(files) == 0)
+  if (glist_hs_length(&sorted) == 0)
     return (-1);
   *files = sorted;
   return (0);
