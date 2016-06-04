@@ -33,8 +33,6 @@ int     readline_event(t_readline *readline, char *c)
   if (c[0] == 27)
     readline_escape_envent(readline, c);
   else if (readline_ascii_event(readline, c[0]) && !hs_length(readline->line))
-    {
-      return (-1);
-    }
+    return (-1);
   return (0);
 }
