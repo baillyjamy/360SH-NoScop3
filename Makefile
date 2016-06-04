@@ -70,11 +70,13 @@ SOURCES	= \
 	parser/parser_1.c \
 	rcfile.c \
 	readline/readline_ascii_event.c\
+	readline/readline_cfmakeraw.c \
 	readline/readline_char.c \
 	readline/readline_event_ctrl.c\
 	readline/readline_event.c \
 	readline/readline_get.c \
 	readline/readline_new.c \
+	readline/readline_parse_cursor_position.c \
 	readline/readline_print.c \
 	readline/readline_read.c \
 	readline/readline_set.c \
