@@ -1,11 +1,11 @@
 /*
-** exec.c for 42sh in /home/antoine/42sh
+** exec.c for 360SH-NoScop3 in /home/antoine/360SH-NoScop3
 **
 ** Made by Antoine Baudrand
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
-** Last update Thu Jun  2 22:51:17 2016 Valentin Pichard
+** Last update Sat Jun 04 11:09:25 2016 Antoine Baudrand
 */
 
 #include <unistd.h>
@@ -131,7 +131,7 @@ t_hs    find_executable(t_glist_hs *path_list, t_hs cmd_name)
   while (++i < (int)glist_hs_length(path_list))
     {
       path = concat_path(glist_hs_get(path_list, i), cmd_name);
-      if (file_exist(path))
+      if (!access(hs_to_str(path), X_OK) && !is_dir(hs_to_str(path)))
         return (path);
     }
   return (hs(""));

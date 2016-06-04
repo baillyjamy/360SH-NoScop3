@@ -1,14 +1,15 @@
 /*
-** file.c for  in /Users/pichar_v/Documents/tek1/42SH/360SH-NoScop3/files/
+** file.c for file in /home/antoine/360SH-NoScop3/file
 **
 ** Made by Valentin Pichard
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:18:20 2016 Valentin Pichard
-** Last update Fri Jun  3 18:49:26 2016 Valentin Pichard
+** Last update Sat Jun 04 11:15:58 2016 Antoine Baudrand
 */
 
 #include <sys/stat.h>
+#include <sys/types.h>
 #include "file.h"
 
 int		file_creator(t_hs path)
@@ -65,4 +66,16 @@ int		edit_file(const t_hs filename)
       return (-1);
     }
   return (fd);
+}
+
+
+static int	is_dir(char *file_name)
+{
+  struct stat	file_stat;
+
+  if (stat(file_name, &file_stat) != 0)
+    return (0);
+  else if ((file_stat.st_mode & S_IFMT) == S_IFDIR)
+    return (1);
+  return (0);
 }
