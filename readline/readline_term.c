@@ -12,7 +12,7 @@
 #include "../sh.h"
 #include "readline.h"
 
-void                    readline_setup_term(const struct termios *cfg)
+int                     readline_setup_term(const struct termios *cfg)
 {
   char                  *smkx;
   struct termios        new_cfg;
@@ -23,16 +23,17 @@ void                    readline_setup_term(const struct termios *cfg)
   new_cfg.c_cc[VMIN] = 1;
   new_cfg.c_cc[VTIME] = 0;
   smkx = "\x1b[?1h\x1b=";
-  write(1, smkx, egc_strlen(smkx));
-  tcsetattr(0, TCSANOW, &new_cfg);
+  if (write(1, smkx, egc_strlen(smkx)) != 1)
+    return (-1);
+  return (tcsetattr(0, TCSANOW, &new_cfg));
 }
 
-void	readline_get_term(struct termios *cfg)
+int	readline_get_term(struct termios *cfg)
 {
-  tcgetattr(0, cfg);
+  return (tcgetattr(0, cfg));
 }
 
-void	readline_restore_term(const struct termios *cfg)
+int	readline_restore_term(const struct termios *cfg)
 {
-  tcsetattr(0, TCSANOW, cfg);
+  return (tcsetattr(0, TCSANOW, cfg));
 }
