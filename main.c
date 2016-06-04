@@ -8,6 +8,7 @@
 ** Last update Fri Jun 03 11:26:08 2016 Antoine Baudrand
 */
 
+#include <unistd.h>
 #include "readline/readline.h"
 #include "eval.h"
 

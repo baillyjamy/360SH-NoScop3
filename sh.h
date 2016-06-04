@@ -13,8 +13,8 @@
 
 # include <termios.h>
 # include "egc.h"
-# include "./toolbox/tools.h"
-# include "file/file.h"
+# include "toolbox/tools.h"
+# include "file/sh_file.h"
 
 # define GOODBYE(x) egc_exit(x)
 

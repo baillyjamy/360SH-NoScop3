@@ -9,7 +9,7 @@
 */
 
 #include <sys/stat.h>
-#include "file.h"
+#include "sh_file.h"
 
 int		file_exist(const t_hs filename)
 {

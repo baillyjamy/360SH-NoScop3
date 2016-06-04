@@ -8,7 +8,7 @@
 ** Last update Thu Jun  2 11:42:51 2016 Valentin Pichard
 */
 
-#include "file.h"
+#include "sh_file.h"
 
 int		insert_line(const t_hs filename, const t_hs line)
 {

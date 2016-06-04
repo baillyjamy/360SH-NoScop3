@@ -1,15 +1,15 @@
 /*
-** file.h for  in /Users/pichar_v/Documents/tek1/42SH/360SH-NoScop3/
+** sh_file.h for  in /home/antoine
 **
-** Made by Valentin Pichard
-** Login   <pichar_v@epitech.eu>
+** Made by antoine
+** Login   <antoine@epitech.net>
 **
-** Started on  Sun May 29 22:12:46 2016 Valentin Pichard
-** Last update Fri Jun  3 18:55:44 2016 Valentin Pichard
+** Started on  Sat Jun  4 11:57:16 2016 antoine
+** Last update Sat Jun  4 11:57:16 2016 antoine
 */
 
-#ifndef FILE_H_
-# define FILE_H_
+#ifndef SH_FILE_H_
+# define SH_FILE_H_
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -84,4 +84,4 @@ int		file_exist(const t_hs filename);
 int		file_creator(t_hs path);
 int		fshell_init(t_hs path, t_glist_hs *lines);
 
-#endif /* !FILE_H_ */
+#endif /* !SH_FILE_H_ */
