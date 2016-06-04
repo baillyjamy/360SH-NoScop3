@@ -87,7 +87,7 @@ int			readline_read(t_readline *readline, t_hs *line)
 {
   char                  *c;
   int                   r;
-;
+
   if (!isatty(readline->input) || readline_get_term(&readline->termios))
     return (readline_raw(readline, line));
   init(readline);

@@ -19,7 +19,7 @@ int	readline_ctrl_d(t_readline *readline)
 
 int	readline_ctrl_l(t_readline *readline)
 {
-  egc_printf("%s", readline->capacity.capacity_clear_screen);;
+  egc_printf("%s", readline->capacity.capacity_clear_screen);
   readline_print_prompt(readline);
   return (0);
 }
