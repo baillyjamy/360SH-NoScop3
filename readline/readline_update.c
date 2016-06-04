@@ -35,5 +35,5 @@ void	readline_update(t_readline *readline, char *c)
 	readline_delete_char(readline);
       else
 	readline_insert_char(readline, c[i]);
-  }
+    }
 }
