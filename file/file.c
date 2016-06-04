@@ -67,7 +67,6 @@ int		edit_file(const t_hs filename)
   return (fd);
 }
 
-
 int	        is_dir(char *file_name)
 {
   struct stat	file_stat;

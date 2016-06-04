@@ -111,4 +111,4 @@ typedef struct  s_parser_result
 
 t_parser_result parse(t_token_list *tokens);
 
-#endif /* PARSER_H_ */
+#endif /* !PARSER_H_ */
