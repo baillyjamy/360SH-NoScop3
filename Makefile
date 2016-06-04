@@ -20,6 +20,7 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 SOURCES	= \
+	autocomplete.c \
 	bltins/cd.c \
 	bltins/cd_errors.c \
 	bltins/echo.c \
