@@ -9,6 +9,7 @@
 */
 
 #include <unistd.h>
+#include <signal.h>
 #include "readline/readline.h"
 #include "eval.h"
 
@@ -43,6 +44,18 @@ static void     exit_on_ctrl_d(void)
   exit_cmd(&args);
 }
 
+/*
+** TODO: We can't use any garbage-collected stuff in an signal handler.
+** We should do this differently.
+*/
+void	ctrl_c()
+{
+  t_readline    *readline;
+
+  readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
+  readline_set_prompt(readline, create_prompt());
+}
+
 static int      main_loop(int argc, char **argv, char **env)
 {
   t_hs          input;
@@ -51,6 +64,7 @@ static int      main_loop(int argc, char **argv, char **env)
 
   (void) argc;
   (void) argv;
+  signal(SIGINT, ctrl_c);
   statics_init(&statics);
   egc_set_statics(&statics, sizeof(t_statics));
   env_init(env);
