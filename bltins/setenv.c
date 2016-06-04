@@ -46,9 +46,10 @@ static int	check_variable_name(t_hs name)
 
 static int	set_variable(t_hs name, t_hs value)
 {
-  if (!check_variable_name(name))
-    env_set_variable(name, value);
-  return (1);
+  if (check_variable_name(name))
+    return (1);
+  env_set_variable(name, value);
+  return (0);
 }
 
 int             setenv_cmd(t_glist_hs *argv)
