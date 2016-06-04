@@ -48,7 +48,7 @@ static int      read_chars(int input, const char *expected)
   return (read_chars(input, expected + 1));
 }
 
-int             readline_parse_cursor_position(int input_fd, int *x, int *y)
+int     readline_parse_cursor_position(int input_fd, int *x, int *y)
 {
   if (read_chars(input_fd, "\x1b["))
     return (-1);
