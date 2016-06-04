@@ -85,19 +85,12 @@ int			readline_read(t_readline *readline, t_hs *line)
       c = read_char(readline->input);
       if (!c || !c[0] || c[0] == '\n')
 	break ;
-      else if (c[0] > 0 && c[0] < 32)
-        {
-          if (readline_event(readline, c))
-            {
-              r = -1;
-              break ;
-            }
-        }
+      else if (c[0] > 0 && c[0] < 32 && (r = readline_event(readline, c)))
+	break ;
       else
 	readline_update(readline, c);
     }
   readline_restore_term(&cfg);
-  egc_printf("\n");
   *line = readline->line;
   return (r);
 }
