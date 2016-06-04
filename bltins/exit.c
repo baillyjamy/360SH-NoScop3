@@ -5,7 +5,7 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Sun May 29 21:03:53 2016 Pierre-Emmanuel Jacquier
-** Last update Sat Jun  4 13:56:26 2016 Valentin Pichard
+** Last update Sun Jun  5 01:34:51 2016 Valentin Pichard
 */
 
 #include <unistd.h>
@@ -15,7 +15,7 @@
 
 void	print_exit(int status, int print_needed)
 {
-  egc_exit(status);
+  GOODBYE(status);
 }
 
 static int	check_syntax(t_hs value)
