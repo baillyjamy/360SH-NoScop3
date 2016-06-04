@@ -9,7 +9,7 @@
 */
 
 #include "exec.h"
-#include "egc.h"
+#include "sh.h"
 
 t_glist_hs	get_path_list(void)
 {
@@ -21,6 +21,13 @@ t_glist_hs	get_path_list(void)
     return (path);
   path = hs_split(value, hs(":"));
   return (path);
+}
+
+void	generate_path(void)
+{
+  env_set_variable(hs("PATH"),
+		   hs("/usr/local/bin:/usr/bin:/bin:"
+		      "/usr/local/games:/usr/games:/sbin"));
 }
 
 t_hs    concat_path(t_hs left, t_hs right)
