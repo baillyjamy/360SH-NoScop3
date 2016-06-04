@@ -26,6 +26,7 @@ typedef struct	s_capacity
 
 struct                          s_readline
 {
+  struct termios                termios;
   t_hs                          line;
   t_hs				prompt;
   int				input;

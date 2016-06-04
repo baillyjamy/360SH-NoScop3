@@ -29,6 +29,8 @@ static char     *read_char(int input)
       length += read_length;
       c[length] = 0;
     }
+  if (!c[0] || c[0] == '\n')
+    return (NULL);
   return (c);
 }
 
@@ -68,36 +70,37 @@ static int      readline_raw(t_readline *readline, t_hs *line)
   return (0);
 }
 
+static void     init(t_readline *readline)
+{
+  readline->line = hs_new_empty();
+  readline_setup_term(readline->output, &readline->termios);
+  readline_print_prompt(readline);
+}
+
 int			readline_read(t_readline *readline, t_hs *line)
 {
-  struct termios	cfg;
   char                  *c;
   int                   r;
 
-  if (!isatty(readline->input) || readline_get_term(&cfg))
+  if (!isatty(readline->input) || readline_get_term(&readline->termios))
     return (readline_raw(readline, line));
+  init(readline);
   r = 0;
-  readline->line = hs_new_empty();
-  readline_setup_term(readline->output, &cfg);
-  readline_print_prompt(readline);
   while (1)
     {
       c = read_char(readline->input);
-      if (!c || !c[0] || c[0] == '\n')
-	break ;
-      else if (c[0] > 0 && c[0] < 32)
-        {
-          if (readline_event(readline, c))
-            {
-              r = -1;
-              break ;
-            }
-        }
-      else
+      if (!c)
+        break ;
+      if (c[0] >= 32)
 	readline_update(readline, c);
+      else if (readline_event(readline, c))
+        {
+          r = -1;
+          break ;
+        }
     }
-  readline_restore_term(&cfg);
-  egc_printf("\n");
+  readline_restore_term(&readline->termios);
+  egc_printf(r == -1 ? "" : "\n");
   *line = readline->line;
   return (r);
 }

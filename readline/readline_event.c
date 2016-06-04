@@ -34,7 +34,6 @@ int     readline_event(t_readline *readline, char *c)
     readline_escape_envent(readline, c);
   else if (readline_ascii_event(readline, c[0]) && !hs_length(readline->line))
     {
-      hs_print(hs("exit"));
       return (-1);
     }
   return (0);
