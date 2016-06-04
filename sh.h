@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Sat Jun  4 13:54:15 2016 Valentin Pichard
+** Last update Sat Jun  4 18:12:46 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -109,6 +109,12 @@ int		get_history(t_glist_hs *history);
 ** Return 0 if success and -1 if not
 */
 int	expand_variables(t_hs input, t_hs *result);
+
+/*
+** Autocomplete functions
+*/
+int		opendir_to_list(t_hs path, t_glist_hs *files);
+int		sort_by_keyword(t_hs keyword, t_glist_hs *files);
 
 # ifndef STATICS
 #  define STATICS       ((t_statics *)egc_get_statics())
