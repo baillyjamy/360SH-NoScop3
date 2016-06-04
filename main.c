@@ -31,8 +31,8 @@ static int              eval_hs(t_hs input)
       hs_puts(parse_res.error);
       return (1);
     }
-  hs_puts(node_to_hs(parse_res.node));
-  hs_puts(hs("------------------------"));
+  /*hs_puts(node_to_hs(parse_res.node));
+  hs_puts(hs("------------------------"));*/
   r = eval(parse_res.node);
   return (r < 0 ? 1 : r);
 }
@@ -69,6 +69,8 @@ static int      main_loop(int argc, char **argv, char **env)
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
   while (42)
     {
+      if (!env_variable_exists(hs("PATH")))
+	generate_path();
       readline_set_prompt(readline, create_prompt());
       if (readline_read(readline, &input))
         exit_on_ctrl_d(r);

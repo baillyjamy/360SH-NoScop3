@@ -15,8 +15,6 @@
 
 void	print_exit(int status, int print_needed)
 {
-  if (print_needed == 1)
-    egc_printf("exit\n");
   egc_exit(status);
 }
 

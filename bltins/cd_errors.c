@@ -18,7 +18,7 @@ int	chdir_error(t_hs path)
 {
   if (chdir(hs_to_str(path)) != 0)
     {
-      egc_fprintf(STDERR_FILENO, "%hs: %s\n", path, strerror(errno));
+      egc_fprintf(STDERR_FILENO, "%hs: %s.\n", path, strerror(errno));
       return (1);
     }
   return (0);
