@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sat Jun 04 19:49:15 2016 Antoine Baudrand
+** Last update Sat Jun 04 20:32:03 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -21,7 +21,7 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
 
   e.filename = command_path;
   e.argv = glist_hs_copy(&node->args);
-  e.env = glist_hs_new();
+  e.env = STATICS->env;
   e.stdin_fd = node->redir.input;
   e.stdout_fd = node->redir.output;
   e.stderr_fd = node->redir.error_output;
