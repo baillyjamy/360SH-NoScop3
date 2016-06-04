@@ -83,6 +83,7 @@ SOURCES	= \
 	readline/readline_term.c \
 	readline/readline_update.c \
 	sh.c \
+	shlvl.c \
 	string/string.c \
 	string/string_concat.c \
 	string/string_copy.c \

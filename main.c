@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include "readline/readline.h"
+#include "sh.h"
 #include "eval.h"
 
 static int              eval_hs(t_hs input)
@@ -67,6 +68,7 @@ static int      main_loop(int argc, char **argv, char **env)
   egc_set_statics(&statics, sizeof(t_statics));
   env_init(env);
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
+  update_shell_level();
   while (42)
     {
       if (!env_variable_exists(hs("PATH")))

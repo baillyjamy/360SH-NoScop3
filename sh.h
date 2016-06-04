@@ -78,6 +78,7 @@ int		env_variable_exists(t_hs name);
 void		env_create_variable(t_hs name, t_hs value);
 
 void		generate_path(void);
+void		update_shell_level(void);
 
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
