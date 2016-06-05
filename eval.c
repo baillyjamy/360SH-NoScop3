@@ -20,7 +20,7 @@ static int      wait_return_status(int pid)
   while (42)
     {
       if (waitpid(pid, &status, 0) == -1)
-	  return (130);
+        return (130);
       if (check_sigsegv(status) == -1)
 	return (139);
       if (WIFEXITED(status))

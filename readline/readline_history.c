@@ -53,7 +53,8 @@ void		readline_history_key_down(t_readline *readline)
 {
   if (glist_hs_length(&readline->history) > 0)
     {
-      readline->line = glist_hs_get(&readline->history, readline->history_index);
+      readline->line = glist_hs_get(&readline->history,
+                                    readline->history_index);
       if (readline->history_index > 0)
 	readline->history_index -= 1;
     }
