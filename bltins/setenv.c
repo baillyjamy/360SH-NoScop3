@@ -31,14 +31,15 @@ static int	check_variable_name(t_hs name)
 {
   if (!hs_length(name) || !char_is_alpha(hs_get(name, 0)))
     {
-      fprintf(stderr, "setenv: Variable name must begin with a letter.\n");
+      egc_fprintf(STDERR_FILENO,
+                  "setenv: Variable name must begin with a letter.\n");
       return (1);
     }
   if (!is_valid_variable_name(name))
     {
-      fprintf(stderr,
-              "setenv: Variable name must contain alphanumeric "
-              "characters.\n");
+      egc_fprintf(STDERR_FILENO,
+                  "setenv: Variable name must contain alphanumeric "
+                  "characters.\n");
       return (1);
     }
   return (0);
