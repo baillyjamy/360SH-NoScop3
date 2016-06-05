@@ -42,9 +42,7 @@ typedef struct s_node   t_node;
 ** the following properties:
 **
 ** NODE_PIPE:
-**      left: The node at the left of the pipeline
-**      right: The node at the right of the pipeline
-**      pipe_background: True if `|&` was used, false if `|` was used.
+**      children: The children nodes (separated by "|")
 **
 ** NODE_COMMAND:
 **      args: The command name and its arguments
@@ -79,7 +77,6 @@ struct  s_node
 {
   t_node_type   type;
   t_redir       redir;
-  int           pipe_background;
   t_node        *left;
   t_node        *right;
   t_glist_hs    args;

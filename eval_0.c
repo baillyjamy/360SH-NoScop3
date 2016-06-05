@@ -15,6 +15,7 @@
 
 int		eval_pipe(const t_node *node)
 {
+  egc_printf("eval this pipe: %hs\n", node_to_hs(node));
   assert(0);
   return (0);
 }
