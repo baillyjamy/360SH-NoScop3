@@ -27,17 +27,19 @@ static int      read_int_until_char(int input, char stop, int *n_pointer)
   char          c;
   unsigned long n;
   int           r;
+  const char    *s;
 
   string = hs("");
   while ((c = read_char(input)))
     {
       if (c == stop)
         break ;
-      string = hs_concat_hs_char(string, stop);
+      string = hs_concat_hs_char(string, c);
     }
-  if ((r = parse_uint(hs_to_str(string), &n) == 0))
+  s = hs_to_str(string);
+  if ((r = parse_uint(s, &n)) == 0)
     *n_pointer = n;
-  return (r);
+  return (r ? -1 : 0);
 }
 
 static int      read_chars(int input, const char *expected)
