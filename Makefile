@@ -36,6 +36,7 @@ SOURCES	= \
 	colorize/uncolorize.c \
 	ctrl_c_ctrl_d.c \
 	eval.c \
+	eval_2.c \
 	eval_bltns.c \
 	eval_pipe.c \
 	exec.c \

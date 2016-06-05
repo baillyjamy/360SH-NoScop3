@@ -1,11 +1,11 @@
 /*
-** redir.c for  in /home/antoine
+** redir.c for parser in /home/antoine/360SH-NoScop3/parser
 **
 ** Made by antoine
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:45:44 2016 antoine
-** Last update Fri Jun  3 23:45:44 2016 antoine
+** Last update Sun Jun 05 22:01:38 2016 Antoine Baudrand
 */
 
 #include <errno.h>
@@ -53,9 +53,11 @@ static t_hs     parse_gt(t_token_list **list_pointer, t_redir *redir)
     return (hs("Missing name for redirect."));
   word = parser_get_word(t);
   mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
-  flags = O_WRONLY | O_CREAT | O_TRUNC;
+  flags = O_WRONLY | O_CREAT;
   if (append)
     flags |= O_APPEND;
+  else
+    flags |= O_TRUNC;
   if (redir->output > 2)
     close(redir->output);
   return (open_redir_file(word, &redir->output, flags, mode));
