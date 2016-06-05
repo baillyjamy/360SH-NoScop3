@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun 05 17:44:38 2016 Antoine Baudrand
+** Last update Sun Jun 05 17:51:55 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -20,12 +20,9 @@ static int      wait_return_status(int pid)
   while (42)
     {
       if (waitpid(pid, &status, 0) == -1)
-	{
-	  egc_fprintf(STDERR_FILENO, "waitpid() failed.\n");
-	  return (-1);
-	}
+	  return (130);
       if (check_sigsegv(status) == -1)
-	return (-1);
+	return (139);
       if (WIFEXITED(status))
 	return (WEXITSTATUS(status));
     }
