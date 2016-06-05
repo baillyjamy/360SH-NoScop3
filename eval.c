@@ -21,7 +21,7 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
 
   e.filename = command_path;
   e.argv = glist_hs_copy(&node->args);
-  e.env = STATICS->env;
+  e.env = scope_to_glist(&STATICS->env);
   e.stdin_fd = node->redir.input;
   e.stdout_fd = node->redir.output;
   e.stderr_fd = node->redir.error_output;

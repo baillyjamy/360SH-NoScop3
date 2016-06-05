@@ -15,6 +15,7 @@
 # include "egc.h"
 # include "toolbox/tools.h"
 # include "file/sh_file.h"
+# include "scope/scope.h"
 
 # define GOODBYE(x) egc_exit(x)
 
@@ -31,55 +32,13 @@ typedef struct  	s_statics
 {
   const char            *lexer_input_string;
   t_test_stats          test_stats;
-  t_glist_hs            env;
+  t_scope               env;
 }               	t_statics;
 
 /*
 ** Initializes the statics variables, with an empty environment.
 */
 void            statics_init(t_statics *statics);
-
-/*
-** Initializes the environment from an array of strings.
-**
-** Should be called after statics_init().
-*/
-void		env_init(char **env_c_strings);
-
-/*
-** Find an environment variable.
-**
-** Write the variable value at the given address.
-** Returns 0 on success or -1 if the variable is not found.
-**
-*/
-int		env_get_variable(t_hs name, t_hs *value_pointer);
-
-/*
-** Sets an environment variable.
-**
-** A new variable is created if it doesn't exists.
-*/
-void		env_set_variable(t_hs name, t_hs value);
-
-/*
-** Removes an environment variable.
-**
-** Does nothing if the variable doesn't exist.
-*/
-void		env_remove_all_variable(void);
-void		env_remove_variable(t_hs name);
-
-/*
-** Returns 1 if there is an environment variable with the given name.
-*/
-int		env_variable_exists(t_hs name);
-
-void		env_create_variable(t_hs name, t_hs value);
-
-int		chdir_error(t_hs path);
-int		home_error(t_hs home_path);
-void		print_exit(int status, int print_needed);
 
 /*
 ** built-in functions
@@ -91,6 +50,10 @@ typedef struct          s_bltin
   const char            *name;
   t_bltin_function      function;
 }                       t_bltin;
+
+int		chdir_error(t_hs path);
+int		home_error(t_hs home_path);
+void		print_exit(int status, int print_needed);
 
 int		env_cmd(t_glist_hs *argv);
 int		cd_cmd(t_glist_hs *argv);

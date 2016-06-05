@@ -18,7 +18,7 @@ static int	set_current_pwd(t_hs *pwd)
 
   if (getcwd(cwd, sizeof(cwd)) != NULL)
     {
-      env_set_variable(hs("PWD"), hs(cwd));
+      env_set(hs("PWD"), hs(cwd));
       *pwd = hs(cwd);
       return (0);
     }
@@ -30,15 +30,16 @@ static int	cd_less(void)
   t_hs		old_pwd;
   t_hs		current_pwd;
 
-  if (env_get_variable(hs("OLDPWD"), &old_pwd))
+  if (!env_contains(hs("OLDPWD")))
     {
       egc_fprintf(STDERR_FILENO, ": No such file or directory.\n");
       return (1);
     }
+  old_pwd = env_get(hs("OLDPWD"));
   set_current_pwd(&current_pwd);
   chdir(hs_to_str(old_pwd));
-  env_set_variable(hs("PWD"), old_pwd);
-  env_set_variable(hs("OLDPWD"), current_pwd);
+  env_set(hs("PWD"), old_pwd);
+  env_set(hs("OLDPWD"), current_pwd);
   return (0);
 }
 
@@ -50,8 +51,8 @@ static int	cd_path(t_hs path)
   if (chdir_error(path))
     return (1);
   set_current_pwd(&path);
-  env_set_variable(hs("OLDPWD"), current_pwd);
-  env_set_variable(hs("PWD"), path);
+  env_set(hs("OLDPWD"), current_pwd);
+  env_set(hs("PWD"), path);
   return (0);
 }
 
@@ -61,15 +62,16 @@ static int	cd_home(void)
   t_hs		current_pwd;
 
   set_current_pwd(&current_pwd);
-  if (env_get_variable(hs("HOME"), &home_path))
+  if (!env_contains(hs("HOME")))
     {
       egc_fprintf(STDERR_FILENO, "cd: No home directory.\n");
       return (1);
     }
-  else if (home_error(home_path))
+  home_path = env_get(hs("HOME"));
+  if (home_error(home_path))
     return (1);
-  env_set_variable(hs("PWD"), home_path);
-  env_set_variable(hs("OLDPWD"), current_pwd);
+  env_set(hs("PWD"), home_path);
+  env_set(hs("OLDPWD"), current_pwd);
   return (0);
 
 }

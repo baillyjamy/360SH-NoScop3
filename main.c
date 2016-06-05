@@ -65,7 +65,7 @@ static int      main_loop(int argc, char **argv, char **env)
   signal(SIGINT, ctrl_c);
   statics_init(&statics);
   egc_set_statics(&statics, sizeof(t_statics));
-  env_init(env);
+  scope_init_from_str_array(&statics.env, env);
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
   while (42)
     {

@@ -17,8 +17,9 @@ t_glist_hs	get_path_list(void)
   t_glist_hs	path;
 
   path = glist_hs_new();
-  if (env_get_variable(hs("PATH"), &value) == -1)
+  if (env_contains(hs("PATH")) == -1)
     return (path);
+  value = env_get(hs("PATH"));
   path = hs_split(value, hs(":"));
   return (path);
 }
