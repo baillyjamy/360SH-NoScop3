@@ -17,6 +17,7 @@ int	readline_get_cursor_pos(t_readline *readline, int *x, int *y)
   struct termios	raw;
 
   tcgetattr(readline->input, &save);
+  raw = save;
   readline_cfmakeraw(&raw);
   if (tcsetattr(readline->input, TCSANOW, &raw) == -1)
     return (-1);
