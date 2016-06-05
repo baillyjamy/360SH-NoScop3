@@ -12,12 +12,10 @@
 
 static void     test_env()
 {
-  t_hs          result;
-
-  ASSERT(env_get_variable(hs("unknown_variable"), &result) == -1);
-  env_set_variable(hs("test_variable"), hs("hello"));
-  ASSERT(env_get_variable(hs("test_variable"), &result) == 0);
-  ASSERT(hs_equals(result, hs("hello")));
+  ASSERT(!env_contains(hs("unknown_variable")));
+  env_set(hs("test_variable"), hs("hello"));
+  ASSERT(env_contains(hs("test_variable")));
+  ASSERT(hs_equals(env_get(hs("test_variable")), hs("hello")));
 }
 
 static void     test_empty()
@@ -42,7 +40,7 @@ static void     test_var()
 {
   t_hs          result;
 
-  env_set_variable(hs("test_variable"), hs("hello"));
+  env_set(hs("test_variable"), hs("hello"));
   ASSERT(expand_variables(hs("$test_variable world"), &result) == 0);
   ASSERT(hs_equals(result, hs("hello world")));
 }
