@@ -73,7 +73,7 @@ t_parser_result         parse_command_list(t_token_list **list_pointer)
   list->children = glist_voidp_new();
   while (*list_pointer)
     {
-      result = parse_command(list_pointer);
+      result = parse_pipeline(list_pointer);
       if (hs_length(result.error))
         return (result);
       if (!result.node)
@@ -88,60 +88,11 @@ t_parser_result         parse_command_list(t_token_list **list_pointer)
   return (NODE(list));
 }
 
-t_parser_result         parse_pipeline_end(t_node *first,
-                                           t_token_list **list_pointer,
-                                           t_redir *redir)
-{
-  t_node                *list;
-  t_parser_result       result;
-  t_token_result        tr;
-
-  list = node_new(NODE_PIPE, redir);
-  list->children = glist_voidp_new();
-  glist_voidp_append(&list->children, first);
-  while (*list_pointer)
-    {
-      tr = parse_token_type(list_pointer, TOKEN_TYPE_PIPE, redir);
-      if (TOKEN_RESULT_IS_NULL(tr))
-        break ;
-      if (TOKEN_RESULT_IS_ERR(tr))
-        return (ERROR(tr.error));
-      result = parse_command(list_pointer);
-      if (hs_length(result.error))
-        return (result);
-      if (!result.node)
-        break ;
-      glist_voidp_append(&list->children, result.node);
-    }
-  list->redir = *redir;
-  return (NODE(list));
-}
-
-t_parser_result         parse_pipeline(t_token_list **list_pointer)
-{
-  t_parser_result       result;
-  t_redir               redir;
-  t_node                *first;
-
-  parser_redir_init(&redir);
-  result = parse_command(list_pointer);
-  first = result.node;
-  if (!first)
-    return (result);
-  result = parse_pipeline_end(first, list_pointer, &redir);
-  if (!result.node)
-    return (result);
-  if (glist_voidp_length(&result.node->children) == 1)
-    return (NODE(first));
-  return (result);
-}
-
 t_parser_result         parse(t_token_list *tokens)
 {
   t_parser_result       result;
 
-  /*result = parse_command_list(&tokens);*/
-  result = parse_pipeline(&tokens);
+  result = parse_command_list(&tokens);
   if (!result.success)
     return (result);
   if (tokens)

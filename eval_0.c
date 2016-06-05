@@ -14,31 +14,17 @@
 #include "exec.h"
 #include "sh.h"
 
-int		eval_pipe(t_node    *node)
+int             eval_pipe(const t_node *node)
 {
-  int           i;
   t_node        *child;
-  int           pipefd[2];
+  int           i;
 
   i = 0;
   while (i < glist_voidp_length(&node->children))
     {
       child = glist_voidp_get(&node->children, i);
-      if (i)
-        child->redir.input = pipefd[0];
-      if ((i + 1) < glist_voidp_length(&node->children))
-        {
-          pipe(pipefd);
-          child->redir.output = pipefd[1];
-        }
-      i += 1;
-    }
-  i = 0;
-  while (i < glist_voidp_length(&node->children))
-    {
-      child = glist_voidp_get(&node->children, i);
       eval_command(child);
-      i += 1;
+      i++;
     }
   return (0);
 }
