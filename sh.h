@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Sun Jun  5 21:08:31 2016 Valentin Pichard
+** Last update Sun Jun  5 22:14:25 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -75,6 +75,9 @@ int		insert_line_file(t_hs path, t_hs line);
 int		get_file_content(t_hs path, t_glist_hs *history);
 t_hs		path_history(void);
 t_hs		path_rcfile(void);
+int		insert_lines_file(t_hs path, t_glist_hs lines);
+int		line_exist_file(t_hs path, t_hs line);
+int		lines_exist_file(t_hs path, t_glist_hs lines);
 
 /*
 ** Return 0 if success and -1 if not
