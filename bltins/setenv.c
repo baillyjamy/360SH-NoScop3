@@ -48,7 +48,7 @@ static int	set_variable(t_hs name, t_hs value)
 {
   if (check_variable_name(name))
     return (1);
-  env_set_variable(name, value);
+  env_set(name, value);
   return (0);
 }
 
@@ -62,7 +62,7 @@ int             setenv_cmd(t_glist_hs *argv)
     return (set_variable(glist_hs_get(argv, 1), glist_hs_get(argv, 2)));
   else if (glist_hs_length(argv) == 1)
     {
-      display_environment();
+      hs_puts(env_to_hs());
       return (0);
     }
   return (0);

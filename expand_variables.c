@@ -96,11 +96,12 @@ int	expand_variables(t_hs input, t_hs *result)
   name = get_variable_name(after);
   if (hs_length(name) == 0)
     return (expand_dollar(before, after, result));
-  if (env_get_variable(name, &value) == -1)
+  if (!env_contains(name))
     {
       *result = hs_format("%hs: Undefined variable.", name);
       return (-1);
     }
+  value = env_get(name),
   after = hs_slice(after, hs_length(name), hs_length(after));
   return (expand_values(before, value, after, result));
 }

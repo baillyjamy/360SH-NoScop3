@@ -14,11 +14,6 @@
 # include "../colorize/colorize.h"
 
 /*
-** Display environment
-*/
-void		display_environment(void);
-
-/*
 ** Display segfault error when signal catched
 */
 void		check_sigsegv(int status);

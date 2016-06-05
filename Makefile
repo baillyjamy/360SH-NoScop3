@@ -32,9 +32,8 @@ SOURCES	= \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
-	env.c \
-	env_tools.c \
 	eval.c \
+	eval_0.c \
 	eval_bltns.c \
 	exec.c \
 	path.c \
@@ -82,7 +81,14 @@ SOURCES	= \
 	readline/readline_set.c \
 	readline/readline_term.c \
 	readline/readline_update.c \
+	scope/scope.c \
+	scope/scope_get.c \
+	scope/scope_init.c \
+	scope/scope_to_hs.c \
+	scope/variable.c \
+	scope/env.c \
 	sh.c \
+	shlvl.c \
 	string/string.c \
 	string/string_concat.c \
 	string/string_copy.c \
@@ -92,7 +98,6 @@ SOURCES	= \
 	string/string_starts_with.c \
 	string/string_type.c \
 	string/string_type_converter.c \
-	toolbox/display.c \
 	toolbox/prompt.c
 
 OBJECTS	= $(SOURCES:.c=.o)

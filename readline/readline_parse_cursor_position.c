@@ -28,6 +28,7 @@ static int      read_int_until_char(int input, char stop, int *n_pointer)
   unsigned long n;
   int           r;
 
+  string = hs("");
   while ((c = read_char(input)))
     {
       if (c == stop)

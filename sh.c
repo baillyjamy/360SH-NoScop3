@@ -13,7 +13,7 @@
 
 void            statics_init(t_statics *s)
 {
-  s->env = glist_hs_new();
+  scope_init(&s->env);
   s->test_stats.failed_test_count = 0;
   s->test_stats.total_test_count = 0;
   s->lexer_input_string = NULL;

@@ -22,13 +22,13 @@ static t_hs	get_hostname(void)
 
   host = hs("");
   if ((fd = open_file(hs("/etc/hostname"), O_RDONLY)) == -1)
-    return (hs("360SH-NoScop3"));
+    return (hs("42sh"));
   while (42)
     {
       if (read(fd, &c, 1) == -1)
 	{
 	  close(fd);
-	  return (hs("360SH-NoScop3"));
+	  return (hs("42sh"));
 	}
       if (c == '\n' || c == '\0')
 	break ;
@@ -40,11 +40,13 @@ static t_hs	get_hostname(void)
 
 static t_hs	format_pwd(t_hs pwd, t_hs home)
 {
+  t_hs          rel_path;
+
   if (hs_starts_with(pwd, home))
-    return (hs_concat_char_hs('~',
-			      hs_slice(pwd,
-				       hs_length(home),
-				       hs_length(pwd))));
+    {
+      rel_path = hs_slice(pwd, hs_length(home), hs_length(pwd));
+      return (hs_concat_char_hs('~', rel_path));
+    }
   return (pwd);
 }
 
@@ -55,15 +57,11 @@ t_hs		create_prompt(void)
   t_hs		pwd;
   t_hs		prompt;
 
-  user = hs("nobody");
-  host = hs("42sh");
-  pwd = hs("");
-  prompt = hs("");
-  env_get_variable(hs("USER"), &user);
-  env_get_variable(hs("PWD"), &pwd);
-  if (env_get_variable(hs("HOME"), &prompt) != -1)
-    pwd = format_pwd(pwd, prompt);
+  user = env_get_default(hs("USER"), hs("nobody"));
+  pwd = env_get_default(hs("PWD"), hs(""));
   host = get_hostname();
+  if (env_contains(hs("HOME")))
+    pwd = format_pwd(pwd, env_get(hs("HOME")));
   prompt = hs_format("%hs%hs%hs:%hs$ ",
 		     colorize("red bold", user),
 		     colorize("red bold", hs("@")),

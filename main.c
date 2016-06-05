@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include "readline/readline.h"
+#include "sh.h"
 #include "eval.h"
 
 static int              eval_hs(t_hs input)
@@ -65,12 +66,12 @@ static int      main_loop(int argc, char **argv, char **env)
   signal(SIGINT, ctrl_c);
   statics_init(&statics);
   egc_set_statics(&statics, sizeof(t_statics));
-  env_init(env);
+  scope_init_from_str_array(&statics.env, env);
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
+  update_shell_level();
+  r = 0;
   while (42)
     {
-      if (!env_variable_exists(hs("PATH")))
-	generate_path();
       readline_set_prompt(readline, create_prompt());
       if (readline_read(readline, &input))
         exit_on_ctrl_d(r);

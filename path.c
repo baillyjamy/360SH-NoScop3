@@ -15,19 +15,16 @@ t_glist_hs	get_path_list(void)
 {
   t_hs		value;
   t_glist_hs	path;
+  const char    *default_path;
 
-  path = glist_hs_new();
-  if (env_get_variable(hs("PATH"), &value) == -1)
+  default_path = ("/usr/local/bin:/usr/bin:/bin:"
+                  "/usr/local/games:/usr/games:/sbin");
+  path = hs_split(hs(default_path), hs(":"));
+  if (env_contains(hs("PATH")) == -1)
     return (path);
+  value = env_get(hs("PATH"));
   path = hs_split(value, hs(":"));
   return (path);
-}
-
-void	generate_path(void)
-{
-  env_set_variable(hs("PATH"),
-		   hs("/usr/local/bin:/usr/bin:/bin:"
-		      "/usr/local/games:/usr/games:/sbin"));
 }
 
 t_hs    concat_path(t_hs left, t_hs right)
