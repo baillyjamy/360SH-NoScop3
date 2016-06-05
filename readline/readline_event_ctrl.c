@@ -21,5 +21,6 @@ int	readline_ctrl_l(t_readline *readline)
 {
   egc_printf("%s", readline->capacity.capacity_clear_screen);
   readline_print_prompt(readline);
+  egc_printf("%hs", readline->line);
   return (0);
 }

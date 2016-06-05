@@ -29,7 +29,11 @@ t_glist_hs      scope_to_glist(t_scope *scope)
 t_hs            scope_to_hs(t_scope *scope)
 {
   t_glist_hs    list;
+  t_hs		s;
 
   list = scope_to_glist(scope);
-  return (hs_join(hs("\n"), &list));
+  s = hs_join(hs("\n"), &list);
+  if (!hs_length(s))
+    return (hs(""));
+  return (hs_concat(s, hs("\n")));
 }
