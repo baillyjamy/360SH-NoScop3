@@ -1,5 +1,5 @@
 /*
-** readline_parse_cursor_position.c for  in /home/bailly_j/rendu/360SH-NoScop3/readline/
+** readline_parse_cursor_position.c for readline in readline
 **
 ** Made by Jamy Bailly
 ** Login   <bailly_j@epitech.net>

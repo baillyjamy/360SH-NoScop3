@@ -19,7 +19,11 @@ void    readline_init_capacity(t_capacity *capacity)
   capacity->capacity_key_right = tigetstr("kcuf1");
   capacity->capacity_cursor_left = tigetstr("cub1");
   capacity->capacity_cursor_right = tigetstr("cuf1");
+  capacity->capacity_cursor_up = tigetstr("cuu1");
+  capacity->capacity_cursor_down = tigetstr("cud1");
+  capacity->capacity_cursor_end = tigetstr("hpa");
   capacity->capacity_clr_eol = tigetstr("el");
+  capacity->capacity_clr_eos = tigetstr("ed");
 }
 
 t_readline      *readline_new(int input, int output, int error_output)

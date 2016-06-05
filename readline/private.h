@@ -21,12 +21,17 @@ typedef struct	s_capacity
   char		*capacity_key_right;
   char		*capacity_cursor_left;
   char		*capacity_cursor_right;
+  char		*capacity_cursor_up;
+  char		*capacity_cursor_down;
+  char		*capacity_cursor_end;
   char		*capacity_clr_eol;
+  char		*capacity_clr_eos;
 }		t_capacity;
 
 struct                          s_readline
 {
   struct termios                termios;
+  struct winsize		screen_size;
   t_hs                          line;
   t_hs				prompt;
   int				input;
