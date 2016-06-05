@@ -75,5 +75,8 @@ t_token_result  parse_token(t_token_list **list_pointer, t_redir *redir)
   token = parse_token_impl(list_pointer);
   if (!token)
     return (TOKEN_RESULT_NULL);
+  error = parse_redir(list_pointer, redir);
+  if (hs_length(error))
+    return ((t_token_result){.error = error, .token = NULL});
   return ((t_token_result){.error = hs(""), .token = token});
 }

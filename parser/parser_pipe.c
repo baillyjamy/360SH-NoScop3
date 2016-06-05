@@ -16,18 +16,16 @@ static t_parser_result  parse_pipeline_end(t_node *first,
 {
   t_node                *list;
   t_parser_result       result;
-  t_token_result        tr;
+  t_token               *token;
 
   list = node_new(NODE_PIPE, redir);
   list->children = glist_voidp_new();
   glist_voidp_append(&list->children, first);
   while (*list_pointer)
     {
-      tr = parse_token_type(list_pointer, TOKEN_TYPE_PIPE, redir);
-      if (TOKEN_RESULT_IS_NULL(tr))
+      token = parse_token_type_impl(list_pointer, TOKEN_TYPE_PIPE);
+      if (!token)
         break ;
-      if (TOKEN_RESULT_IS_ERR(tr))
-        return (ERROR(tr.error));
       result = parse_command(list_pointer);
       if (hs_length(result.error))
         return (result);
@@ -35,7 +33,6 @@ static t_parser_result  parse_pipeline_end(t_node *first,
         break ;
       glist_voidp_append(&list->children, result.node);
     }
-  list->redir = *redir;
   return (NODE(list));
 }
 
@@ -78,7 +75,9 @@ t_parser_result         parse_pipeline(t_token_list **list_pointer)
   if (!result.node)
     return (result);
   if (glist_voidp_length(&result.node->children) == 1)
-    return (NODE(first));
+    {
+      return (NODE(first));
+    }
   if (hs_length(error = parser_setup_pipeline(result.node)))
     return (ERROR(error));
   return (result);

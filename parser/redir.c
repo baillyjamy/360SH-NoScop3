@@ -34,6 +34,8 @@ static t_hs     parse_lt(t_token_list **list_pointer, t_redir *redir)
   if (!t || !parser_is_word_or_string(t))
     return (hs("Missing name for redirect."));
   word = parser_get_word(t);
+  if (redir->input > 2)
+    close(redir->input);
   return (open_redir_file(word, &redir->input, O_RDONLY, 0));
 }
 
@@ -54,6 +56,8 @@ static t_hs     parse_gt(t_token_list **list_pointer, t_redir *redir)
   flags = O_WRONLY | O_CREAT | O_TRUNC;
   if (append)
     flags |= O_APPEND;
+  if (redir->output > 2)
+    close(redir->output);
   return (open_redir_file(word, &redir->output, flags, mode));
 }
 

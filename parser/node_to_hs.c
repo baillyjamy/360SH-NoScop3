@@ -59,7 +59,7 @@ static t_hs     list_to_hs(const t_node *node)
   return (s);
 }
 
-t_hs    node_to_hs(const t_node *node)
+static t_hs     node_to_hs_impl(const t_node *node)
 {
   if (node->type == NODE_COMMAND)
     return (hs_join(hs(" "), &node->args));
@@ -69,4 +69,16 @@ t_hs    node_to_hs(const t_node *node)
     return (list_to_hs(node));
   assert(0);
   return (hs(""));
+}
+
+t_hs    node_to_hs(const t_node *node)
+{
+  t_hs  s;
+
+  s = node_to_hs_impl(node);
+  return (hs_format("[%hs (%d %d %d)]",
+                    s,
+                    node->redir.input,
+                    node->redir.output,
+                    node->redir.error_output));
 }

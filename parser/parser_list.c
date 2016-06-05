@@ -10,47 +10,19 @@
 
 #include "private.h"
 
-t_token_result          parser_skip_semicolons(t_token_list **list_pointer,
-                                               t_redir *redir)
+static int      parse_list_op(t_token_list **list_pointer,
+                              t_list_op *op,
+                              t_hs *error)
 {
-  t_token_result        result;
-  t_token_result        prev;
-
-  prev = TOKEN_RESULT_NULL;
-  while (*list_pointer)
-    {
-      result = parse_token_type(list_pointer, TOKEN_TYPE_SEMICOLON, redir);
-      if (!result.token)
-        break ;
-      prev = result;
-    }
-  return (prev);
-}
-
-static int              parse_list_op(t_token_list **list_pointer,
-                                      t_list_op *op,
-                                      t_redir *redir,
-                                      t_hs *error)
-{
-  t_token_result        result;
-
   *error = hs("");
   *op = LIST_OP_SEMICOLON;
-  result = parse_token_type(list_pointer, TOKEN_TYPE_SEMICOLON, redir);
-  if (result.token)
+  if (parse_token_type_impl(list_pointer, TOKEN_TYPE_SEMICOLON))
     return (0);
-  if (hs_length(result.error))
-    {
-      *error = result.error;
-      return (-1);
-    }
   *op = LIST_OP_AND_AND;
-  result = parse_token_type(list_pointer, TOKEN_TYPE_AND_AND, redir);
-  if (result.token)
+  if (parse_token_type_impl(list_pointer, TOKEN_TYPE_AND_AND))
     return (0);
   *op = LIST_OP_PIPE_PIPE;
-  result = parse_token_type(list_pointer, TOKEN_TYPE_PIPE_PIPE, redir);
-  if (result.token)
+  if (parse_token_type_impl(list_pointer, TOKEN_TYPE_PIPE_PIPE))
     return (0);
   return (-1);
 }
@@ -101,7 +73,7 @@ t_parser_result         parse_command_list(t_token_list **list_pointer)
       if (!result.node)
         break ;
       glist_voidp_append(&list->children, result.node);
-      if (parse_list_op(list_pointer, &op, &redir, &error))
+      if (parse_list_op(list_pointer, &op, &error))
         {
           if (hs_length(error))
             return (ERROR(error));
