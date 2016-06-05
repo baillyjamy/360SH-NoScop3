@@ -52,7 +52,6 @@ static t_hs     parse_gt(t_token_list **list_pointer, t_redir *redir)
   word = parser_get_word(t);
   mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
   flags = O_WRONLY | O_CREAT | O_TRUNC;
-  egc_printf("redirection: %d\n", append);
   if (append)
     flags |= O_APPEND;
   return (open_redir_file(word, &redir->output, flags, mode));
