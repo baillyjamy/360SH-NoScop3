@@ -34,10 +34,9 @@ SOURCES	= \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
 	eval.c \
-	eval_0.c \
 	eval_bltns.c \
+	eval_pipe.c \
 	exec.c \
-	path.c \
 	expand_variables.c \
 	file/exist.c \
 	file/file.c \
@@ -70,6 +69,7 @@ SOURCES	= \
 	parser/parser_1.c \
 	parser/parser_list.c \
 	parser/parser_pipe.c \
+	path.c \
 	rcfile.c \
 	readline/readline_ascii_event.c\
 	readline/readline_cfmakeraw.c \

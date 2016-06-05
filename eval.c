@@ -30,37 +30,41 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
   return (0);
 }
 
+static int      eval_bltin(const t_node *node, t_bltin_function bltin)
+{
+  int           std_fd[3];
+  int           res;
+  t_glist_hs    new_args;
+
+  new_args = glist_hs_copy(&node->args);
+  std_fd[0] = dup(0);
+  std_fd[1] = dup(1);
+  std_fd[2] = dup(2);
+  dup2(0, node->redir.input);
+  dup2(1, node->redir.output);
+  dup2(2, node->redir.error_output);
+  res = bltin(&new_args);
+  close(0);
+  close(1);
+  close(2);
+  dup2(0, std_fd[0]);
+  dup2(1, std_fd[1]);
+  dup2(2, std_fd[2]);
+  return (res);
+}
+
 int              eval_command(const t_node *node)
 {
   t_hs                  cmd;
   t_hs                  cmd_path;
   t_bltin_function      bltin;
   t_glist_hs            path_list;
-  t_glist_hs            new_args;
-  int                   std_fd[3];
-  int                   res;
 
   assert(glist_hs_length(&node->args));
   cmd = glist_hs_get(&node->args, 0);
   bltin = find_bltin(cmd);
   if (bltin)
-    {
-      new_args = glist_hs_copy(&node->args);
-      std_fd[0] = dup(0);
-      std_fd[1] = dup(1);
-      std_fd[2] = dup(2);
-      dup2(0, node->redir.input);
-      dup2(1, node->redir.output);
-      dup2(2, node->redir.error_output);
-      res = bltin(&new_args);
-      close(0);
-      close(1);
-      close(2);
-      dup2(0, std_fd[0]);
-      dup2(1, std_fd[1]);
-      dup2(2, std_fd[2]);
-      return (res);
-    }
+    return (eval_bltin(node, bltin));
   path_list = get_path_list();
   /* hs_puts(cmd); */
   cmd_path = find_executable(&path_list, cmd);
@@ -96,8 +100,6 @@ int     eval(const t_node *node)
     return (eval_pipe(node));
   if (node->type == NODE_COMMAND)
     return (eval_command(node));
-  if (node->type == NODE_PAREN)
-    return (eval_paren(node));
   if (node->type == NODE_LIST)
     return (eval_list(node));
   assert(0);

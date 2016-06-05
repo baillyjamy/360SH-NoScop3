@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <sys/wait.h>
 #include "exec.h"
 #include "egc.h"
 

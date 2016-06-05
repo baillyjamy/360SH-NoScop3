@@ -18,7 +18,6 @@ typedef enum    e_node_type
 {
   NODE_PIPE,
   NODE_COMMAND,
-  NODE_PAREN,
   NODE_LIST,
 }               t_node_type;
 
