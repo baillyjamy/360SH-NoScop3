@@ -13,9 +13,12 @@
 
 # include "parser/parser.h"
 
-t_bltin_function    find_bltin(t_hs command);
-void                get_bltins(t_bltin *bltins);
-int                 eval(t_node *node);
+t_bltin_function	find_bltin(t_hs command);
+void			get_bltins(t_bltin *bltins);
+int			eval(t_node *node);
+
+int			eval_check_execution_path(t_hs cmd);
+int			wait_return_status(int pid);
 
 /*
 ** Eval parser options

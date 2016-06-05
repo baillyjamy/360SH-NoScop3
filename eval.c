@@ -13,22 +13,6 @@
 #include "eval.h"
 #include "exec.h"
 
-static int      wait_return_status(int pid)
-{
-  int		status;
-
-  while (42)
-    {
-      if (waitpid(pid, &status, 0) == -1)
-        return (130);
-      if (check_sigsegv(status) == -1)
-	return (139);
-      if (WIFEXITED(status))
-	return (WEXITSTATUS(status));
-    }
-  return (0);
-}
-
 static int      eval_command_path(t_node *node, t_hs command_path)
 {
   t_process     *process;
@@ -44,21 +28,6 @@ static int      eval_command_path(t_node *node, t_hs command_path)
   process = exec(&e);
   r = wait_return_status(process->pid);
   return (r);
-}
-
-int		check_execution_path(t_hs cmd)
-{
-  if ((access(hs_to_str(cmd), F_OK)))
-    {
-      egc_fprintf(STDERR_FILENO, "%hs: Command not found.\n", cmd);
-      return (1);
-    }
-  else if (is_dir(hs_to_str(cmd)) || access(hs_to_str(cmd), X_OK))
-    {
-      egc_fprintf(STDERR_FILENO, "%hs: Permission denied.\n", cmd);
-      return (1);
-    }
-  return (0);
 }
 
 static int              eval_command_impl(t_node *node)
@@ -77,8 +46,8 @@ static int              eval_command_impl(t_node *node)
   cmd_path = find_executable(&path_list, cmd);
   if (hs_find(cmd, hs(".."), 0) != -1 || hs_find_char(cmd, '/', 0) != -1)
     {
-      if (check_execution_path(cmd))
-	  return (1);
+      if (eval_check_execution_path(cmd))
+	return (1);
       cmd_path = cmd;
     }
   if (!hs_length(cmd_path))
