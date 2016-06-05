@@ -87,6 +87,9 @@ int		expand_variables(t_hs input, t_hs *result);
 int		opendir_to_list(t_hs path, t_glist_hs *files);
 int		sort_by_keyword(t_hs keyword, t_glist_hs *files);
 
+void            exit_on_ctrl_d(int r);
+void            ctrl_c();
+
 # ifndef STATICS
 #  define STATICS       ((t_statics *)egc_get_statics())
 # endif
