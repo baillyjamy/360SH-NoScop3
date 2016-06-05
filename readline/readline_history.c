@@ -37,7 +37,7 @@ void		readline_history_key_up(t_readline *readline)
     {
       g_index = history_length - 2 - readline->history_index;
       history_up = glist_hs_get(&readline->history, g_index);
-      if (readline->history_index <= history_length)
+      if (readline->history_index + 2 < history_length)
 	readline->history_index += 1;
       while (!readline_delete_char(readline));
       while (i < (int)hs_length(history_up))
