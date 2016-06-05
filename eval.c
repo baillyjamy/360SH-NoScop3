@@ -33,6 +33,7 @@ static int      eval_command_path(t_node *node, t_hs command_path)
 {
   t_process     *process;
   t_exec        e;
+  int           r;
 
   e.filename = command_path;
   e.argv = glist_hs_copy(&node->args);
@@ -41,7 +42,8 @@ static int      eval_command_path(t_node *node, t_hs command_path)
   e.stdout_fd = node->redir.output;
   e.stderr_fd = node->redir.error_output;
   process = exec(&e);
-  return (wait_return_status(process->pid));
+  r = wait_return_status(process->pid);
+  return (r);
 }
 
 int		check_execution_path(t_hs cmd)
