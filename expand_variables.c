@@ -101,7 +101,7 @@ int	expand_variables(t_hs input, t_hs *result)
       *result = hs_format("%hs: Undefined variable.", name);
       return (-1);
     }
-  value = env_get(name),
+  value = env_get(name);
   after = hs_slice(after, hs_length(name), hs_length(after));
   return (expand_values(before, value, after, result));
 }
