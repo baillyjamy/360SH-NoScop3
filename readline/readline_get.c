@@ -28,6 +28,7 @@ int	readline_get_cursor_pos(t_readline *readline, int *x, int *y)
       return (-1);
     }
   tcsetattr(readline->input, TCSANOW, &save);
+  egc_printf("x == %d  && y == %d", *x, *y);
   return (0);
 }
 
