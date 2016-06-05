@@ -25,14 +25,7 @@ static int              eval_tokens(t_token_list *tokens)
       hs_puts(parse_res.error);
       return (1);
     }
-  /*
-  hs_puts(node_to_hs(parse_res.node));
-  hs_puts(hs("------------------------"));
-  */
   r = eval(parse_res.node);
-  /*
-  egc_printf("status %d\n", r);
-  */
   return (r < 0 ? 1 : r);
 }
 
