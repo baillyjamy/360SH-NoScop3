@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun 05 16:55:47 2016 Antoine Baudrand
+** Last update Sun Jun 05 17:37:57 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -27,6 +27,7 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
   e.stderr_fd = node->redir.error_output;
   process = exec(&e);
   waitpid(process->pid, &status, 0);
+  hs_puts(hs("boudin"));
   return (0);
 }
 
@@ -40,13 +41,13 @@ static int      eval_bltin(const t_node *node, t_bltin_function bltin)
   std_fd[0] = dup(0);
   std_fd[1] = dup(1);
   std_fd[2] = dup(2);
-  dup2(0, node->redir.input);
-  dup2(1, node->redir.output);
-  dup2(2, node->redir.error_output);
+  dup2(node->redir.input, STDIN_FILENO);
+  dup2(node->redir.output, STDOUT_FILENO);
+  dup2(node->redir.error_output, STDERR_FILENO);
   res = bltin(&new_args);
-  dup2(0, std_fd[0]);
-  dup2(1, std_fd[1]);
-  dup2(2, std_fd[2]);
+  dup2(std_fd[0], STDIN_FILENO);
+  dup2(std_fd[1], STDOUT_FILENO);
+  dup2(std_fd[2], STDERR_FILENO);
   return (res);
 }
 
