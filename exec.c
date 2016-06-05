@@ -75,20 +75,20 @@ t_process       *exec(const t_exec *exec)
   proc->pid = fork();
   if (proc->pid == 0)
     {
-      if (exec->stdout_fd != STDOUT_FILENO)
-        dup2(exec->stdout_fd, STDOUT_FILENO);
       if (exec->stdin_fd != STDIN_FILENO)
         dup2(exec->stdin_fd, STDIN_FILENO);
+      if (exec->stdout_fd != STDOUT_FILENO)
+        dup2(exec->stdout_fd, STDOUT_FILENO);
       if (exec->stderr_fd != STDERR_FILENO)
         dup2(exec->stderr_fd, STDERR_FILENO);
       execve_wrapper(exec);
       egc_fprintf(STDERR_FILENO, "Unable to execve %hs\n", exec->filename);
       egc_exit(127);
     }
-  if (exec->stdout_fd != STDOUT_FILENO)
-    close(exec->stdout_fd);
   if (exec->stdin_fd != STDIN_FILENO)
     close(exec->stdin_fd);
+  if (exec->stdout_fd != STDOUT_FILENO)
+    close(exec->stdout_fd);
   if (exec->stderr_fd != STDERR_FILENO)
     close(exec->stdin_fd);
   return (proc);

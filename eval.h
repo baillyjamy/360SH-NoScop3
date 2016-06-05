@@ -22,5 +22,6 @@ int                 eval(const t_node *node);
 */
 int		eval_pipe(const t_node *node);
 int             eval_command(const t_node *node);
+int             eval_bltin(const t_node *node, t_bltin_function bltin);
 
 #endif /* !EVAL_H_ */
