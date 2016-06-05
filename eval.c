@@ -29,7 +29,7 @@ static int      wait_return_status(int pid)
   return (0);
 }
 
-static int      eval_command_path(const t_node *node, t_hs command_path)
+static int      eval_command_path(t_node *node, t_hs command_path)
 {
   t_process     *process;
   t_exec        e;
@@ -44,7 +44,7 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
   return (wait_return_status(process->pid));
 }
 
-int              eval_command(const t_node *node)
+int                     eval_command(t_node *node)
 {
   t_hs                  cmd;
   t_hs                  cmd_path;
@@ -63,12 +63,13 @@ int              eval_command(const t_node *node)
   if (!hs_length(cmd_path))
     {
       egc_fprintf(STDERR_FILENO, "%hs: Command not found.\n", cmd);
+      node_close(node);
       return (-1);
     }
   return (eval_command_path(node, cmd_path));
 }
 
-static int      eval_list(const t_node *node)
+static int      eval_list(t_node *node)
 {
   int           i;
   int           last_status;
@@ -91,7 +92,7 @@ static int      eval_list(const t_node *node)
   return (last_status);
 }
 
-int     eval(const t_node *node)
+int     eval(t_node *node)
 {
   if (node->type == NODE_PIPE)
     return (eval_pipe(node));

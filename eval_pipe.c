@@ -14,7 +14,7 @@
 #include "exec.h"
 #include "sh.h"
 
-int             eval_pipe(const t_node *node)
+int             eval_pipe(t_node *node)
 {
   t_node        *child;
   int           i;

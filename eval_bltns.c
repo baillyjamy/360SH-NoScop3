@@ -50,7 +50,7 @@ t_bltin_function find_bltin(t_hs command)
   return (NULL);
 }
 
-int             eval_bltin(const t_node *node, t_bltin_function bltin)
+int             eval_bltin(t_node *node, t_bltin_function bltin)
 {
   int           res;
   t_glist_hs    new_args;
