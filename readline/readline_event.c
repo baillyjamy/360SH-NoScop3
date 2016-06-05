@@ -30,6 +30,10 @@ static void	readline_escape_envent(t_readline *readline, char *c)
     {
       readline_history_key_up(readline);
     }
+  else if (!strcmp(c, readline->capacity.capacity_key_down))
+    {
+      readline_history_key_down(readline);
+    }
 }
 
 int     readline_event(t_readline *readline, char *c)

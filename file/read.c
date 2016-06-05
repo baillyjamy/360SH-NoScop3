@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:15:40 2016 Valentin Pichard
-** Last update Fri Jun  3 19:04:30 2016 Valentin Pichard
+** Last update Sun Jun  5 20:12:00 2016 Valentin Pichard
 */
 
 #include <sys/stat.h>
@@ -29,12 +29,12 @@ int		read_file(const t_hs filename, t_glist_hs *lines)
   t_hs		ths;
   t_glist_hs	new_lines;
 
-  if ((file_length = get_file_length(filename)) == -1 &&
-     (data = egc_malloc_atomic(file_length + 1)) == NULL)
+  if ((file_length = get_file_length(filename)) == -1)
     return (-1);
   if ((fd = open_file(filename, O_RDONLY)) == -1)
     return (-1);
-  if (read(fd, data, get_file_length(filename)) == -1)
+  data = egc_malloc_atomic(file_length + 1);
+  if (read(fd, data, file_length) == -1)
     {
       close(fd);
       return (-1);

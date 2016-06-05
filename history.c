@@ -14,7 +14,7 @@ int		get_history(t_glist_hs *history)
 {
   t_hs		path;
 
-  path = hs("~/.360sh-noscop3_history");
+  path = hs("./.360sh-noscop3_history");
   if (file_creator(path) < 0)
     return (-1);
   if (fshell_init(path, history) == -1)
@@ -26,7 +26,7 @@ int		add_line_history(t_hs line)
 {
   t_hs		path;
 
-  path = hs("~/.360sh-noscop3_history");
+  path = hs("./.360sh-noscop3_history");
   if (file_creator(path) < 0)
     return (-1);
   if (insert_line(path, line) == -1)

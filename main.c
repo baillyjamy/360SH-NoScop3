@@ -92,6 +92,7 @@ static int      read_and_eval(t_readline *readline, int last_status)
 */
 void	ctrl_c()
 {
+  return ;
 }
 
 static int      main_loop(int argc, char **argv, char **env)
