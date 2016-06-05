@@ -41,6 +41,9 @@ static void     exit_on_ctrl_d(int r)
   t_glist_hs    args;
 
   args = hs_split(hs_format("exit %d", r), hs(" "));
+  STATICS->in = STDIN_FILENO;
+  STATICS->out = STDOUT_FILENO;
+  STATICS->err = STDERR_FILENO;
   exit_cmd(&args);
 }
 

@@ -44,19 +44,6 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
   return (wait_return_status(process->pid));
 }
 
-static int      eval_bltin(const t_node *node, t_bltin_function bltin)
-{
-  int           res;
-  t_glist_hs    new_args;
-
-  new_args = glist_hs_copy(&node->args);
-  STATICS->in = node->redir.input;
-  STATICS->out = node->redir.output;
-  STATICS->err = node->redir.error_output;
-  res = bltin(&new_args);
-  return (res);
-}
-
 int              eval_command(const t_node *node)
 {
   t_hs                  cmd;

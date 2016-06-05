@@ -9,6 +9,7 @@
 */
 
 #include "sh.h"
+#include "parse_int/parse_int.h"
 
 void		update_shell_level(void)
 {
