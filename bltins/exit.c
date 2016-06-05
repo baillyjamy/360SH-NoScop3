@@ -16,7 +16,7 @@
 void	print_exit(int status)
 {
   if (isatty(0) == 1)
-    egc_printf("exit\n");
+    hs_print_file(hs("exit\n"), STATICS->out);
   GOODBYE(status);
 }
 
