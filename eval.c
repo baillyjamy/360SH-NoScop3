@@ -44,19 +44,6 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
   return (wait_return_status(process->pid));
 }
 
-static int      eval_bltin(const t_node *node, t_bltin_function bltin)
-{
-  int           res;
-  t_glist_hs    new_args;
-
-  new_args = glist_hs_copy(&node->args);
-  STATICS->in = node->redir.input;
-  STATICS->out = node->redir.output;
-  STATICS->err = node->redir.error_output;
-  res = bltin(&new_args);
-  return (res);
-}
-
 int              eval_command(const t_node *node)
 {
   t_hs                  cmd;
@@ -72,11 +59,24 @@ int              eval_command(const t_node *node)
   path_list = get_path_list();
   cmd_path = find_executable(&path_list, cmd);
   if (hs_find(cmd, hs(".."), 0) != -1 || hs_find_char(cmd, '/', 0) != -1)
-    cmd_path = cmd;
+    {
+      if ((access(hs_to_str(cmd), F_OK)))
+	{
+	  egc_fprintf(STDERR_FILENO, "%hs: Command not found.\n", cmd);
+	  return (1);
+	}
+      else if (is_dir(hs_to_str(cmd)) || access(hs_to_str(cmd), X_OK))
+	{
+	  egc_fprintf(STDERR_FILENO, "%hs: Permission denied.\n", cmd);
+	  return (1);
+	}
+      else
+	cmd_path = cmd;
+    }
   if (!hs_length(cmd_path))
     {
       egc_fprintf(STDERR_FILENO, "%hs: Command not found.\n", cmd);
-      return (-1);
+      return (1);
     }
   return (eval_command_path(node, cmd_path));
 }

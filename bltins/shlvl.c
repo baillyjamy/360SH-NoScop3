@@ -5,10 +5,11 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Sun Jun  5 01:34:17 2016 Pierre-Emmanuel Jacquier
-** Last update Sun Jun  5 01:34:17 2016 Pierre-Emmanuel Jacquier
+** Last update Sun Jun  5 20:36:03 2016 Valentin Pichard
 */
 
-#include "sh.h"
+#include "../sh.h"
+#include "../parse_int/parse_int.h"
 
 void		update_shell_level(void)
 {

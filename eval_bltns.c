@@ -49,3 +49,22 @@ t_bltin_function find_bltin(t_hs command)
     }
   return (NULL);
 }
+
+int             eval_bltin(const t_node *node, t_bltin_function bltin)
+{
+  int           res;
+  t_glist_hs    new_args;
+
+  new_args = glist_hs_copy(&node->args);
+  STATICS->in = node->redir.input;
+  STATICS->out = node->redir.output;
+  STATICS->err = node->redir.error_output;
+  res = bltin(&new_args);
+  if (STATICS->in != STDIN_FILENO)
+    close(STATICS->in);
+  if (STATICS->out != STDOUT_FILENO)
+    close(STATICS->out);
+  if (STATICS->err != STDERR_FILENO)
+    close(STATICS->err);
+  return (res);
+}
