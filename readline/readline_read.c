@@ -74,7 +74,7 @@ static int      readline_raw(t_readline *readline, t_hs *line)
 
 static int      init(t_readline *readline)
 {
-  if (setupterm(NULL, readline->output, NULL))
+  if (readline_setupterm(readline->output))
     return (-1);
   readline_init_capacity(&readline->capacity);
   readline->line = hs_new_empty();
