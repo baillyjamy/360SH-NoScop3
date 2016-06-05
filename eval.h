@@ -20,7 +20,7 @@ int                 eval(const t_node *node);
 /*
 ** Eval parser options
 */
-int		eval_pipe(t_node *node);
+int		eval_pipe(const t_node *node);
 int             eval_command(const t_node *node);
 int		eval_paren(const t_node *node);
 int		eval_background(const t_node *node);

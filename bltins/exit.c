@@ -15,6 +15,8 @@
 
 void	print_exit(int status)
 {
+  if (isatty(0) == 1)
+    egc_printf("exit\n");
   GOODBYE(status);
 }
 

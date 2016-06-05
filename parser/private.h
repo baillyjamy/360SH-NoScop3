@@ -55,4 +55,7 @@ t_token_result  parse_token_type(t_token_list **list_pointer,
                                  t_token_type type,
                                  t_redir *redir);
 
+t_parser_result parse_command(t_token_list **list_pointer);
+t_parser_result parse_pipeline(t_token_list **list_pointer);
+
 #endif /* !PRIVATE_H_ */

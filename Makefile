@@ -67,6 +67,7 @@ SOURCES	= \
 	parser/parser.c \
 	parser/parser_0.c \
 	parser/parser_1.c \
+	parser/parser_pipe.c \
 	rcfile.c \
 	readline/readline_ascii_event.c\
 	readline/readline_cfmakeraw.c \
