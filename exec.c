@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
-** Last update Sun Jun 05 12:12:55 2016 Antoine Baudrand
+** Last update Sun Jun  5 16:12:26 2016 Valentin Pichard
 */
 
 #include <unistd.h>
@@ -14,6 +14,25 @@
 #include <errno.h>
 #include "exec.h"
 #include "egc.h"
+
+int		wait_return_state(void)
+{
+  int		status;
+
+  while (42)
+    {
+      if (waitpid(-1, &status, 0) == -1)
+	{
+	  egc_printf("Waitpid failed.");
+	  return (-1);
+	}
+      if (check_sigsegv(status) == -1)
+	return (-1);
+      if (WIFEXITED(status))
+	return (WEXITSTATUS(status));
+    }
+  return (0);
+}
 
 /*
 ** Returns a NULL-terminated array of NUL-terminated C strings.
