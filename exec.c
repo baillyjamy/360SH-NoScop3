@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
-** Last update Sun Jun 05 00:45:18 2016 Antoine Baudrand
+** Last update Sun Jun 05 12:12:55 2016 Antoine Baudrand
 */
 
 #include <unistd.h>
@@ -80,7 +80,7 @@ t_process       *exec(const t_exec *exec)
       if (exec->stdin_fd != STDIN_FILENO)
         dup2(exec->stdin_fd, STDIN_FILENO);
       if (exec->stderr_fd != STDERR_FILENO)
-        dup2(exec->stdin_fd, STDERR_FILENO);
+        dup2(exec->stderr_fd, STDERR_FILENO);
       execve_wrapper(exec);
       egc_fprintf(STDERR_FILENO, "Unable to execve %hs\n", exec->filename);
       egc_exit(127);

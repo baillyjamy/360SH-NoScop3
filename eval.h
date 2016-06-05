@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:56:13 2016 antoine
-** Last update Sun Jun  5 01:58:51 2016 Valentin Pichard
+** Last update Sun Jun 05 11:35:23 2016 Antoine Baudrand
 */
 
 #ifndef EVAL_H_
@@ -20,7 +20,8 @@ int                 eval(const t_node *node);
 /*
 ** Eval parser options
 */
-int		eval_pipe(const t_node *node);
+int		eval_pipe(t_node *node);
+int             eval_command(const t_node *node);
 int		eval_paren(const t_node *node);
 int		eval_background(const t_node *node);
 int		eval_and(const t_node *node);

@@ -27,7 +27,6 @@ int                     readline_get_cursor_pos(t_readline *readline,
   egc_printf("\033[6n");
   if (readline_parse_cursor_position(readline->input, x, y))
     {
-      egc_printf("LOFZEKA\n");
       tcsetattr(readline->input, TCSANOW, &save);
       return (-1);
     }

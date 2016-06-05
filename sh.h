@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Sat Jun  4 18:12:46 2016 Valentin Pichard
+** Last update Sun Jun  5 10:28:26 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -56,7 +56,7 @@ void		update_shell_level(void);
 
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
-void		print_exit(int status, int print_needed);
+void		print_exit(int status);
 
 int		env_cmd(t_glist_hs *argv);
 int		cd_cmd(t_glist_hs *argv);
