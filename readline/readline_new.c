@@ -17,6 +17,8 @@ void    readline_init_capacity(t_capacity *capacity)
   capacity->capacity_clear_screen = tigetstr("clear");
   capacity->capacity_key_left = tigetstr("kcub1");
   capacity->capacity_key_right = tigetstr("kcuf1");
+  capacity->capacity_key_up = tigetstr("kcuu1");
+  capacity->capacity_key_down = tigetstr("kcud1");
   capacity->capacity_cursor_left = tigetstr("cub1");
   capacity->capacity_cursor_right = tigetstr("cuf1");
   capacity->capacity_cursor_up = tigetstr("cuu1");

@@ -8,8 +8,9 @@
 ** Last update Thu Jun 02 22:55:49 2016 Antoine Baudrand
 */
 
-#include <term.h>
+/*#include <term.h>*/
 #include <unistd.h>
+#include "../sh.h"
 #include "private.h"
 
 static char     *read_char(int input)
@@ -73,7 +74,7 @@ static int      readline_raw(t_readline *readline, t_hs *line)
 
 static int      init(t_readline *readline)
 {
-  if (setupterm(NULL, readline->output, NULL))
+  if (readline_setupterm(readline->output))
     return (-1);
   readline_init_capacity(&readline->capacity);
   readline->line = hs_new_empty();
@@ -82,6 +83,7 @@ static int      init(t_readline *readline)
   readline_print_prompt(readline);
   readline_get_winsize(readline);
   readline_get_cursor_pos(readline, &readline->cursor_x, &readline->cursor_y);
+  readline_get_history(readline);
   return (0);
 }
 
@@ -108,6 +110,7 @@ int	readline_read(t_readline *readline, t_hs *line)
         }
     }
   readline_restore_term(&readline->termios);
+  add_line_history(readline->line);
   egc_printf(r == -1 ? "" : "\n");
   *line = readline->line;
   return (r);

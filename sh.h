@@ -1,11 +1,11 @@
 /*
-** sh.h for  in /home/antoine
+** sh.h for 360SH-NoScop3 in /home/antoine/360SH-NoScop3
 **
 ** Made by antoine
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Sun Jun  5 10:28:26 2016 Valentin Pichard
+** Last update Sun Jun 05 18:37:10 2016 Antoine Baudrand
 */
 
 #ifndef SH_H_
@@ -33,6 +33,9 @@ typedef struct  	s_statics
   const char            *lexer_input_string;
   t_test_stats          test_stats;
   t_scope               env;
+  int                   in;
+  int                   out;
+  int                   err;
 }               	t_statics;
 
 /*
@@ -70,6 +73,8 @@ int		unsetenv_cmd(t_glist_hs *argv);
 */
 int		get_rcfile(t_glist_hs *to_exec);
 int		get_history(t_glist_hs *history);
+
+int		add_line_history(t_hs line);
 
 /*
 ** Return 0 if success and -1 if not

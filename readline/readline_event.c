@@ -26,6 +26,10 @@ static void	readline_escape_envent(t_readline *readline, char *c)
       readline->cursor_index += 1;
       egc_printf("%s", readline->capacity.capacity_cursor_right);
     }
+  else if (!strcmp(c, readline->capacity.capacity_key_up))
+    {
+      readline_history_key_up(readline);
+    }
 }
 
 int     readline_event(t_readline *readline, char *c)

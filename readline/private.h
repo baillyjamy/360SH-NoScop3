@@ -19,6 +19,8 @@ typedef struct	s_capacity
   char		*capacity_clear_screen;
   char		*capacity_key_left;
   char		*capacity_key_right;
+  char		*capacity_key_up;
+  char		*capacity_key_down;
   char		*capacity_cursor_left;
   char		*capacity_cursor_right;
   char		*capacity_cursor_up;
@@ -38,6 +40,8 @@ struct                          s_readline
   int				input;
   int				output;
   int				error_output;
+  t_glist_hs			history;
+  int				history_index;
   int				cursor_index;
   int				cursor_x;
   int				cursor_y;
@@ -109,5 +113,11 @@ int	readline_get_cursor_pos(t_readline *readline, int *x, int *y);
 int	readline_get_winsize(t_readline *readline);
 
 int     readline_parse_cursor_position(int input_fd, int *x, int *y);
+
+int	readline_get_history(t_readline *readline);
+
+void	readline_history_key_up(t_readline *readline);
+
+int	readline_setupterm(int output);
 
 #endif /* !PRIVATE_H_ */

@@ -8,6 +8,7 @@
 ** Last update Sat Jun 04 19:51:22 2016 Antoine Baudrand
 */
 
+#include <fcntl.h>
 #include <sys/stat.h>
 #include "sh_file.h"
 
