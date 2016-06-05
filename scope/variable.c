@@ -30,7 +30,7 @@ t_variable      *variable_from_hs(t_hs string)
   if (i == -1 || i == 0)
     return (NULL);
   name = hs_slice(string, 0, i);
-  value = hs_slice(string, i, hs_length(string));
+  value = hs_slice(string, i + 1, hs_length(string));
   return (variable_new(name, value));
 }
 

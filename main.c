@@ -69,6 +69,7 @@ static int      main_loop(int argc, char **argv, char **env)
   scope_init_from_str_array(&statics.env, env);
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
   update_shell_level();
+  r = 0;
   while (42)
     {
       readline_set_prompt(readline, create_prompt());

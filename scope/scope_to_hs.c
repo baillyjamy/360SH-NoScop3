@@ -18,7 +18,7 @@ t_glist_hs      scope_to_glist(t_scope *scope)
 
   list = glist_hs_new();
   i = -1;
-  while (++i)
+  while (++i < glist_voidp_length(&scope->variables))
     {
       var = glist_voidp_get(&scope->variables, i);
       glist_hs_append(&list, variable_to_hs(var));
