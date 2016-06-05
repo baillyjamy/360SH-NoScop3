@@ -13,6 +13,6 @@
 int	env_cmd(t_glist_hs *args)
 {
   (void) args;
-  hs_print(env_to_hs());
+  hs_print_file(env_to_hs(), STATICS->out);
   return (0);
 }

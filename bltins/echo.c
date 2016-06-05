@@ -19,13 +19,13 @@ static int	print_args(t_glist_hs *argv)
     i = 2;
   while (i < glist_hs_length(argv))
     {
-      hs_print(glist_hs_get(argv, i));
+      hs_print_file(glist_hs_get(argv, i), STATICS->out);
       if (i != glist_hs_length(argv) - 1)
-	hs_print(hs(" "));
+	egc_fprintf(STATICS->out, " ");
       i++;
     }
   if (!hs_equals(glist_hs_get(argv, 1), hs("-n")))
-    egc_printf("\n");
+    hs_print_file("\n", STATICS->out);
   return (0);
 }
 
@@ -33,7 +33,7 @@ int	echo_cmd(t_glist_hs *argv)
 {
   if (glist_hs_length(argv) == 1)
     {
-      egc_printf("\n");
+      egc_fprintf(STATICS->out, "\n");
       return (0);
     }
   else if (glist_hs_length(argv) > 1)
