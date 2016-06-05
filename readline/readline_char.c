@@ -25,8 +25,6 @@ void	readline_insert_char(t_readline *readline, char c)
   readline->line = hs_concat(left_hs, new_line);
   readline->cursor_index++;
   readline->cursor_x++;
-  if (readline->cursor_x == readline->screen_size.ws_col)
-    readline->cursor_x = 1;
   readline_update_cursor(readline);
 }
 
@@ -46,12 +44,5 @@ void	readline_delete_char(t_readline *readline)
   egc_printf("%hs", right_hs);
   readline->line = hs_concat(left_hs, right_hs);
   readline->cursor_index--;
-  readline->cursor_x++;
-  if (readline->cursor_x == 0)
-    {
-      readline->cursor_x = readline->screen_size.ws_col;
-      egc_printf("%s", readline->capacity.capacity_cursor_up);
-      egc_printf("%s", readline->capacity.capacity_cursor_end);
-    }
   readline_update_cursor(readline);
 }
