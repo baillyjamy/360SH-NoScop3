@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon May 30 00:14:18 2016 Valentin Pichard
-** Last update Sun Jun  5 19:04:51 2016 Valentin Pichard
+** Last update Sun Jun  5 19:33:18 2016 Valentin Pichard
 */
 
 #include <sys/stat.h>
@@ -22,7 +22,7 @@ int		file_exist(const t_hs filename)
 
 int		fshell_init(t_hs path, t_glist_hs *lines)
 {
-  if (file_exist(path))
+  if (!file_exist(path))
     return (-1);
   if (read_file(path, lines) == -1)
     return (-1);
