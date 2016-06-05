@@ -63,7 +63,7 @@ int             setenv_cmd(t_glist_hs *argv)
     return (set_variable(glist_hs_get(argv, 1), glist_hs_get(argv, 2)));
   else if (glist_hs_length(argv) == 1)
     {
-      hs_puts(env_to_hs());
+      hs_puts_file(env_to_hs(), STATICS->out);
       return (0);
     }
   return (0);
