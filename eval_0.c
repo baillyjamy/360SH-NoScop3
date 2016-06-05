@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Sun Jun  5 01:55:31 2016 Valentin Pichard
-** Last update Sun Jun  5 02:00:22 2016 Valentin Pichard
+** Last update Sun Jun  5 02:11:14 2016 Valentin Pichard
 */
 
 #include <sys/wait.h>
@@ -15,25 +15,30 @@
 
 int		eval_pipe(const t_node *node)
 {
+  assert(0);
   return (0);
 }
 
 int		eval_paren(const t_node *node)
 {
+  assert(0);
   return (0);
 }
 
 int		eval_background(const t_node *node)
 {
+  assert(0);
   return (0);
 }
 
 int		eval_and(const t_node *node)
 {
+  assert(0);
   return (0);
 }
 
 int		eval_or(const t_node *node)
 {
+  assert(0);
   return (0);
 }
