@@ -20,7 +20,7 @@ t_glist_hs	get_path_list(void)
   default_path = ("/usr/local/bin:/usr/bin:/bin:"
                   "/usr/local/games:/usr/games:/sbin");
   path = hs_split(hs(default_path), hs(":"));
-  if (env_contains(hs("PATH")) == -1)
+  if (!env_contains(hs("PATH")))
     return (path);
   value = env_get(hs("PATH"));
   path = hs_split(value, hs(":"));
