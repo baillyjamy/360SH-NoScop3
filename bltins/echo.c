@@ -25,7 +25,7 @@ static int	print_args(t_glist_hs *argv)
       i++;
     }
   if (!hs_equals(glist_hs_get(argv, 1), hs("-n")))
-    hs_print_file("\n", STATICS->out);
+    hs_print_file(hs("\n"), STATICS->out);
   return (0);
 }
 
