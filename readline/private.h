@@ -40,7 +40,7 @@ struct                          s_readline
   int				input;
   int				output;
   int				error_output;
-  t_glist_hs			*history;
+  t_glist_hs			history;
   int				history_index;
   int				cursor_index;
   int				cursor_x;
@@ -117,5 +117,7 @@ int     readline_parse_cursor_position(int input_fd, int *x, int *y);
 int	readline_get_history(t_readline *readline);
 
 void	readline_history_key_up(t_readline *readline);
+
+int	readline_setupterm(int output);
 
 #endif /* !PRIVATE_H_ */

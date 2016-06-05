@@ -84,6 +84,7 @@ SOURCES	= \
 	readline/readline_print.c \
 	readline/readline_read.c \
 	readline/readline_set.c \
+	readline/readline_setupterm.c \
 	readline/readline_term.c \
 	readline/readline_update.c \
 	scope/scope.c \

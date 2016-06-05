@@ -16,29 +16,29 @@ int		readline_get_history(t_readline *readline)
   t_glist_hs	history;
 
   history = glist_hs_new();
-  /*egc_printf("YOLOLOLOLOL");*/
+  egc_printf("YOLOLOLOLOL");
   if (get_history(&history) == -1)
     return (-1);
-  /*egc_printf("TROLOLOL");*/
+  egc_printf("TROLOLOL");
   egc_printf("%d", glist_hs_length(&history));
-  readline->history = &history;
+  readline->history = history;
   readline->history_index = 0;
   return (0);
 }
 
 void		readline_history_key_up(t_readline *readline)
 {
-  if (glist_hs_length(readline->history) > 0)
+  if (glist_hs_length(&readline->history) > 0)
     {
-      readline->line = glist_hs_get(readline->history, readline->history_index);
-      if (readline->history_index <= glist_hs_length(readline->history))
+      readline->line = glist_hs_get(&readline->history, readline->history_index);
+      if (readline->history_index <= glist_hs_length(&readline->history))
 	readline->history_index += 1;
     }
 }
 
 void		readline_history_key_down(t_readline *readline)
 {
-  readline->line = glist_hs_get(readline->history, readline->history_index);
+  readline->line = glist_hs_get(&readline->history, readline->history_index);
   if (readline->history_index > 0)
     readline->history_index -= 1;
 }

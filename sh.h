@@ -74,6 +74,8 @@ int		unsetenv_cmd(t_glist_hs *argv);
 int		get_rcfile(t_glist_hs *to_exec);
 int		get_history(t_glist_hs *history);
 
+int		add_line_history(t_hs line);
+
 /*
 ** Return 0 if success and -1 if not
 */

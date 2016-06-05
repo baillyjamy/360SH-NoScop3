@@ -9,6 +9,7 @@
 */
 
 #include <sys/stat.h>
+#include <fcntl.h>
 #include "sh_file.h"
 
 ssize_t		get_file_length(const t_hs filename)
