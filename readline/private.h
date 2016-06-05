@@ -118,6 +118,8 @@ int	readline_get_history(t_readline *readline);
 
 void	readline_history_key_up(t_readline *readline);
 
+void	readline_history_key_down(t_readline *readline);
+
 int	readline_setupterm(int output);
 
 #endif /* !PRIVATE_H_ */
