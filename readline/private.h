@@ -40,7 +40,7 @@ struct                          s_readline
   int				input;
   int				output;
   int				error_output;
-  t_glist_hs			*history;
+  t_glist_hs			history;
   int				history_index;
   int				cursor_index;
   int				cursor_x;
