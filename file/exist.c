@@ -24,8 +24,8 @@ int		fshell_init(t_hs path, t_glist_hs *lines)
 {
   if (!file_exist(path))
     return (-1);
-  if (read_file(path, lines) == -1)
-    return (-1);
+  /*if (read_file(path, lines) == -1)
+    return (-1);*/
   return (0);
 }
 

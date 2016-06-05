@@ -40,10 +40,10 @@ int		read_file(const t_hs filename, t_glist_hs *lines)
       return (-1);
     }
   close(fd);
-  ths = hs(data);
+  /*ths = hs(data);
   if ((int)hs_length(ths) != file_length)
     return (-1);
   new_lines = hs_split(ths, hs("\n"));
-  glist_hs_append_all(lines, &new_lines);
+  glist_hs_append_all(lines, &new_lines);*/
   return (0);
 }
