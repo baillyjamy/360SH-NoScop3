@@ -14,19 +14,12 @@
 #include "sh.h"
 #include "eval.h"
 
-static int              eval_hs(t_hs input)
+static int              eval_tokens(t_token_list *tokens)
 {
-  t_lexer_result        lex_res;
   t_parser_result       parse_res;
   int                   r;
 
-  lex_res = lex(input);
-  if (lex_res.error)
-    {
-      hs_puts(syntax_error_to_hs(lex_res.error));
-      return (1);
-    }
-  parse_res = parse(lex_res.tokens);
+  parse_res = parse(tokens);
   if (!parse_res.success)
     {
       hs_puts(parse_res.error);
@@ -51,6 +44,45 @@ static void     exit_on_ctrl_d(int r)
   exit_cmd(&args);
 }
 
+static t_token_list     *read_and_lex(t_readline *readline, int last_status)
+{
+  t_lexer_result        lex_res;
+  t_hs                  input;
+  t_hs                  c;
+
+  readline_set_prompt(readline, create_prompt());
+  if (readline_read(readline, &input))
+    exit_on_ctrl_d(last_status);
+  while (1)
+    {
+      lex_res = lex(input);
+      if (!lex_res.error)
+        break ;
+      if (!hs_equals(hs("Expected here document end delimiter"),
+                     lex_res.error->message))
+        {
+          hs_puts(syntax_error_to_hs(lex_res.error));
+          return (read_and_lex(readline, last_status));
+        }
+      input = hs_format("%hs\n", input);
+      readline_set_prompt(readline, hs("? "));
+      if (readline_read(readline, &c))
+        return (read_and_lex(readline, last_status));
+      input = hs_format("%hs%hs\n", input, c);
+    }
+  return (lex_res.tokens);
+}
+
+static int      read_and_eval(t_readline *readline, int last_status)
+{
+  t_token_list  *tokens;
+
+  tokens = read_and_lex(readline, last_status);
+  if (!tokens)
+    return (read_and_eval(readline, last_status));
+  return (eval_tokens(tokens));
+}
+
 /*
 ** TODO: We can't use any garbage-collected stuff in an signal handler.
 ** We should do this differently.
@@ -61,7 +93,6 @@ void	ctrl_c()
 
 static int      main_loop(int argc, char **argv, char **env)
 {
-  t_hs          input;
   t_readline    *readline;
   t_statics     statics;
   int           r;
@@ -76,13 +107,7 @@ static int      main_loop(int argc, char **argv, char **env)
   update_shell_level();
   r = 0;
   while (42)
-    {
-      readline_set_prompt(readline, create_prompt());
-      if (readline_read(readline, &input))
-        exit_on_ctrl_d(r);
-      if (hs_length(input))
-        r = eval_hs(input);
-    }
+    r = read_and_eval(readline, r);
   return (r);
 }
 
