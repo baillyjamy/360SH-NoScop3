@@ -32,7 +32,9 @@ struct                          s_readline
   int				input;
   int				output;
   int				error_output;
-  int				cursor_pos;
+  int				cursor_index;
+  int				cursor_x;
+  int				cursor_y;
   t_capacity			capacity;
   t_readline_tokenizer		tokenizer;
   void				*tokenizer_data;
@@ -81,6 +83,14 @@ int	readline_get_term(struct termios *cfg);
 ** Restore terminal configuration
 */
 int	readline_restore_term(const struct termios *cfg);
+
+/*
+** Make a pre-existing termios structure into "raw" mode: character-at-a-time
+** mode with no characters interpreted, 8-bit data path.
+*/
+void	readline_cfmakeraw(struct termios *t);
+
+int	readline_get_cursor_pos(t_readline *readline, int *x, int *y);
 
 int     readline_parse_cursor_position(int input_fd, int *x, int *y);
 

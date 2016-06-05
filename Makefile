@@ -33,6 +33,7 @@ SOURCES	= \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
 	eval.c \
+	eval_0.c \
 	eval_bltns.c \
 	exec.c \
 	path.c \
@@ -68,11 +69,13 @@ SOURCES	= \
 	parser/parser_1.c \
 	rcfile.c \
 	readline/readline_ascii_event.c\
+	readline/readline_cfmakeraw.c \
 	readline/readline_char.c \
 	readline/readline_event_ctrl.c\
 	readline/readline_event.c \
 	readline/readline_get.c \
 	readline/readline_new.c \
+	readline/readline_parse_cursor_position.c \
 	readline/readline_print.c \
 	readline/readline_read.c \
 	readline/readline_set.c \
@@ -85,6 +88,7 @@ SOURCES	= \
 	scope/variable.c \
 	scope/env.c \
 	sh.c \
+	shlvl.c \
 	string/string.c \
 	string/string_concat.c \
 	string/string_copy.c \

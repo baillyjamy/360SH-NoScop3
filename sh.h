@@ -51,6 +51,9 @@ typedef struct          s_bltin
   t_bltin_function      function;
 }                       t_bltin;
 
+void		generate_path(void);
+void		update_shell_level(void);
+
 int		chdir_error(t_hs path);
 int		home_error(t_hs home_path);
 void		print_exit(int status, int print_needed);
@@ -71,7 +74,7 @@ int		get_history(t_glist_hs *history);
 /*
 ** Return 0 if success and -1 if not
 */
-int	expand_variables(t_hs input, t_hs *result);
+int		expand_variables(t_hs input, t_hs *result);
 
 /*
 ** Autocomplete functions
