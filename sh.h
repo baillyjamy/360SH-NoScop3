@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Sun Jun 05 18:37:10 2016 Antoine Baudrand
+** Last update Sun Jun  5 21:08:31 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -69,12 +69,12 @@ int		setenv_cmd(t_glist_hs *argv);
 int		unsetenv_cmd(t_glist_hs *argv);
 
 /*
-** Rcfile functions
+** File functions
 */
-int		get_rcfile(t_glist_hs *to_exec);
-int		get_history(t_glist_hs *history);
-
-int		add_line_history(t_hs line);
+int		insert_line_file(t_hs path, t_hs line);
+int		get_file_content(t_hs path, t_glist_hs *history);
+t_hs		path_history(void);
+t_hs		path_rcfile(void);
 
 /*
 ** Return 0 if success and -1 if not

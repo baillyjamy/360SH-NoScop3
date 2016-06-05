@@ -5,7 +5,7 @@
 ** Login   <bailly_j@epitech.net>
 **
 ** Started on  Wed May 25 15:34:49 2016 Jamy Bailly
-** Last update Thu Jun 02 22:55:49 2016 Antoine Baudrand
+** Last update Sun Jun  5 21:18:03 2016 Valentin Pichard
 */
 
 /*#include <term.h>*/
@@ -96,7 +96,7 @@ int	readline_read(t_readline *readline, t_hs *line)
     return (readline_raw(readline, line));
   init(readline);
   r = 0;
-  while (1)
+  while (42)
     {
       c = read_char(readline->input);
       if (!c)
@@ -110,7 +110,8 @@ int	readline_read(t_readline *readline, t_hs *line)
         }
     }
   readline_restore_term(&readline->termios);
-  add_line_history(readline->line);
+  if (hs_length(readline->line) > 0)
+    insert_line_file(path_history(), readline->line);
   egc_printf(r == -1 ? "" : "\n");
   *line = readline->line;
   return (r);
