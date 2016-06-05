@@ -28,14 +28,14 @@ void	readline_insert_char(t_readline *readline, char c)
   readline_update_cursor(readline);
 }
 
-void	readline_delete_char(t_readline *readline)
+int	readline_delete_char(t_readline *readline)
 {
   t_hs	left_hs;
   t_hs	right_hs;
   t_hs  old;
 
   if (readline->cursor_index == 0)
-    return ;
+    return (-1);
   egc_printf("%s", readline->capacity.capacity_cursor_left);
   egc_printf("%s", readline->capacity.capacity_clr_eos);
   old = readline->line;
@@ -45,4 +45,5 @@ void	readline_delete_char(t_readline *readline)
   readline->line = hs_concat(left_hs, right_hs);
   readline->cursor_index--;
   readline_update_cursor(readline);
+  return (0);
 }

@@ -62,7 +62,7 @@ void    readline_init_capacity(t_capacity *capacity);
 
 void	readline_insert_char(t_readline *readline, char c);
 
-void	readline_delete_char(t_readline *readline);
+int	readline_delete_char(t_readline *readline);
 
 void	readline_update(t_readline *readline, char *c);
 
