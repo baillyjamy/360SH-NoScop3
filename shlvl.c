@@ -21,7 +21,8 @@ void		update_shell_level(void)
       env_set_variable(hs("SHLVL"), hs("1"));
       return ;
     }
-  parse_uint(hs_to_str(value), &sh_value);
+  if (parse_uint(hs_to_str(value), &sh_value))
+    sh_value = 0;
   sh_value++;
   env_set_variable(hs("SHLVL"), hs_format("%d", sh_value));
 }
