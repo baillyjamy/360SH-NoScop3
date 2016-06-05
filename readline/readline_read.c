@@ -93,12 +93,10 @@ int	readline_read(t_readline *readline, t_hs *line)
 
   if (!isatty(readline->input) || readline_get_term(&readline->termios))
     return (readline_raw(readline, line));
-  init(readline);
-  r = 0;
+  r = init(readline);
   while (42)
     {
-      c = read_char(readline->input);
-      if (!c)
+      if (!(c = read_char(readline->input)))
         break ;
       if (c[0] >= 32)
 	readline_update(readline, c);

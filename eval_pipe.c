@@ -18,12 +18,15 @@ int             eval_pipe(t_node *node)
 {
   t_node        *child;
   int           i;
+  int           r;
 
   i = 0;
   while (i < glist_voidp_length(&node->children))
     {
       child = glist_voidp_get(&node->children, i);
-      eval_command(child);
+      r = eval_command(child);
+      if (r)
+        return (r);
       i++;
     }
   return (0);
