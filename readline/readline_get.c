@@ -9,6 +9,7 @@
 */
 
 #include <unistd.h>
+#include <sys/ioctl.h>
 #include "private.h"
 
 int                     readline_get_cursor_pos(t_readline *readline,
@@ -30,7 +31,16 @@ int                     readline_get_cursor_pos(t_readline *readline,
       return (-1);
     }
   tcsetattr(readline->input, TCSANOW, &save);
-  egc_printf("x == %d  && y == %d", *x, *y);
+  /*egc_printf("x == %d  && y == %d", *x, *y);*/
+  return (0);
+}
+
+int			readline_get_winsize(t_readline *readline)
+{
+  struct winsize	sz;
+
+  ioctl(readline->input, TIOCGWINSZ, &sz);
+  /*egc_printf("Screen width: %i  Screen height: %i\n", sz.ws_col, sz.ws_row);*/
   return (0);
 }
 

@@ -90,7 +90,15 @@ int	readline_restore_term(const struct termios *cfg);
 */
 void	readline_cfmakeraw(struct termios *t);
 
+/*
+** Get the absolute position of the terminal cursor. On failure return -1
+*/
 int	readline_get_cursor_pos(t_readline *readline, int *x, int *y);
+
+/*
+** Get structure which contain size of the terminal
+*/
+int	readline_get_winsize(t_readline *readline);
 
 int     readline_parse_cursor_position(int input_fd, int *x, int *y);
 
