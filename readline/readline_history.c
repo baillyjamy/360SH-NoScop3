@@ -26,7 +26,8 @@ int		readline_get_history(t_readline *readline)
 void		readline_history_key_up(t_readline *readline)
 {
   readline->line = glist_hs_get(readline->history, readline->history_index);
-  readline->history_index += 1;
+  if (readline->history_index <= glist_hs_length(readline->history))
+    readline->history_index += 1;
 }
 
 void		readline_history_key_down(t_readline *readline)
