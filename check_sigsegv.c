@@ -5,16 +5,22 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Thu May 19 23:34:36 2016 Valentin Pichard
-** Last update Thu May 26 11:45:09 2016 Valentin Pichard
+** Last update Sun Jun  5 16:12:23 2016 Valentin Pichard
 */
 
-#include "toolbox/tools.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <signal.h>
+#include <unistd.h>
+#include "toolbox/tools.h"
 
-void		check_sigsegv(int status)
+int		check_sigsegv(int status)
 {
   if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-    fprintf(stderr, "Segmentation fault\n");
+    {
+      egc_fprintf(STDERR_FILENO,
+		  "Segmentation fault (restart your pastabox).\n");
+      return (-1);
+    }
+  return (0);
 }

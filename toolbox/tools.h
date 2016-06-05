@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Fri May 20 16:03:41 2016 Valentin Pichard
-** Last update Thu May 26 18:26:47 2016 Valentin Pichard
+** Last update Sun Jun  5 15:53:20 2016 Valentin Pichard
 */
 
 #ifndef TOOLS_H_
@@ -16,7 +16,7 @@
 /*
 ** Display segfault error when signal catched
 */
-void		check_sigsegv(int status);
+int		check_sigsegv(int status);
 
 /*
 ** Print string on stdout
