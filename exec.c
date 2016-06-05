@@ -75,8 +75,7 @@ t_process       *exec(const t_exec *exec)
 
   proc = EGC_NEW(t_process);
   proc->exit_code = 0;
-  proc->pid = fork();
-  if (proc->pid == 0)
+  if ((proc->pid = fork()) == 0)
     {
       if (exec->stdin_fd != STDIN_FILENO)
         dup_res = dup2(exec->stdin_fd, STDIN_FILENO);
