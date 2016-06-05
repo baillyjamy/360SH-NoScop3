@@ -91,7 +91,9 @@ static int      main_loop(int argc, char **argv, char **env)
   update_shell_level();
   r = 0;
   while (42)
-    r = read_and_eval(readline, r);
+    {
+      r = read_and_eval(readline, r);
+    }
   return (r);
 }
 
