@@ -74,14 +74,16 @@ static int              eval_command_impl(t_node *node)
   path_list = get_path_list();
   cmd_path = find_executable(&path_list, cmd);
   if (hs_find(cmd, hs(".."), 0) != -1 || hs_find_char(cmd, '/', 0) != -1)
-    if (check_execution_path(cmd))
-      return (1);
-  cmd_path = cmd;
-  if (!hs_length(cmd_path))
     {
-      egc_fprintf(STDERR_FILENO, "%hs: Command not found.\n", cmd);
-      return (1);
+      if (check_execution_path(cmd))
+	{
+	  return (1);
+	  cmd_path = cmd;
+	}
     }
+  if (!hs_length(cmd_path))
+    return (egc_fprintf(STDERR_FILENO,
+			"%hs: Command not found.\n", cmd) * 0 + 1);
   return (eval_command_path(node, cmd_path));
 }
 
