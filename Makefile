@@ -78,6 +78,7 @@ SOURCES	= \
 	readline/readline_event_key.c \
 	readline/readline_event.c \
 	readline/readline_get.c \
+	readline/readline_history.c \
 	readline/readline_new.c \
 	readline/readline_parse_cursor_position.c \
 	readline/readline_print.c \
