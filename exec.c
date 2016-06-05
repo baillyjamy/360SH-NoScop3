@@ -77,7 +77,7 @@ t_process       *exec(const t_exec *exec)
   proc->exit_code = 0;
   if ((proc->pid = fork()) == 0)
     {
-      if (exec->stdin_fd != STDIN_FILENO)
+      if (!(dup_res = 0) && exec->stdin_fd != STDIN_FILENO)
         dup_res = dup2(exec->stdin_fd, STDIN_FILENO);
       if (exec->stdout_fd != STDOUT_FILENO)
         dup_res = dup2(exec->stdout_fd, STDOUT_FILENO);
