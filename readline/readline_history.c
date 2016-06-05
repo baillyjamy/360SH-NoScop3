@@ -28,3 +28,10 @@ void		readline_history_key_up(t_readline *readline)
   readline->line = glist_hs_get(readline->history, readline->history_index);
   readline->history_index += 1;
 }
+
+void		readline_history_key_down(t_readline *readline)
+{
+  readline->line = glist_hs_get(readline->history, readline->history_index);
+  if (readline->history_index > 0)
+    readline->history_index -= 1;
+}
