@@ -83,12 +83,6 @@ int     eval(const t_node *node)
     return (eval_command(node));
   if (node->type == NODE_PAREN)
     return (eval_paren(node));
-  if (node->type == NODE_BACKGROUND)
-    return (eval_background(node));
-  if (node->type == NODE_AND)
-    return (eval_and(node));
-  if (node->type == NODE_OR)
-    return (eval_or(node));
   if (node->type == NODE_LIST)
     return (eval_list(node));
   assert(0);
