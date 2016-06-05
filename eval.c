@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun 05 01:08:55 2016 Antoine Baudrand
+** Last update Sun Jun  5 01:59:41 2016 Valentin Pichard
 */
 
 #include <sys/wait.h>
@@ -77,8 +77,18 @@ static int      eval_list(const t_node *node)
 
 int     eval(const t_node *node)
 {
+  if (node->type == NODE_PIPE)
+    return (eval_pipe(node));
   if (node->type == NODE_COMMAND)
     return (eval_command(node));
+  if (node->type == NODE_PAREN)
+    return (eval_paren(node));
+  if (node->type == NODE_BACKGROUND)
+    return (eval_background(node));
+  if (node->type == NODE_AND)
+    return (eval_and(node));
+  if (node->type == NODE_OR)
+    return (eval_or(node));
   if (node->type == NODE_LIST)
     return (eval_list(node));
   assert(0);

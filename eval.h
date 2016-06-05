@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:56:13 2016 antoine
-** Last update Sat Jun 04 19:49:13 2016 Antoine Baudrand
+** Last update Sun Jun  5 01:58:51 2016 Valentin Pichard
 */
 
 #ifndef EVAL_H_
@@ -16,5 +16,14 @@
 t_bltin_function    find_bltin(t_hs command);
 void                get_bltins(t_bltin *bltins);
 int                 eval(const t_node *node);
+
+/*
+** Eval parser options
+*/
+int		eval_pipe(const t_node *node);
+int		eval_paren(const t_node *node);
+int		eval_background(const t_node *node);
+int		eval_and(const t_node *node);
+int		eval_or(const t_node *node);
 
 #endif /* !EVAL_H_ */
