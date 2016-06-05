@@ -8,8 +8,9 @@
 ** Last update Thu Jun 02 22:55:49 2016 Antoine Baudrand
 */
 
-#include <term.h>
+/*#include <term.h>*/
 #include <unistd.h>
+#include "../sh.h"
 #include "private.h"
 
 static char     *read_char(int input)
@@ -109,6 +110,7 @@ int	readline_read(t_readline *readline, t_hs *line)
         }
     }
   readline_restore_term(&readline->termios);
+  add_line_history(readline->line);
   egc_printf(r == -1 ? "" : "\n");
   *line = readline->line;
   return (r);

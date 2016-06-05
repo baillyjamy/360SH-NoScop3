@@ -11,11 +11,8 @@
 #ifndef SH_FILE_H_
 # define SH_FILE_H_
 
-# include <stdio.h>
-# include <fcntl.h>
 # include <unistd.h>
 # include "../egc.h"
-# include "../parse_int/parse_int.h"
 
 /*
 ** Create a new file using the filename in params.

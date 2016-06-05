@@ -16,10 +16,10 @@ int		readline_get_history(t_readline *readline)
   t_glist_hs	history;
 
   history = glist_hs_new();
-  /*egc_printf("YOLOLOLOLOL");*/
+  egc_printf("YOLOLOLOLOL");
   if (get_history(&history) == -1)
     return (-1);
-  /*egc_printf("TROLOLOL");*/
+  egc_printf("TROLOLOL");
   egc_printf("%d", glist_hs_length(&history));
   readline->history = &history;
   readline->history_index = 0;
