@@ -5,7 +5,7 @@
 ** Login   <bailly_j@epitech.net>
 **
 ** Started on  Sun Jun  5 17:25:24 2016 Jamy Bailly
-** Last update Sun Jun  5 17:25:24 2016 Jamy Bailly
+** Last update Sun Jun  5 21:12:26 2016 Valentin Pichard
 */
 
 #include "private.h"
@@ -14,9 +14,11 @@
 int		readline_get_history(t_readline *readline)
 {
   t_glist_hs	history;
+  t_hs		path;
 
   history = glist_hs_new();
-  if (get_history(&history) == -1)
+  path = path_history();
+  if (get_file_content(path, &history) == -1)
     return (-1);
   readline->history = history;
   readline->history_index = 0;

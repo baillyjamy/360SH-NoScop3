@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun 05 18:42:54 2016 Antoine Baudrand
+** Last update Sun Jun 05 21:20:59 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -78,10 +78,8 @@ static int              eval_command_impl(t_node *node)
   if (hs_find(cmd, hs(".."), 0) != -1 || hs_find_char(cmd, '/', 0) != -1)
     {
       if (check_execution_path(cmd))
-	{
 	  return (1);
-	  cmd_path = cmd;
-	}
+      cmd_path = cmd;
     }
   if (!hs_length(cmd_path))
     return (egc_fprintf(STDERR_FILENO,

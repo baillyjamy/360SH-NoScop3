@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Sun Jun  5 20:41:13 2016 Valentin Pichard
+## Last update Sun Jun  5 21:25:55 2016 Valentin Pichard
 ##
 
 include test.mk
@@ -40,12 +40,13 @@ SOURCES	= \
 	eval_pipe.c \
 	exec.c \
 	expand_variables.c \
+	file_utils.c \
+	files_path.c \
 	file/exist.c \
 	file/file.c \
 	file/is_dir.c \
 	file/insert.c \
 	file/read.c \
-	history.c \
 	lexer/error.c \
 	lexer/get_position.c \
 	lexer/lex_d_quotes.c \
@@ -72,7 +73,6 @@ SOURCES	= \
 	parser/parser_list.c \
 	parser/parser_pipe.c \
 	path.c \
-	rcfile.c \
 	readline/readline_ascii_event.c\
 	readline/readline_cfmakeraw.c \
 	readline/readline_char.c \
