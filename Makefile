@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Sun Jun  5 16:23:42 2016 Valentin Pichard
+## Last update Sun Jun  5 20:41:13 2016 Valentin Pichard
 ##
 
 include test.mk
@@ -27,6 +27,7 @@ SOURCES	= \
 	bltins/env_cmd.c \
 	bltins/exit.c \
 	bltins/setenv.c \
+	bltins/shlvl.c \
 	bltins/unsetenv.c \
 	check_sigsegv.c \
 	colorize/colorize.c \
@@ -94,7 +95,6 @@ SOURCES	= \
 	scope/variable.c \
 	scope/env.c \
 	sh.c \
-	shlvl.c \
 	string/string.c \
 	string/string_concat.c \
 	string/string_copy.c \
