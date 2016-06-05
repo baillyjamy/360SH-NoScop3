@@ -32,4 +32,5 @@ const char      *token_type_to_str(t_token_type type)
       string++;
     }
   assert(0);
+  return (NULL);
 }
