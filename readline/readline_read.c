@@ -82,6 +82,7 @@ static int      init(t_readline *readline)
   readline_print_prompt(readline);
   readline_get_winsize(readline);
   readline_get_cursor_pos(readline, &readline->cursor_x, &readline->cursor_y);
+  readline_get_history(readline);
   return (0);
 }
 

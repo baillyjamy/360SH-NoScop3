@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun 05 17:51:55 2016 Antoine Baudrand
+** Last update Sun Jun 05 18:42:54 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -46,21 +46,14 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
 
 static int      eval_bltin(const t_node *node, t_bltin_function bltin)
 {
-  int           std_fd[3];
   int           res;
   t_glist_hs    new_args;
 
   new_args = glist_hs_copy(&node->args);
-  std_fd[0] = dup(0);
-  std_fd[1] = dup(1);
-  std_fd[2] = dup(2);
-  dup2(node->redir.input, STDIN_FILENO);
-  dup2(node->redir.output, STDOUT_FILENO);
-  dup2(node->redir.error_output, STDERR_FILENO);
+  STATICS->in = node->redir.input;
+  STATICS->out = node->redir.output;
+  STATICS->err = node->redir.error_output;
   res = bltin(&new_args);
-  dup2(std_fd[0], STDIN_FILENO);
-  dup2(std_fd[1], STDOUT_FILENO);
-  dup2(std_fd[2], STDERR_FILENO);
   return (res);
 }
 
