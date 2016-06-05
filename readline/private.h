@@ -19,6 +19,8 @@ typedef struct	s_capacity
   char		*capacity_clear_screen;
   char		*capacity_key_left;
   char		*capacity_key_right;
+  char		*capacity_key_up;
+  char		*capacity_key_down;
   char		*capacity_cursor_left;
   char		*capacity_cursor_right;
   char		*capacity_cursor_up;
