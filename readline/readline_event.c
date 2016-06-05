@@ -27,13 +27,9 @@ static void	readline_escape_envent(t_readline *readline, char *c)
       egc_printf("%s", readline->capacity.capacity_cursor_right);
     }
   else if (!strcmp(c, readline->capacity.capacity_key_up))
-    {
-      readline_history_key_up(readline);
-    }
+    readline_history_key_up(readline);
   else if (!strcmp(c, readline->capacity.capacity_key_down))
-    {
-      readline_history_key_down(readline);
-    }
+    readline_history_key_down(readline);
 }
 
 int     readline_event(t_readline *readline, char *c)
