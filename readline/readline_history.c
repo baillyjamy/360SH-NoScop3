@@ -26,14 +26,18 @@ int		readline_get_history(t_readline *readline)
 void		readline_history_key_up(t_readline *readline)
 {
   t_hs		history_up;
+  int		history_length;
+  int		g_index;
   int		i;
   char		*c;
 
   i = 0;
-  if (glist_hs_length(&readline->history) > 0)
+  history_length = glist_hs_length(&readline->history);
+  if (history_length > 0)
     {
-      history_up = glist_hs_get(&readline->history, readline->history_index);
-      if (readline->history_index <= glist_hs_length(&readline->history))
+      g_index = history_length - 2 - readline->history_index;
+      history_up = glist_hs_get(&readline->history, g_index);
+      if (readline->history_index <= history_length)
 	readline->history_index += 1;
       while (!readline_delete_char(readline));
       while (i < (int)hs_length(history_up))
