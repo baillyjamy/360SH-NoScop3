@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun 05 15:25:07 2016 Antoine Baudrand
+** Last update Sun Jun 05 16:52:54 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -53,9 +53,6 @@ int              eval_command(const t_node *node)
       dup2(1, node->redir.output);
       dup2(2, node->redir.error_output);
       res = bltin(&new_args);
-      close(0);
-      close(1);
-      close(2);
       dup2(0, std_fd[0]);
       dup2(1, std_fd[1]);
       dup2(2, std_fd[2]);
@@ -96,8 +93,6 @@ int     eval(const t_node *node)
     return (eval_pipe(node));
   if (node->type == NODE_COMMAND)
     return (eval_command(node));
-  if (node->type == NODE_PAREN)
-    return (eval_paren(node));
   if (node->type == NODE_BACKGROUND)
     return (eval_background(node));
   if (node->type == NODE_AND)
