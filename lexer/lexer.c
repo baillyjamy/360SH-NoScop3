@@ -19,6 +19,7 @@ static t_result         lex_token_impl(const char **string_p)
   t_result              res;
   int                   i;
 
+  (void) begin;
   i = 0;
   functions[i++] = &lex_d_quotes;
   functions[i++] = &lex_heredoc;

@@ -106,7 +106,7 @@ SOURCES	= \
 
 OBJECTS	= $(SOURCES:.c=.o)
 
-DELIVERY	= false
+DELIVERY	= true
 
 CC		= cc
 

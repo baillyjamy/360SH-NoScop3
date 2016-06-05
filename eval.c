@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun 05 16:55:47 2016 Antoine Baudrand
+** Last update Sun Jun 05 17:51:55 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -13,11 +13,26 @@
 #include "eval.h"
 #include "exec.h"
 
+static int      wait_return_status(int pid)
+{
+  int		status;
+
+  while (42)
+    {
+      if (waitpid(pid, &status, 0) == -1)
+	  return (130);
+      if (check_sigsegv(status) == -1)
+	return (139);
+      if (WIFEXITED(status))
+	return (WEXITSTATUS(status));
+    }
+  return (0);
+}
+
 static int      eval_command_path(const t_node *node, t_hs command_path)
 {
   t_process     *process;
   t_exec        e;
-  int           status;
 
   e.filename = command_path;
   e.argv = glist_hs_copy(&node->args);
@@ -26,8 +41,7 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
   e.stdout_fd = node->redir.output;
   e.stderr_fd = node->redir.error_output;
   process = exec(&e);
-  waitpid(process->pid, &status, 0);
-  return (0);
+  return (wait_return_status(process->pid));
 }
 
 static int      eval_bltin(const t_node *node, t_bltin_function bltin)
@@ -40,13 +54,13 @@ static int      eval_bltin(const t_node *node, t_bltin_function bltin)
   std_fd[0] = dup(0);
   std_fd[1] = dup(1);
   std_fd[2] = dup(2);
-  dup2(0, node->redir.input);
-  dup2(1, node->redir.output);
-  dup2(2, node->redir.error_output);
+  dup2(node->redir.input, STDIN_FILENO);
+  dup2(node->redir.output, STDOUT_FILENO);
+  dup2(node->redir.error_output, STDERR_FILENO);
   res = bltin(&new_args);
-  dup2(0, std_fd[0]);
-  dup2(1, std_fd[1]);
-  dup2(2, std_fd[2]);
+  dup2(std_fd[0], STDIN_FILENO);
+  dup2(std_fd[1], STDOUT_FILENO);
+  dup2(std_fd[2], STDERR_FILENO);
   return (res);
 }
 
@@ -85,6 +99,13 @@ static int      eval_list(const t_node *node)
   while (++i < glist_voidp_length(&node->children))
     {
       child = glist_voidp_get(&node->children, i);
+      if (i)
+        {
+          if (last_status && child->prev_op == LIST_OP_AND_AND)
+            return (last_status);
+          if (!last_status && child->prev_op == LIST_OP_PIPE_PIPE)
+            return (0);
+        }
       last_status = eval(child);
     }
   return (last_status);

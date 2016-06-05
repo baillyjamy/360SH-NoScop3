@@ -68,4 +68,5 @@ t_hs    node_to_hs(const t_node *node)
   else if (node->type == NODE_LIST)
     return (list_to_hs(node));
   assert(0);
+  return (hs(""));
 }
