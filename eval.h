@@ -15,13 +15,13 @@
 
 t_bltin_function    find_bltin(t_hs command);
 void                get_bltins(t_bltin *bltins);
-int                 eval(const t_node *node);
+int                 eval(t_node *node);
 
 /*
 ** Eval parser options
 */
-int		eval_pipe(const t_node *node);
-int             eval_command(const t_node *node);
-int             eval_bltin(const t_node *node, t_bltin_function bltin);
+int		eval_pipe(t_node *node);
+int             eval_command(t_node *node);
+int             eval_bltin(t_node *node, t_bltin_function bltin);
 
 #endif /* !EVAL_H_ */
