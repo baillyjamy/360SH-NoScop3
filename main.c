@@ -36,17 +36,6 @@ static int              eval_tokens(t_token_list *tokens)
   return (r < 0 ? 1 : r);
 }
 
-static void     exit_on_ctrl_d(int r)
-{
-  t_glist_hs    args;
-
-  args = hs_split(hs_format("exit %d", r), hs(" "));
-  STATICS->in = STDIN_FILENO;
-  STATICS->out = STDOUT_FILENO;
-  STATICS->err = STDERR_FILENO;
-  exit_cmd(&args);
-}
-
 static t_token_list     *read_and_lex(t_readline *readline, int last_status)
 {
   t_lexer_result        lex_res;
@@ -84,15 +73,6 @@ static int      read_and_eval(t_readline *readline, int last_status)
   if (!tokens)
     return (read_and_eval(readline, last_status));
   return (eval_tokens(tokens));
-}
-
-/*
-** TODO: We can't use any garbage-collected stuff in an signal handler.
-** We should do this differently.
-*/
-void	ctrl_c()
-{
-  return ;
 }
 
 static int      main_loop(int argc, char **argv, char **env)

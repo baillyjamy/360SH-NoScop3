@@ -34,6 +34,7 @@ SOURCES	= \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
 	colorize/uncolorize.c \
+	ctrl_c_ctrl_d.c \
 	eval.c \
 	eval_bltns.c \
 	eval_pipe.c \
@@ -94,6 +95,7 @@ SOURCES	= \
 	scope/scope_to_hs.c \
 	scope/variable.c \
 	scope/env.c \
+	scope/env_get.c \
 	sh.c \
 	string/string.c \
 	string/string_concat.c \

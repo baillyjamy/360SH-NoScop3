@@ -8,7 +8,6 @@
 ** Last update Thu Jun 02 22:55:49 2016 Antoine Baudrand
 */
 
-/*#include <term.h>*/
 #include <unistd.h>
 #include "../sh.h"
 #include "private.h"
