@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun  5 01:59:41 2016 Valentin Pichard
+** Last update Sun Jun 05 12:12:04 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -30,7 +30,7 @@ static int      eval_command_path(const t_node *node, t_hs command_path)
   return (0);
 }
 
-static int              eval_command(const t_node *node)
+int              eval_command(const t_node *node)
 {
   t_hs                  cmd;
   t_hs                  cmd_path;
