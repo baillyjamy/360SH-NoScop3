@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Fri Jun  3 23:55:56 2016 antoine
-** Last update Sun Jun 05 16:52:54 2016 Antoine Baudrand
+** Last update Sun Jun 05 16:55:47 2016 Antoine Baudrand
 */
 
 #include <sys/wait.h>
@@ -59,7 +59,6 @@ int              eval_command(const t_node *node)
       return (res);
     }
   path_list = get_path_list();
-  /* hs_puts(cmd); */
   cmd_path = find_executable(&path_list, cmd);
   if (hs_find(cmd, hs(".."), 0) != -1 || hs_find_char(cmd, '/', 0) != -1)
     cmd_path = cmd;
@@ -93,12 +92,6 @@ int     eval(const t_node *node)
     return (eval_pipe(node));
   if (node->type == NODE_COMMAND)
     return (eval_command(node));
-  if (node->type == NODE_BACKGROUND)
-    return (eval_background(node));
-  if (node->type == NODE_AND)
-    return (eval_and(node));
-  if (node->type == NODE_OR)
-    return (eval_or(node));
   if (node->type == NODE_LIST)
     return (eval_list(node));
   assert(0);

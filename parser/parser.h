@@ -19,11 +19,15 @@ typedef enum    e_node_type
   NODE_PIPE,
   NODE_COMMAND,
   NODE_PAREN,
-  NODE_AND,
-  NODE_OR,
-  NODE_BACKGROUND,
   NODE_LIST,
 }               t_node_type;
+
+typedef enum    e_list_op
+{
+  LIST_OP_AND_AND,
+  LIST_OP_PIPE_PIPE,
+  LIST_OP_SEMICOLON,
+}               t_list_op;
 
 char const      *node_type_to_str(t_node_type type);
 
@@ -50,18 +54,6 @@ typedef struct s_node   t_node;
 ** NODE_PAREN:
 **      left: The child node, between the parens
 **
-** NODE_BACKGROUND:
-**      left: The node before the '&'
-**      right: The node after the '&' or NULL
-**
-** NODE_AND:
-**      left: The node at the left of `&&`
-**      right: The node at the right of of `&&`
-**
-** NODE_OR:
-**      left: The node at the left of `||`
-**      right: The node at the right of of `||`
-**
 ** NODE_LIST:
 **      children: The children nodes (separated by semicolons)
 **
@@ -76,9 +68,8 @@ typedef struct s_node   t_node;
 struct  s_node
 {
   t_node_type   type;
+  t_list_op     prev_op;
   t_redir       redir;
-  t_node        *left;
-  t_node        *right;
   t_glist_hs    args;
   t_glist_voidp children;
 };

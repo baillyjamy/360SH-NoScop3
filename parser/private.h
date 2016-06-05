@@ -57,5 +57,6 @@ t_token_result  parse_token_type(t_token_list **list_pointer,
 
 t_parser_result parse_command(t_token_list **list_pointer);
 t_parser_result parse_pipeline(t_token_list **list_pointer);
+t_parser_result parse_command_list(t_token_list **list_pointer);
 
 #endif /* !PRIVATE_H_ */
