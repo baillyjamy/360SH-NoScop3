@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Wed Jun 01 00:18:15 2016 Antoine Baudrand
-** Last update Sun Jun  5 16:12:26 2016 Valentin Pichard
+** Last update Sun Jun 05 21:38:58 2016 Antoine Baudrand
 */
 
 #include <unistd.h>
@@ -63,12 +63,15 @@ static int      execve_wrapper(const t_exec *exec)
   free_char_array(argv);
   free_char_array(env);
   free(file);
+  egc_fprintf(STDERR_FILENO, "Unable to execve %hs\n", exec->filename);
+  egc_exit(127);
   return (r);
 }
 
 t_process       *exec(const t_exec *exec)
 {
   t_process     *proc;
+  int           dup_res;
 
   proc = EGC_NEW(t_process);
   proc->exit_code = 0;
@@ -76,14 +79,14 @@ t_process       *exec(const t_exec *exec)
   if (proc->pid == 0)
     {
       if (exec->stdin_fd != STDIN_FILENO)
-        dup2(exec->stdin_fd, STDIN_FILENO);
+        dup_res = dup2(exec->stdin_fd, STDIN_FILENO);
       if (exec->stdout_fd != STDOUT_FILENO)
-        dup2(exec->stdout_fd, STDOUT_FILENO);
+        dup_res = dup2(exec->stdout_fd, STDOUT_FILENO);
       if (exec->stderr_fd != STDERR_FILENO)
-        dup2(exec->stderr_fd, STDERR_FILENO);
+        dup_res = dup2(exec->stderr_fd, STDERR_FILENO);
+      if (dup_res < 0)
+        egc_exit(127);
       execve_wrapper(exec);
-      egc_fprintf(STDERR_FILENO, "Unable to execve %hs\n", exec->filename);
-      egc_exit(127);
     }
   if (exec->stdin_fd != STDIN_FILENO)
     close(exec->stdin_fd);
