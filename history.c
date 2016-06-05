@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Thu Jun  2 16:49:54 2016 Valentin Pichard
-** Last update Fri Jun  3 19:02:07 2016 Valentin Pichard
+** Last update Sun Jun  5 18:44:51 2016 Valentin Pichard
 */
 
 #include "sh.h"
@@ -16,6 +16,16 @@ int		get_history(t_glist_hs *history)
 
   path = hs("~/.360sh-noscop3_history");
   if (fshell_init(path, history))
+    return (-1);
+  return (0);
+}
+
+int		add_line_history(t_hs line)
+{
+  t_hs		path;
+
+  path = hs("~/.360sh-noscop3_history");
+  if (insert_line(path, line) == -1)
     return (-1);
   return (0);
 }
