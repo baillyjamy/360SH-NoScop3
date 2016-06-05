@@ -11,7 +11,9 @@
 #include <unistd.h>
 #include "private.h"
 
-int	readline_get_cursor_pos(t_readline *readline, int *x, int *y)
+int                     readline_get_cursor_pos(t_readline *readline,
+                                                int *x,
+                                                int *y)
 {
   struct termios	save;
   struct termios	raw;
@@ -21,8 +23,9 @@ int	readline_get_cursor_pos(t_readline *readline, int *x, int *y)
   readline_cfmakeraw(&raw);
   if (tcsetattr(readline->input, TCSANOW, &raw) == -1)
     return (-1);
+
   egc_printf("\033[6n");
-  if (readline_parse_cursor_position(readline->input, x, y) == -1)
+  if (readline_parse_cursor_position(readline->input, x, y))
     {
       egc_printf("LOFZEKA\n");
       tcsetattr(readline->input, TCSANOW, &save);
