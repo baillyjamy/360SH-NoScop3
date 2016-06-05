@@ -23,7 +23,6 @@ int                     readline_get_cursor_pos(t_readline *readline,
   readline_cfmakeraw(&raw);
   if (tcsetattr(readline->input, TCSANOW, &raw) == -1)
     return (-1);
-
   egc_printf("\033[6n");
   if (readline_parse_cursor_position(readline->input, x, y))
     {
