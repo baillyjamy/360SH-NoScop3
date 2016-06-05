@@ -26,6 +26,7 @@ typedef struct	s_capacity
   char		*capacity_cursor_end;
   char		*capacity_clr_eol;
   char		*capacity_clr_eos;
+  char		*capacity_cursor_home;
 }		t_capacity;
 
 struct                          s_readline
@@ -73,6 +74,8 @@ int	readline_ascii_event(t_readline *readline, char c);
 int	readline_ctrl_d(t_readline *readline);
 
 int	readline_ctrl_l(t_readline *readline);
+
+int	readline_key_home(t_readline *readline);
 
 /*
 ** Set terminal configuration
