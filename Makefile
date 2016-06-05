@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Sat Jun 04 19:52:16 2016 Antoine Baudrand
+## Last update Sun Jun  5 16:23:42 2016 Valentin Pichard
 ##
 
 include test.mk
@@ -28,6 +28,7 @@ SOURCES	= \
 	bltins/exit.c \
 	bltins/setenv.c \
 	bltins/unsetenv.c \
+	check_sigsegv.c \
 	colorize/colorize.c \
 	colorize/colorize_extend.c \
 	colorize/get_color.c \
