@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Thu May 19 23:34:36 2016 Valentin Pichard
-** Last update Sun Jun  5 16:12:23 2016 Valentin Pichard
+** Last update Mon Jun  6 18:52:04 2016 Valentin Pichard
 */
 
 #include <stdlib.h>
@@ -19,7 +19,7 @@ int		check_sigsegv(int status)
   if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
     {
       egc_fprintf(STDERR_FILENO,
-		  "Segmentation fault (restart your pastabox).\n");
+		  "Segmentation fault (core dumped)\n");
       return (-1);
     }
   return (0);
