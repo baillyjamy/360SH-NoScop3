@@ -10,7 +10,7 @@
 
 #include "string.h"
 
-char            *string_copy(char *dest, const char *source)
+char    *string_copy(char *dest, const char *source)
 {
   int	i;
 
@@ -24,7 +24,7 @@ char            *string_copy(char *dest, const char *source)
   return (dest);
 }
 
-char            *string_copy_n(char *dest, const char *source, int n)
+char    *string_copy_n(char *dest, const char *source, int n)
 {
   int	i;
 

@@ -11,7 +11,7 @@
 #include "test.h"
 #include "../../lexer/lexer.h"
 
-static void     test_0(void)
+static void             test_0(void)
 {
   t_lexer_result        result;
 
@@ -21,7 +21,7 @@ static void     test_0(void)
                    hs("<lt <><gt >><and_and &&><pipe |><pipe_pipe ||>")));
 }
 
-static void     test_1(void)
+static void             test_1(void)
 {
   t_lexer_result        result;
 
@@ -31,7 +31,7 @@ static void     test_1(void)
                    hs("<word a><gt >><word b><pipe_pipe ||><word c>")));
 }
 
-static void     test_d_quotes(void)
+static void             test_d_quotes(void)
 {
   t_lexer_result        result;
 

@@ -28,7 +28,7 @@ char            *string_to_lowercase(const char *source)
   return (copy);
 }
 
-char    *string_to_uppercase(const char *source)
+char            *string_to_uppercase(const char *source)
 {
   char          *copy;
   size_t        i;

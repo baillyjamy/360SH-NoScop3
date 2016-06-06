@@ -13,9 +13,9 @@
 #include "eval.h"
 #include "exec.h"
 
-void     get_bltins(t_bltin *bltins)
+void    get_bltins(t_bltin *bltins)
 {
-  int           i;
+  int   i;
 
   i = 0;
   bltins[i].name = "env";
@@ -34,7 +34,7 @@ void     get_bltins(t_bltin *bltins)
   bltins[i++].function = NULL;
 }
 
-t_bltin_function find_bltin(t_hs command)
+t_bltin_function        find_bltin(t_hs command)
 {
   t_bltin               builtins[32];
   t_bltin               *builtin;

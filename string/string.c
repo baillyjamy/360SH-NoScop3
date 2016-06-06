@@ -33,7 +33,7 @@ int             string_get_length(const char *string)
   return (i);
 }
 
-char            *string_duplicate(const char *source)
+char    *string_duplicate(const char *source)
 {
   char	*dest;
 
@@ -42,7 +42,7 @@ char            *string_duplicate(const char *source)
   return (string_copy(dest, source));
 }
 
-char            *string_duplicate_n(const char *source, int n)
+char    *string_duplicate_n(const char *source, int n)
 {
   char	*dest;
 

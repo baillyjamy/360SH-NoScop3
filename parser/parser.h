@@ -64,7 +64,7 @@ typedef struct s_node   t_node;
 **
 ** The other properties are left undefined.
 */
-struct  s_node
+struct          s_node
 {
   t_node_type   type;
   t_list_op     prev_op;

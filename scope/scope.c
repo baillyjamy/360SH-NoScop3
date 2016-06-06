@@ -10,7 +10,7 @@
 
 #include "private.h"
 
-t_hs    scope_remove(t_scope *scope, t_hs name)
+t_hs            scope_remove(t_scope *scope, t_hs name)
 {
   int           i;
   t_variable    *var;

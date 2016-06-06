@@ -57,9 +57,9 @@ t_token_result          parse_word_or_string_token(t_token_list **list_ptr,
   return (result);
 }
 
-int             parse_word_or_string(t_token_list **list_pointer,
-                                     t_hs *result,
-                                     t_redir *redir)
+int                     parse_word_or_string(t_token_list **list_pointer,
+                                             t_hs *result,
+                                             t_redir *redir)
 {
   t_token_result        tr;
 
@@ -77,4 +77,3 @@ int             parse_word_or_string(t_token_list **list_pointer,
   *result = parser_get_word(tr.token);
   return (0);
 }
-

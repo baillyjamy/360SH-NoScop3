@@ -28,7 +28,7 @@ typedef struct  s_test_stats
 /*
 ** `test_stats` is used only by the automated tests.
 */
-typedef struct  	s_statics
+typedef struct          s_statics
 {
   const char            *lexer_input_string;
   t_test_stats          test_stats;
@@ -36,7 +36,7 @@ typedef struct  	s_statics
   int                   in;
   int                   out;
   int                   err;
-}               	t_statics;
+}                       t_statics;
 
 /*
 ** Initializes the statics variables, with an empty environment.

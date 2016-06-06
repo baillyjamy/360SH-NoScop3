@@ -11,7 +11,7 @@
 #include <assert.h>
 #include "private.h"
 
-void             	skip_whitespaces(const char **string_p)
+void    skip_whitespaces(const char **string_p)
 {
   while (char_is_whitespace(**string_p))
     NEXT(string_p);

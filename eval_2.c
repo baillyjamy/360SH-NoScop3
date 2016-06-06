@@ -11,9 +11,9 @@
 #include <sys/wait.h>
 #include "eval.h"
 
-int      wait_return_status(int pid)
+int     wait_return_status(int pid)
 {
-  int		status;
+  int   status;
 
   while (42)
     {
@@ -27,7 +27,7 @@ int      wait_return_status(int pid)
   return (0);
 }
 
-int		eval_check_execution_path(t_hs cmd)
+int     eval_check_execution_path(t_hs cmd)
 {
   if ((access(hs_to_str(cmd), F_OK)))
     {

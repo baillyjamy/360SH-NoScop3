@@ -12,7 +12,7 @@
 
 static int	print_args(t_glist_hs *argv)
 {
-  int	i;
+  int           i;
 
   i = 1;
   if (hs_equals(glist_hs_get(argv, 1), hs("-n")))

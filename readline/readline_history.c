@@ -42,7 +42,7 @@ void		readline_history_key_up(t_readline *readline)
       if (readline->history_index + 2 < history_length)
 	readline->history_index += 1;
       while (!readline_delete_char(readline))
-	continue;
+	continue ;
       while (i < (int)hs_length(history_up))
 	{
 	  c = hs_to_str(hs_new_from_char(hs_get(history_up, i)));
@@ -69,7 +69,7 @@ void		readline_history_key_down(t_readline *readline)
       if (readline->history_index > 0)
 	readline->history_index -= 1;
       while (!readline_delete_char(readline))
-	continue;
+	continue ;
       while (i < (int)hs_length(history_up))
 	{
 	  c = hs_to_str(hs_new_from_char(hs_get(history_up, i)));
