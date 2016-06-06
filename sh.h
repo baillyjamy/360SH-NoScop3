@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Sun Jun  5 22:14:25 2016 Valentin Pichard
+** Last update Mon Jun  6 20:21:02 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -67,6 +67,7 @@ int		exit_cmd(t_glist_hs *argv);
 int		echo_cmd(t_glist_hs *argv);
 int		setenv_cmd(t_glist_hs *argv);
 int		unsetenv_cmd(t_glist_hs *argv);
+int		history_cmd(t_glist_hs *argv);
 
 /*
 ** File functions

@@ -5,7 +5,7 @@
 ## Login   <pichar_v@epitech.eu>
 ##
 ## Started on  Fri May 27 00:21:23 2016 Valentin Pichard
-## Last update Sun Jun  5 21:25:55 2016 Valentin Pichard
+## Last update Mon Jun  6 19:15:28 2016 Valentin Pichard
 ##
 
 include test.mk
@@ -26,6 +26,7 @@ SOURCES	= \
 	bltins/echo.c \
 	bltins/env_cmd.c \
 	bltins/exit.c \
+	bltins/history.c \
 	bltins/setenv.c \
 	bltins/shlvl.c \
 	bltins/unsetenv.c \
