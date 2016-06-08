@@ -5,7 +5,7 @@
 ** Login   <baudra_a@epitech.net>
 **
 ** Started on  Sat Jun 04 19:47:39 2016 Antoine Baudrand
-** Last update Mon Jun  6 19:11:38 2016 Valentin Pichard
+** Last update Mon Jun  6 21:40:46 2016 Valentin Pichard
 */
 
 #include <sys/wait.h>
@@ -32,6 +32,8 @@ void    get_bltins(t_bltin *bltins)
   bltins[i++].function = echo_cmd;
   bltins[i].name = "history";
   bltins[i++].function = history_cmd;
+  bltins[i].name = "motd";
+  bltins[i++].function = motd_cmd;
   bltins[i].name = NULL;
   bltins[i++].function = NULL;
 }

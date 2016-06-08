@@ -5,7 +5,7 @@
 ** Login   <antoine@epitech.net>
 **
 ** Started on  Sun Apr 17 16:42:03 2016 antoine
-** Last update Mon Jun  6 20:21:02 2016 Valentin Pichard
+** Last update Wed Jun  8 13:50:11 2016 Valentin Pichard
 */
 
 #ifndef SH_H_
@@ -68,6 +68,18 @@ int		echo_cmd(t_glist_hs *argv);
 int		setenv_cmd(t_glist_hs *argv);
 int		unsetenv_cmd(t_glist_hs *argv);
 int		history_cmd(t_glist_hs *argv);
+int		motd_cmd(t_glist_hs *argv);
+
+/*
+** Motd functions
+*/
+t_hs		path_motd(void);
+int		motd_display(t_glist_hs *motd);
+int		get_motd_content(t_glist_hs *motd);
+int		motd_power(t_hs mod);
+int		motd_cmd(t_glist_hs *argv);
+void		motd_display_init(void);
+int		motd_edit(void);
 
 /*
 ** File functions

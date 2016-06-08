@@ -17,4 +17,6 @@ shell
 mouli.sh
 tests
 *.360sh-noscop3_history
+*.360sh-noscop3_motd
+*.360sh-noscop3rc
 *.sh

@@ -5,7 +5,7 @@
 ** Login   <jacqui_p@epitech.eu>
 **
 ** Started on  Mon May 30 19:08:52 2016 Pierre-Emmanuel Jacquier
-** Last update Sat Jun 04 18:40:09 2016 Antoine Baudrand
+** Last update Wed Jun  8 13:08:28 2016 Valentin Pichard
 */
 
 #include <unistd.h>
@@ -38,7 +38,7 @@ static t_token_list     *read_and_lex(t_readline *readline, int last_status)
   readline_set_prompt(readline, create_prompt());
   if (readline_read(readline, &input))
     exit_on_ctrl_d(last_status);
-  while (1)
+  while (42)
     {
       lex_res = lex(input);
       if (!lex_res.error)
@@ -83,10 +83,9 @@ static int      main_loop(int argc, char **argv, char **env)
   readline = readline_new(STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO);
   update_shell_level();
   r = 0;
+  motd_display_init();
   while (42)
-    {
-      r = read_and_eval(readline, r);
-    }
+    r = read_and_eval(readline, r);
   return (r);
 }
 
