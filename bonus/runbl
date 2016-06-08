@@ -1,0 +1,3 @@
+#!/bin/bash
+docker run -tiv $(pwd):/root/run antoinebaudrand/blinux sh -c "/root/run/$1"
+

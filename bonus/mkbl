@@ -1,0 +1,3 @@
+#!/bin/bash
+docker run -v $(pwd):/root/make antoinebaudrand/blinux sh -c "mkdir -p /root/make && cd /root/make && make re"
+
