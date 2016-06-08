@@ -37,7 +37,6 @@ int		create_file(const t_hs filename)
   if ((fd = open_file(filename, O_RDWR | O_CREAT)) == -1)
     {
       close(fd);
-      egc_printf("GFDSQSDFG -- %i --- %hs", fd, filename);
       return (-1);
     }
   close(fd);
