@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Wed Jun  8 11:56:00 2016 Valentin Pichard
-** Last update Wed Jun  8 13:49:33 2016 Valentin Pichard
+** Last update Wed Jun  8 14:01:52 2016 Valentin Pichard
 */
 
 #include <stdio.h>
@@ -14,7 +14,7 @@
 int		motd_edit(void)
 {
   printf("Just edit your .360sh-noscop3_motd "
-	 "file just bellow the line gave\n");
+	 "file and write your own content.\n");
   return (0);
 }
 
@@ -34,7 +34,7 @@ int		motd_display(t_glist_hs *motd)
 {
   int		i;
 
-  i = 4;
+  i = 0;
   motd_banner();
   while (i < glist_hs_length(motd) - 1)
     {

@@ -5,7 +5,7 @@
 ** Login   <pichar_v@epitech.eu>
 **
 ** Started on  Mon Jun  6 20:40:45 2016 Valentin Pichard
-** Last update Wed Jun  8 13:53:37 2016 Valentin Pichard
+** Last update Wed Jun  8 14:02:22 2016 Valentin Pichard
 */
 
 #include "../sh.h"
@@ -21,19 +21,10 @@ static int	motd_usage(void)
 int		get_motd_content(t_glist_hs *motd)
 {
   t_hs		path;
-  int		create;
 
-  create = 0;
   path = path_motd();
-  if (!file_exist(path))
-    create++;
   if (get_file_content(path, motd) == -1)
     return (-1);
-  if (create)
-    insert_line(path,
-		hs("ON\nDON'T DELETE PREVIOUS LINES\n"
-		   "------------------\n"
-		   "Write content just below:"));
   return (0);
 }
 
