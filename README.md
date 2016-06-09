@@ -1,7 +1,5 @@
 <h1>~~~ Xx_360SH-NoScop3_xX ~~~</h1>
 
-[![Build Status](http://segfault.pro/job/42sh-unit/lastBuild/badge/icon)](http://segfault.pro/job/42sh-unit/lastBuild/)
-
 ```
  __    __      _____ _    _ ____  _      _          __    __
  \ \   \ \    / ____| |  | |___ \| |    | |        / /   / /
